@@ -1,11 +1,21 @@
+export interface Organization {
+  id: string;
+  name: string;
+  description: string;
+  logoUrl: string;
+  facebookUrl: string;
+  type: 'Community' | 'Non-Profit' | 'Government' | 'Incubator' | 'Academe';
+  isFeatured?: boolean;
+}
+
 export interface Startup {
   id: string;
   name: string;
   description: string;
   logoUrl: string;
   facebookUrl: string;
-  category: 'Community' | 'Tech' | 'Service' | 'E-commerce';
-  isFeatured?: boolean;
+  industry: 'Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative';
+  stage?: 'Pre-Seed' | 'Seed' | 'Growth';
 }
 
 export interface Event {
@@ -28,8 +38,7 @@ export interface Opportunity {
   description: string;
 }
 
-export enum ViewMode {
-  Grid = 'GRID',
-  List = 'LIST',
-  Calendar = 'CALENDAR'
+export interface ThemeContextType {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
 }

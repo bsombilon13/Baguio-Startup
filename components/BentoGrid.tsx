@@ -5,7 +5,7 @@ export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string
   className = "" 
 }) => {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[minmax(180px,auto)] ${className}`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(180px,auto)] ${className}`}>
       {children}
     </div>
   );
@@ -22,8 +22,11 @@ export const BentoItem: React.FC<{
       onClick={onClick}
       className={`
         relative overflow-hidden rounded-[2rem] p-6
-        bg-white border border-slate-100 shadow-sm
-        hover:shadow-lg hover:border-slate-200 transition-all duration-300 group
+        bg-white dark:bg-slate-900 
+        border border-slate-100 dark:border-slate-800 
+        shadow-sm hover:shadow-lg dark:hover:shadow-slate-800
+        hover:border-slate-200 dark:hover:border-slate-700
+        transition-all duration-300 group
         ${onClick ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99]' : ''}
         ${className}
       `}
