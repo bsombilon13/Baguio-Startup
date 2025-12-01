@@ -170,7 +170,7 @@ const Ecosystem: React.FC = () => {
               New community or enabler? <br/> Submit your details to get listed.
             </p>
             <a 
-              href="http://m.me/baguiostartup" 
+              href="https://m.me/baguiostartup" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-white text-[#35308f] px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-indigo-50 transition-colors shadow-lg w-full"

@@ -60,20 +60,15 @@ const Dashboard = () => {
     }
   };
 
-  const LevelBadge = ({ level, label }: { level: number, label: string }) => (
-    <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border flex items-center gap-2 w-fit ${getLevelColor(level)}`}>
-      <span className="flex gap-0.5">
-        {[1, 2, 3, 4].map(i => (
-          <div key={i} className={`w-1.5 h-1.5 rounded-full ${i <= level ? 'bg-current' : 'bg-current opacity-20'}`} />
-        ))}
-      </span>
-      Level {level}: {label}
+  const LevelBadge = ({ level, label, compact = false }: { level: number, label: string, compact?: boolean }) => (
+    <div className={`px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border flex items-center justify-center gap-2 w-fit ${getLevelColor(level)}`}>
+      {compact ? `Lvl ${level}` : `Level ${level}: ${label}`}
     </div>
   );
 
   return (
     <div className="space-y-6 h-full flex flex-col">
-      <header className="mb-8">
+      <header className="mb-6">
         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-[#35308f] dark:to-indigo-400">Baguio Startup Network</span>
         </h1>
@@ -87,10 +82,7 @@ const Dashboard = () => {
         
         {/* SCMM Section - Top */}
         <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
-          <div className="flex items-center justify-between">
-             <h2 className="text-lg font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">Startup Community Maturity Model (SCMM)</h2>
-          </div>
-
+          
           {/* Main Region Box */}
           <div className="bg-gradient-to-br from-[#35308f] to-indigo-700 rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-indigo-200 dark:shadow-none relative overflow-hidden">
              <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
@@ -101,22 +93,19 @@ const Dashboard = () => {
                 </svg>
              </div>
              
-             <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 mb-4">
-                   <span className="w-2 h-2 rounded-full bg-blue-300"></span> Region Overview
+             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 mb-4">
+                     <span className="w-2 h-2 rounded-full bg-blue-300"></span> Region Overview
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-2">Cordillera Administrative Region</h3>
+                  <p className="text-indigo-100 font-medium max-w-2xl">
+                    The startup ecosystem of the Cordilleras is predominantly in the nascent stage, characterized by emerging communities and foundational support structures.
+                  </p>
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-2">Cordillera Administrative Region</h3>
-                <div className="flex flex-wrap items-center gap-4">
-                   <span className="text-indigo-100 font-medium">Ecosystem Stage:</span>
-                   <div className="bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full font-bold text-sm border border-white/20 flex items-center gap-2">
-                      <span className="flex gap-1">
-                         <div className="w-2 h-2 rounded-full bg-white"></div>
-                         <div className="w-2 h-2 rounded-full bg-white/30"></div>
-                         <div className="w-2 h-2 rounded-full bg-white/30"></div>
-                         <div className="w-2 h-2 rounded-full bg-white/30"></div>
-                      </span>
-                      Level 1: Nascent
-                   </div>
+                
+                <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl font-bold text-lg border border-white/20 shadow-lg whitespace-nowrap">
+                   Level 1: Nascent
                 </div>
              </div>
           </div>
@@ -124,10 +113,17 @@ const Dashboard = () => {
           {/* Sub-regions Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
              {scmmData.map((area) => (
-                <div key={area.name} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors flex flex-col justify-between min-h-[100px]">
-                   <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base">{area.name}</span>
-                   <div className="mt-3">
-                      <LevelBadge level={area.level} label={area.label} />
+                <div key={area.name} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors flex flex-col justify-between min-h-[110px] relative overflow-hidden group">
+                   <div className="flex justify-between items-start mb-2">
+                     <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base pr-8 leading-tight">{area.name}</span>
+                     <div className="absolute top-3 right-3">
+                        <LevelBadge level={area.level} label={area.label} compact={true} />
+                     </div>
+                   </div>
+                   <div className="mt-auto pt-2">
+                      <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                        {area.label}
+                      </span>
                    </div>
                 </div>
              ))}
