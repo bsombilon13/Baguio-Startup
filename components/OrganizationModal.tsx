@@ -61,7 +61,7 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
 
             <div className="text-left bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-800">
                <h3 className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-3">About</h3>
-               <p className="text-slate-700 dark:text-slate-200 leading-7 text-base font-medium">
+               <p className="text-slate-700 dark:text-slate-200 leading-relaxed text-lg font-medium">
                  {org.description}
                </p>
             </div>
