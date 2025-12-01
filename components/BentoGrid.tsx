@@ -17,17 +17,27 @@ export const BentoItem: React.FC<{
   onClick?: () => void;
   background?: string;
 }> = ({ children, className = "", onClick, background }) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   return (
     <div
       onClick={onClick}
+      onKeyDown={handleKeyDown}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
       className={`
-        relative overflow-hidden rounded-[2rem] p-6
+        relative overflow-hidden rounded-3xl p-6
         bg-white dark:bg-slate-900 
         border border-slate-100 dark:border-slate-800 
-        shadow-sm hover:shadow-lg dark:hover:shadow-slate-800
-        hover:border-slate-200 dark:hover:border-slate-700
+        shadow-sm hover:shadow-lg dark:hover:shadow-slate-800/50
+        hover:border-slate-300 dark:hover:border-slate-600
         transition-all duration-300 group
-        ${onClick ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99]' : ''}
+        ${onClick ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-indigo-500/20' : ''}
         ${className}
       `}
       style={{

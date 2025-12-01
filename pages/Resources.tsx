@@ -7,6 +7,10 @@ const Resources: React.FC = () => {
 
   const filters = ['All', 'Report', 'Template', 'Guide'];
 
+  const filteredResources = filter === 'All' 
+    ? resources 
+    : resources.filter(resource => resource.type === filter);
+
   return (
     <div className="space-y-6 pb-24">
       <div className="mb-6">
@@ -23,18 +27,21 @@ const Resources: React.FC = () => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
           <input 
             type="text" 
+            aria-label="Search resources"
             placeholder="Search resources..." 
             className="w-full pl-12 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-[#35308f] dark:focus:ring-indigo-500 transition-all dark:text-white"
           />
         </div>
         
-        <div className="flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex gap-2 overflow-x-auto no-scrollbar" role="tablist" aria-label="Resource Types">
           {filters.map(f => (
             <button 
               key={f}
+              role="tab"
+              aria-selected={filter === f}
               onClick={() => setFilter(f)}
               className={`
-                px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border
+                px-5 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all border focus:outline-none focus:ring-2 focus:ring-[#35308f]
                 ${filter === f 
                   ? 'bg-[#35308f] text-white border-[#35308f]' 
                   : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#35308f] hover:text-[#35308f]'}
@@ -47,7 +54,7 @@ const Resources: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {resources.map(resource => (
+        {filteredResources.map(resource => (
           <div key={resource.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all group flex flex-col h-full">
             <div className="flex justify-between items-start mb-4">
               <div className="w-12 h-12 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-[#35308f] dark:text-indigo-400">
@@ -71,12 +78,23 @@ const Resources: React.FC = () => {
                 <span>•</span>
                 <span>{resource.size}</span>
               </div>
-              <button className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-[#35308f] dark:text-indigo-300 px-3 py-1.5 rounded-lg text-sm font-bold hover:bg-[#35308f] hover:text-white transition-colors">
+              <a 
+                href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${resource.title}`}
+                className="flex items-center gap-1.5 bg-indigo-50 dark:bg-indigo-900/20 text-[#35308f] dark:text-indigo-300 px-3 py-1.5 rounded-lg text-sm font-bold hover:bg-[#35308f] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+              >
                 View <Download size={14} />
-              </button>
+              </a>
             </div>
           </div>
         ))}
+        {filteredResources.length === 0 && (
+          <div className="col-span-full py-20 text-center text-slate-400">
+            No resources found for this category.
+          </div>
+        )}
       </div>
     </div>
   );

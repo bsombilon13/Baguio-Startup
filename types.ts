@@ -1,10 +1,12 @@
+
 export interface Organization {
   id: string;
   name: string;
   description: string;
   logoUrl: string;
   facebookUrl: string;
-  type: 'Community' | 'Non-Profit' | 'Government' | 'Incubator' | 'Academe';
+  websiteUrl?: string;
+  type: 'Community' | 'Non-Profit' | 'Government' | 'Incubator' | 'Academe' | 'MSME';
   isFeatured?: boolean;
 }
 
@@ -26,6 +28,7 @@ export interface Event {
   description: string;
   imageUrl: string;
   tags: string[];
+  link?: string;
 }
 
 export interface Opportunity {
@@ -36,6 +39,16 @@ export interface Opportunity {
   deadline: string;
   type: 'Grant' | 'Investment' | 'Accelerator' | 'Competition';
   description: string;
+}
+
+export interface Resource {
+  id: string;
+  title: string;
+  type: 'Report' | 'Template' | 'Guide';
+  description: string;
+  format: string;
+  size: string;
+  url: string;
 }
 
 export interface ThemeContextType {

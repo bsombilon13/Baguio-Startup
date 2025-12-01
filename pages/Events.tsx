@@ -21,6 +21,13 @@ const Events: React.FC = () => {
 
   const getEventsForDay = (date: Date) => events.filter(e => isSameDay(e.date, date));
 
+  const handleDayKeyDown = (e: React.KeyboardEvent, event: Event) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setSelectedEvent(event);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
@@ -31,10 +38,11 @@ const Events: React.FC = () => {
           <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">Workshops, meetups, and conferences in the region.</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">
           <button
             onClick={() => setView('list')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+            aria-pressed={view === 'list'}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
               view === 'list' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
             }`}
           >
@@ -42,7 +50,8 @@ const Events: React.FC = () => {
           </button>
           <button
             onClick={() => setView('calendar')}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+            aria-pressed={view === 'calendar'}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
               view === 'calendar' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
             }`}
           >
@@ -73,59 +82,72 @@ const Events: React.FC = () => {
       )}
 
       {view === 'calendar' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-[2rem] p-6 md:p-8 transition-colors">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-[2rem] p-4 md:p-8 transition-colors">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{format(currentDate, 'MMMM yyyy')}</h2>
             <div className="flex gap-2">
-              <button onClick={prevMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 transition-colors">
+              <button 
+                onClick={prevMonth} 
+                aria-label="Previous month"
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+              >
                 <ChevronLeft size={24} />
               </button>
-              <button onClick={nextMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 transition-colors">
+              <button 
+                onClick={nextMonth} 
+                aria-label="Next month"
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 dark:text-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+              >
                 <ChevronRight size={24} />
               </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-2 md:gap-4">
+          <div className="grid grid-cols-7 gap-1 md:gap-4">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-              <div key={day} className="text-center text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-wider py-2">
+              <div key={day} className="text-center text-slate-400 dark:text-slate-500 text-[10px] md:text-xs font-bold uppercase tracking-wider py-2">
                 {day}
               </div>
             ))}
             
             {/* Empty cells for offset */}
             {Array.from({ length: monthStart.getDay() }).map((_, i) => (
-              <div key={`empty-${i}`} className="aspect-square"></div>
+              <div key={`empty-${i}`} className="min-h-[80px] md:min-h-[120px]"></div>
             ))}
 
             {daysInMonth.map(day => {
               const dayEvents = getEventsForDay(day);
               const isTodayDate = isToday(day);
+              const hasEvents = dayEvents.length > 0;
 
               return (
                 <div 
                   key={day.toString()} 
+                  role={hasEvents ? 'button' : undefined}
+                  tabIndex={hasEvents ? 0 : -1}
+                  onKeyDown={hasEvents ? (e) => handleDayKeyDown(e, dayEvents[0]) : undefined}
+                  onClick={() => hasEvents && setSelectedEvent(dayEvents[0])}
+                  aria-label={`${format(day, 'MMMM do')}${hasEvents ? `, ${dayEvents[0].title}` : ''}`}
                   className={`
-                    aspect-square rounded-2xl p-2 border transition-all relative group
+                    min-h-[80px] md:min-h-[120px] rounded-2xl p-2 border transition-all relative group flex flex-col
                     ${isTodayDate ? 'border-[#35308f] bg-indigo-50 dark:bg-indigo-900/20 shadow-inner' : 'border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-md'}
-                    ${dayEvents.length > 0 ? 'cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-500' : ''}
+                    ${hasEvents ? 'cursor-pointer hover:border-indigo-300 dark:hover:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-[#35308f]' : ''}
                   `}
-                  onClick={() => dayEvents.length > 0 && setSelectedEvent(dayEvents[0])}
                 >
                   <span className={`text-sm font-bold ${isTodayDate ? 'text-[#35308f] dark:text-indigo-400' : 'text-slate-500 dark:text-slate-400'}`}>
                     {format(day, 'd')}
                   </span>
                   
-                  {dayEvents.length > 0 && (
-                    <div className="mt-1 md:mt-2 space-y-1">
-                      {dayEvents.map(e => (
-                        <div key={e.id} className="w-full h-1.5 md:h-2 bg-gradient-to-r from-pink-400 to-[#35308f] rounded-full" />
+                  {hasEvents && (
+                    <div className="mt-1 space-y-1 flex-1 overflow-hidden">
+                      {dayEvents.slice(0, 2).map(e => (
+                         <div key={e.id} className="truncate text-[10px] font-semibold bg-indigo-100 dark:bg-indigo-900/40 text-[#35308f] dark:text-indigo-300 px-1.5 py-1 rounded border border-indigo-200 dark:border-indigo-800/50">
+                            {e.title}
+                         </div>
                       ))}
-                      {/* Tooltip for desktop */}
-                      <div className="hidden group-hover:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-[150px] bg-slate-800 text-white text-xs p-2 rounded-lg z-20 shadow-xl pointer-events-none">
-                        {dayEvents[0].title}
-                        {dayEvents.length > 1 && ` +${dayEvents.length - 1} more`}
-                      </div>
+                      {dayEvents.length > 2 && (
+                         <span className="text-[10px] text-slate-400 font-medium pl-1 block">+{dayEvents.length - 2} more</span>
+                      )}
                     </div>
                   )}
                 </div>
