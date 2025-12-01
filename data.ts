@@ -1,4 +1,5 @@
 
+
 import { Organization, Startup, Event, Opportunity, Resource } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -360,5 +361,23 @@ export const resources: Resource[] = [
     format: 'WEB',
     size: 'N/A',
     url: 'https://heyzine.com/flip-book/7acb10b7ce.html#page/1'
+  },
+  {
+    id: 'r2',
+    title: 'Research and Innovation Ordinance of the City of Baguio',
+    type: 'Government',
+    description: 'Ordinance providing incentives and support for research, innovation, and creative endeavors in the City of Baguio.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://citycouncil.baguio.gov.ph/ordinances/j4w5Dgzx'
+  },
+  {
+    id: 'r3',
+    title: 'Philippine Startup Ecosystem Report 2025 by Gobi Partners',
+    type: 'Report',
+    description: 'Gobi Partners launches Philippine Startup Ecosystem Report 2025: The Next Wave of Innovation.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://gobicore.vc/gobi-partners-launches-philippine-startup-ecosystem-report-2025-the-next-wave-of-innovation/?fbclid=IwY2xjawOaz6FleHRuA2FlbQIxMABicmlkETFUSEFMUXZUT2dOanpFM2Mxc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHj9p06uUVAyV9q_9Kpj3U-3e_aZYcL_SQKFsyyZrU9rK4QDkbBjdrLUIdyAk_aem_RDT5QMOuiKoF_EVRa14IEw'
   }
 ];

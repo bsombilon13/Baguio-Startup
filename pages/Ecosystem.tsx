@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ecosystemOrgs } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { ChevronDown, Search, Filter } from 'lucide-react';
+import { ChevronDown, Search, Filter, Plus } from 'lucide-react';
 import { Organization } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
 
@@ -29,13 +29,26 @@ const Ecosystem: React.FC = () => {
       : b.name.localeCompare(a.name);
   });
 
+  // Helper for prominent category colors
+  const getCategoryStyle = (type: string) => {
+    switch(type) {
+      case 'Community': return 'bg-pink-100 text-pink-700 border-pink-200 dark:bg-pink-900/30 dark:text-pink-300 dark:border-pink-800';
+      case 'Government': return 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800';
+      case 'Academe': return 'bg-violet-100 text-violet-700 border-violet-200 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-800';
+      case 'Incubator': return 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-900/30 dark:text-orange-300 dark:border-orange-800';
+      case 'MSME': return 'bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-800';
+      case 'Non-Profit': return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800';
+      default: return 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700';
+    }
+  };
+
   return (
     <div className="space-y-6 pb-24">
-      <div>
-        <h1 className="text-4xl font-bold text-slate-900 dark:text-white transition-colors">
+      <div className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
           The Ecosystem
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-2 font-medium">Partners, communities, and enablers driving innovation.</p>
+        <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Partners, communities, and enablers driving innovation.</p>
       </div>
       
       {/* Controls Section */}
@@ -124,7 +137,7 @@ const Ecosystem: React.FC = () => {
 
             <div>
               <div className="mb-2">
-                 <span className="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                 <span className={`px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider border shadow-sm ${getCategoryStyle(org.type)}`}>
                     {org.type}
                  </span>
               </div>
@@ -145,6 +158,26 @@ const Ecosystem: React.FC = () => {
             </div>
           </BentoItem>
         ))}
+
+        {/* CTA Card for New Submissions */}
+        <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-[#35308f] to-indigo-600 dark:from-[#35308f] dark:to-indigo-800 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center text-center border border-white/10">
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-5 border border-white/20 group-hover:rotate-6 transition-transform">
+                <Plus size={32} className="text-white" />
+            </div>
+            <h3 className="font-bold text-2xl text-white mb-2">Join the Network</h3>
+            <p className="text-indigo-100 text-sm font-medium mb-8 leading-relaxed">
+              New community or enabler? <br/> Submit your details to get listed.
+            </p>
+            <a 
+              href="http://m.me/baguiostartup" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-white text-[#35308f] px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-indigo-50 transition-colors shadow-lg w-full"
+            >
+              Submit Details
+            </a>
+        </div>
         
         {sortedOrgs.length === 0 && (
           <div className="col-span-full py-20 text-center flex flex-col items-center">

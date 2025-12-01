@@ -44,7 +44,7 @@ export interface Opportunity {
 export interface Resource {
   id: string;
   title: string;
-  type: 'Report' | 'Template' | 'Guide';
+  type: 'Report' | 'Template' | 'Guide' | 'Government';
   description: string;
   format: string;
   size: string;

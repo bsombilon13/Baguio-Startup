@@ -12,12 +12,12 @@ const Announcements: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-24 h-full flex flex-col">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
             Announcements
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
             Grants, accelerators, and community updates.
           </p>
         </div>

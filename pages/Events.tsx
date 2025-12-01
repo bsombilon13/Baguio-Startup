@@ -30,12 +30,12 @@ const Events: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors">
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
             Events Calendar
           </h1>
-          <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">Workshops, meetups, and conferences in the region.</p>
+          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Workshops, meetups, and conferences in the region.</p>
         </div>
         
         <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">

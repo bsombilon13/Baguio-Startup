@@ -8,7 +8,7 @@ import ActiveStartups from './pages/ActiveStartups';
 import Resources from './pages/Resources';
 import Announcements from './pages/Announcements';
 import { ThemeContextType } from './types';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 export const ThemeContext = createContext<ThemeContextType>({
   isDarkMode: false,
@@ -48,11 +48,11 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6 h-full flex flex-col">
-      <header className="mb-2">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors">
+      <header className="mb-8">
+        <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-[#35308f] dark:to-indigo-400">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-2 max-w-2xl text-lg">
+        <p className="text-slate-500 dark:text-slate-400 mt-4 text-xl md:text-2xl font-medium leading-relaxed">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
@@ -140,14 +140,47 @@ const Dashboard = () => {
         </div>
 
         {/* Row 2: Announcements */}
-        <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-8 flex flex-col items-center justify-center text-slate-400 shadow-sm min-h-[320px]">
+        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-8 flex flex-col items-center justify-center text-slate-400 shadow-sm min-h-[320px]">
            <div className="w-16 h-16 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl">📢</span>
            </div>
-           <p className="font-medium text-lg text-slate-600 dark:text-slate-300">No recent announcements</p>
+           <p className="font-medium text-lg text-slate-600 dark:text-slate-300 text-center">No recent announcements</p>
            <Link to="/announcements" className="mt-4 text-[#35308f] dark:text-indigo-400 text-sm font-bold hover:underline">
               Check all updates
            </Link>
+        </div>
+
+        {/* Row 2: StartupBlink */}
+        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
+           <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+               <ArrowUpRight size={100} />
+           </div>
+           <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md bg-white border border-slate-100 flex items-center justify-center p-3">
+             <img 
+               src="https://somalia.startupblink.com/_next/static/media/startuplink.fe5810b1.svg" 
+               alt="StartupBlink" 
+               className="w-full h-full object-contain"
+               onError={(e) => {
+                 (e.target as HTMLImageElement).style.display = 'none';
+                 (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+               }}
+             />
+             <div className="hidden text-xs font-bold text-slate-900">StartupBlink</div>
+           </div>
+           
+           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Global Startup Ecosystem Map</h3>
+           <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
+             Put your startup on the global map. Join the world's most comprehensive startup ecosystem map.
+           </p>
+           
+           <a 
+             href="https://www.startupblink.com/" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             className="w-full py-3 bg-[#e4003d] hover:bg-[#c20033] text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-200 dark:shadow-none flex items-center justify-center gap-2 group-hover:shadow-xl"
+           >
+             Register Startup <ArrowRight size={16} />
+           </a>
         </div>
 
       </div>

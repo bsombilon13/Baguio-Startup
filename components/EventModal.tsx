@@ -11,13 +11,13 @@ interface EventModalProps {
 const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   return (
     <div 
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-300 ease-out"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div 
-        className="bg-white dark:bg-slate-900 border border-white/40 dark:border-slate-700 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 duration-300 ring-1 ring-slate-900/5 dark:ring-white/10"
+        className="bg-white dark:bg-slate-900 border border-white/40 dark:border-slate-700 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-4 fade-in duration-300 ease-out ring-1 ring-slate-900/5 dark:ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
@@ -28,13 +28,14 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
           <X size={20} />
         </button>
 
-        <div className="h-48 w-full overflow-hidden relative">
+        <div className="h-48 w-full overflow-hidden relative group">
           <img 
             src={event.imageUrl} 
             alt="" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             aria-hidden="true"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
         </div>
 
         <div className="p-6 relative">

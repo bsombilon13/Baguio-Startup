@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search, Globe, Download } from 'lucide-react';
 import { resources } from '../data';
@@ -5,7 +6,7 @@ import { resources } from '../data';
 const Resources: React.FC = () => {
   const [filter, setFilter] = useState('All');
 
-  const filters = ['All', 'Report', 'Template', 'Guide'];
+  const filters = ['All', 'Report', 'Template', 'Guide', 'Government'];
 
   const filteredResources = filter === 'All' 
     ? resources 
@@ -13,11 +14,11 @@ const Resources: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors">
+      <div className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
           Resources
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">
+        <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
           Download reports, templates, and guides to help you build.
         </p>
       </div>
