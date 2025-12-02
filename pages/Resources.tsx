@@ -5,12 +5,26 @@ import { resources } from '../data';
 
 const Resources: React.FC = () => {
   const [filter, setFilter] = useState('All');
+  const [subFilter, setSubFilter] = useState('All');
 
   const filters = ['All', 'Report', 'Template', 'Guide', 'Government', 'Website'];
 
-  const filteredResources = filter === 'All' 
-    ? resources 
-    : resources.filter(resource => resource.type === filter);
+  // Extract website sub-categories dynamically
+  const websiteCategories = ['All', ...Array.from(new Set(
+    resources.filter(r => r.type === 'Website').map(r => r.format)
+  ))];
+
+  const filteredResources = resources.filter(resource => {
+    // Primary Filter
+    const typeMatch = filter === 'All' || resource.type === filter;
+    
+    // Secondary Filter (only for Websites)
+    if (filter === 'Website' && typeMatch) {
+        return subFilter === 'All' || resource.format === subFilter;
+    }
+    
+    return typeMatch;
+  });
 
   return (
     <div className="space-y-6 pb-24">
@@ -42,7 +56,7 @@ const Resources: React.FC = () => {
               key={f}
               role="tab"
               aria-selected={filter === f}
-              onClick={() => setFilter(f)}
+              onClick={() => { setFilter(f); setSubFilter('All'); }}
               className={`
                 px-6 py-3 font-bold text-sm whitespace-nowrap transition-all border-b-2 focus:outline-none focus:ring-2 focus:ring-[#35308f] rounded-t-lg
                 ${filter === f 
@@ -54,6 +68,27 @@ const Resources: React.FC = () => {
             </button>
           ))}
       </div>
+
+      {/* Secondary Filter for Websites */}
+      {filter === 'Website' && (
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-3 px-1 animate-in slide-in-from-top-2 fade-in bg-slate-50 dark:bg-slate-900/50 rounded-b-xl border border-t-0 border-slate-100 dark:border-slate-800/50">
+           <span className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2">Category:</span>
+           {websiteCategories.map(cat => (
+              <button
+                 key={cat}
+                 onClick={() => setSubFilter(cat)}
+                 className={`
+                    px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap border shadow-sm
+                    ${subFilter === cat 
+                       ? 'bg-indigo-100 text-indigo-700 border-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-700' 
+                       : 'bg-white text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'}
+                 `}
+              >
+                 {cat}
+              </button>
+           ))}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
         {filteredResources.map(resource => (

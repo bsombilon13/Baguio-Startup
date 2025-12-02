@@ -21,10 +21,7 @@ const Announcements: React.FC = () => {
             Grants, accelerators, and ecosystem opportunities.
           </p>
         </div>
-        <button className="bg-[#35308f] hover:bg-[#2a2670] text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-indigo-200 dark:shadow-none transition-all flex items-center gap-2 w-fit focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f]">
-          <Megaphone size={18} />
-          Submit
-        </button>
+        {/* Submit button removed */}
       </div>
 
       <div className="flex gap-2 border-b border-slate-200 dark:border-slate-800 pb-1 overflow-x-auto no-scrollbar" role="tablist" aria-label="Announcement Categories">

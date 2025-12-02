@@ -14,40 +14,40 @@ const Ecosystem: React.FC = () => {
 
   const filters = ['All', 'Community', 'Non-Profit', 'Government', 'Incubator', 'Academe', 'MSME', 'Workspace', 'Creatives'];
 
-  // Helper for prominent category colors
+  // Helper for prominent category colors - Optimized for Contrast and Distinction
   const getCategoryStyle = (type: string) => {
     switch(type) {
       case 'Community': 
-        return 'bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/40 dark:text-rose-200 dark:border-rose-800';
+        return 'bg-rose-100 text-rose-900 border-rose-200 dark:bg-rose-900/40 dark:text-rose-100 dark:border-rose-800';
       case 'Government': 
-        return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/40 dark:text-blue-200 dark:border-blue-800';
+        return 'bg-blue-100 text-blue-900 border-blue-200 dark:bg-blue-900/40 dark:text-blue-100 dark:border-blue-800';
       case 'Academe': 
-        return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/40 dark:text-purple-200 dark:border-purple-800';
+        return 'bg-violet-100 text-violet-900 border-violet-200 dark:bg-violet-900/40 dark:text-violet-100 dark:border-violet-800';
       case 'Incubator': 
-        return 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/40 dark:text-orange-200 dark:border-orange-800';
+        return 'bg-amber-100 text-amber-900 border-amber-200 dark:bg-amber-900/40 dark:text-amber-100 dark:border-amber-800';
       case 'MSME': 
-        return 'bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/40 dark:text-teal-200 dark:border-teal-800';
+        return 'bg-cyan-100 text-cyan-900 border-cyan-200 dark:bg-cyan-900/40 dark:text-cyan-100 dark:border-cyan-800';
       case 'Non-Profit': 
-        return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-200 dark:border-emerald-800';
+        return 'bg-emerald-100 text-emerald-900 border-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-100 dark:border-emerald-800';
       case 'Workspace': 
-        return 'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-200 dark:border-indigo-800';
+        return 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600';
       case 'Creatives': 
-        return 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-200 dark:bg-fuchsia-900/40 dark:text-fuchsia-200 dark:border-fuchsia-800';
+        return 'bg-pink-100 text-pink-900 border-pink-200 dark:bg-pink-900/40 dark:text-pink-100 dark:border-pink-800';
       default: 
-        return 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700';
+        return 'bg-gray-100 text-gray-900 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700';
     }
   };
 
   const getSectionHeaderStyle = (type: string) => {
     switch(type) {
-      case 'Community': return 'text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-900';
-      case 'Government': return 'text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900';
-      case 'Academe': return 'text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-900';
-      case 'Incubator': return 'text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-900';
-      case 'MSME': return 'text-teal-600 dark:text-teal-400 border-teal-200 dark:border-teal-900';
-      case 'Non-Profit': return 'text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900';
-      case 'Workspace': return 'text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900';
-      case 'Creatives': return 'text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-200 dark:border-fuchsia-900';
+      case 'Community': return 'text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900';
+      case 'Government': return 'text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900';
+      case 'Academe': return 'text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-900';
+      case 'Incubator': return 'text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-900';
+      case 'MSME': return 'text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-900';
+      case 'Non-Profit': return 'text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-900';
+      case 'Workspace': return 'text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800';
+      case 'Creatives': return 'text-pink-700 dark:text-pink-300 border-pink-200 dark:border-pink-900';
       default: return 'text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800';
     }
   };

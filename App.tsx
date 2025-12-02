@@ -8,6 +8,7 @@ import ActiveStartups from './pages/ActiveStartups';
 import Resources from './pages/Resources';
 import Announcements from './pages/Announcements';
 import CommunityNews from './pages/CommunityNews';
+import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
@@ -20,9 +21,120 @@ export const ThemeContext = createContext<ThemeContextType>({
 const Dashboard = () => {
   const [aiAdvice, setAiAdvice] = useState<string>('');
   const [loadingAdvice, setLoadingAdvice] = useState<boolean>(true);
+  const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
+
+  // Rotating quotes fallback
+  const quotes = [
+    "Your vision is the roadmap to the future.",
+    "Resilience is the currency of the startup world.",
+    "Every 'no' gets you closer to a 'yes'.",
+    "Build something people want, not just what you want to build.",
+    "Focus on the problem, not the solution.",
+    "Consistency beats intensity in the long run.",
+    "The best way to predict the future is to create it.",
+    "Don't be afraid to pivot; be afraid to stand still.",
+    "Your network is your net worth.",
+    "Innovation distinguishes between a leader and a follower.",
+    "Action cures fear.",
+    "Start where you are. Use what you have. Do what you can.",
+    "Quality is the best business plan.",
+    "Success is walking from failure to failure with no loss of enthusiasm.",
+    "The only impossible journey is the one you never begin.",
+    "Dream big. Start small. But most of all, start.",
+    "Opportunities don't happen. You create them.",
+    "It always seems impossible until it's done.",
+    "Don't let yesterday take up too much of today.",
+    "You don't have to be great to start, but you have to start to be great.",
+    "I have not failed. I've just found 10,000 ways that won't work.",
+    "Ideas are easy. Implementation is hard.",
+    "Timing, perseverance, and ten years of trying will eventually make you look like an overnight success.",
+    "The secret of getting ahead is getting started.",
+    "Energy and persistence conquer all things.",
+    "Make your product easier to buy than your competition.",
+    "Customers don't care about your solution. They care about their problems.",
+    "If you're not embarrassed by the first version of your product, you've launched too late.",
+    "Growth is painful. Change is painful. But nothing is as painful as staying stuck where you don't belong.",
+    "A smooth sea never made a skilled sailor.",
+    "Hard work betrays none.",
+    "Stay hungry, stay foolish.",
+    "The value of an idea lies in the using of it.",
+    "Chase the vision, not the money.",
+    "High expectations are the key to everything.",
+    "Risk more than others think is safe.",
+    "Dream more than others think is practical.",
+    "Expect more than others think is possible.",
+    "Care more than others think is wise.",
+    "The only way to do great work is to love what you do.",
+    "Believe you can and you're halfway there.",
+    "Everything you've ever wanted is on the other side of fear.",
+    "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "Be so good they can't ignore you.",
+    "Simplicity is the ultimate sophistication.",
+    "Creativity is intelligence having fun.",
+    "Do what you can, with what you have, where you are.",
+    "It’s hard to beat a person who never gives up.",
+    "If you can dream it, you can do it.",
+    "To live a creative life, we must lose our fear of being wrong.",
+    "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    "Don't count the days, make the days count.",
+    "The future belongs to those who believe in the beauty of their dreams.",
+    "In the middle of every difficulty lies opportunity.",
+    "Happiness is not something ready made. It comes from your own actions.",
+    "If you want to lift yourself up, lift up someone else.",
+    "Limitations live only in our minds.",
+    "Great things never came from comfort zones.",
+    "Dream it. Wish it. Do it.",
+    "Success doesn’t just find you. You have to go out and get it.",
+    "The harder you work for something, the greater you’ll feel when you achieve it.",
+    "Don’t stop when you’re tired. Stop when you’re done.",
+    "Wake up with determination. Go to bed with satisfaction.",
+    "Do something today that your future self will thank you for.",
+    "Little things make big days.",
+    "It’s going to be hard, but hard does not mean impossible.",
+    "Don’t wait for opportunity. Create it.",
+    "Sometimes later becomes never. Do it now.",
+    "Great things take time.",
+    "Work hard in silence, let your success be your noise.",
+    "The key to success is to focus on goals, not obstacles.",
+    "Dream bigger. Do bigger.",
+    "Don’t quit. Suffer now and live the rest of your life as a champion.",
+    "Discipline is doing what needs to be done, even if you don't want to do it.",
+    "Work until your idols become your rivals.",
+    "Your limitation—it’s only your imagination.",
+    "Push yourself, because no one else is going to do it for you.",
+    "Greatness is not a destination. It’s a lifestyle.",
+    "Hustle until your haters ask if you are hiring.",
+    "Be the change that you wish to see in the world.",
+    "Stay positive, work hard, make it happen.",
+    "Success is the sum of small efforts, repeated day-in and day-out.",
+    "The difference between who you are and who you want to be is what you do.",
+    "If opportunity doesn't knock, build a door.",
+    "Don’t let the fear of losing be greater than the excitement of winning.",
+    "Work like there is someone working twenty-four hours a day to take it all away from you.",
+    "There are no shortcuts to any place worth going.",
+    "Failure is the condiment that gives success its flavor.",
+    "Keep going. Everything you need will come to you at the perfect time.",
+    "Be stubborn about your goals and flexible about your methods.",
+    "Hard work beats talent when talent doesn't work hard.",
+    "Your time is limited, so don't waste it living someone else's life.",
+    "You are never too old to set another goal or to dream a new dream.",
+    "If you want to achieve greatness stop asking for permission.",
+    "Things work out best for those who make the best of how things work out.",
+    "To succeed in life, you need two things: ignorance and confidence.",
+    "I find that the harder I work, the more luck I seem to have.",
+    "Success usually comes to those who are too busy to be looking for it.",
+    "Don't be distracted by criticism. Remember--the only taste of success some people get is to take a bite out of you.",
+    "Everything comes to him who hustles while he waits.",
+    "I never dreamed about success, I worked for it.",
+    "Goal setting is the secret to a compelling future."
+  ];
 
   useEffect(() => {
     const fetchAdvice = async () => {
+      // Pick a random quote immediately for instant load
+      const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      setAiAdvice(randomQuote);
+
       try {
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         const response = await ai.models.generateContent({
@@ -30,10 +142,12 @@ const Dashboard = () => {
           contents: "Generate a short, powerful, one-sentence piece of business advice for a startup founder who might be struggling. Focus on resilience, grit, and believing in their solution. Do not use quotes, just the advice. Tone: Encouraging, Professional, Visionary.",
         });
         
-        setAiAdvice(response.text.trim());
+        if (response.text) {
+             setAiAdvice(response.text.trim());
+        }
       } catch (error) {
-        console.error("Failed to fetch advice", error);
-        setAiAdvice("Your vision is the roadmap to the future; trust the journey even when the path is unclear.");
+        // Fallback is already set, just log error
+        console.log("Using offline quote");
       } finally {
         setLoadingAdvice(false);
       }
@@ -42,19 +156,67 @@ const Dashboard = () => {
     fetchAdvice();
   }, []);
 
-  const scmmData = [
-    { name: 'Baguio City', level: 2, label: 'Foundational' },
-    { name: 'Abra', level: 1, label: 'Nascent' },
-    { name: 'Mt. Province', level: 1, label: 'Nascent' },
-    { name: 'Kalinga', level: 1, label: 'Nascent' },
-    { name: 'Apayao', level: 1, label: 'Nascent' },
-    { name: 'Ifugao', level: 1, label: 'Nascent' },
+  const scmmData: RegionData[] = [
+    { 
+      name: 'Baguio City', 
+      level: 2, 
+      label: 'Foundational', 
+      description: "Center of Gravity for the Cordillera Startup Ecosystem, boasting a high density of universities, incubators, and creative talent.",
+      ecosystemStatus: "Baguio City has established a foundational ecosystem with active support from local government ordinances, multiple Technology Business Incubators (TBIs) like UPB Silbi and UC InTTO, and a vibrant community of creatives and tech enthusiasts. It serves as the primary hub for innovation in the region.",
+      stats: { startups: "25+", enablers: "12", schools: "8" },
+      mapUrl: "https://maps.google.com/maps?q=Baguio+City,Philippines&t=&z=13&ie=UTF8&iwloc=&output=embed"
+    },
+    { 
+      name: 'Abra', 
+      level: 1, 
+      label: 'Nascent', 
+      description: "Emerging ecosystem with a focus on agricultural innovation and bamboo-based industries.",
+      ecosystemStatus: "Abra is in the nascent stage, primarily focusing on digitizing traditional industries such as the bamboo sector. Efforts are underway to build awareness and capacity through local colleges and DTI initiatives, fostering early-stage entrepreneurship.",
+      stats: { startups: "3", enablers: "2", schools: "2" },
+      mapUrl: "https://maps.google.com/maps?q=Abra+Province,Philippines&t=&z=10&ie=UTF8&iwloc=&output=embed"
+    },
+    { 
+      name: 'Mt. Province', 
+      level: 1, 
+      label: 'Nascent', 
+      description: "Heritage-driven innovation hub focusing on tourism, weaving, and coffee production.",
+      ecosystemStatus: "Mountain Province leverages its rich cultural heritage to drive innovation in tourism and local crafts. The ecosystem is growing through partnerships with state colleges to introduce digital marketing and basic e-commerce to local MSMEs.",
+      stats: { startups: "2", enablers: "1", schools: "1" },
+      mapUrl: "https://maps.google.com/maps?q=Mountain+Province,Philippines&t=&z=10&ie=UTF8&iwloc=&output=embed"
+    },
+    { 
+      name: 'Kalinga', 
+      level: 1, 
+      label: 'Nascent', 
+      description: "Rising potential in coffee technology and cultural entrepreneurship.",
+      ecosystemStatus: "Kalinga's ecosystem is taking shape around its strong coffee industry ('Kalinga Coffee') and cultural tourism. Gov-tech initiatives and academic partnerships are beginning to introduce startup concepts to the youth.",
+      stats: { startups: "4", enablers: "2", schools: "1" },
+      mapUrl: "https://maps.google.com/maps?q=Kalinga+Province,Philippines&t=&z=10&ie=UTF8&iwloc=&output=embed"
+    },
+    { 
+      name: 'Apayao', 
+      level: 1, 
+      label: 'Nascent', 
+      description: "The 'Biosphere of the Cordilleras' exploring eco-tourism and sustainable agri-tech.",
+      ecosystemStatus: "Apayao is in the very early stages of ecosystem development. With its rich natural resources, the focus is on sustainable development and eco-tourism startups. Infrastructure development is key to unlocking further digital potential.",
+      stats: { startups: "1", enablers: "1", schools: "1" },
+      mapUrl: "https://maps.google.com/maps?q=Apayao+Province,Philippines&t=&z=9&ie=UTF8&iwloc=&output=embed"
+    },
+    { 
+      name: 'Ifugao', 
+      level: 1, 
+      label: 'Nascent', 
+      description: "World-heritage site integrating heritage conservation with digital storytelling.",
+      ecosystemStatus: "Ifugao combines heritage conservation with modern innovation. Key drivers include Ifugao State University and local efforts to digitize the tourism experience for the Rice Terraces. Social entrepreneurship is a strong theme here.",
+      stats: { startups: "3", enablers: "2", schools: "1" },
+      mapUrl: "https://maps.google.com/maps?q=Ifugao+Province,Philippines&t=&z=10&ie=UTF8&iwloc=&output=embed"
+    },
   ];
 
   const getLevelColor = (level: number) => {
     switch(level) {
-      // Level 1: Earthy/Foundation
-      case 1: return 'bg-stone-100 text-stone-700 dark:bg-stone-900/40 dark:text-stone-300 border-stone-200 dark:border-stone-800';
+      // Level 1: Prominent / High Contrast (Abra, Mt. Province, Kalinga, Ifugao, Apayao)
+      case 1: return 'bg-slate-800 text-white dark:bg-slate-700 dark:text-slate-100 border-slate-700 shadow-md ring-1 ring-slate-900/10';
       // Level 2: Sprouting Green
       case 2: return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
       // Level 3: Flourishing Teal
@@ -74,10 +236,10 @@ const Dashboard = () => {
   return (
     <div className="space-y-6 h-full flex flex-col">
       <header className="mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
+        <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-2 text-lg font-medium leading-relaxed max-w-2xl">
+        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full truncate">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
@@ -120,19 +282,23 @@ const Dashboard = () => {
           {/* Sub-regions Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
              {scmmData.map((area) => (
-                <div key={area.name} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors flex flex-col justify-between min-h-[110px] relative overflow-hidden group">
-                   <div className="flex justify-between items-start mb-2">
-                     <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base pr-8 leading-tight">{area.name}</span>
+                <button 
+                  key={area.name} 
+                  onClick={() => setSelectedRegion(area)}
+                  className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-lg transition-all flex flex-col justify-between min-h-[110px] relative overflow-hidden group text-left focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                >
+                   <div className="flex justify-between items-start mb-2 w-full">
+                     <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base pr-8 leading-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">{area.name}</span>
                      <div className="absolute top-3 right-3">
                         <LevelBadge level={area.level} label={area.label} compact={true} />
                      </div>
                    </div>
                    <div className="mt-auto pt-2">
-                      <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                      <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide group-hover:text-slate-700 dark:group-hover:text-slate-200">
                         {area.label}
                       </span>
                    </div>
-                </div>
+                </button>
              ))}
           </div>
         </div>
@@ -232,7 +398,7 @@ const Dashboard = () => {
              href="https://www.startupblink.com/" 
              target="_blank" 
              rel="noopener noreferrer"
-             className="w-full py-3 bg-[#e4003d] hover:bg-[#c20033] text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-red-200 dark:shadow-none flex items-center justify-center gap-2 group-hover:shadow-xl"
+             className="w-full py-3 bg-[#35308f] hover:bg-[#2a2670] text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 dark:shadow-none flex items-center justify-center gap-2 group-hover:shadow-xl"
            >
              Register Startup <ArrowRight size={16} />
            </a>
@@ -255,6 +421,14 @@ const Dashboard = () => {
         </div>
 
       </div>
+
+      {selectedRegion && (
+        <RegionModal 
+          region={selectedRegion} 
+          onClose={() => setSelectedRegion(null)} 
+          getLevelColor={getLevelColor}
+        />
+      )}
     </div>
   );
 };

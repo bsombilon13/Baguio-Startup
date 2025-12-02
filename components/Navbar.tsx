@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper } from 'lucide-react';
+import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../App';
 
@@ -50,7 +50,18 @@ const Sidebar: React.FC = () => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-slate-100 dark:border-slate-800">
+        <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+          <a 
+            href="https://m.me/baguiostartup" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+            aria-label="Contact Us on Messenger"
+          >
+            <MessageCircle size={20} />
+            <span className="hidden lg:block font-medium">Contact Us</span>
+          </a>
+
           <button 
             onClick={toggleTheme}
             aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
