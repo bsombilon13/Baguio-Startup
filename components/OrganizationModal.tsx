@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { X, Facebook, Globe, ExternalLink } from 'lucide-react';
 import { Organization } from '../types';
@@ -49,10 +51,15 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
 
           <div className="space-y-6 text-center">
             <div>
-              <div className="flex items-center justify-center gap-2 mb-3">
-                 <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-900/30 text-[#35308f] dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20">
-                    {org.type}
-                 </span>
+              <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+                 {org.types.map((type, idx) => (
+                    <span 
+                      key={idx}
+                      className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-900/30 text-[#35308f] dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20"
+                    >
+                      {type}
+                    </span>
+                 ))}
               </div>
               <h2 id="org-modal-title" className="text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-1">
                 {org.name}

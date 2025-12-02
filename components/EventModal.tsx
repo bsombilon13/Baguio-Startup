@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { X, MapPin, Calendar as CalendarIcon, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Check, Download } from 'lucide-react';
 import { Event } from '../types';
 
 interface EventModalProps {
@@ -9,6 +9,61 @@ interface EventModalProps {
 }
 
 const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
+  const [showCalendarOptions, setShowCalendarOptions] = useState(false);
+
+  // Helper to format dates for Calendar APIs (YYYYMMDDTHHmmssZ)
+  const formatCalendarDate = (date: Date) => {
+    return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+  };
+
+  const getEventTimes = () => {
+    const start = new Date(event.date);
+    // Default duration of 3 hours if not specified, since most workshops in data are 1-5pm
+    const end = new Date(start.getTime() + 4 * 60 * 60 * 1000); 
+    return { start, end };
+  };
+
+  const handleGoogleCalendar = () => {
+    const { start, end } = getEventTimes();
+    const googleUrl = new URL("https://www.google.com/calendar/render");
+    googleUrl.searchParams.append("action", "TEMPLATE");
+    googleUrl.searchParams.append("text", event.title);
+    googleUrl.searchParams.append("dates", `${formatCalendarDate(start)}/${formatCalendarDate(end)}`);
+    googleUrl.searchParams.append("details", event.description);
+    googleUrl.searchParams.append("location", event.location);
+    
+    window.open(googleUrl.toString(), '_blank');
+    setShowCalendarOptions(false);
+  };
+
+  const handleDownloadICS = () => {
+    const { start, end } = getEventTimes();
+    const formatDate = (d: Date) => formatCalendarDate(d);
+    
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "BEGIN:VEVENT",
+      `URL:${event.link || ''}`,
+      `DTSTART:${formatDate(start)}`,
+      `DTEND:${formatDate(end)}`,
+      `SUMMARY:${event.title}`,
+      `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
+      `LOCATION:${event.location}`,
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\n");
+
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute("download", `${event.title.replace(/\s+/g, "_")}.ics`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setShowCalendarOptions(false);
+  };
+
   return (
     <div 
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-300 ease-out"
@@ -17,7 +72,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
       aria-labelledby="modal-title"
     >
       <div 
-        className="bg-white dark:bg-slate-900 border border-white/40 dark:border-slate-700 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-4 fade-in duration-300 ease-out ring-1 ring-slate-900/5 dark:ring-white/10"
+        className="bg-white dark:bg-slate-900 border border-white/40 dark:border-slate-700 w-full max-w-lg rounded-3xl overflow-visible shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-4 fade-in duration-300 ease-out ring-1 ring-slate-900/5 dark:ring-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         <button 
@@ -28,7 +83,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
           <X size={20} />
         </button>
 
-        <div className="h-48 w-full overflow-hidden relative group">
+        <div className="h-48 w-full overflow-hidden relative group rounded-t-3xl">
           <img 
             src={event.imageUrl} 
             alt="" 
@@ -64,20 +119,52 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             {event.description}
           </p>
 
-          {event.link ? (
-            <a 
-              href={event.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            >
-              {event.link.includes('facebook.com') ? 'View Event on Facebook' : 'Register Here'} <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-          ) : (
-            <button className="w-full bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
-              Register for Event
-            </button>
-          )}
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Main Action Button */}
+            {event.link ? (
+              <a 
+                href={event.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                {event.link.includes('facebook.com') ? 'View on Facebook' : 'Register Here'} <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+              </a>
+            ) : (
+              <button className="flex-1 w-full bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                Register for Event
+              </button>
+            )}
+
+            {/* Add to Calendar Button with Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setShowCalendarOptions(!showCalendarOptions)}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
+                aria-haspopup="true"
+                aria-expanded={showCalendarOptions}
+              >
+                <CalendarPlus size={20} />
+              </button>
+
+              {showCalendarOptions && (
+                <div className="absolute bottom-full right-0 mb-2 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden animate-in fade-in zoom-in-95 duration-200 z-50">
+                  <button
+                    onClick={handleGoogleCalendar}
+                    className="w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2"
+                  >
+                    <ExternalLink size={14} /> Google Calendar
+                  </button>
+                  <button
+                    onClick={handleDownloadICS}
+                    className="w-full text-left px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 flex items-center gap-2 border-t border-slate-100 dark:border-slate-700"
+                  >
+                    <Download size={14} /> Outlook / iCal
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
       

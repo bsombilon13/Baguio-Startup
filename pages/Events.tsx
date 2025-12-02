@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import { events } from '../data';
 import EventModal from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -10,6 +11,16 @@ const Events: React.FC = () => {
   const [view, setView] = useState<'calendar' | 'list'>('list');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  // Extract unique tags for filter
+  const allTags = Array.from(new Set(events.flatMap(e => e.tags)));
+  const filters = ['All', ...allTags];
+
+  // Filter Logic
+  const filteredEvents = events.filter(event => {
+    return activeFilter === 'All' || event.tags.includes(activeFilter);
+  });
 
   // Calendar logic
   const monthStart = startOfMonth(currentDate);
@@ -19,7 +30,7 @@ const Events: React.FC = () => {
   const prevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
 
-  const getEventsForDay = (date: Date) => events.filter(e => isSameDay(e.date, date));
+  const getEventsForDay = (date: Date) => filteredEvents.filter(e => isSameDay(e.date, date));
 
   const handleDayKeyDown = (e: React.KeyboardEvent, event: Event) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -60,9 +71,33 @@ const Events: React.FC = () => {
         </div>
       </div>
 
+      {/* Filters Bar */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label="Filter events by tag">
+          <span className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0">
+             <Filter size={14} /> Filter:
+          </span>
+          {filters.map(filter => (
+            <button 
+              key={filter} 
+              role="tab"
+              aria-selected={activeFilter === filter}
+              onClick={() => setActiveFilter(filter)}
+              className={`
+                px-4 py-2 rounded-lg border text-sm font-bold whitespace-nowrap transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]
+                ${activeFilter === filter 
+                  ? 'bg-[#35308f] text-white border-[#35308f] shadow-md shadow-indigo-200 dark:shadow-none' 
+                  : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                }
+              `}
+            >
+              {filter}
+            </button>
+          ))}
+      </div>
+
       {view === 'list' && (
         <BentoGrid>
-          {events.map((event, i) => (
+          {filteredEvents.map((event, i) => (
             <BentoItem 
               key={event.id}
               className={`md:col-span-${i === 0 ? '2' : '1'} md:row-span-${i === 0 ? '2' : '1'}`}
@@ -78,6 +113,12 @@ const Events: React.FC = () => {
               </div>
             </BentoItem>
           ))}
+          
+          {filteredEvents.length === 0 && (
+             <div className="col-span-full py-12 text-center text-slate-400">
+               No events found matching "{activeFilter}"
+             </div>
+          )}
         </BentoGrid>
       )}
 

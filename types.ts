@@ -1,4 +1,5 @@
 
+
 export interface Organization {
   id: string;
   name: string;
@@ -6,7 +7,7 @@ export interface Organization {
   logoUrl: string;
   facebookUrl: string;
   websiteUrl?: string;
-  type: 'Community' | 'Non-Profit' | 'Government' | 'Incubator' | 'Academe' | 'MSME';
+  types: ('Community' | 'Non-Profit' | 'Government' | 'Incubator' | 'Academe' | 'MSME' | 'Workspace' | 'Creatives')[];
   isFeatured?: boolean;
 }
 
@@ -16,6 +17,7 @@ export interface Startup {
   description: string;
   logoUrl: string;
   facebookUrl: string;
+  websiteUrl?: string;
   industry: 'Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative';
   stage?: 'Pre-Seed' | 'Seed' | 'Growth';
 }

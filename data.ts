@@ -1,15 +1,21 @@
-
-
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
+  {
+    id: '19hundred',
+    name: '19Hundred Work Space',
+    description: 'A conducive coworking space and study hub in Baguio City.',
+    logoUrl: 'https://graph.facebook.com/19hundredwork.space/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/19hundredwork.space/',
+    types: ['Workspace', 'MSME']
+  },
   {
     id: 'adsg',
     name: 'ADSG Baguio',
     description: 'A dedicated group fostering growth and design in the Baguio region.',
     logoUrl: 'https://graph.facebook.com/adsgbaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/adsgbaguio',
-    type: 'Community'
+    types: ['Community']
   },
   {
     id: 'awma',
@@ -18,7 +24,15 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/AWMA.SLUSC/picture?type=large',
     facebookUrl: 'https://www.facebook.com/AWMA.SLUSC',
     websiteUrl: 'https://www.slu.edu.ph',
-    type: 'Academe'
+    types: ['Academe']
+  },
+  {
+    id: 'beesnest',
+    name: "Bee's Nest",
+    description: 'A collaborative workspace for freelancers, students, and startups.',
+    logoUrl: 'https://graph.facebook.com/beesnest.bgo/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/beesnest.bgo/',
+    types: ['Workspace', 'MSME']
   },
   {
     id: 'boslay',
@@ -26,7 +40,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Showcasing local artistry and traditional crafts from the mountains.',
     logoUrl: 'https://graph.facebook.com/boslayartsandcrafts/picture?type=large',
     facebookUrl: 'https://www.facebook.com/boslayartsandcrafts',
-    type: 'MSME'
+    types: ['MSME']
   },
   {
     id: 'car-iidb',
@@ -35,7 +49,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/car.iidb.dict/picture?type=large',
     facebookUrl: 'https://www.facebook.com/car.iidb.dict',
     websiteUrl: 'https://dict.gov.ph',
-    type: 'Government'
+    types: ['Government']
   },
   {
     id: 'cegp',
@@ -43,7 +57,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'College Editors Guild of the Philippines - Cordillera Chapter.',
     logoUrl: 'https://graph.facebook.com/cegpcordi/picture?type=large',
     facebookUrl: 'https://www.facebook.com/cegpcordi',
-    type: 'Non-Profit'
+    types: ['Non-Profit']
   },
   {
     id: 'cmo',
@@ -52,7 +66,15 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/cmobaguio.mitd/picture?type=large',
     facebookUrl: 'https://www.facebook.com/cmobaguio.mitd',
     websiteUrl: 'https://www.baguio.gov.ph',
-    type: 'Government'
+    types: ['Government']
+  },
+  {
+    id: 'csda',
+    name: 'Cordillera School of Digital Arts',
+    description: 'A specialized institution dedicated to digital arts, animation, and multimedia education.',
+    logoUrl: 'https://graph.facebook.com/CordilleraSchoolofDigitalArts/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/CordilleraSchoolofDigitalArts',
+    types: ['Creatives', 'Academe']
   },
   {
     id: 'csc',
@@ -61,7 +83,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/cordistudiescenter/picture?type=large',
     facebookUrl: 'https://www.facebook.com/cordistudiescenter',
     websiteUrl: 'https://csc.upb.edu.ph',
-    type: 'Academe'
+    types: ['Academe']
   },
   {
     id: 'cyc',
@@ -69,7 +91,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'A youth-led organization advocating for indigenous peoples’ rights and welfare.',
     logoUrl: 'https://graph.facebook.com/cordilleranyouthcenter/picture?type=large',
     facebookUrl: 'https://www.facebook.com/cordilleranyouthcenter',
-    type: 'Non-Profit'
+    types: ['Non-Profit']
   },
   {
     id: 'dict-car',
@@ -78,7 +100,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/dict.car/picture?type=large',
     facebookUrl: 'https://www.facebook.com/dict.car',
     websiteUrl: 'https://dict.gov.ph',
-    type: 'Government'
+    types: ['Government']
   },
   {
     id: 'dict-ilcdb',
@@ -87,7 +109,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/dict.cordillera.ilcdb/picture?type=large',
     facebookUrl: 'https://www.facebook.com/dict.cordillera.ilcdb',
     websiteUrl: 'https://dict.gov.ph',
-    type: 'Government'
+    types: ['Government']
   },
   {
     id: 'dost',
@@ -96,7 +118,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/dostcar.gov.ph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/dostcar.gov.ph',
     websiteUrl: 'https://car.dost.gov.ph',
-    type: 'Government'
+    types: ['Government']
   },
   {
     id: 'dti',
@@ -105,7 +127,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/DTI.CordilleraAdministrativeRegion/picture?type=large',
     facebookUrl: 'https://www.facebook.com/DTI.CordilleraAdministrativeRegion',
     websiteUrl: 'https://www.dti.gov.ph',
-    type: 'Government'
+    types: ['Government']
   },
   {
     id: 'gdg',
@@ -114,7 +136,15 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/gdgbaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/gdgbaguio',
     websiteUrl: 'https://gdg.community.dev/gdg-baguio/',
-    type: 'Community'
+    types: ['Community']
+  },
+  {
+    id: 'gen96',
+    name: 'Gen 96 Coworking',
+    description: 'Modern coworking space offering flexible desks and meeting rooms.',
+    logoUrl: 'https://graph.facebook.com/gen96coworking/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/gen96coworking/',
+    types: ['Workspace', 'MSME']
   },
   {
     id: 'jbecp',
@@ -122,7 +152,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Jardine Bloch Entrepreneurship Center Philippines - UP Baguio.',
     logoUrl: 'https://graph.facebook.com/jbecp.upb/picture?type=large',
     facebookUrl: 'https://www.facebook.com/jbecp.upb',
-    type: 'Academe'
+    types: ['Academe', 'Incubator', 'Workspace']
   },
   {
     id: 'kasiyana',
@@ -130,7 +160,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Youth organization focused on community service and assistance.',
     logoUrl: 'https://graph.facebook.com/KasiyanaTulongKabataan/picture?type=large',
     facebookUrl: 'https://www.facebook.com/KasiyanaTulongKabataan',
-    type: 'Non-Profit'
+    types: ['Non-Profit']
   },
   {
     id: 'kitkituy',
@@ -138,7 +168,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Local handicrafts and artisanal products.',
     logoUrl: 'https://graph.facebook.com/kitkituyhandicrafts/picture?type=large',
     facebookUrl: 'https://www.facebook.com/kitkituyhandicrafts',
-    type: 'MSME'
+    types: ['MSME']
   },
   {
     id: 'layad',
@@ -146,7 +176,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Promoting Cordilleran culture and heritage.',
     logoUrl: 'https://graph.facebook.com/layaddikordilyera/picture?type=large',
     facebookUrl: 'https://www.facebook.com/layaddikordilyera',
-    type: 'MSME'
+    types: ['MSME']
   },
   {
     id: 'rise',
@@ -154,7 +184,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Community initiatives for the development of Benguet province.',
     logoUrl: 'https://graph.facebook.com/risebenguetproject/picture?type=large',
     facebookUrl: 'https://www.facebook.com/risebenguetproject',
-    type: 'Community'
+    types: ['Community']
   },
   {
     id: 'siglat',
@@ -162,7 +192,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Incubator program fostering innovation and startup growth.',
     logoUrl: 'https://graph.facebook.com/siglat/picture?type=large',
     facebookUrl: 'https://www.facebook.com/siglat',
-    type: 'Incubator'
+    types: ['Incubator', 'Workspace']
   },
   {
     id: 'sirib',
@@ -170,7 +200,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Innovation and incubation center.',
     logoUrl: 'https://graph.facebook.com/siribcenter/picture?type=large',
     facebookUrl: 'https://www.facebook.com/siribcenter',
-    type: 'Incubator'
+    types: ['Incubator', 'Workspace']
   },
   {
     id: 'tamawan',
@@ -179,7 +209,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/TamawanOfficial/picture?type=large',
     facebookUrl: 'https://www.facebook.com/TamawanOfficial',
     websiteUrl: 'https://www.tamawanvillage.com',
-    type: 'MSME'
+    types: ['MSME', 'Workspace', 'Creatives']
   },
   {
     id: 'taraki',
@@ -187,7 +217,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Technology incubator and accelerator in CAR.',
     logoUrl: 'https://graph.facebook.com/tarakicar/picture?type=large',
     facebookUrl: 'https://www.facebook.com/tarakicar',
-    type: 'Incubator'
+    types: ['Incubator', 'Workspace']
   },
   {
     id: 'tech4ed',
@@ -196,7 +226,15 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/tech4eddtc.car/picture?type=large',
     facebookUrl: 'https://www.facebook.com/tech4eddtc.car',
     websiteUrl: 'https://dict.gov.ph/tech4ed/',
-    type: 'Government'
+    types: ['Government', 'Workspace']
+  },
+  {
+    id: 'workhub',
+    name: 'The Work Hub',
+    description: 'Coworking space designed for productivity and collaboration.',
+    logoUrl: 'https://graph.facebook.com/Theworkhubcoworkingspace/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/Theworkhubcoworkingspace/',
+    types: ['Workspace', 'MSME']
   },
   {
     id: 'ucintto',
@@ -205,7 +243,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/UCInTTO/picture?type=large',
     facebookUrl: 'https://www.facebook.com/UCInTTO',
     websiteUrl: 'https://www.uc-bcf.edu.ph',
-    type: 'Incubator'
+    types: ['Incubator', 'Academe', 'Workspace']
   },
   {
     id: 'upbsilbi',
@@ -214,7 +252,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/upbsilbitbi/picture?type=large',
     facebookUrl: 'https://www.facebook.com/upbsilbitbi',
     websiteUrl: 'https://upb.edu.ph',
-    type: 'Incubator'
+    types: ['Incubator', 'Academe', 'Workspace']
   },
   {
     id: 'vivistop',
@@ -223,7 +261,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/vivistop.baguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/vivistop.baguio',
     websiteUrl: 'https://www.vivistop.jp/baguio',
-    type: 'Community'
+    types: ['Community', 'Workspace', 'Creatives']
   },
   {
     id: 'wtm',
@@ -232,7 +270,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/WTMBaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/WTMBaguio',
     websiteUrl: 'https://developers.google.com/womentechmakers',
-    type: 'Community'
+    types: ['Community']
   },
   {
     id: 'yesdes',
@@ -241,7 +279,7 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/yes.des.cns.bsu/picture?type=large',
     facebookUrl: 'https://www.facebook.com/yes.des.cns.bsu',
     websiteUrl: 'http://www.bsu.edu.ph',
-    type: 'Academe'
+    types: ['Academe']
   },
   {
     id: 'yuman',
@@ -249,7 +287,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Community enterprise supporting local products.',
     logoUrl: 'https://graph.facebook.com/YumanKaili/picture?type=large',
     facebookUrl: 'https://www.facebook.com/YumanKaili',
-    type: 'MSME'
+    types: ['MSME']
   },
   {
     id: 'zwb',
@@ -257,7 +295,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'Advocating for a sustainable and zero-waste city.',
     logoUrl: 'https://graph.facebook.com/zwbaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/zwbaguio',
-    type: 'Non-Profit'
+    types: ['Non-Profit']
   }
 ];
 
@@ -268,6 +306,7 @@ export const activeStartups: Startup[] = [
     description: 'Empowering students and young professionals with global opportunities.',
     logoUrl: 'https://graph.facebook.com/heysuccessph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/heysuccessph',
+    websiteUrl: 'https://heysuccess.com.ph',
     industry: 'Service',
     stage: 'Pre-Seed'
   },
@@ -286,6 +325,7 @@ export const activeStartups: Startup[] = [
     description: 'Service-oriented community for Filipinos.',
     logoUrl: 'https://graph.facebook.com/srvpinoy/picture?type=large',
     facebookUrl: 'https://www.facebook.com/srvpinoy',
+    websiteUrl: 'https://srvpinoy.com',
     industry: 'Service',
     stage: 'Pre-Seed'
   },
@@ -295,6 +335,7 @@ export const activeStartups: Startup[] = [
     description: 'AI solutions for modern problems.',
     logoUrl: 'https://graph.facebook.com/TaranaAI/picture?type=large',
     facebookUrl: 'https://www.facebook.com/TaranaAI',
+    websiteUrl: 'https://www.tarana-ai.com/',
     industry: 'Tech',
     stage: 'Pre-Seed'
   },

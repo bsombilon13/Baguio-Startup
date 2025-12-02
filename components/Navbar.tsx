@@ -25,7 +25,7 @@ const Sidebar: React.FC = () => {
             <img 
               src="https://static.wixstatic.com/media/85ce0b_a34fd67effbb4a4b932c2791821103a3~mv2.png" 
               alt="Baguio Startup Network Logo" 
-              className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-300"
+              className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-300 hover:scale-110"
             />
         </div>
 

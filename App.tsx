@@ -1,5 +1,4 @@
 
-
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from './components/Navbar';
@@ -54,10 +53,14 @@ const Dashboard = () => {
 
   const getLevelColor = (level: number) => {
     switch(level) {
-      case 1: return 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border-blue-200 dark:border-blue-800';
-      case 2: return 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300 border-cyan-200 dark:border-cyan-800';
-      case 3: return 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300 border-indigo-200 dark:border-indigo-800';
-      case 4: return 'bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300 border-violet-200 dark:border-violet-800';
+      // Level 1: Earthy/Foundation
+      case 1: return 'bg-stone-100 text-stone-700 dark:bg-stone-900/40 dark:text-stone-300 border-stone-200 dark:border-stone-800';
+      // Level 2: Sprouting Green
+      case 2: return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
+      // Level 3: Flourishing Teal
+      case 3: return 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300 border-teal-200 dark:border-teal-800';
+      // Level 4: Established Pine
+      case 4: return 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 border-green-200 dark:border-green-800';
       default: return 'bg-slate-100 text-slate-700';
     }
   };
@@ -72,7 +75,7 @@ const Dashboard = () => {
     <div className="space-y-6 h-full flex flex-col">
       <header className="mb-6">
         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
-          Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-[#35308f] dark:to-indigo-400">Baguio Startup Network</span>
+          Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
         <p className="text-slate-500 dark:text-slate-400 mt-4 text-xl md:text-2xl font-medium leading-relaxed">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
@@ -85,29 +88,28 @@ const Dashboard = () => {
         {/* SCMM Section - Top */}
         <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
           
-          {/* Main Region Box */}
-          <div className="bg-gradient-to-br from-[#35308f] to-indigo-700 rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-indigo-200 dark:shadow-none relative overflow-hidden">
+          {/* Main Region Box - Pine Green Theme */}
+          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-emerald-900/10 dark:shadow-none relative overflow-hidden">
+             {/* Abstract pine/mountain pattern overlay */}
              <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                 <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                   <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                   <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                   <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                   <path d="M8 3l4 8 5-5 5 15H2L8 3z"></path>
                 </svg>
              </div>
              
              <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-6">
                 <div>
-                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 mb-4">
-                     <span className="w-2 h-2 rounded-full bg-blue-300"></span> Region Overview
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 mb-4 text-emerald-50">
+                     <span className="w-2 h-2 rounded-full bg-emerald-300"></span> Region Overview
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-bold mb-2">Cordillera Administrative Region</h3>
-                  <p className="text-indigo-100 font-medium max-w-2xl">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white">Cordillera Administrative Region</h3>
+                  <p className="text-emerald-100 font-medium max-w-2xl leading-relaxed">
                     The startup ecosystem of the Cordilleras is predominantly in the nascent stage, characterized by emerging communities and foundational support structures.
                   </p>
                 </div>
                 
                 <div className="flex flex-col items-end">
-                   <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl font-bold text-lg border border-white/20 shadow-lg whitespace-nowrap mb-2">
+                   <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl font-bold text-lg border border-white/20 shadow-lg whitespace-nowrap mb-2">
                       Level 1
                    </div>
                    <span className="text-white/80 font-medium uppercase text-sm tracking-wide">Nascent</span>
@@ -118,7 +120,7 @@ const Dashboard = () => {
           {/* Sub-regions Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
              {scmmData.map((area) => (
-                <div key={area.name} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-indigo-200 dark:hover:border-indigo-800 transition-colors flex flex-col justify-between min-h-[110px] relative overflow-hidden group">
+                <div key={area.name} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-emerald-200 dark:hover:border-emerald-800 transition-colors flex flex-col justify-between min-h-[110px] relative overflow-hidden group">
                    <div className="flex justify-between items-start mb-2">
                      <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base pr-8 leading-tight">{area.name}</span>
                      <div className="absolute top-3 right-3">
@@ -137,15 +139,18 @@ const Dashboard = () => {
         
         {/* Row 2: Featured Event */}
         <div className="md:col-span-2 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col relative group transition-colors min-h-[320px]">
-          <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none">
-             <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#35308f" d="M45.7,-76.3C58.9,-69.3,69.1,-55.6,76.5,-41.2C83.9,-26.8,88.5,-11.7,85.8,2.3C83.1,16.2,73.1,29,63.1,40.3C53.1,51.6,43.1,61.4,31.2,67.7C19.3,74,5.5,76.8,-7.4,75.4C-20.3,74,-40.1,68.4,-54.6,58.3C-69.1,48.2,-78.3,33.6,-81.4,17.9C-84.5,2.2,-81.5,-14.6,-73.4,-29.4C-65.3,-44.2,-52.1,-57,-38.3,-63.7C-24.5,-70.4,-10.1,-71,3.4,-76.4L16.9,-81.8Z" transform="translate(100 100)" />
+          <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none text-emerald-600 dark:text-emerald-400">
+             <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
              </svg>
           </div>
 
           <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10">
             <div className="mb-4">
-              <span className="bg-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-pink-200 dark:shadow-none">Upcoming Event</span>
+              <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-teal-100 dark:shadow-none">Upcoming Event</span>
             </div>
             
             <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
@@ -158,21 +163,21 @@ const Dashboard = () => {
             </p>
 
             <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-               <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm">
+               <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
                   View Calendar <ArrowUpRight size={18} />
                </Link>
             </div>
           </div>
         </div>
 
-        {/* Row 2: AI Advice Card */}
-        <div className="md:col-span-1 bg-gradient-to-br from-violet-600 to-fuchsia-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px]">
+        {/* Row 2: AI Advice Card - Nature/Misty Theme */}
+        <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px]">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
           
           <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-2 mb-6 text-violet-100">
-               <Sparkles size={20} className="text-yellow-300 animate-pulse" />
+            <div className="flex items-center gap-2 mb-6 text-emerald-100">
+               <Sparkles size={20} className="text-emerald-200 animate-pulse" />
                <span className="text-xs font-bold uppercase tracking-widest">Founder's Insight</span>
             </div>
 
@@ -199,7 +204,7 @@ const Dashboard = () => {
 
         {/* Row 2: StartupBlink */}
         <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
-           <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500">
+           <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
                <ArrowUpRight size={100} />
            </div>
            <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md bg-white border border-slate-100 flex items-center justify-center p-3">
@@ -241,7 +246,7 @@ const Dashboard = () => {
                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400">No recent updates or funding calls at the moment.</p>
               </div>
            </div>
-           <Link to="/announcements" className="text-[#35308f] dark:text-indigo-400 text-sm font-bold hover:underline bg-slate-50 dark:bg-slate-800 px-4 py-2 rounded-lg transition-colors">
+           <Link to="/announcements" className="text-emerald-700 dark:text-emerald-400 text-sm font-bold hover:underline bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 rounded-lg transition-colors">
               View Announcement Archive
            </Link>
         </div>
@@ -283,7 +288,7 @@ const App: React.FC = () => {
   return (
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       <Router>
-        <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 selection:bg-indigo-100 dark:selection:bg-indigo-900/30 overflow-hidden transition-colors duration-300">
+        <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 selection:bg-emerald-100 dark:selection:bg-emerald-900/30 overflow-hidden transition-colors duration-300">
           {/* Sidebar Component - Fixed */}
           <Sidebar />
 
