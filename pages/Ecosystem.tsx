@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { ecosystemOrgs } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { ChevronDown, Search, Filter } from 'lucide-react';
+import { ChevronDown, Search, Filter, Layers } from 'lucide-react';
 import { Organization } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
 
@@ -12,22 +13,6 @@ const Ecosystem: React.FC = () => {
   const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null);
 
   const filters = ['All', 'Community', 'Non-Profit', 'Government', 'Incubator', 'Academe', 'MSME', 'Workspace', 'Creatives'];
-
-  // Combined Filter Logic
-  const filteredOrgs = ecosystemOrgs.filter(org => {
-    const matchesCategory = activeFilter === 'All' || org.types.includes(activeFilter as any);
-    const matchesSearch = 
-      org.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      org.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
-
-  // Sort Logic
-  const sortedOrgs = [...filteredOrgs].sort((a, b) => {
-    return sortOrder === 'asc' 
-      ? a.name.localeCompare(b.name)
-      : b.name.localeCompare(a.name);
-  });
 
   // Helper for prominent category colors
   const getCategoryStyle = (type: string) => {
@@ -53,6 +38,34 @@ const Ecosystem: React.FC = () => {
     }
   };
 
+  const getSectionHeaderStyle = (type: string) => {
+    switch(type) {
+      case 'Community': return 'text-rose-600 dark:text-rose-400 border-rose-200 dark:border-rose-900';
+      case 'Government': return 'text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-900';
+      case 'Academe': return 'text-purple-600 dark:text-purple-400 border-purple-200 dark:border-purple-900';
+      case 'Incubator': return 'text-orange-600 dark:text-orange-400 border-orange-200 dark:border-orange-900';
+      case 'MSME': return 'text-teal-600 dark:text-teal-400 border-teal-200 dark:border-teal-900';
+      case 'Non-Profit': return 'text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-900';
+      case 'Workspace': return 'text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-900';
+      case 'Creatives': return 'text-fuchsia-600 dark:text-fuchsia-400 border-fuchsia-200 dark:border-fuchsia-900';
+      default: return 'text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800';
+    }
+  };
+
+  // Determine which sections to render based on filter
+  const sectionsToRender = activeFilter === 'All' 
+    ? filters.filter(f => f !== 'All') 
+    : [activeFilter];
+
+  // Calculate total results for "No Results" state
+  const totalResults = sectionsToRender.reduce((acc, section) => {
+    return acc + ecosystemOrgs.filter(org => 
+      org.types.includes(section as any) &&
+      (org.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+       org.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    ).length;
+  }, 0);
+
   return (
     <div className="space-y-6 pb-24">
       <div className="mb-8">
@@ -63,7 +76,7 @@ const Ecosystem: React.FC = () => {
       </div>
       
       {/* Controls Section */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 sticky top-0 md:static z-40 bg-slate-50 dark:bg-slate-950 py-2">
         {/* Search and Sort Row */}
         <div className="flex flex-col md:flex-row gap-3">
           <div className="relative flex-1">
@@ -119,77 +132,107 @@ const Ecosystem: React.FC = () => {
         </div>
       </div>
 
-      <BentoGrid>
-        {sortedOrgs.map((org) => (
-          <BentoItem 
-            key={org.id}
-            className="flex flex-col gap-4 bg-white dark:bg-slate-900 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/60"
-            onClick={() => setSelectedOrg(org)}
-          >
-            <div className="flex items-start justify-between">
-              <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 bg-white shrink-0">
-                <img 
-                  src={org.logoUrl} 
-                  alt={`${org.name} logo`} 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    // Fallback if FB graph image fails
-                    (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(org.name)}&background=random`;
-                  }}
-                />
-              </div>
-              
-              <div className="flex gap-2">
-                 <div className="p-2 rounded-full transition-colors bg-slate-50 dark:bg-slate-800 text-slate-400 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/30 group-hover:text-[#35308f] dark:group-hover:text-indigo-400">
-                  <ChevronDown size={18} className="-rotate-90" />
-                </div>
-              </div>
-            </div>
+      <div className="space-y-12">
+        {sectionsToRender.map((section) => {
+          // Filter orgs for this section
+          const sectionOrgs = ecosystemOrgs.filter(org => 
+            org.types.includes(section as any) &&
+            (org.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+             org.description.toLowerCase().includes(searchQuery.toLowerCase()))
+          );
 
-            <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                 {org.types.map((type, index) => (
-                    <span 
-                      key={index}
-                      className={`px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider border shadow-sm ${getCategoryStyle(type)}`}
-                    >
-                      {type}
-                    </span>
-                 ))}
+          // If no orgs in this section (and we are searching or listing all), skip rendering this header
+          if (sectionOrgs.length === 0) return null;
+
+          // Sort
+          const sortedSectionOrgs = [...sectionOrgs].sort((a, b) => {
+            return sortOrder === 'asc' 
+              ? a.name.localeCompare(b.name)
+              : b.name.localeCompare(a.name);
+          });
+
+          return (
+            <div key={section} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className={`flex items-center gap-3 mb-6 pb-2 border-b ${getSectionHeaderStyle(section)}`}>
+                 <h2 className="text-2xl font-bold tracking-tight">{section}</h2>
+                 <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold px-2.5 py-1 rounded-full">
+                    {sortedSectionOrgs.length}
+                 </span>
               </div>
-              <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 mb-1 truncate">
-                {org.name}
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-3">
-                {org.description}
-              </p>
+
+              <BentoGrid>
+                {sortedSectionOrgs.map((org) => (
+                  <BentoItem 
+                    key={`${section}-${org.id}`} // Unique key since org can appear in multiple sections
+                    className="flex flex-col gap-4 bg-white dark:bg-slate-900 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/60"
+                    onClick={() => setSelectedOrg(org)}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 bg-white shrink-0">
+                        <img 
+                          src={org.logoUrl} 
+                          alt={`${org.name} logo`} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(org.name)}&background=random`;
+                          }}
+                        />
+                      </div>
+                      
+                      <div className="flex gap-2">
+                         <div className="p-2 rounded-full transition-colors bg-slate-50 dark:bg-slate-800 text-slate-400 group-hover:bg-indigo-50 dark:group-hover:bg-indigo-900/30 group-hover:text-[#35308f] dark:group-hover:text-indigo-400">
+                          <ChevronDown size={18} className="-rotate-90" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap gap-1.5 mb-3">
+                         {org.types.map((type, index) => (
+                            <span 
+                              key={index}
+                              className={`px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase tracking-wider border shadow-sm ${getCategoryStyle(type)}`}
+                            >
+                              {type}
+                            </span>
+                         ))}
+                      </div>
+                      <h3 className="font-bold text-lg text-slate-800 dark:text-slate-100 mb-1 truncate">
+                        {org.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-3">
+                        {org.description}
+                      </p>
+                    </div>
+                    
+                    <div 
+                      aria-hidden="true"
+                      className="mt-auto w-full block text-center py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors pointer-events-none"
+                    >
+                      View Profile
+                    </div>
+                  </BentoItem>
+                ))}
+              </BentoGrid>
             </div>
-            
-            {/* Using div instead of button to avoid nested interactive elements semantics, hidden from screen reader as redundant */}
-            <div 
-              aria-hidden="true"
-              className="mt-auto w-full block text-center py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors pointer-events-none"
-            >
-              View Profile
-            </div>
-          </BentoItem>
-        ))}
+          );
+        })}
+      </div>
         
-        {sortedOrgs.length === 0 && (
-          <div className="col-span-full py-20 text-center flex flex-col items-center">
-            <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
-               <Search size={24} className="text-slate-300" />
-            </div>
-            <p className="text-slate-400 font-medium">No organizations found matching "{searchQuery}"</p>
-            <button 
-               onClick={() => {setSearchQuery(''); setActiveFilter('All');}}
-               className="mt-4 text-[#35308f] dark:text-indigo-400 text-sm font-bold hover:underline focus:outline-none focus:ring-2 focus:ring-[#35308f] rounded"
-            >
-               Clear Filters
-            </button>
+      {totalResults === 0 && (
+        <div className="py-20 text-center flex flex-col items-center">
+          <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4">
+             <Search size={24} className="text-slate-300" />
           </div>
-        )}
-      </BentoGrid>
+          <p className="text-slate-400 font-medium">No organizations found matching "{searchQuery}"</p>
+          <button 
+             onClick={() => {setSearchQuery(''); setActiveFilter('All');}}
+             className="mt-4 text-[#35308f] dark:text-indigo-400 text-sm font-bold hover:underline focus:outline-none focus:ring-2 focus:ring-[#35308f] rounded"
+          >
+             Clear Filters
+          </button>
+        </div>
+      )}
 
       {selectedOrg && (
         <OrganizationModal org={selectedOrg} onClose={() => setSelectedOrg(null)} />
