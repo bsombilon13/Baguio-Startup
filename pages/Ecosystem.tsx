@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ecosystemOrgs } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { ChevronDown, Search, Filter, Plus } from 'lucide-react';
+import { ChevronDown, Search, Filter } from 'lucide-react';
 import { Organization } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
 
@@ -158,26 +158,6 @@ const Ecosystem: React.FC = () => {
             </div>
           </BentoItem>
         ))}
-
-        {/* CTA Card for New Submissions */}
-        <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-[#35308f] to-indigo-600 dark:from-[#35308f] dark:to-indigo-800 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center text-center border border-white/10">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
-            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-5 border border-white/20 group-hover:rotate-6 transition-transform">
-                <Plus size={32} className="text-white" />
-            </div>
-            <h3 className="font-bold text-2xl text-white mb-2">Join the Network</h3>
-            <p className="text-indigo-100 text-sm font-medium mb-8 leading-relaxed">
-              New community or enabler? <br/> Submit your details to get listed.
-            </p>
-            <a 
-              href="https://m.me/baguiostartup" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-white text-[#35308f] px-6 py-3.5 rounded-xl font-bold text-sm hover:bg-indigo-50 transition-colors shadow-lg w-full"
-            >
-              Submit Details
-            </a>
-        </div>
         
         {sortedOrgs.length === 0 && (
           <div className="col-span-full py-20 text-center flex flex-col items-center">
