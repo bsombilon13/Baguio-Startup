@@ -1,3 +1,4 @@
+
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -25,6 +26,14 @@ export const ecosystemOrgs: Organization[] = [
     facebookUrl: 'https://www.facebook.com/AWMA.SLUSC',
     websiteUrl: 'https://www.slu.edu.ph',
     types: ['Academe']
+  },
+  {
+    id: 'bsn',
+    name: 'Baguio Startup Network',
+    description: 'The central hub for the mountain region\'s startup ecosystem.',
+    logoUrl: 'https://graph.facebook.com/baguiostartup/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/baguiostartup/',
+    types: ['Community']
   },
   {
     id: 'beesnest',
