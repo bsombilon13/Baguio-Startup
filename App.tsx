@@ -42,7 +42,7 @@ const Dashboard = () => {
   }, []);
 
   const scmmData = [
-    { name: 'Baguio City', level: 1, label: 'Nascent' },
+    { name: 'Baguio City', level: 2, label: 'Foundational' },
     { name: 'Abra', level: 1, label: 'Nascent' },
     { name: 'Mt. Province', level: 1, label: 'Nascent' },
     { name: 'Kalinga', level: 1, label: 'Nascent' },
