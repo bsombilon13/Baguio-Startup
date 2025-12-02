@@ -31,6 +31,16 @@ export interface Event {
   link?: string;
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  date: string;
+  excerpt: string;
+  imageUrl: string;
+  link: string;
+  source: 'Facebook' | 'Website' | 'Press';
+}
+
 export interface Opportunity {
   id: string;
   title: string;

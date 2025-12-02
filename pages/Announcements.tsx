@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Megaphone, DollarSign, Lightbulb, Users } from 'lucide-react';
+import { Megaphone, DollarSign, Lightbulb } from 'lucide-react';
 
 const Announcements: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Funding & Grants');
@@ -7,7 +8,6 @@ const Announcements: React.FC = () => {
   const tabs = [
     { name: 'Funding & Grants', icon: DollarSign },
     { name: 'Opportunities', icon: Lightbulb },
-    { name: 'Community News', icon: Users },
   ];
 
   return (
@@ -18,7 +18,7 @@ const Announcements: React.FC = () => {
             Announcements
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">
-            Grants, accelerators, and community updates.
+            Grants, accelerators, and ecosystem opportunities.
           </p>
         </div>
         <button className="bg-[#35308f] hover:bg-[#2a2670] text-white px-6 py-2.5 rounded-xl font-bold shadow-lg shadow-indigo-200 dark:shadow-none transition-all flex items-center gap-2 w-fit focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f]">

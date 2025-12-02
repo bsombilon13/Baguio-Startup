@@ -1,5 +1,6 @@
+
 import React, { useContext } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen } from 'lucide-react';
+import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../App';
 
@@ -11,6 +12,7 @@ const Sidebar: React.FC = () => {
     { name: 'Active Startups', icon: Rocket, path: '/startups' },
     { name: 'Ecosystem', icon: Users, path: '/ecosystem' },
     { name: 'Events', icon: Calendar, path: '/events' },
+    { name: 'Community News', icon: Newspaper, path: '/news' },
     { name: 'Resources', icon: BookOpen, path: '/resources' },
     { name: 'Announcements', icon: Megaphone, path: '/announcements' },
   ];

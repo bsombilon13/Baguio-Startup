@@ -1,4 +1,5 @@
 
+
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from './components/Navbar';
@@ -7,6 +8,7 @@ import Ecosystem from './pages/Ecosystem';
 import ActiveStartups from './pages/ActiveStartups';
 import Resources from './pages/Resources';
 import Announcements from './pages/Announcements';
+import CommunityNews from './pages/CommunityNews';
 import { ThemeContextType } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
@@ -104,8 +106,11 @@ const Dashboard = () => {
                   </p>
                 </div>
                 
-                <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl font-bold text-lg border border-white/20 shadow-lg whitespace-nowrap">
-                   Level 1: Nascent
+                <div className="flex flex-col items-end">
+                   <div className="bg-white/20 backdrop-blur-md px-6 py-3 rounded-2xl font-bold text-lg border border-white/20 shadow-lg whitespace-nowrap mb-2">
+                      Level 1
+                   </div>
+                   <span className="text-white/80 font-medium uppercase text-sm tracking-wide">Nascent</span>
                 </div>
              </div>
           </div>
@@ -292,6 +297,7 @@ const App: React.FC = () => {
                 <Route path="/ecosystem" element={<Ecosystem />} />
                 <Route path="/startups" element={<ActiveStartups />} />
                 <Route path="/resources" element={<Resources />} />
+                <Route path="/news" element={<CommunityNews />} />
                 <Route path="/announcements" element={<Announcements />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>

@@ -1,6 +1,6 @@
 
 
-import { Organization, Startup, Event, Opportunity, Resource } from './types';
+import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
   {
@@ -319,6 +319,18 @@ export const events: Event[] = [
     imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
     tags: ['Workshop', 'Cloud', 'DevOps'],
     link: 'https://bit.ly/CDOBasics-Register'
+  }
+];
+
+export const communityNews: NewsItem[] = [
+  {
+    id: 'news-1',
+    title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',
+    date: 'Dec 03, 2025',
+    excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10, bringing with them courage, creativity, and an unshakable innovative spirit on December 3-4, 2025 at Clark, Pampanga. As The Last Seven steps onto the national spotlight, we send you off with pride, love, and confidence. To the mentors, colleagues, startup community, and supporters who gathered to cheer them, your energy fuels their drive to showcase what Cordilleran ingenuity can achieve this PSC10. Best of luck, Team Cordillera! May your ideas resonate, your confidence shine, and your passion lead the way. Go out there, stand tall! We are proud of you!',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUhRuLrgSz2yxSXuWeOwAu51izX57cBAHnWLNfntwEAdoiYWyU7ozMtN6abbX4SU-f_3NDyFLMkSqJnOTrNEpP&_nc_ohc=yChRa48amrgQ7kNvwFNvT-3&_nc_oc=AdmZHBF3t0y46f3RZg_s9igYB9auSuw12bkkIebMDSqbnDnKP2XeZ4GmV8jlj9mRkUY&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=lvk6KqrUwOxz5twPOJx8pg&oh=00_AfmlEYGWRgS8HFu604m0QYcPfxPG4OYdsNRBhlRxrSFK0A&oe=69343A68',
+    link: 'https://www.facebook.com/photo/?fbid=873609971906820&set=a.131590669442091',
+    source: 'Facebook'
   }
 ];
 
