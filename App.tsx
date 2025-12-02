@@ -74,10 +74,10 @@ const Dashboard = () => {
   return (
     <div className="space-y-6 h-full flex flex-col">
       <header className="mb-6">
-        <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 mt-4 text-xl md:text-2xl font-medium leading-relaxed">
+        <p className="text-slate-500 dark:text-slate-400 mt-2 text-lg font-medium leading-relaxed max-w-2xl">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
@@ -137,36 +137,38 @@ const Dashboard = () => {
           </div>
         </div>
         
-        {/* Row 2: Featured Event */}
-        <div className="md:col-span-2 bg-gradient-to-b from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col relative group transition-colors min-h-[320px]">
-          <div className="absolute top-0 right-0 p-6 opacity-10 pointer-events-none text-emerald-600 dark:text-emerald-400">
-             <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-             </svg>
-          </div>
-
-          <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10">
+        {/* Row 2: Featured Event - Split Layout */}
+        <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col md:flex-row relative group transition-colors min-h-[320px]">
+          
+          <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10 order-2 md:order-1">
             <div className="mb-4">
               <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-teal-100 dark:shadow-none">Upcoming Event</span>
             </div>
             
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
               Cloud and DevOps Basics
             </h2>
-            <p className="text-slate-500 dark:text-slate-400 font-medium mb-4">December 10, 2025 | 1:00 PM - 5:00 PM</p>
+            <p className="text-slate-500 dark:text-slate-400 font-medium mb-4">December 10, 2025 | 1:00 PM</p>
             
-            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-2">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
               This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models.
             </p>
 
             <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
-                  View Calendar <ArrowUpRight size={18} />
+                  View Details <ArrowUpRight size={18} />
                </Link>
             </div>
+          </div>
+          
+          {/* Square Banner on the Right (or top on mobile) */}
+          <div className="md:w-[40%] h-48 md:h-auto relative order-1 md:order-2">
+             <img 
+               src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4" 
+               alt="Event Banner" 
+               className="w-full h-full object-cover"
+             />
+             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden"></div>
           </div>
         </div>
 
@@ -204,7 +206,8 @@ const Dashboard = () => {
 
         {/* Row 2: StartupBlink */}
         <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
-           <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
+           {/* Increased opacity for better visibility */}
+           <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
                <ArrowUpRight size={100} />
            </div>
            <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md bg-white border border-slate-100 flex items-center justify-center p-3">
@@ -236,7 +239,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: Announcements Footer */}
-        <div className="md:col-span-4 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-400 shadow-sm">
+        <div className="md:col-span-4 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-400 shadow-sm">
            <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400">
                  <span className="text-xl">📢</span>

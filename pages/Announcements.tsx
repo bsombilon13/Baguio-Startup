@@ -14,7 +14,7 @@ const Announcements: React.FC = () => {
     <div className="space-y-6 pb-24 h-full flex flex-col">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Announcements
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">

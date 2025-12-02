@@ -31,7 +31,7 @@ const ActiveStartups: React.FC = () => {
     <div className="space-y-6 pb-24">
       <div className="flex flex-col gap-4">
         <div className="mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Active Startups
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Discover the startups building from the mountains.</p>

@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import { communityNews } from '../data';
 import { ExternalLink, Facebook } from 'lucide-react';
@@ -9,7 +7,7 @@ const CommunityNews: React.FC = () => {
   return (
     <div className="space-y-6 pb-24">
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors mb-2">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
           Community News
         </h1>
         <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">

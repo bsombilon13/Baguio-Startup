@@ -432,5 +432,105 @@ export const resources: Resource[] = [
     format: 'WEB',
     size: 'N/A',
     url: 'https://gobicore.vc/gobi-partners-launches-philippine-startup-ecosystem-report-2025-the-next-wave-of-innovation/?fbclid=IwY2xjawOaz6FleHRuA2FlbQIxMABicmlkETFUSEFMUXZUT2dOanpFM2Mxc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHj9p06uUVAyV9q_9Kpj3U-3e_aZYcL_SQKFsyyZrU9rK4QDkbBjdrLUIdyAk_aem_RDT5QMOuiKoF_EVRa14IEw'
+  },
+  // Websites
+  {
+    id: 'web-luma',
+    title: 'Luma',
+    type: 'Website',
+    description: 'Delightful event pages and community management tools.',
+    format: 'Event Mgmt',
+    size: 'N/A',
+    url: 'https://luma.com/'
+  },
+  {
+    id: 'web-trello',
+    title: 'Trello',
+    type: 'Website',
+    description: 'Visual project management and collaboration tool.',
+    format: 'Project Mgmt',
+    size: 'N/A',
+    url: 'https://trello.com/'
+  },
+  {
+    id: 'web-monday',
+    title: 'Monday.com',
+    type: 'Website',
+    description: 'Work operating system to manage projects and workflows.',
+    format: 'Project Mgmt',
+    size: 'N/A',
+    url: 'https://monday.com/'
+  },
+  {
+    id: 'web-clickup',
+    title: 'ClickUp',
+    type: 'Website',
+    description: 'All-in-one productivity platform for tasks, docs, and goals.',
+    format: 'Project Mgmt',
+    size: 'N/A',
+    url: 'https://clickup.com/'
+  },
+  {
+    id: 'web-ilovepdf',
+    title: 'iLovePDF',
+    type: 'Website',
+    description: 'Free online tools to merge, split, compress, and convert PDFs.',
+    format: 'Utilities',
+    size: 'N/A',
+    url: 'https://www.ilovepdf.com/'
+  },
+  {
+    id: 'web-notebooklm',
+    title: 'NotebookLM',
+    type: 'Website',
+    description: 'AI-powered research assistant and note-taking tool by Google.',
+    format: 'AI Research',
+    size: 'N/A',
+    url: 'http://notebooklm.google.com/'
+  },
+  {
+    id: 'web-canva',
+    title: 'Canva',
+    type: 'Website',
+    description: 'Graphic design platform for social media, presentations, and more.',
+    format: 'Design',
+    size: 'N/A',
+    url: 'https://www.canva.com/'
+  },
+  {
+    id: 'web-toools',
+    title: 'Toools.design',
+    type: 'Website',
+    description: 'Archive of top-notch design resources and tools.',
+    format: 'Design',
+    size: 'N/A',
+    url: 'https://www.toools.design/'
+  },
+  {
+    id: 'web-freepik',
+    title: 'Freepik',
+    type: 'Website',
+    description: 'High-quality photos, vectors, videos, and PSD files.',
+    format: 'Stock Assets',
+    size: 'N/A',
+    url: 'https://www.freepik.com/'
+  },
+  {
+    id: 'web-figma',
+    title: 'Figma',
+    type: 'Website',
+    description: 'Collaborative interface design tool.',
+    format: 'UI/UX Design',
+    size: 'N/A',
+    url: 'https://www.figma.com/'
+  },
+  {
+    id: 'web-github',
+    title: 'GitHub',
+    type: 'Website',
+    description: 'Platform for hosting, collaboration, and version control.',
+    format: 'Development',
+    size: 'N/A',
+    url: 'https://github.com/'
   }
 ];
