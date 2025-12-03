@@ -70,30 +70,3 @@ export interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
 }
-
-export interface BusinessModelCanvas {
-  keyPartners: string[];
-  keyActivities: string[];
-  keyResources: string[];
-  valuePropositions: string[];
-  customerRelationships: string[];
-  channels: string[];
-  customerSegments: string[];
-  costStructure: string[];
-  revenueStreams: string[];
-}
-
-export interface ValidationReport {
-  industry: string;
-  ideaType: string;
-  ideaTypeDescription: string;
-  marketAnalysis: string;
-  rarityScore: number; // 0-100
-  rarityVerdict: 'Common' | 'Niche' | 'Rare' | 'Unicorn';
-  competitors: { name: string; url: string }[];
-  strengths: string[];
-  weaknesses: string[];
-  loopholes: string[];
-  nextSteps: string[];
-  businessModelCanvas: BusinessModelCanvas;
-}
