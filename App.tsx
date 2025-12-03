@@ -454,8 +454,13 @@ const App: React.FC = () => {
     // Check localStorage or system preference
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isMobile = window.innerWidth < 768; // Mobile breakpoint check
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    // Logic: 
+    // 1. If user has a saved preference, use it.
+    // 2. If no saved preference AND it's mobile, default to DARK.
+    // 3. If no saved preference AND not mobile, follow system preference.
+    if (savedTheme === 'dark' || (!savedTheme && (isMobile || prefersDark))) {
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
     } else {
