@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock } from 'lucide-react';
 import { events } from '../data';
 import EventModal from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -107,24 +107,59 @@ const Events: React.FC = () => {
             return (
               <BentoItem 
                 key={event.id}
-                className="md:col-span-1 md:row-span-1"
-                background={event.imageUrl}
+                className="md:col-span-1 md:row-span-1 flex flex-col group"
                 onClick={() => setSelectedEvent(event)}
               >
-                <div className="mt-auto">
-                   <div className="flex flex-wrap gap-2 mb-2">
-                     <div className="bg-white/90 dark:bg-black/80 w-fit px-3 py-1 rounded-full text-xs font-bold text-slate-900 dark:text-white backdrop-blur-md shadow-sm">
-                       {format(event.date, 'MMM d, h:mm a')}
-                     </div>
-                     {mainTag && (
-                        <div className="bg-[#35308f]/90 dark:bg-indigo-600/90 w-fit px-3 py-1 rounded-full text-xs font-bold text-white backdrop-blur-md shadow-sm border border-white/20">
-                          {mainTag}
-                        </div>
-                     )}
-                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md">{event.title}</h3>
-                  <p className="text-white/90 text-sm line-clamp-2 drop-shadow-md font-medium">{event.description}</p>
-                </div>
+                 {/* Header Banner Image */}
+                 <div className="-mx-6 -mt-6 h-48 relative overflow-hidden mb-5">
+                    <img 
+                        src={event.imageUrl} 
+                        alt={event.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    {/* Date Badge */}
+                    <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform">
+                        <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
+                        <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">{format(event.date, 'd')}</div>
+                    </div>
+
+                    {/* Category Tag */}
+                    {mainTag && (
+                         <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10">
+                            {mainTag}
+                         </div>
+                    )}
+                 </div>
+
+                 {/* Details Content (Solid Background) */}
+                 <div className="flex flex-col flex-1">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                        {event.title}
+                    </h3>
+                    
+                    <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4">
+                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+                            <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
+                            {format(event.date, 'h:mm a')}
+                         </span>
+                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 truncate max-w-[140px]">
+                            <MapPin size={14} className="text-[#35308f] dark:text-indigo-400"/>
+                            {event.location}
+                         </span>
+                    </div>
+
+                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 leading-relaxed mb-4 flex-1">
+                        {event.description}
+                    </p>
+
+                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                        <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                           View Details <ChevronRight size={16} />
+                        </span>
+                    </div>
+                 </div>
               </BentoItem>
             );
           })}
