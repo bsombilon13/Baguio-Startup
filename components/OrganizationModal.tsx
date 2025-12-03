@@ -1,15 +1,18 @@
-
-
 import React from 'react';
-import { X, Facebook, Globe, ExternalLink } from 'lucide-react';
-import { Organization } from '../types';
+import { X, Facebook, Globe } from 'lucide-react';
+import { Organization, Startup } from '../types';
 
 interface OrganizationModalProps {
-  org: Organization;
+  org: Organization | Startup;
   onClose: () => void;
 }
 
 const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) => {
+  // Determine tags based on whether it is an Organization or Startup
+  const tags = 'types' in org 
+    ? org.types 
+    : [org.industry, org.stage].filter((t): t is string => !!t);
+
   return (
     <div 
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
@@ -52,7 +55,7 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
           <div className="space-y-6 text-center">
             <div>
               <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
-                 {org.types.map((type, idx) => (
+                 {tags.map((type, idx) => (
                     <span 
                       key={idx}
                       className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-900/30 text-[#35308f] dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20"

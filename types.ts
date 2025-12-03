@@ -33,6 +33,7 @@ export interface Event {
   tags: string[];
   link?: string; // Registration Link
   learnMoreLink?: string; // Info/Social Link
+  organizerId?: string; // Reference to Organization or Startup ID
 }
 
 export interface NewsItem {

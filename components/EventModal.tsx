@@ -1,20 +1,29 @@
+
+
 import React, { useState } from 'react';
 import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info, ChevronRight, Clock } from 'lucide-react';
-import { Event } from '../types';
+import { Event, Organization, Startup } from '../types';
 import { format } from 'date-fns';
+import { ecosystemOrgs, activeStartups } from '../data';
 
 interface EventModalProps {
   event: Event;
   onClose: () => void;
+  onOrganizerClick?: (org: Organization | Startup) => void;
 }
 
 const ALLOWED_TAGS = ['Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
 
-const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
+const EventModal: React.FC<EventModalProps> = ({ event, onClose, onOrganizerClick }) => {
   const [showCalendarOptions, setShowCalendarOptions] = useState(false);
 
   // Filter tags to only show the main categories
   const displayTags = event.tags.filter(tag => ALLOWED_TAGS.includes(tag));
+
+  // Find organizer
+  const organizer = event.organizerId 
+    ? [...ecosystemOrgs, ...activeStartups].find(o => o.id === event.organizerId)
+    : null;
 
   // Helper to format dates for Calendar APIs (YYYYMMDDTHHmmssZ)
   const formatCalendarDate = (date: Date) => {
@@ -96,6 +105,25 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
+          
+          {organizer && (
+            <div 
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onOrganizerClick?.(organizer);
+                }}
+                className="absolute top-4 left-4 z-20 cursor-pointer group/org"
+                title={`Organized by ${organizer.name}`}
+            >
+                <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-lg overflow-hidden transition-transform group-hover/org:scale-110">
+                    <img 
+                        src={organizer.logoUrl} 
+                        alt={organizer.name} 
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+          )}
         </div>
 
         <div className="p-6 relative">
@@ -202,9 +230,10 @@ interface DayEventsModalProps {
   events: Event[];
   onClose: () => void;
   onSelectEvent: (event: Event) => void;
+  onOrganizerClick?: (org: Organization | Startup) => void;
 }
 
-export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, onClose, onSelectEvent }) => {
+export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, onClose, onSelectEvent, onOrganizerClick }) => {
   return (
     <div 
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
@@ -233,15 +262,34 @@ export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, on
         </div>
 
         <div className="max-h-[60vh] overflow-y-auto p-4 space-y-3 custom-scrollbar">
-           {events.map(event => (
+           {events.map(event => {
+             const organizer = event.organizerId 
+                ? [...ecosystemOrgs, ...activeStartups].find(o => o.id === event.organizerId)
+                : null;
+             
+             return (
              <div 
                 key={event.id}
                 onClick={() => onSelectEvent(event)}
-                className="flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-[#35308f] dark:hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
+                className="flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-[#35308f] dark:hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group relative"
              >
                 <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
                    <img src={event.imageUrl} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </div>
+                
+                {organizer && (
+                    <div 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onOrganizerClick?.(organizer);
+                        }}
+                        className="absolute -top-1 -left-1 w-6 h-6 rounded-full bg-white border border-slate-200 shadow-sm overflow-hidden z-10 hover:scale-110 transition-transform"
+                        title={organizer.name}
+                    >
+                        <img src={organizer.logoUrl} alt={organizer.name} className="w-full h-full object-cover" />
+                    </div>
+                )}
+
                 <div className="flex-1 min-w-0">
                    <h3 className="font-bold text-slate-900 dark:text-white truncate group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
                      {event.title}
@@ -257,7 +305,7 @@ export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, on
                    <ChevronRight size={20} />
                 </div>
              </div>
-           ))}
+           )})}
         </div>
       </div>
       <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true"></div>

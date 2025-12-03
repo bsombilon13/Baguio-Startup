@@ -1,10 +1,12 @@
+
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock } from 'lucide-react';
-import { events } from '../data';
+import { events, ecosystemOrgs, activeStartups } from '../data';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Event } from '../types';
+import { Event, Organization, Startup } from '../types';
+import OrganizationModal from '../components/OrganizationModal';
 
 const Events: React.FC = () => {
   const [view, setView] = useState<'calendar' | 'list'>('list');
@@ -12,6 +14,7 @@ const Events: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [dayModalEvents, setDayModalEvents] = useState<{ date: Date, events: Event[] } | null>(null);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedOrg, setSelectedOrg] = useState<Organization | Startup | null>(null);
 
   // Static filters
   const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
@@ -55,6 +58,12 @@ const Events: React.FC = () => {
   const getMainTag = (tags: string[]) => {
     const mainTags = filters.filter(f => f !== 'All');
     return tags.find(t => mainTags.includes(t));
+  };
+
+  // Helper to find organizer
+  const getOrganizer = (organizerId?: string) => {
+    if (!organizerId) return null;
+    return [...ecosystemOrgs, ...activeStartups].find(o => o.id === organizerId);
   };
 
   return (
@@ -118,15 +127,17 @@ const Events: React.FC = () => {
           {filteredEvents.map((event) => {
             const mainTag = getMainTag(event.tags);
             const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
+            const organizer = getOrganizer(event.organizerId);
             
             return (
               <BentoItem 
                 key={event.id}
-                className="md:col-span-1 md:row-span-1 flex flex-col group"
+                className="md:col-span-1 md:row-span-1 flex flex-col group h-full"
                 onClick={() => setSelectedEvent(event)}
+                noPadding={true}
               >
                  {/* Header Banner Image */}
-                 <div className="-mx-6 -mt-6 h-48 relative overflow-hidden mb-5">
+                 <div className="h-48 w-full relative overflow-hidden bg-slate-100 dark:bg-slate-800">
                     <img 
                         src={event.imageUrl} 
                         alt={event.title} 
@@ -135,7 +146,7 @@ const Events: React.FC = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     {/* Date Badge */}
-                    <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform">
+                    <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform z-10">
                         <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
                         <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
                             {isMultiDay 
@@ -147,14 +158,38 @@ const Events: React.FC = () => {
 
                     {/* Category Tag */}
                     {mainTag && (
-                         <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10">
+                         <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
                             {mainTag}
                          </div>
                     )}
                  </div>
 
                  {/* Details Content (Solid Background) */}
-                 <div className="flex flex-col flex-1">
+                 <div className="p-6 flex flex-col flex-1 relative">
+                    
+                    {/* Organizer Profile Picture - Overlapping */}
+                    {organizer && (
+                      <div 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedOrg(organizer);
+                        }}
+                        className="absolute -top-6 left-6 z-20 cursor-pointer group/org"
+                        title={`Organized by ${organizer.name}`}
+                      >
+                         <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
+                            <img 
+                                src={organizer.logoUrl} 
+                                alt={organizer.name} 
+                                className="w-full h-full object-cover"
+                            />
+                         </div>
+                      </div>
+                    )}
+
+                    {/* Spacer for overlapping avatar if needed, but flex gap usually handles it nicely visually */}
+                    <div className="h-4"></div>
+
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
                         {event.title}
                     </h3>
@@ -164,14 +199,13 @@ const Events: React.FC = () => {
                             <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
                             {format(event.date, 'h:mm a')}
                          </span>
-                         {/* Removed truncate/max-w to allow full location text and keep icon visible */}
                          <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
                             <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
                             {event.location}
                          </span>
                     </div>
 
-                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-2 leading-relaxed mb-4 flex-1">
+                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">
                         {event.description}
                     </p>
 
@@ -252,11 +286,26 @@ const Events: React.FC = () => {
                   
                   {hasEvents && (
                     <div className="mt-1 space-y-1 flex-1 overflow-hidden">
-                      {dayEvents.slice(0, 2).map(e => (
-                         <div key={e.id} className="truncate text-[10px] font-semibold bg-[#35308f]/10 dark:bg-indigo-900/40 text-[#35308f] dark:text-indigo-300 px-1.5 py-1 rounded border border-[#35308f]/20 dark:border-indigo-800/50">
-                            {e.title}
-                         </div>
-                      ))}
+                      {dayEvents.slice(0, 2).map(e => {
+                         const organizer = getOrganizer(e.organizerId);
+                         return (
+                           <div key={e.id} className="flex items-center gap-1 bg-[#35308f]/10 dark:bg-indigo-900/40 text-[#35308f] dark:text-indigo-300 px-1.5 py-1 rounded border border-[#35308f]/20 dark:border-indigo-800/50">
+                              {organizer && (
+                                <img 
+                                  src={organizer.logoUrl} 
+                                  className="w-3.5 h-3.5 rounded-full object-cover shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                                  onClick={(evt) => {
+                                    evt.stopPropagation();
+                                    setSelectedOrg(organizer);
+                                  }}
+                                  alt={organizer.name}
+                                  title={`Organized by ${organizer.name}`}
+                                />
+                              )}
+                              <span className="truncate text-[10px] font-semibold">{e.title}</span>
+                           </div>
+                         );
+                      })}
                       {dayEvents.length > 2 && (
                          <span className="text-[10px] text-slate-400 font-medium pl-1 block">+{dayEvents.length - 2} more</span>
                       )}
@@ -270,7 +319,11 @@ const Events: React.FC = () => {
       )}
 
       {selectedEvent && (
-        <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+        <EventModal 
+            event={selectedEvent} 
+            onClose={() => setSelectedEvent(null)} 
+            onOrganizerClick={(org) => setSelectedOrg(org)}
+        />
       )}
       
       {dayModalEvents && (
@@ -282,7 +335,12 @@ const Events: React.FC = () => {
             setDayModalEvents(null);
             setSelectedEvent(event);
           }}
+          onOrganizerClick={(org) => setSelectedOrg(org)}
         />
+      )}
+
+      {selectedOrg && (
+        <OrganizationModal org={selectedOrg} onClose={() => setSelectedOrg(null)} />
       )}
     </div>
   );

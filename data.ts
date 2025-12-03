@@ -1,5 +1,3 @@
-
-
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -27,6 +25,15 @@ export const ecosystemOrgs: Organization[] = [
     facebookUrl: 'https://www.facebook.com/AWMA.SLUSC',
     websiteUrl: 'https://www.slu.edu.ph',
     types: ['Academe']
+  },
+  {
+    id: 'cpdso',
+    name: 'Baguio CPDSO',
+    description: 'City Planning, Development and Sustainability Office of Baguio City.',
+    logoUrl: 'https://graph.facebook.com/BaguioCPDSO/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/BaguioCPDSO',
+    websiteUrl: 'https://www.baguio.gov.ph',
+    types: ['Government']
   },
   {
     id: 'bsn',
@@ -370,7 +377,8 @@ export const events: Event[] = [
     imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
     tags: ['Workshop', 'Cloud', 'DevOps'],
     link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
-    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/'
+    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
+    organizerId: 'dict-car'
   },
   {
     id: 'evt-data-analytics',
@@ -381,7 +389,8 @@ export const events: Event[] = [
     imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
     tags: ['Workshop', 'Data', 'Analytics'],
     link: 'https://bit.ly/DAVE-Register',
-    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/'
+    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
+    organizerId: 'dict-car'
   },
   {
     id: 'evt-yep-ap',
@@ -393,7 +402,8 @@ export const events: Event[] = [
     imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
     tags: ['Training'],
     link: 'https://bit.ly/YouthToMT',
-    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/'
+    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
+    organizerId: 'cpdso'
   }
 ];
 

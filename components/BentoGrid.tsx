@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string }> = ({ 
@@ -16,7 +17,8 @@ export const BentoItem: React.FC<{
   className?: string;
   onClick?: () => void;
   background?: string;
-}> = ({ children, className = "", onClick, background }) => {
+  noPadding?: boolean;
+}> = ({ children, className = "", onClick, background, noPadding = false }) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
@@ -31,12 +33,13 @@ export const BentoItem: React.FC<{
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       className={`
-        relative overflow-hidden rounded-3xl p-6
+        relative overflow-hidden rounded-3xl
         bg-white dark:bg-slate-900 
         border border-slate-100 dark:border-slate-800 
         shadow-sm hover:shadow-lg dark:hover:shadow-slate-800/50
         hover:border-slate-300 dark:hover:border-slate-600
         transition-all duration-300 group
+        ${noPadding ? 'p-0' : 'p-6'}
         ${onClick ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-indigo-500/20' : ''}
         ${className}
       `}
