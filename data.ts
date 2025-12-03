@@ -1,4 +1,5 @@
 
+
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -368,7 +369,19 @@ export const events: Event[] = [
     description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
     imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
     tags: ['Workshop', 'Cloud', 'DevOps'],
-    link: 'https://bit.ly/CDOBasics-Register'
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
+    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/'
+  },
+  {
+    id: 'evt-data-analytics',
+    title: 'Data Analytics & Visualization Essentials',
+    date: new Date('2025-12-11T13:00:00'),
+    location: 'Zoom',
+    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
+    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
+    tags: ['Workshop', 'Data', 'Analytics'],
+    link: 'https://bit.ly/DAVE-Register',
+    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/'
   }
 ];
 

@@ -1,6 +1,7 @@
 
+
 import React, { useState } from 'react';
-import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Check, Download } from 'lucide-react';
+import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info } from 'lucide-react';
 import { Event } from '../types';
 
 interface EventModalProps {
@@ -8,8 +9,13 @@ interface EventModalProps {
   onClose: () => void;
 }
 
+const ALLOWED_TAGS = ['Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
+
 const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   const [showCalendarOptions, setShowCalendarOptions] = useState(false);
+
+  // Filter tags to only show the main categories
+  const displayTags = event.tags.filter(tag => ALLOWED_TAGS.includes(tag));
 
   // Helper to format dates for Calendar APIs (YYYYMMDDTHHmmssZ)
   const formatCalendarDate = (date: Date) => {
@@ -95,7 +101,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
         <div className="p-6 relative">
           <div className="flex flex-wrap gap-2 mb-4 -mt-10 relative z-20">
-            {event.tags.map(tag => (
+            {displayTags.map(tag => (
               <span key={tag} className="px-3 py-1 bg-white dark:bg-slate-800 text-violet-600 dark:text-violet-400 text-xs font-bold rounded-full border border-slate-100 dark:border-slate-700 shadow-md">
                 {tag}
               </span>
@@ -115,12 +121,24 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             </div>
           </div>
 
-          <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-sm">
+          <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-8 text-lg">
             {event.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            {/* Main Action Button */}
+            {/* Learn More Button */}
+            {event.learnMoreLink && (
+              <a 
+                href={event.learnMoreLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-200 font-bold py-3 px-6 rounded-xl transition-all shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+              >
+                Learn More <Info size={18} className="ml-2" />
+              </a>
+            )}
+
+            {/* Register Button */}
             {event.link ? (
               <a 
                 href={event.link}
@@ -128,11 +146,11 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl group focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                {event.link.includes('facebook.com') ? 'View on Facebook' : 'Register Here'} <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                Register <ExternalLink size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
             ) : (
               <button className="flex-1 w-full bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-200 text-white dark:text-slate-900 font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
-                Register for Event
+                Register
               </button>
             )}
 
@@ -140,7 +158,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             <div className="relative">
               <button
                 onClick={() => setShowCalendarOptions(!showCalendarOptions)}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
+                className="w-full sm:w-auto h-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
                 aria-haspopup="true"
                 aria-expanded={showCalendarOptions}
               >

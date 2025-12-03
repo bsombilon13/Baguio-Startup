@@ -30,7 +30,8 @@ export interface Event {
   description: string;
   imageUrl: string;
   tags: string[];
-  link?: string;
+  link?: string; // Registration Link
+  learnMoreLink?: string; // Info/Social Link
 }
 
 export interface NewsItem {

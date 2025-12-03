@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
@@ -13,9 +14,8 @@ const Events: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [activeFilter, setActiveFilter] = useState('All');
 
-  // Extract unique tags for filter
-  const allTags = Array.from(new Set(events.flatMap(e => e.tags)));
-  const filters = ['All', ...allTags];
+  // Static filters
+  const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
 
   // Filter Logic
   const filteredEvents = events.filter(event => {
@@ -37,6 +37,11 @@ const Events: React.FC = () => {
       e.preventDefault();
       setSelectedEvent(event);
     }
+  };
+
+  const getMainTag = (tags: string[]) => {
+    const mainTags = filters.filter(f => f !== 'All');
+    return tags.find(t => mainTags.includes(t));
   };
 
   return (
@@ -97,22 +102,32 @@ const Events: React.FC = () => {
 
       {view === 'list' && (
         <BentoGrid>
-          {filteredEvents.map((event, i) => (
-            <BentoItem 
-              key={event.id}
-              className={`md:col-span-${i === 0 ? '2' : '1'} md:row-span-${i === 0 ? '2' : '1'}`}
-              background={event.imageUrl}
-              onClick={() => setSelectedEvent(event)}
-            >
-              <div className="mt-auto">
-                 <div className="bg-white/90 dark:bg-black/80 w-fit px-3 py-1 rounded-full text-xs font-bold text-slate-900 dark:text-white mb-2 backdrop-blur-md shadow-sm">
-                   {format(event.date, 'MMM d, h:mm a')}
-                 </div>
-                <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md">{event.title}</h3>
-                <p className="text-white/90 text-sm line-clamp-2 drop-shadow-md font-medium">{event.description}</p>
-              </div>
-            </BentoItem>
-          ))}
+          {filteredEvents.map((event) => {
+            const mainTag = getMainTag(event.tags);
+            return (
+              <BentoItem 
+                key={event.id}
+                className="md:col-span-1 md:row-span-1"
+                background={event.imageUrl}
+                onClick={() => setSelectedEvent(event)}
+              >
+                <div className="mt-auto">
+                   <div className="flex flex-wrap gap-2 mb-2">
+                     <div className="bg-white/90 dark:bg-black/80 w-fit px-3 py-1 rounded-full text-xs font-bold text-slate-900 dark:text-white backdrop-blur-md shadow-sm">
+                       {format(event.date, 'MMM d, h:mm a')}
+                     </div>
+                     {mainTag && (
+                        <div className="bg-[#35308f]/90 dark:bg-indigo-600/90 w-fit px-3 py-1 rounded-full text-xs font-bold text-white backdrop-blur-md shadow-sm border border-white/20">
+                          {mainTag}
+                        </div>
+                     )}
+                   </div>
+                  <h3 className="text-2xl font-bold text-white mb-1 drop-shadow-md">{event.title}</h3>
+                  <p className="text-white/90 text-sm line-clamp-2 drop-shadow-md font-medium">{event.description}</p>
+                </div>
+              </BentoItem>
+            );
+          })}
           
           {filteredEvents.length === 0 && (
              <div className="col-span-full py-12 text-center text-slate-400">
