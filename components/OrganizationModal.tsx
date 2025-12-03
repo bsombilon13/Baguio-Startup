@@ -1,5 +1,10 @@
+
 import React from 'react';
-import { X, Facebook, Globe } from 'lucide-react';
+import { 
+  X, Facebook, Globe, 
+  Users, Heart, Landmark, Sprout, GraduationCap, Store, Briefcase, Palette, 
+  Cpu, ShoppingCart, Leaf, TrendingUp, HelpCircle 
+} from 'lucide-react';
 import { Organization, Startup } from '../types';
 
 interface OrganizationModalProps {
@@ -12,6 +17,34 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
   const tags = 'types' in org 
     ? org.types 
     : [org.industry, org.stage].filter((t): t is string => !!t);
+
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      // Organization Types
+      case 'Community': return <Users size={12} />;
+      case 'Non-Profit': return <Heart size={12} />;
+      case 'Government': return <Landmark size={12} />;
+      case 'Incubator': return <Sprout size={12} />;
+      case 'Academe': return <GraduationCap size={12} />;
+      case 'MSME': return <Store size={12} />;
+      case 'Workspace': return <Briefcase size={12} />;
+      case 'Creatives': return <Palette size={12} />;
+      
+      // Startup Industries
+      case 'Tech': return <Cpu size={12} />;
+      case 'E-commerce': return <ShoppingCart size={12} />;
+      case 'AgriTech': return <Leaf size={12} />;
+      case 'Creative': return <Palette size={12} />;
+      case 'Service': return <Briefcase size={12} />;
+      
+      // Startup Stages
+      case 'Pre-Seed': return <Sprout size={12} />;
+      case 'Seed': return <Sprout size={12} />;
+      case 'Growth': return <TrendingUp size={12} />;
+      
+      default: return <HelpCircle size={12} />;
+    }
+  };
 
   return (
     <div 
@@ -58,8 +91,9 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
                  {tags.map((type, idx) => (
                     <span 
                       key={idx}
-                      className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-900/30 text-[#35308f] dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20"
+                      className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 dark:bg-indigo-900/30 text-[#35308f] dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20 flex items-center gap-1.5"
                     >
+                      {getTypeIcon(type)}
                       {type}
                     </span>
                  ))}

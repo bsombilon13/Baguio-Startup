@@ -1,4 +1,5 @@
 
+
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from './components/Navbar';
@@ -8,6 +9,7 @@ import ActiveStartups from './pages/ActiveStartups';
 import Resources from './pages/Resources';
 import Announcements from './pages/Announcements';
 import CommunityNews from './pages/CommunityNews';
+import ValidateMe from './pages/ValidateMe';
 import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2 } from 'lucide-react';
@@ -495,6 +497,7 @@ const App: React.FC = () => {
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/news" element={<CommunityNews />} />
                 <Route path="/announcements" element={<Announcements />} />
+                <Route path="/validate" element={<ValidateMe />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </div>
