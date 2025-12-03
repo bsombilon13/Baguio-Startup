@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock } from 'lucide-react';
 import { events } from '../data';
 import EventModal from '../components/EventModal';
@@ -30,7 +30,13 @@ const Events: React.FC = () => {
   const prevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
 
-  const getEventsForDay = (date: Date) => filteredEvents.filter(e => isSameDay(e.date, date));
+  // Update getEventsForDay to check for intervals
+  const getEventsForDay = (date: Date) => filteredEvents.filter(e => {
+    if (e.endDate) {
+      return isWithinInterval(date, { start: startOfDay(e.date), end: endOfDay(e.endDate) });
+    }
+    return isSameDay(e.date, date);
+  });
 
   const handleDayKeyDown = (e: React.KeyboardEvent, event: Event) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -104,6 +110,8 @@ const Events: React.FC = () => {
         <BentoGrid>
           {filteredEvents.map((event) => {
             const mainTag = getMainTag(event.tags);
+            const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
+            
             return (
               <BentoItem 
                 key={event.id}
@@ -122,7 +130,12 @@ const Events: React.FC = () => {
                     {/* Date Badge */}
                     <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform">
                         <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
-                        <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">{format(event.date, 'd')}</div>
+                        <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
+                            {isMultiDay 
+                                ? `${format(event.date, 'd')}-${format(event.endDate!, 'd')}` 
+                                : format(event.date, 'd')
+                            }
+                        </div>
                     </div>
 
                     {/* Category Tag */}
@@ -144,8 +157,9 @@ const Events: React.FC = () => {
                             <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
                             {format(event.date, 'h:mm a')}
                          </span>
-                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 truncate max-w-[140px]">
-                            <MapPin size={14} className="text-[#35308f] dark:text-indigo-400"/>
+                         {/* Removed truncate/max-w to allow full location text and keep icon visible */}
+                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+                            <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
                             {event.location}
                          </span>
                     </div>
@@ -232,7 +246,7 @@ const Events: React.FC = () => {
                   {hasEvents && (
                     <div className="mt-1 space-y-1 flex-1 overflow-hidden">
                       {dayEvents.slice(0, 2).map(e => (
-                         <div key={e.id} className="truncate text-[10px] font-semibold bg-indigo-100 dark:bg-indigo-900/40 text-[#35308f] dark:text-indigo-300 px-1.5 py-1 rounded border border-indigo-200 dark:border-indigo-800/50">
+                         <div key={e.id} className="truncate text-[10px] font-semibold bg-[#35308f]/10 dark:bg-indigo-900/40 text-[#35308f] dark:text-indigo-300 px-1.5 py-1 rounded border border-[#35308f]/20 dark:border-indigo-800/50">
                             {e.title}
                          </div>
                       ))}

@@ -382,6 +382,18 @@ export const events: Event[] = [
     tags: ['Workshop', 'Data', 'Analytics'],
     link: 'https://bit.ly/DAVE-Register',
     learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/'
+  },
+  {
+    id: 'evt-yep-ap',
+    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
+    date: new Date('2025-12-09T08:00:00'),
+    endDate: new Date('2025-12-11T17:00:00'),
+    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
+    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
+    tags: ['Training'],
+    link: 'https://bit.ly/YouthToMT',
+    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/'
   }
 ];
 

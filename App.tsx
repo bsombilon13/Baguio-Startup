@@ -12,6 +12,8 @@ import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2 } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
+import { events } from './data';
+import { format } from 'date-fns';
 
 export const ThemeContext = createContext<ThemeContextType>({
   isDarkMode: false,
@@ -22,6 +24,12 @@ const Dashboard = () => {
   const [aiAdvice, setAiAdvice] = useState<string>('');
   const [loadingAdvice, setLoadingAdvice] = useState<boolean>(true);
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
+
+  // Determine the next upcoming event
+  // Sort events by date ascending and pick the first one
+  // In a real scenario, you'd filter e.date >= new Date() first
+  const sortedEvents = [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const nextEvent = sortedEvents[0];
 
   // Rotating quotes fallback
   const quotes = [
@@ -239,7 +247,7 @@ const Dashboard = () => {
         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full truncate">
+        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full truncate max-w-2xl">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
@@ -312,12 +320,16 @@ const Dashboard = () => {
             </div>
             
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
-              Cloud and DevOps Basics
+              {nextEvent ? nextEvent.title : 'No upcoming events'}
             </h2>
-            <p className="text-slate-500 dark:text-slate-400 font-medium mb-4">December 10, 2025 | 1:00 PM</p>
+            <p className="text-slate-500 dark:text-slate-400 font-medium mb-4">
+              {nextEvent 
+                ? `${format(nextEvent.date, 'MMMM d, yyyy')} | ${format(nextEvent.date, 'h:mm a')}`
+                : 'Stay tuned for more updates'}
+            </p>
             
             <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
-              This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models.
+               {nextEvent ? nextEvent.description : ''}
             </p>
 
             <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
@@ -329,11 +341,13 @@ const Dashboard = () => {
           
           {/* Square Banner on the Right (or top on mobile) */}
           <div className="md:w-[40%] h-48 md:h-auto relative order-1 md:order-2">
-             <img 
-               src="https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4" 
-               alt="Event Banner" 
-               className="w-full h-full object-cover"
-             />
+             {nextEvent && (
+                <img 
+                  src={nextEvent.imageUrl} 
+                  alt={nextEvent.title} 
+                  className="w-full h-full object-cover"
+                />
+             )}
              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden"></div>
           </div>
         </div>

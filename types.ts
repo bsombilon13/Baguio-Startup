@@ -26,6 +26,7 @@ export interface Event {
   id: string;
   title: string;
   date: Date;
+  endDate?: Date;
   location: string;
   description: string;
   imageUrl: string;
