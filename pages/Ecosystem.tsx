@@ -18,36 +18,36 @@ const Ecosystem: React.FC = () => {
   const getCategoryStyle = (type: string) => {
     switch(type) {
       case 'Community': 
-        return 'bg-rose-100 text-rose-900 border-rose-200 dark:bg-rose-900/40 dark:text-rose-100 dark:border-rose-800';
+        return 'bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-900/50 dark:text-rose-200 dark:border-rose-700 font-bold';
       case 'Government': 
-        return 'bg-blue-100 text-blue-900 border-blue-200 dark:bg-blue-900/40 dark:text-blue-100 dark:border-blue-800';
+        return 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/50 dark:text-blue-200 dark:border-blue-700 font-bold';
       case 'Academe': 
-        return 'bg-violet-100 text-violet-900 border-violet-200 dark:bg-violet-900/40 dark:text-violet-100 dark:border-violet-800';
+        return 'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/50 dark:text-purple-200 dark:border-purple-700 font-bold';
       case 'Incubator': 
-        return 'bg-amber-100 text-amber-900 border-amber-200 dark:bg-amber-900/40 dark:text-amber-100 dark:border-amber-800';
+        return 'bg-orange-100 text-orange-800 border-orange-200 dark:bg-orange-900/50 dark:text-orange-200 dark:border-orange-700 font-bold';
       case 'MSME': 
-        return 'bg-cyan-100 text-cyan-900 border-cyan-200 dark:bg-cyan-900/40 dark:text-cyan-100 dark:border-cyan-800';
+        return 'bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-900/50 dark:text-teal-200 dark:border-teal-700 font-bold';
       case 'Non-Profit': 
-        return 'bg-emerald-100 text-emerald-900 border-emerald-200 dark:bg-emerald-900/40 dark:text-emerald-100 dark:border-emerald-800';
+        return 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900/50 dark:text-emerald-200 dark:border-emerald-700 font-bold';
       case 'Workspace': 
-        return 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600';
+        return 'bg-slate-100 text-slate-800 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600 font-bold';
       case 'Creatives': 
-        return 'bg-pink-100 text-pink-900 border-pink-200 dark:bg-pink-900/40 dark:text-pink-100 dark:border-pink-800';
+        return 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-200 dark:bg-fuchsia-900/50 dark:text-fuchsia-200 dark:border-fuchsia-700 font-bold';
       default: 
-        return 'bg-gray-100 text-gray-900 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700';
+        return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 font-bold';
     }
   };
 
   const getSectionHeaderStyle = (type: string) => {
     switch(type) {
-      case 'Community': return 'text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-900';
-      case 'Government': return 'text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900';
-      case 'Academe': return 'text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-900';
-      case 'Incubator': return 'text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-900';
-      case 'MSME': return 'text-cyan-700 dark:text-cyan-300 border-cyan-200 dark:border-cyan-900';
-      case 'Non-Profit': return 'text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-900';
+      case 'Community': return 'text-rose-700 dark:text-rose-300 border-rose-200 dark:border-rose-800';
+      case 'Government': return 'text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800';
+      case 'Academe': return 'text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800';
+      case 'Incubator': return 'text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-800';
+      case 'MSME': return 'text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800';
+      case 'Non-Profit': return 'text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
       case 'Workspace': return 'text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800';
-      case 'Creatives': return 'text-pink-700 dark:text-pink-300 border-pink-200 dark:border-pink-900';
+      case 'Creatives': return 'text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-200 dark:border-fuchsia-800';
       default: return 'text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800';
     }
   };
@@ -68,15 +68,8 @@ const Ecosystem: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
-          The Ecosystem
-        </h1>
-        <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Partners, communities, and enablers driving innovation.</p>
-      </div>
-
-      {/* Join Network CTA */}
-      <div className="bg-gradient-to-br from-[#35308f] to-indigo-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
+      {/* Join Network CTA above Search */}
+      <div className="bg-gradient-to-br from-[#35308f] to-indigo-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl mb-8">
         <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
            <Layers size={200} />
         </div>
@@ -96,6 +89,13 @@ const Ecosystem: React.FC = () => {
             <MessageCircle size={20} /> Join the Network
           </a>
         </div>
+      </div>
+
+      <div className="mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
+          The Ecosystem
+        </h1>
+        <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Partners, communities, and enablers driving innovation.</p>
       </div>
       
       {/* Controls Section */}
@@ -187,7 +187,7 @@ const Ecosystem: React.FC = () => {
                 {sortedSectionOrgs.map((org) => (
                   <BentoItem 
                     key={`${section}-${org.id}`} // Unique key since org can appear in multiple sections
-                    className="flex flex-col gap-4 bg-white dark:bg-slate-900 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/60"
+                    className="flex flex-col gap-4 bg-white dark:bg-slate-900 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/60 transition-all duration-300"
                     onClick={() => setSelectedOrg(org)}
                   >
                     <div className="flex items-start justify-between">

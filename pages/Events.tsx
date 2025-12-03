@@ -21,7 +21,12 @@ const Events: React.FC = () => {
 
   // Filter Logic
   const filteredEvents = events.filter(event => {
-    return activeFilter === 'All' || event.tags.includes(activeFilter);
+    // Check if the event tag matches one of the main categories
+    const mainTags = filters.filter(f => f !== 'All');
+    const eventMainTags = event.tags.filter(tag => mainTags.includes(tag));
+    
+    if (activeFilter === 'All') return true;
+    return eventMainTags.includes(activeFilter);
   });
 
   // Calendar logic
@@ -68,7 +73,7 @@ const Events: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Events Calendar
@@ -123,116 +128,118 @@ const Events: React.FC = () => {
       </div>
 
       {view === 'list' && (
-        <BentoGrid>
-          {filteredEvents.map((event) => {
-            const mainTag = getMainTag(event.tags);
-            const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
-            const organizer = getOrganizer(event.organizerId);
-            
-            return (
-              <BentoItem 
-                key={event.id}
-                className="md:col-span-1 md:row-span-1 flex flex-col group h-full"
-                onClick={() => setSelectedEvent(event)}
-                noPadding={true}
-              >
-                 {/* Header Banner Image - Fixed height for consistency */}
-                 <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
-                    <img 
-                        src={event.imageUrl} 
-                        alt={event.title} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
-                    {/* Date Badge */}
-                    <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform z-10">
-                        <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
-                        <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
-                            {isMultiDay 
-                                ? `${format(event.date, 'd')}-${format(event.endDate!, 'd')}` 
-                                : format(event.date, 'd')
-                            }
+        <div id="events-grid">
+            <BentoGrid>
+            {filteredEvents.map((event) => {
+                const mainTag = getMainTag(event.tags);
+                const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
+                const organizer = getOrganizer(event.organizerId);
+                
+                return (
+                <BentoItem 
+                    key={event.id}
+                    className="md:col-span-1 md:row-span-1 flex flex-col group h-full"
+                    onClick={() => setSelectedEvent(event)}
+                    noPadding={true}
+                >
+                    {/* Header Banner Image - Fixed height for consistency */}
+                    <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
+                        <img 
+                            src={event.imageUrl} 
+                            alt={event.title} 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        {/* Date Badge */}
+                        <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform z-10">
+                            <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
+                            <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
+                                {isMultiDay 
+                                    ? `${format(event.date, 'd')}-${format(event.endDate!, 'd')}` 
+                                    : format(event.date, 'd')
+                                }
+                            </div>
+                        </div>
+
+                        {/* Category Tag */}
+                        {mainTag && (
+                            <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
+                                {mainTag}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Details Content (Solid Background) */}
+                    <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-slate-900">
+                        
+                        {/* Organizer Profile Picture - Overlapping */}
+                        {organizer && (
+                        <div 
+                            onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedOrg(organizer);
+                            }}
+                            className="absolute -top-6 left-6 z-20 cursor-pointer group/org"
+                            title={`Organized by ${organizer.name}`}
+                        >
+                            <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
+                                <img 
+                                    src={organizer.logoUrl} 
+                                    alt={organizer.name} 
+                                    className="w-full h-full object-cover"
+                                />
+                            </div>
+                        </div>
+                        )}
+
+                        {/* Spacer for overlapping avatar */}
+                        <div className="h-4"></div>
+
+                        {/* Title with min-height for alignment */}
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
+                            {event.title}
+                        </h3>
+                        
+                        {/* Meta Info */}
+                        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4">
+                            <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 shrink-0">
+                                <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
+                                {format(event.date, 'h:mm a')}
+                            </span>
+                            <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+                                <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
+                                {event.location}
+                            </span>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4">
+                            {event.description}
+                        </p>
+
+                        {/* Footer - Pushed to bottom */}
+                        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <ChevronRight size={16} />
+                            </span>
                         </div>
                     </div>
-
-                    {/* Category Tag */}
-                    {mainTag && (
-                         <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
-                            {mainTag}
-                         </div>
-                    )}
-                 </div>
-
-                 {/* Details Content (Solid Background) */}
-                 <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-slate-900">
-                    
-                    {/* Organizer Profile Picture - Overlapping */}
-                    {organizer && (
-                      <div 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedOrg(organizer);
-                        }}
-                        className="absolute -top-6 left-6 z-20 cursor-pointer group/org"
-                        title={`Organized by ${organizer.name}`}
-                      >
-                         <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
-                            <img 
-                                src={organizer.logoUrl} 
-                                alt={organizer.name} 
-                                className="w-full h-full object-cover"
-                            />
-                         </div>
-                      </div>
-                    )}
-
-                    {/* Spacer for overlapping avatar */}
-                    <div className="h-4"></div>
-
-                    {/* Title with min-height for alignment */}
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
-                        {event.title}
-                    </h3>
-                    
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4">
-                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
-                            <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
-                            {format(event.date, 'h:mm a')}
-                         </span>
-                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 max-w-[140px] truncate">
-                            <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
-                            {event.location}
-                         </span>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4">
-                        {event.description}
-                    </p>
-
-                    {/* Footer - Pushed to bottom */}
-                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
-                        <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                           View Details <ChevronRight size={16} />
-                        </span>
-                    </div>
-                 </div>
-              </BentoItem>
-            );
-          })}
-          
-          {filteredEvents.length === 0 && (
-             <div className="col-span-full py-12 text-center text-slate-400">
-               No events found matching "{activeFilter}"
-             </div>
-          )}
-        </BentoGrid>
+                </BentoItem>
+                );
+            })}
+            
+            {filteredEvents.length === 0 && (
+                <div className="col-span-full py-12 text-center text-slate-400">
+                No events found matching "{activeFilter}"
+                </div>
+            )}
+            </BentoGrid>
+        </div>
       )}
 
       {view === 'calendar' && (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-[2rem] p-4 md:p-8 transition-colors">
+        <div id="events-grid" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-[2rem] p-4 md:p-8 transition-colors">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{format(currentDate, 'MMMM yyyy')}</h2>
             <div className="flex gap-2">
