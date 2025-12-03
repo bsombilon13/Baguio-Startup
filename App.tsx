@@ -247,7 +247,7 @@ const Dashboard = () => {
         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full truncate max-w-2xl">
+        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
