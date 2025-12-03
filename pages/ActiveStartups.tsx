@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { activeStartups } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe } from 'lucide-react';
+import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle } from 'lucide-react';
 
 const ActiveStartups: React.FC = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('All');
@@ -29,12 +29,35 @@ const ActiveStartups: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="flex flex-col gap-4">
-        <div className="mb-4">
+      <div className="flex flex-col gap-6">
+        <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Active Startups
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Discover the startups building from the mountains.</p>
+        </div>
+
+        {/* List Your Startup CTA */}
+        <div className="bg-gradient-to-r from-violet-600 to-indigo-600 rounded-3xl p-8 text-white shadow-lg relative overflow-hidden group">
+          <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+             <Rocket size={180} />
+          </div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+               <h2 className="text-2xl font-bold mb-2">Building something new?</h2>
+               <p className="text-indigo-100 max-w-lg text-lg">
+                 Join the directory of active startups in the Cordillera region. Get visibility and connect with investors.
+               </p>
+            </div>
+            <a 
+              href="https://m.me/baguiostartup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-[#35308f] px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+            >
+              <PlusCircle size={20} /> List Your Startup
+            </a>
+          </div>
         </div>
 
         {/* Filter Bar */}
@@ -133,6 +156,7 @@ const ActiveStartups: React.FC = () => {
                      rel="noopener noreferrer"
                      className="p-2 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 text-slate-400 hover:text-[#35308f] dark:hover:text-indigo-400 transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]"
                      aria-label={`Visit ${startup.name} on Facebook`}
+                     title="Visit Facebook Page"
                    >
                      <Facebook size={20} />
                    </a>
