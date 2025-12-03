@@ -30,15 +30,7 @@ const Sidebar: React.FC = () => {
             />
         </div>
 
-        <button 
-          onClick={() => window.open('https://m.me/baguiostartup', '_blank')}
-          className="mx-4 mt-6 mb-2 py-2 px-3 bg-[#35308f] hover:bg-[#2a2670] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#35308f]"
-        >
-           <MessageCircle size={16} />
-           <span className="hidden lg:block">Contact Us</span>
-        </button>
-
-        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-2" role="navigation" aria-label="Main Navigation">
+        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6" role="navigation" aria-label="Main Navigation">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
@@ -67,6 +59,14 @@ const Sidebar: React.FC = () => {
         </nav>
 
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+          <button 
+            onClick={() => window.open('https://m.me/baguiostartup', '_blank')}
+            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 bg-[#35308f] hover:bg-[#2a2670] text-white rounded-xl font-bold text-sm transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+          >
+             <MessageCircle size={20} />
+             <span className="hidden lg:block">Contact Us</span>
+          </button>
+          
           <button 
             onClick={toggleTheme}
             aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
