@@ -54,7 +54,7 @@ export const BentoItem: React.FC<{
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent transition-opacity"></div>
       )}
       
-      <div className="relative z-10 h-full flex flex-col">
+      <div className={`relative z-10 h-full flex flex-col ${noPadding ? '' : ''}`}>
         {children}
       </div>
     </div>

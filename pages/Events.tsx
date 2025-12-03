@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronDown } from 'lucide-react';
 import { events, ecosystemOrgs, activeStartups } from '../data';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -136,8 +136,8 @@ const Events: React.FC = () => {
                 onClick={() => setSelectedEvent(event)}
                 noPadding={true}
               >
-                 {/* Header Banner Image */}
-                 <div className="h-48 w-full relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+                 {/* Header Banner Image - Fixed height for consistency */}
+                 <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
                     <img 
                         src={event.imageUrl} 
                         alt={event.title} 
@@ -165,7 +165,7 @@ const Events: React.FC = () => {
                  </div>
 
                  {/* Details Content (Solid Background) */}
-                 <div className="p-6 flex flex-col flex-1 relative">
+                 <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-slate-900">
                     
                     {/* Organizer Profile Picture - Overlapping */}
                     {organizer && (
@@ -187,28 +187,32 @@ const Events: React.FC = () => {
                       </div>
                     )}
 
-                    {/* Spacer for overlapping avatar if needed, but flex gap usually handles it nicely visually */}
+                    {/* Spacer for overlapping avatar */}
                     <div className="h-4"></div>
 
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                    {/* Title with min-height for alignment */}
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
                         {event.title}
                     </h3>
                     
+                    {/* Meta Info */}
                     <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4">
                          <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
                             <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
                             {format(event.date, 'h:mm a')}
                          </span>
-                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
+                         <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 max-w-[140px] truncate">
                             <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
                             {event.location}
                          </span>
                     </div>
 
-                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">
+                    {/* Description */}
+                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4">
                         {event.description}
                     </p>
 
+                    {/* Footer - Pushed to bottom */}
                     <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
                         <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
                            View Details <ChevronRight size={16} />
