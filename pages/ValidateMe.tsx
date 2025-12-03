@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Loader2, Send, TrendingUp, AlertTriangle, CheckCircle2, Target, ExternalLink, Lightbulb, RefreshCcw, Rocket, BarChart3, ShieldAlert, LayoutGrid, Briefcase, Printer } from 'lucide-react';
+import { Loader2, Send, TrendingUp, AlertTriangle, CheckCircle2, Target, ExternalLink, Lightbulb, RefreshCcw, Rocket, BarChart3, ShieldAlert, LayoutGrid, Briefcase, Printer, AlertCircle } from 'lucide-react';
 import { GoogleGenAI, Type } from "@google/genai";
 import { ValidationReport } from '../types';
 
@@ -9,12 +9,14 @@ const ValidateMe: React.FC = () => {
   const [idea, setIdea] = useState('');
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [report, setReport] = useState<ValidationReport | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const analyzeIdea = async () => {
     if (!idea.trim()) return;
 
     setIsAnalyzing(true);
     setReport(null);
+    setError(null);
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -75,12 +77,26 @@ const ValidateMe: React.FC = () => {
       });
 
       if (response.text) {
-        const data = JSON.parse(response.text);
-        setReport(data);
+        // Robust JSON parsing: strip markdown code blocks if present
+        const cleanedText = response.text.replace(/```json\n?|```/g, '').trim();
+        try {
+            const data = JSON.parse(cleanedText);
+            setReport(data);
+        } catch (jsonError) {
+            console.error("JSON Parse Error:", jsonError);
+            setError("Failed to process the analysis results. Please try again.");
+        }
+      } else {
+        setError("No response received from the analysis engine.");
       }
-    } catch (error) {
-      console.error("Analysis failed", error);
-      // Fallback manual error handling or toast could go here
+    } catch (err: any) {
+      console.error("Analysis failed", err);
+      // Check for common API key issues
+      if (err.message && err.message.includes("API key")) {
+         setError("Configuration Error: API Key is missing or invalid.");
+      } else {
+         setError("Something went wrong during analysis. Please check your connection and try again.");
+      }
     } finally {
       setIsAnalyzing(false);
     }
@@ -98,11 +114,11 @@ const ValidateMe: React.FC = () => {
   };
 
   const CanvasCard = ({ title, items, colorClass }: { title: string, items: string[], colorClass: string }) => (
-    <div className={`p-4 rounded-xl border flex flex-col h-full shadow-sm ${colorClass}`}>
-      <h4 className="text-xs font-bold uppercase tracking-wider mb-2 opacity-70">{title}</h4>
-      <ul className="space-y-1.5 flex-1">
+    <div className={`p-3 rounded-lg border flex flex-col h-full shadow-sm ${colorClass}`}>
+      <h4 className="text-[10px] font-bold uppercase tracking-wider mb-1.5 opacity-70">{title}</h4>
+      <ul className="space-y-1 flex-1">
         {items.map((item, i) => (
-          <li key={i} className="text-sm font-medium leading-snug">
+          <li key={i} className="text-xs font-medium leading-tight">
             • {item}
           </li>
         ))}
@@ -116,11 +132,7 @@ const ValidateMe: React.FC = () => {
       <style>{`
         @media print {
           @page { margin: 0.5cm; size: auto; }
-          
-          /* Hide non-printable elements including all navigation, sidebars, and buttons */
           aside, nav, .no-print, button, [role="tablist"] { display: none !important; }
-          
-          /* Reset layout constraints for print */
           html, body, #root, main, .flex, .h-screen {
             height: auto !important;
             min-height: 0 !important;
@@ -128,57 +140,42 @@ const ValidateMe: React.FC = () => {
             display: block !important;
             position: static !important;
           }
-
-          /* Specific resets for App.tsx layout wrappers */
           main { 
             margin-left: 0 !important; 
             width: 100% !important; 
             padding: 0 !important; 
             max-width: none !important;
           }
-          
-          /* Force background colors and graphics */
           * { 
             -webkit-print-color-adjust: exact !important; 
             print-color-adjust: exact !important; 
           }
-
-          /* Ensure scrollable areas expand fully */
           .scroll-container { 
             max-height: none !important; 
             overflow: visible !important; 
           }
-          
-          /* Improve typography for print */
           body { 
             font-size: 12pt; 
             line-height: 1.3; 
             color: black !important;
             background: white !important;
           }
-
-          /* Grid adjustments */
           .bento-grid {
             display: grid !important;
             grid-template-columns: repeat(2, 1fr) !important;
             gap: 1rem !important;
-            page-break-inside: auto;
           }
-          
-          /* Prevent breaks inside cards */
           .bento-item, .card {
             break-inside: avoid;
             page-break-inside: avoid;
             border: 1px solid #ddd !important;
             box-shadow: none !important;
           }
-
-          /* Force text colors for dark mode compatible print */
           h1, h2, h3, h4, p, span, div {
             color: #000 !important;
           }
           .text-white {
-            color: #fff !important; /* Keep white text white on colored backgrounds */
+            color: #fff !important;
           }
         }
       `}</style>
@@ -209,6 +206,13 @@ const ValidateMe: React.FC = () => {
               onChange={(e) => setIdea(e.target.value)}
             />
             
+            {error && (
+               <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl flex items-center gap-3 text-red-700 dark:text-red-300">
+                  <AlertCircle size={20} className="shrink-0" />
+                  <span className="font-medium text-sm">{error}</span>
+               </div>
+            )}
+
             <button
               onClick={analyzeIdea}
               disabled={!idea.trim()}
@@ -252,7 +256,7 @@ const ValidateMe: React.FC = () => {
             </div>
           </div>
 
-          {/* Printable Header - Visible only in print */}
+          {/* Printable Header */}
           <div className="hidden print:block mb-8 text-center">
             <h1 className="text-4xl font-bold mb-2">Startup Validation Report</h1>
             <p className="text-sm text-slate-500">Generated by Baguio Startup Network AI • {new Date().toLocaleDateString()}</p>
@@ -260,9 +264,9 @@ const ValidateMe: React.FC = () => {
 
           <BentoGrid>
             {/* Left Column: Rarity + Idea Type */}
-            <div className="md:col-span-1 flex flex-col gap-6">
+            <div className="md:col-span-1 flex flex-col gap-4">
                 {/* Rarity Score */}
-                <BentoItem className={`bg-gradient-to-br ${getScoreColor(report.rarityScore)} text-white flex flex-col justify-center items-center text-center !p-6 shadow-xl relative overflow-hidden flex-1 min-h-[200px] bento-item`}>
+                <BentoItem className={`bg-gradient-to-br ${getScoreColor(report.rarityScore)} text-white flex flex-col justify-center items-center text-center !p-6 shadow-xl relative overflow-hidden flex-1 min-h-[180px] bento-item`}>
                   <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none">
                       <Target size={80} />
                   </div>
@@ -275,20 +279,20 @@ const ValidateMe: React.FC = () => {
                 </BentoItem>
 
                 {/* Idea Type Card */}
-                <BentoItem className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 !p-6 flex flex-col justify-center min-h-[160px] bento-item">
-                    <div className="flex items-center gap-2 mb-3 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
-                        <Briefcase size={16} /> Idea Type
+                <BentoItem className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 !p-6 flex flex-col justify-center min-h-[140px] bento-item">
+                    <div className="flex items-center gap-2 mb-2 text-indigo-600 dark:text-indigo-400 font-bold text-[10px] uppercase tracking-wider">
+                        <Briefcase size={14} /> Idea Type
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight">
                         {report.ideaType}
                     </h3>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 leading-snug">
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
                         {report.ideaTypeDescription}
                     </p>
                 </BentoItem>
             </div>
 
-            {/* Market Snapshot - Fluid fill */}
+            {/* Market Snapshot */}
             <BentoItem className="md:col-span-3 bg-white dark:bg-slate-900 !p-6 md:!p-8 flex flex-col justify-between bento-item">
               <div>
                 <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
@@ -305,17 +309,16 @@ const ValidateMe: React.FC = () => {
               </div>
             </BentoItem>
 
-            {/* Business Model Canvas - Redesigned Grid Layout */}
+            {/* Business Model Canvas - Compact Grid */}
             <div className="col-span-1 md:col-span-4 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm bg-white dark:bg-slate-900 bento-item">
-                <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                <div className="bg-slate-50 dark:bg-slate-800 p-3 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                        <LayoutGrid size={18} className="text-[#35308f] dark:text-indigo-400"/>
-                        <h3 className="font-bold text-slate-800 dark:text-white uppercase tracking-wide text-sm">Business Model Canvas</h3>
+                        <LayoutGrid size={16} className="text-[#35308f] dark:text-indigo-400"/>
+                        <h3 className="font-bold text-slate-800 dark:text-white uppercase tracking-wide text-xs">Business Model Canvas</h3>
                     </div>
                 </div>
                 
-                {/* Responsive Grid for Canvas Cards */}
-                <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                      <CanvasCard title="Key Partners" items={report.businessModelCanvas.keyPartners} colorClass="bg-blue-50/50 dark:bg-blue-900/10 border-blue-100 dark:border-blue-800 text-blue-900 dark:text-blue-100" />
                      <CanvasCard title="Key Activities" items={report.businessModelCanvas.keyActivities} colorClass="bg-slate-50 dark:bg-slate-800/30 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100" />
                      <CanvasCard title="Key Resources" items={report.businessModelCanvas.keyResources} colorClass="bg-slate-50 dark:bg-slate-800/30 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100" />
@@ -332,45 +335,45 @@ const ValidateMe: React.FC = () => {
                 </div>
             </div>
 
-            {/* Strengths - Separate Card */}
-            <BentoItem className="md:col-span-1 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 !p-6 md:!p-8 bento-item">
-               <div className="flex items-center gap-2 mb-4 text-emerald-600 dark:text-emerald-400 font-bold text-sm uppercase tracking-wider">
-                  <TrendingUp size={18} /> Strengths
+            {/* Strengths */}
+            <BentoItem className="md:col-span-1 bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 !p-6 bento-item">
+               <div className="flex items-center gap-2 mb-3 text-emerald-600 dark:text-emerald-400 font-bold text-xs uppercase tracking-wider">
+                  <TrendingUp size={16} /> Strengths
                </div>
-               <ul className="space-y-3">
+               <ul className="space-y-2">
                   {report.strengths.map((s, i) => (
-                     <li key={i} className="flex gap-2 text-slate-700 dark:text-slate-200 leading-snug font-medium text-sm">
-                        <CheckCircle2 size={16} className="text-emerald-500 shrink-0 mt-0.5" />
+                     <li key={i} className="flex gap-2 text-slate-700 dark:text-slate-200 leading-tight font-medium text-xs">
+                        <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
                         {s}
                      </li>
                   ))}
                </ul>
             </BentoItem>
 
-            {/* Weaknesses - Separate Card */}
-            <BentoItem className="md:col-span-1 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-800 !p-6 md:!p-8 bento-item">
-               <div className="flex items-center gap-2 mb-4 text-rose-600 dark:text-rose-400 font-bold text-sm uppercase tracking-wider">
-                  <AlertTriangle size={18} /> Weaknesses
+            {/* Weaknesses */}
+            <BentoItem className="md:col-span-1 bg-rose-50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-800 !p-6 bento-item">
+               <div className="flex items-center gap-2 mb-3 text-rose-600 dark:text-rose-400 font-bold text-xs uppercase tracking-wider">
+                  <AlertTriangle size={16} /> Weaknesses
                </div>
-               <ul className="space-y-3">
+               <ul className="space-y-2">
                   {report.weaknesses.map((w, i) => (
-                     <li key={i} className="flex gap-2 text-slate-700 dark:text-slate-200 leading-snug font-medium text-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1.5"></span>
+                     <li key={i} className="flex gap-2 text-slate-700 dark:text-slate-200 leading-tight font-medium text-xs">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1"></span>
                         {w}
                      </li>
                   ))}
                </ul>
             </BentoItem>
 
-             {/* Loopholes / Things to Improve - New Section */}
-             <BentoItem className="md:col-span-2 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 !p-6 md:!p-8 bento-item">
-               <div className="flex items-center gap-2 mb-4 text-amber-600 dark:text-amber-400 font-bold text-sm uppercase tracking-wider">
-                  <ShieldAlert size={18} /> Critical Loopholes & Blind Spots
+             {/* Loopholes */}
+             <BentoItem className="md:col-span-2 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-800 !p-6 bento-item">
+               <div className="flex items-center gap-2 mb-3 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider">
+                  <ShieldAlert size={16} /> Critical Loopholes & Blind Spots
                </div>
-               <ul className="grid grid-cols-1 gap-3">
+               <ul className="grid grid-cols-1 gap-2">
                   {report.loopholes.map((l, i) => (
-                     <li key={i} className="flex gap-3 text-slate-800 dark:text-slate-200 leading-snug font-medium text-sm p-2 rounded-lg bg-amber-100/50 dark:bg-amber-900/20">
-                        <AlertTriangle size={16} className="text-amber-500 shrink-0 mt-0.5" />
+                     <li key={i} className="flex gap-2 text-slate-800 dark:text-slate-200 leading-tight font-medium text-xs p-2 rounded bg-amber-100/50 dark:bg-amber-900/20">
+                        <AlertTriangle size={14} className="text-amber-500 shrink-0 mt-0.5" />
                         {l}
                      </li>
                   ))}
@@ -378,45 +381,45 @@ const ValidateMe: React.FC = () => {
             </BentoItem>
 
             {/* Competitors */}
-            <BentoItem className="md:col-span-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 !p-6 md:!p-8 bento-item">
-               <div className="flex items-center gap-2 mb-6 text-slate-500 dark:text-slate-400 font-bold text-sm uppercase tracking-wider">
-                  <Rocket size={18} /> Competitors
+            <BentoItem className="md:col-span-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 !p-6 bento-item">
+               <div className="flex items-center gap-2 mb-4 text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wider">
+                  <Rocket size={16} /> Competitors
                </div>
-               <div className="space-y-3">
+               <div className="space-y-2">
                   {report.competitors.map((comp, idx) => (
                     <a 
                       key={idx} 
                       href={comp.url.startsWith('http') ? comp.url : `https://www.google.com/search?q=${encodeURIComponent(comp.name)}`}
                       target="_blank"
                       rel="noopener noreferrer" 
-                      className="flex items-center justify-between p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md transition-all group no-print-decoration"
+                      className="flex items-center justify-between p-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-sm transition-all group no-print-decoration"
                     >
                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center font-bold text-slate-500 dark:text-slate-300 text-xs">
+                          <div className="w-7 h-7 rounded bg-slate-100 dark:bg-slate-700 flex items-center justify-center font-bold text-slate-500 dark:text-slate-300 text-[10px]">
                              {comp.name.substring(0, 2).toUpperCase()}
                           </div>
-                          <span className="font-bold text-base text-slate-800 dark:text-white line-clamp-1">{comp.name}</span>
+                          <span className="font-bold text-sm text-slate-800 dark:text-white line-clamp-1">{comp.name}</span>
                        </div>
-                       <ExternalLink size={16} className="text-slate-300 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 shrink-0" />
+                       <ExternalLink size={14} className="text-slate-300 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 shrink-0" />
                     </a>
                   ))}
                </div>
             </BentoItem>
 
-            {/* Next Steps - Scrollable */}
-            <BentoItem className="md:col-span-2 bg-slate-900 text-white dark:bg-white dark:text-slate-900 !p-8 md:!p-10 flex flex-col justify-center bento-item">
-               <div className="flex items-center gap-2 mb-6 font-bold text-sm uppercase tracking-wider opacity-60">
-                  <Rocket size={18} /> Next Action Plan
+            {/* Next Steps */}
+            <BentoItem className="md:col-span-2 bg-slate-900 text-white dark:bg-white dark:text-slate-900 !p-8 flex flex-col justify-center bento-item">
+               <div className="flex items-center gap-2 mb-5 font-bold text-xs uppercase tracking-wider opacity-60">
+                  <Rocket size={16} /> Next Action Plan
                </div>
-               <div className="space-y-6 max-h-[400px] overflow-y-auto scroll-container custom-scrollbar pr-2">
+               <div className="space-y-5 max-h-[350px] overflow-y-auto scroll-container custom-scrollbar pr-2">
                   {report.nextSteps.map((step, i) => (
-                     <div key={i} className="flex gap-4">
-                        <div className="w-8 h-8 rounded-full bg-[#35308f] border-2 border-slate-700 dark:border-slate-200 text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-lg shadow-indigo-500/30">
+                     <div key={i} className="flex gap-3">
+                        <div className="w-6 h-6 rounded-full bg-[#35308f] border border-slate-700 dark:border-slate-200 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-lg shadow-indigo-500/30">
                            {i + 1}
                         </div>
                         <div>
-                           <h4 className="font-bold text-base mb-1 opacity-90">Phase {i + 1}</h4>
-                           <p className="font-medium text-sm leading-relaxed opacity-70">{step}</p>
+                           <h4 className="font-bold text-sm mb-0.5 opacity-90">Phase {i + 1}</h4>
+                           <p className="font-medium text-xs leading-relaxed opacity-70">{step}</p>
                         </div>
                      </div>
                   ))}
