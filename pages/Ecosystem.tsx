@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { ecosystemOrgs } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { ChevronDown, Search, Filter, Layers } from 'lucide-react';
+import { ChevronDown, Search, Filter, Layers, ArrowRight, MessageCircle } from 'lucide-react';
 import { Organization } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
 
@@ -73,6 +73,29 @@ const Ecosystem: React.FC = () => {
           The Ecosystem
         </h1>
         <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Partners, communities, and enablers driving innovation.</p>
+      </div>
+
+      {/* Join Network CTA */}
+      <div className="bg-gradient-to-br from-[#35308f] to-indigo-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-2xl">
+        <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
+           <Layers size={200} />
+        </div>
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">Join the Network</h2>
+            <p className="text-indigo-100 max-w-xl">
+              Are you a startup, enabler, or community builder in the Cordilleras? Connect with us to get listed and access resources.
+            </p>
+          </div>
+          <a 
+            href="https://m.me/baguiostartup"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-white text-[#35308f] px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-colors shadow-lg"
+          >
+            <MessageCircle size={20} /> Join the Network
+          </a>
+        </div>
       </div>
       
       {/* Controls Section */}
