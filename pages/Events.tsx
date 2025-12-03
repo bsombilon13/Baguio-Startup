@@ -1,10 +1,8 @@
-
-
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock } from 'lucide-react';
 import { events } from '../data';
-import EventModal from '../components/EventModal';
+import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
 import { Event } from '../types';
 
@@ -12,6 +10,7 @@ const Events: React.FC = () => {
   const [view, setView] = useState<'calendar' | 'list'>('list');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [dayModalEvents, setDayModalEvents] = useState<{ date: Date, events: Event[] } | null>(null);
   const [activeFilter, setActiveFilter] = useState('All');
 
   // Static filters
@@ -38,10 +37,18 @@ const Events: React.FC = () => {
     return isSameDay(e.date, date);
   });
 
-  const handleDayKeyDown = (e: React.KeyboardEvent, event: Event) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+  const handleDayKeyDown = (e: React.KeyboardEvent, events: Event[]) => {
+    if ((e.key === 'Enter' || e.key === ' ') && events.length > 0) {
       e.preventDefault();
-      setSelectedEvent(event);
+      handleDayClick(events, new Date()); // Date is not used strictly here for keyboard nav in this simple version
+    }
+  };
+
+  const handleDayClick = (dayEvents: Event[], date: Date) => {
+    if (dayEvents.length === 1) {
+      setSelectedEvent(dayEvents[0]);
+    } else if (dayEvents.length > 1) {
+      setDayModalEvents({ date, events: dayEvents });
     }
   };
 
@@ -230,9 +237,9 @@ const Events: React.FC = () => {
                   key={day.toString()} 
                   role={hasEvents ? 'button' : undefined}
                   tabIndex={hasEvents ? 0 : -1}
-                  onKeyDown={hasEvents ? (e) => handleDayKeyDown(e, dayEvents[0]) : undefined}
-                  onClick={() => hasEvents && setSelectedEvent(dayEvents[0])}
-                  aria-label={`${format(day, 'MMMM do')}${hasEvents ? `, ${dayEvents[0].title}` : ''}`}
+                  onKeyDown={hasEvents ? (e) => handleDayKeyDown(e, dayEvents) : undefined}
+                  onClick={() => hasEvents && handleDayClick(dayEvents, day)}
+                  aria-label={`${format(day, 'MMMM do')}${hasEvents ? `, ${dayEvents.length} events` : ''}`}
                   className={`
                     min-h-[80px] md:min-h-[120px] rounded-2xl p-2 border transition-all relative group flex flex-col
                     ${isTodayDate ? 'border-[#35308f] bg-indigo-50 dark:bg-indigo-900/20 shadow-inner' : 'border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-800 hover:shadow-md'}
@@ -264,6 +271,18 @@ const Events: React.FC = () => {
 
       {selectedEvent && (
         <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} />
+      )}
+      
+      {dayModalEvents && (
+        <DayEventsModal 
+          date={dayModalEvents.date}
+          events={dayModalEvents.events}
+          onClose={() => setDayModalEvents(null)}
+          onSelectEvent={(event) => {
+            setDayModalEvents(null);
+            setSelectedEvent(event);
+          }}
+        />
       )}
     </div>
   );

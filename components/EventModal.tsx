@@ -1,8 +1,7 @@
-
-
 import React, { useState } from 'react';
-import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info } from 'lucide-react';
+import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info, ChevronRight, Clock } from 'lucide-react';
 import { Event } from '../types';
+import { format } from 'date-fns';
 
 interface EventModalProps {
   event: Event;
@@ -25,7 +24,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   const getEventTimes = () => {
     const start = new Date(event.date);
     // Default duration of 3 hours if not specified, since most workshops in data are 1-5pm
-    const end = new Date(start.getTime() + 4 * 60 * 60 * 1000); 
+    const end = event.endDate ? new Date(event.endDate) : new Date(start.getTime() + 4 * 60 * 60 * 1000); 
     return { start, end };
   };
 
@@ -113,7 +112,11 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
           <div className="space-y-3 mb-6">
             <div className="flex items-center text-slate-600 dark:text-slate-400">
               <CalendarIcon size={18} className="mr-2 text-violet-500" aria-hidden="true" />
-              <span className="font-medium">{event.date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} | {event.date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}</span>
+              <span className="font-medium">
+                {event.date.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} 
+                {event.endDate && ` - ${event.endDate.toLocaleDateString(undefined, { month: 'long', day: 'numeric' })}`}
+                {' '}| {event.date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}
+              </span>
             </div>
             <div className="flex items-center text-slate-600 dark:text-slate-400">
               <MapPin size={18} className="mr-2 text-violet-500" aria-hidden="true" />
@@ -193,3 +196,71 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 };
 
 export default EventModal;
+
+interface DayEventsModalProps {
+  date: Date;
+  events: Event[];
+  onClose: () => void;
+  onSelectEvent: (event: Event) => void;
+}
+
+export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, onClose, onSelectEvent }) => {
+  return (
+    <div 
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div 
+        className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 duration-200"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 p-2 rounded-full transition-colors z-10"
+        >
+          <X size={18} />
+        </button>
+
+        <div className="p-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900">
+           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+             <CalendarIcon className="text-[#35308f]" size={20}/> 
+             Events on {format(date, 'MMM do')}
+           </h2>
+           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 font-medium">
+             {events.length} events scheduled
+           </p>
+        </div>
+
+        <div className="max-h-[60vh] overflow-y-auto p-4 space-y-3 custom-scrollbar">
+           {events.map(event => (
+             <div 
+                key={event.id}
+                onClick={() => onSelectEvent(event)}
+                className="flex items-center gap-4 p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-[#35308f] dark:hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
+             >
+                <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                   <img src={event.imageUrl} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+                <div className="flex-1 min-w-0">
+                   <h3 className="font-bold text-slate-900 dark:text-white truncate group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
+                     {event.title}
+                   </h3>
+                   <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mt-1">
+                      <Clock size={12} /> {format(event.date, 'h:mm a')}
+                   </div>
+                   <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate">
+                      <MapPin size={12} /> {event.location}
+                   </div>
+                </div>
+                <div className="text-slate-300 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
+                   <ChevronRight size={20} />
+                </div>
+             </div>
+           ))}
+        </div>
+      </div>
+      <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true"></div>
+    </div>
+  );
+}
