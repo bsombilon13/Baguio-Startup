@@ -400,6 +400,19 @@ export const activeStartups: Startup[] = [
 
 export const events: Event[] = [
   {
+    id: 'evt-yep-ap',
+    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
+    date: new Date('2025-12-09T08:00:00'),
+    endDate: new Date('2025-12-11T17:00:00'),
+    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
+    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
+    tags: ['Training'],
+    link: 'https://bit.ly/YouthToMT',
+    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
+    organizerId: 'cpdso'
+  },
+  {
     id: 'evt-cloud-devops-basics',
     title: 'Cloud and DevOps Basics',
     date: new Date('2025-12-10T13:00:00'),
@@ -424,17 +437,16 @@ export const events: Event[] = [
     organizerId: 'dict-car'
   },
   {
-    id: 'evt-yep-ap',
-    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
-    date: new Date('2025-12-09T08:00:00'),
-    endDate: new Date('2025-12-11T17:00:00'),
-    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
-    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
-    tags: ['Training'],
-    link: 'https://bit.ly/YouthToMT',
-    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
-    organizerId: 'cpdso'
+    id: 'evt-creative-tech',
+    title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
+    date: new Date('2025-12-13T13:00:00'),
+    location: 'Zoom',
+    description: "This short course introduces participants to the growing creative technology sector, covering animation, game development, and digital content creation. It discusses career pathways, creative tools, and the global demand for Filipino creative professionals. The course aims to inspire learners to pursue opportunities in the creative digital economy and aligns with the Philippine Creative Industries Development Act (RA 11904).",
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591731203_873748715226279_3291547514410931563_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF3AZwO0BlLsywylmF7y9ZBdEY4fv6fQEl0Rjh-_p9ASWIwto5p3rKMs_djGeAz7-N_1_1XYjk_9Su_yqMQJhHm&_nc_ohc=s0dQ2vxVkuAQ7kNvwGbuOJz&_nc_oc=AdkAeKzs1Js9U9R28hG2qEyIWNiW-W1sj_NFYg-ut8vn9wFYiyW3hgTjLcu8MEdJLB8&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=R1UT9XSkuwRUL4GQid6xgg&oh=00_Afk3NLhcn2I5Xbfh7oPAwoTcerxpyv1KGjqEQI86nYPk2Q&oe=69373E6A',
+    tags: ['Training', 'Creative', 'GameDev'],
+    link: 'https://bit.ly/CTT-Register',
+    learnMoreLink: 'https://www.facebook.com/share/p/1YWW6DYhyq/',
+    organizerId: 'dict-car'
   },
   {
     id: 'evt-blockchain-govt',
