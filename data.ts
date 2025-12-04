@@ -627,6 +627,55 @@ export const activeStartups: Startup[] = [
 
 export const events: Event[] = [
   {
+    id: 'evt-mandeko-kito',
+    title: 'Mandëko Kito',
+    date: new Date('2025-12-05T08:00:00'),
+    endDate: new Date('2025-12-22T17:00:00'),
+    location: 'Scout Hill, Camp John Hay, Baguio City',
+    description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children! Through these workshops, Mandëko Kito supports the continuous growth of our local creative community and the future of Filipino craftsmanship.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/581946283_122158851776600138_5733691605446594206_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6OtYQf6Hwt4Q7kNvwEBRTy7&_nc_oc=AdnpxsHLmqcFfUTmUUU4AJl641Cdt1wC-Q-EVtvZbxY7y5bPKx6vJkLVDipQeS8rsr0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=Gq1_TNpmvBn6PkVRWIer_Q&oh=00_AfmiR82mmiwDq1YCI9tPe-aiZVapEXl_xb2CrRLSnFf-5Q&oe=6937678E',
+    tags: ['Fair', 'Creative', 'Community'],
+    learnMoreLink: 'https://www.facebook.com/mandekofficial',
+    organizerId: 'mandeko-kito'
+  },
+  {
+    id: 'evt-yep-ap',
+    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
+    date: new Date('2025-12-09T08:00:00'),
+    endDate: new Date('2025-12-11T17:00:00'),
+    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
+    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
+    tags: ['Training'],
+    link: 'https://bit.ly/YouthToMT',
+    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
+    organizerId: 'cpdso'
+  },
+  {
+    id: 'evt-cloud-devops-basics',
+    title: 'Cloud and DevOps Basics',
+    date: new Date('2025-12-10T13:00:00'),
+    location: 'Zoom',
+    description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
+    tags: ['Workshop', 'Cloud', 'DevOps'],
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
+    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
+    organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-data-analytics',
+    title: 'Data Analytics & Visualization Essentials',
+    date: new Date('2025-12-11T13:00:00'),
+    location: 'Zoom',
+    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
+    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
+    tags: ['Workshop', 'Data', 'Analytics'],
+    link: 'https://bit.ly/DAVE-Register',
+    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
+    organizerId: 'dict-car'
+  },
+  {
     id: 'evt-creative-tech',
     title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
     date: new Date('2025-12-13T13:00:00'),
@@ -649,43 +698,6 @@ export const events: Event[] = [
     link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
     learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
     organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-data-analytics',
-    title: 'Data Analytics & Visualization Essentials',
-    date: new Date('2025-12-11T13:00:00'),
-    location: 'Zoom',
-    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
-    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
-    tags: ['Workshop', 'Data', 'Analytics'],
-    link: 'https://bit.ly/DAVE-Register',
-    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-cloud-devops-basics',
-    title: 'Cloud and DevOps Basics',
-    date: new Date('2025-12-10T13:00:00'),
-    location: 'Zoom',
-    description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
-    tags: ['Workshop', 'Cloud', 'DevOps'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
-    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-yep-ap',
-    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
-    date: new Date('2025-12-09T08:00:00'),
-    endDate: new Date('2025-12-11T17:00:00'),
-    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
-    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
-    tags: ['Training'],
-    link: 'https://bit.ly/YouthToMT',
-    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
-    organizerId: 'cpdso'
   }
 ];
 

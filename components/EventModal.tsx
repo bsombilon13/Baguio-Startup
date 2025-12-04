@@ -12,7 +12,7 @@ interface EventModalProps {
   onOrganizerClick?: (org: Organization | Startup) => void;
 }
 
-const ALLOWED_TAGS = ['Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
+const ALLOWED_TAGS = ['Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive', 'Fair'];
 
 const EventModal: React.FC<EventModalProps> = ({ event, onClose, onOrganizerClick }) => {
   const [showCalendarOptions, setShowCalendarOptions] = useState(false);

@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon } from 'lucide-react';
@@ -19,7 +20,7 @@ const Events: React.FC = () => {
   const ITEMS_PER_PAGE = 20;
 
   // Static filters
-  const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
+  const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive', 'Fair'];
 
   // Filter Logic
   const filteredEvents = events.filter(event => {
