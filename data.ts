@@ -261,7 +261,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'University of the Cordilleras Innovation and Technology Transfer Office.',
     logoUrl: 'https://graph.facebook.com/UCInTTO/picture?type=large',
     facebookUrl: 'https://www.facebook.com/UCInTTO',
-    websiteUrl: 'https://www.uc-bcf.edu.ph',
+    websiteUrl: 'https://intto.uc-bcf.edu.ph/index.html',
     types: ['Incubator', 'Academe', 'Workspace']
   },
   {
@@ -360,8 +360,8 @@ export const activeStartups: Startup[] = [
   },
   {
     id: 'sunshare',
-    name: 'Sunshare PH',
-    description: 'Sustainable solar energy solutions for homes and businesses.',
+    name: 'Sunshare',
+    description: 'A blockchain-enabled marketplace for real-time, peer-to-peer solar energy trading.',
     logoUrl: 'https://graph.facebook.com/sunshare.ph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/sunshare.ph',
     industry: 'Tech',
@@ -369,8 +369,8 @@ export const activeStartups: Startup[] = [
   },
   {
     id: 'tarana',
-    name: 'Tarana AI',
-    description: 'AI solutions for modern problems.',
+    name: 'Tarana-ai',
+    description: 'Empowering travelers and cities with real-time, intelligent guidance for sustainable exploration.',
     logoUrl: 'https://graph.facebook.com/TaranaAI/picture?type=large',
     facebookUrl: 'https://www.facebook.com/TaranaAI',
     websiteUrl: 'https://www.tarana-ai.com/',
@@ -384,6 +384,16 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/tingistation/picture?type=large',
     facebookUrl: 'https://www.facebook.com/tingistation',
     industry: 'E-commerce',
+    stage: 'Pre-Seed'
+  },
+  {
+    id: 'aicore',
+    name: 'AiCore',
+    description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374600',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
+    websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
+    industry: 'Tech',
     stage: 'Pre-Seed'
   }
 ];
