@@ -315,6 +315,233 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/zwbaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/zwbaguio',
     types: ['Non-Profit']
+  },
+  // New Additions
+  {
+    id: 'psto-baguio-benguet',
+    name: 'DOST PSTO Baguio-Benguet',
+    description: 'Provincial Science and Technology Office for Baguio and Benguet.',
+    logoUrl: 'https://graph.facebook.com/pstobaguiobenguet/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/pstobaguiobenguet',
+    types: ['Government']
+  },
+  {
+    id: 'pia-benguet',
+    name: 'PIA Benguet',
+    description: 'Philippine Information Agency - Benguet Information Center.',
+    logoUrl: 'https://graph.facebook.com/PIABenguetInfocen/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/PIABenguetInfocen',
+    types: ['Government']
+  },
+  {
+    id: 'pia-car',
+    name: 'PIA Cordillera',
+    description: 'Philippine Information Agency - Cordillera Administrative Region.',
+    logoUrl: 'https://graph.facebook.com/PIACordilleraAdministrativeRegion/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/PIACordilleraAdministrativeRegion',
+    types: ['Government']
+  },
+  {
+    id: 'dost-apayao',
+    name: 'DOST Apayao',
+    description: 'Provincial Science and Technology Office - Apayao.',
+    logoUrl: 'https://graph.facebook.com/dostapayaofb/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/dostapayaofb',
+    types: ['Government']
+  },
+  {
+    id: 'dost-mt-prov',
+    name: 'DOST Mountain Province',
+    description: 'Provincial Science and Technology Office - Mountain Province.',
+    logoUrl: 'https://graph.facebook.com/DostCarMountainProvince/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DostCarMountainProvince',
+    types: ['Government']
+  },
+  {
+    id: 'dost-abra',
+    name: 'DOST Abra',
+    description: 'Provincial Science and Technology Office - Abra.',
+    logoUrl: 'https://graph.facebook.com/DOST.Abra.Official/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DOST.Abra.Official',
+    types: ['Government']
+  },
+  {
+    id: 'dost-ifugao',
+    name: 'DOST Ifugao',
+    description: 'Provincial Science and Technology Office - Ifugao.',
+    logoUrl: 'https://graph.facebook.com/DOSTIfugao/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DOSTIfugao',
+    types: ['Government']
+  },
+  {
+    id: 'pisay-car',
+    name: 'PSHS - CAR Campus',
+    description: 'Philippine Science High School - Cordillera Administrative Region Campus.',
+    logoUrl: 'https://graph.facebook.com/pisaycarc/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/pisaycarc',
+    types: ['Academe', 'Government']
+  },
+  {
+    id: 'dot-car',
+    name: 'DOT Cordillera',
+    description: 'Department of Tourism - Cordillera Administrative Region.',
+    logoUrl: 'https://graph.facebook.com/DOTCordillera/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DOTCordillera',
+    types: ['Government']
+  },
+  {
+    id: 'dole-car',
+    name: 'DOLE Cordillera',
+    description: 'Department of Labor and Employment - Cordillera.',
+    logoUrl: 'https://graph.facebook.com/DOLEROCAR/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DOLEROCAR',
+    types: ['Government']
+  },
+  {
+    id: 'baguio-hso',
+    name: 'Baguio Health Services Office',
+    description: 'City Health Services Office of Baguio.',
+    logoUrl: 'https://graph.facebook.com/BaguioHSO/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/BaguioHSO',
+    types: ['Government']
+  },
+  {
+    id: 'baguio-cpo',
+    name: 'Baguio City Police Office',
+    description: 'Ensuring peace and order in the City of Baguio.',
+    logoUrl: 'https://graph.facebook.com/PNPBaguioCPO/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/PNPBaguioCPO',
+    types: ['Government']
+  },
+  {
+    id: 'bghmc',
+    name: 'Baguio General Hospital',
+    description: 'Premier government hospital and medical center in the Cordilleras.',
+    logoUrl: 'https://graph.facebook.com/officialbghmcbaguio/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/officialbghmcbaguio',
+    types: ['Government']
+  },
+  {
+    id: 'mandeko-kito',
+    name: 'Mandeko Kito',
+    description: 'An artisanal market and community of Baguio\'s creative entrepreneurs.',
+    logoUrl: 'https://graph.facebook.com/mandekofficial/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/mandekofficial',
+    types: ['Community', 'Creatives', 'MSME']
+  },
+  {
+    id: 'pio-baguio',
+    name: 'Baguio City PIO',
+    description: 'Public Information Office - City of Baguio.',
+    logoUrl: 'https://graph.facebook.com/pio.baguio/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/pio.baguio',
+    types: ['Government']
+  },
+  {
+    id: 'univ-baguio',
+    name: 'University of Baguio',
+    description: 'A private, multidisciplinary university in Baguio City.',
+    logoUrl: 'https://graph.facebook.com/universityofbaguio/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/universityofbaguio',
+    websiteUrl: 'https://www.ubaguio.edu',
+    types: ['Academe']
+  },
+  {
+    id: 'slu-main',
+    name: 'Saint Louis University',
+    description: 'A private Catholic research university in Baguio City.',
+    logoUrl: 'https://graph.facebook.com/slu.edu.ph/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/slu.edu.ph',
+    websiteUrl: 'https://www.slu.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'up-baguio',
+    name: 'UP Baguio',
+    description: 'The University of the Philippines Baguio.',
+    logoUrl: 'https://graph.facebook.com/OfficialUPB/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/OfficialUPB',
+    websiteUrl: 'https://upb.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'bcu',
+    name: 'Baguio Central University',
+    description: 'Committed to providing quality education in the highlands.',
+    logoUrl: 'https://graph.facebook.com/BaguioCentralUniversity/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/BaguioCentralUniversity/',
+    websiteUrl: 'https://bcu.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'uc-main',
+    name: 'University of the Cordilleras',
+    description: 'A premier higher education institution in the Cordilleras.',
+    logoUrl: 'https://graph.facebook.com/UCjaguars/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/UCjaguars',
+    websiteUrl: 'https://www.uc-bcf.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'bsu-main',
+    name: 'Benguet State University',
+    description: 'A state university in La Trinidad, Benguet.',
+    logoUrl: 'https://graph.facebook.com/BenguetStateUniversity/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/BenguetStateUniversity/',
+    websiteUrl: 'http://www.bsu.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'ati-rtc-car',
+    name: 'ATI-RTC CAR',
+    description: 'Agricultural Training Institute - Regional Training Center CAR.',
+    logoUrl: 'https://graph.facebook.com/ATIRTCCAR/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/ATIRTCCAR',
+    types: ['Government', 'Academe']
+  },
+  {
+    id: 'la-trinidad-tourism',
+    name: 'La Trinidad Tourism',
+    description: 'Promoting tourism in the capital town of Benguet.',
+    logoUrl: 'https://graph.facebook.com/LaTrinidadTourism/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/LaTrinidadTourism',
+    types: ['Government']
+  },
+  {
+    id: 'pma',
+    name: 'Philippine Military Academy',
+    description: 'The premier military academy of the Philippines.',
+    logoUrl: 'https://graph.facebook.com/philippinemilitaryacademypublicaffairs/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/philippinemilitaryacademypublicaffairs',
+    websiteUrl: 'https://www.pma.edu.ph',
+    types: ['Academe', 'Government']
+  },
+  {
+    id: 'easter-college',
+    name: 'Easter College',
+    description: 'One of the pioneer schools in the Cordilleras.',
+    logoUrl: 'https://graph.facebook.com/eastercollege/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/eastercollege',
+    websiteUrl: 'https://www.eastercollege.edu.ph',
+    types: ['Academe']
+  },
+  {
+    id: 'deped-car',
+    name: 'DepEd Cordillera',
+    description: 'Department of Education - Cordillera Administrative Region.',
+    logoUrl: 'https://graph.facebook.com/DepEdTayoCordillera/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/DepEdTayoCordillera',
+    websiteUrl: 'https://depedcar.ph',
+    types: ['Government']
+  },
+  {
+    id: 'rdc-car',
+    name: 'RDC Cordillera',
+    description: 'Regional Development Council - Cordillera Administrative Region.',
+    logoUrl: 'https://graph.facebook.com/RDCsaCordi/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/RDCsaCordi',
+    websiteUrl: 'https://car.neda.gov.ph',
+    types: ['Government']
   }
 ];
 
@@ -400,43 +627,6 @@ export const activeStartups: Startup[] = [
 
 export const events: Event[] = [
   {
-    id: 'evt-yep-ap',
-    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
-    date: new Date('2025-12-09T08:00:00'),
-    endDate: new Date('2025-12-11T17:00:00'),
-    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
-    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
-    tags: ['Training'],
-    link: 'https://bit.ly/YouthToMT',
-    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
-    organizerId: 'cpdso'
-  },
-  {
-    id: 'evt-cloud-devops-basics',
-    title: 'Cloud and DevOps Basics',
-    date: new Date('2025-12-10T13:00:00'),
-    location: 'Zoom',
-    description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
-    tags: ['Workshop', 'Cloud', 'DevOps'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
-    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-data-analytics',
-    title: 'Data Analytics & Visualization Essentials',
-    date: new Date('2025-12-11T13:00:00'),
-    location: 'Zoom',
-    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
-    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
-    tags: ['Workshop', 'Data', 'Analytics'],
-    link: 'https://bit.ly/DAVE-Register',
-    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
-    organizerId: 'dict-car'
-  },
-  {
     id: 'evt-creative-tech',
     title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
     date: new Date('2025-12-13T13:00:00'),
@@ -459,6 +649,43 @@ export const events: Event[] = [
     link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
     learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
     organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-data-analytics',
+    title: 'Data Analytics & Visualization Essentials',
+    date: new Date('2025-12-11T13:00:00'),
+    location: 'Zoom',
+    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
+    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
+    tags: ['Workshop', 'Data', 'Analytics'],
+    link: 'https://bit.ly/DAVE-Register',
+    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
+    organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-cloud-devops-basics',
+    title: 'Cloud and DevOps Basics',
+    date: new Date('2025-12-10T13:00:00'),
+    location: 'Zoom',
+    description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=Yh7OUvhI9SkQ7kNvwEllq0w&_nc_oc=Adm5dsXPof2IcVDImQtCQ-cpEfWYwDsq0vfSoSti4YQOpocyrgcgR1hjMPt_bwrKnKk&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=4RKTUIxbBmiN-jfooC7a5w&oh=00_AfiBPjakYwG62qEhWxMMEJzQgQPvbH6zuTVbCY7tJfU8cg&oe=693395A4',
+    tags: ['Workshop', 'Cloud', 'DevOps'],
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
+    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
+    organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-yep-ap',
+    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
+    date: new Date('2025-12-09T08:00:00'),
+    endDate: new Date('2025-12-11T17:00:00'),
+    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
+    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
+    tags: ['Training'],
+    link: 'https://bit.ly/YouthToMT',
+    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
+    organizerId: 'cpdso'
   }
 ];
 
