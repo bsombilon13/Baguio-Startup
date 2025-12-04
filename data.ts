@@ -1,3 +1,4 @@
+
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -408,6 +409,15 @@ export const events: Event[] = [
 ];
 
 export const communityNews: NewsItem[] = [
+  {
+    id: 'news-2',
+    title: 'Auscultate Wins 1st Runner Up in PSC10!',
+    date: 'Dec 05, 2025',
+    excerpt: 'Warmest congratulations to Auscultate from the Cordillera Administrative Region for achieving 1st Runner Up in the Philippine Startup Challenge 10! ✨👏🏻🥳 Your innovation, dedication, and passion for creating impactful solutions truly shine. This achievement is a testament to your hard work, creativity, and commitment to making a difference in the startup ecosystem. 🫶🏻🥳✨ The Cordillera region and the entire Philippine startup community are proud of your success. Keep pushing boundaries, keep innovating, and continue inspiring others with your vision. Well done, Auscultate this is only the beginning! 🚀🥳',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594904505_875149501752867_2697425006317580049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KYp2uAbNK5UQ7kNvwHzrtbn&_nc_oc=Adm7VSI3EvjwcyeNFUx1z0qxCLZf9jPaOTlyWsBJ4U_jhsBlYdj4U2Se_YiTzc9_Bww&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=pngtT0SY0ZVzpDk2Yy48CQ&oh=00_AfkwxrfJf3ExaqGH2F7oC9AkG0kPKppAeanOQNfzqfasAQ&oe=69372BD4',
+    link: 'https://www.facebook.com/photo/?fbid=875149498419534&set=a.131590669442091',
+    source: 'Facebook'
+  },
   {
     id: 'news-1',
     title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',

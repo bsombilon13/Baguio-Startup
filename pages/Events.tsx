@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday, isWithinInterval, startOfDay, endOfDay } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronDown } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon } from 'lucide-react';
 import { events, ecosystemOrgs, activeStartups } from '../data';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -48,7 +48,7 @@ const Events: React.FC = () => {
   const handleDayKeyDown = (e: React.KeyboardEvent, events: Event[]) => {
     if ((e.key === 'Enter' || e.key === ' ') && events.length > 0) {
       e.preventDefault();
-      handleDayClick(events, new Date()); // Date is not used strictly here for keyboard nav in this simple version
+      handleDayClick(events, new Date()); 
     }
   };
 
@@ -72,7 +72,7 @@ const Events: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 pb-24">
       <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
@@ -138,20 +138,21 @@ const Events: React.FC = () => {
                 return (
                 <BentoItem 
                     key={event.id}
-                    className="md:col-span-1 md:row-span-1 flex flex-col group h-full"
+                    className="flex flex-col group h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/50"
                     onClick={() => setSelectedEvent(event)}
                     noPadding={true}
                 >
-                    {/* Header Banner Image - Fixed height for consistency */}
+                    {/* Header Banner Image - Fixed height for uniformity */}
                     <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
                         <img 
                             src={event.imageUrl} 
                             alt={event.title} 
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
-                        {/* Date Badge */}
+                        {/* Date Badge - Positioned on Image */}
                         <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform z-10">
                             <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
                             <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
@@ -170,17 +171,17 @@ const Events: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Details Content (Solid Background) */}
-                    <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-slate-900">
+                    {/* Details Content - Solid Background & Flex Column for Alignment */}
+                    <div className="flex flex-col flex-1 p-5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative">
                         
                         {/* Organizer Profile Picture - Overlapping */}
                         {organizer && (
                         <div 
                             onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedOrg(organizer);
+                                e.stopPropagation();
+                                setSelectedOrg(organizer);
                             }}
-                            className="absolute -top-6 left-6 z-20 cursor-pointer group/org"
+                            className="absolute -top-6 left-5 z-20 cursor-pointer group/org"
                             title={`Organized by ${organizer.name}`}
                         >
                             <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
@@ -194,34 +195,34 @@ const Events: React.FC = () => {
                         )}
 
                         {/* Spacer for overlapping avatar */}
-                        <div className="h-4"></div>
+                        <div className="h-4 shrink-0"></div>
 
-                        {/* Title with min-height for alignment */}
-                        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
+                        {/* Title - Min height ensures alignment across row */}
+                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
                             {event.title}
                         </h3>
                         
-                        {/* Meta Info */}
-                        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4">
+                        {/* Meta Info Row */}
+                        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4 shrink-0">
                             <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 shrink-0">
                                 <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
                                 {format(event.date, 'h:mm a')}
                             </span>
                             <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
                                 <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
-                                {event.location}
+                                <span className="truncate max-w-[120px]">{event.location}</span>
                             </span>
                         </div>
 
-                        {/* Description */}
-                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4">
+                        {/* Description - Flex grow pushes footer down */}
+                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">
                             {event.description}
                         </p>
 
-                        {/* Footer - Pushed to bottom */}
-                        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                        {/* Footer - Pushed to bottom via mt-auto in flex container (or flex-1 above) */}
+                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 shrink-0">
                             <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                            View Details <ChevronRight size={16} />
+                            View Details <ChevronRightIcon size={16} />
                             </span>
                         </div>
                     </div>

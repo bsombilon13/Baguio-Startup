@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { X, Facebook, Globe } from 'lucide-react';
 import { Organization, Startup } from '../types';
@@ -11,7 +12,7 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
   // Determine tags based on whether it is an Organization or Startup
   const tags = 'types' in org 
     ? org.types 
-    : [org.industry, org.stage].filter((t): t is string => !!t);
+    : [org.industry, org.stage].filter((t) => !!t) as string[];
 
   return (
     <div 
