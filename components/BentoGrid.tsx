@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string }> = ({ 
@@ -28,7 +27,7 @@ export const BentoItem: React.FC<BentoItemProps> = ({
   noPadding = false,
   ...props 
 }) => {
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       onClick();

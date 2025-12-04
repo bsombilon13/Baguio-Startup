@@ -12,7 +12,7 @@ import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-import { events, communityNews } from './data';
+import { events, communityNews, opportunities } from './data';
 import { format } from 'date-fns';
 
 export const ThemeContext = createContext<ThemeContextType>({
@@ -441,7 +441,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: Announcements Footer (Resized to 2 columns) */}
-        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 text-slate-400 shadow-sm min-h-[320px]">
+        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px]">
            <div>
                <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400">
@@ -449,13 +449,39 @@ const Dashboard = () => {
                   </div>
                   <h4 className="font-bold text-slate-700 dark:text-slate-200 text-lg">Announcements</h4>
                </div>
-               <p className="text-sm font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
-                  No recent updates or funding calls at the moment. Check back later for grant opportunities and community blasts.
-               </p>
+
+               {opportunities.length > 0 ? (
+                  <div className="space-y-4">
+                    {opportunities.slice(0, 3).map((opp) => (
+                      <div key={opp.id} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 group hover:border-[#35308f] dark:hover:border-indigo-500 transition-colors">
+                        <div className="flex justify-between items-start mb-1">
+                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide
+                                ${opp.type === 'Grant' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
+                                ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : ''}
+                                ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : ''}
+                                ${opp.type === 'Awards' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : ''}
+                                ${opp.type === 'Competition' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : ''}
+                             `}>
+                               {opp.type}
+                             </span>
+                             <span className="text-xs font-bold text-slate-400">{opp.deadline}</span>
+                        </div>
+                        <h5 className="font-bold text-slate-800 dark:text-slate-100 leading-tight mb-1 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
+                            {opp.title}
+                        </h5>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{opp.organization}</p>
+                      </div>
+                    ))}
+                  </div>
+               ) : (
+                   <p className="text-sm font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
+                      No recent updates or funding calls at the moment. Check back later for grant opportunities and community blasts.
+                   </p>
+               )}
            </div>
            
-           <Link to="/announcements" className="text-emerald-700 dark:text-emerald-400 text-sm font-bold hover:underline bg-emerald-50 dark:bg-emerald-900/20 px-4 py-3 rounded-xl transition-colors text-center">
-              View Announcement Archive
+           <Link to="/announcements" className="mt-4 text-emerald-700 dark:text-emerald-400 text-sm font-bold hover:underline bg-emerald-50 dark:bg-emerald-900/20 px-4 py-3 rounded-xl transition-colors text-center flex items-center justify-center gap-2">
+              View All Announcements <ArrowRight size={16}/>
            </Link>
         </div>
 

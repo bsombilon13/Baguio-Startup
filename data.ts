@@ -330,6 +330,16 @@ export const activeStartups: Startup[] = [
     stage: 'Pre-Seed'
   },
   {
+    id: 'inv8studio',
+    name: 'Inv8 Studio',
+    description: 'Creative studio delivering innovative digital solutions.',
+    logoUrl: 'https://graph.facebook.com/inv8studio/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/inv8studio',
+    websiteUrl: 'https://inv8.io/',
+    industry: 'Creative',
+    stage: 'Pre-Seed'
+  },
+  {
     id: 'parapo',
     name: 'Official Para Po',
     description: 'Innovative transport solutions for the modern commuter.',
@@ -346,6 +356,15 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/srvpinoy',
     websiteUrl: 'https://srvpinoy.com',
     industry: 'Service',
+    stage: 'Pre-Seed'
+  },
+  {
+    id: 'sunshare',
+    name: 'Sunshare PH',
+    description: 'Sustainable solar energy solutions for homes and businesses.',
+    logoUrl: 'https://graph.facebook.com/sunshare.ph/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/sunshare.ph',
+    industry: 'Tech',
     stage: 'Pre-Seed'
   },
   {
@@ -427,7 +446,7 @@ export const communityNews: NewsItem[] = [
     title: 'Auscultate Wins 1st Runner Up in PSC10!',
     date: 'Dec 05, 2025',
     excerpt: 'Warmest congratulations to Auscultate from the Cordillera Administrative Region for achieving 1st Runner Up in the Philippine Startup Challenge 10! ✨👏🏻🥳 Your innovation, dedication, and passion for creating impactful solutions truly shine. This achievement is a testament to your hard work, creativity, and commitment to making a difference in the startup ecosystem. 🫶🏻🥳✨ The Cordillera region and the entire Philippine startup community are proud of your success. Keep pushing boundaries, keep innovating, and continue inspiring others with your vision. Well done, Auscultate this is only the beginning! 🚀🥳',
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594904505_875149501752867_2697425006317580049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KYp2uAbNK5UQ7kNvwHzrtbn&_nc_oc=Adm7VSI3EvjwcyeNFUx1z0qxCLZf9jPaOTlyWsBJ4U_jhsBlYdj4U2Se_YiTzc9_Bww&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=pngtT0SY0ZVzpDk2Yy48CQ&oh=00_AfkwxrfJf3ExaqGH2F7oC9AkG0kPKppAeanOQNfzqfasAQ&oe=69372BD4',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594904505_875149501752867_2697425006317580049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHTc-lRB91bWOFGtGystWM9rgUUukEnby2uBRS6QSdvLXHb1CF1PTfU7Wq_vTJhIGFAN8Alumqxd7zPPdXs5KDs&_nc_ohc=KYp2uAbNK5UQ7kNvwHzrtbn&_nc_oc=Adm7VSI3EvjwcyeNFUx1z0qxCLZf9jPaOTlyWsBJ4U_jhsBlYdj4U2Se_YiTzc9_Bww&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=m8usIRKO_yjqxfSmQbHepw&oh=00_Afmidx4ogcJwDO_g5KSlxJYd8d5fF7ajwCm38VXkGPu29A&oe=69376414',
     link: 'https://www.facebook.com/photo/?fbid=875149498419534&set=a.131590669442091',
     source: 'Facebook'
   },
