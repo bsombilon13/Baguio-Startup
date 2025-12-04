@@ -12,18 +12,28 @@ export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string
   );
 };
 
-export const BentoItem: React.FC<{
+interface BentoItemProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   background?: string;
   noPadding?: boolean;
-}> = ({ children, className = "", onClick, background, noPadding = false }) => {
+}
+
+export const BentoItem: React.FC<BentoItemProps> = ({ 
+  children, 
+  className = "", 
+  onClick, 
+  background, 
+  noPadding = false,
+  ...props 
+}) => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       onClick();
     }
+    props.onKeyDown?.(e);
   };
 
   return (
@@ -48,6 +58,7 @@ export const BentoItem: React.FC<{
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
+      {...props}
     >
       {/* Overlay if background image is present */}
       {background && (

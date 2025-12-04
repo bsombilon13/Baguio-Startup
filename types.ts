@@ -34,6 +34,7 @@ export interface Event {
   link?: string; // Registration Link
   learnMoreLink?: string; // Info/Social Link
   organizerId?: string; // Reference to Organization or Startup ID
+  price?: string;
 }
 
 export interface NewsItem {
@@ -52,8 +53,10 @@ export interface Opportunity {
   organization: string;
   amount: string;
   deadline: string;
-  type: 'Grant' | 'Investment' | 'Accelerator' | 'Competition';
+  type: 'Grant' | 'Investment' | 'Accelerator' | 'Competition' | 'Awards';
   description: string;
+  link?: string;
+  moreDetailsLink?: string;
 }
 
 export interface Resource {

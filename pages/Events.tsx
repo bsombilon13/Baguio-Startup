@@ -15,6 +15,8 @@ const Events: React.FC = () => {
   const [dayModalEvents, setDayModalEvents] = useState<{ date: Date, events: Event[] } | null>(null);
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedOrg, setSelectedOrg] = useState<Organization | Startup | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 20;
 
   // Static filters
   const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive'];
@@ -28,6 +30,26 @@ const Events: React.FC = () => {
     if (activeFilter === 'All') return true;
     return eventMainTags.includes(activeFilter);
   });
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
+  const paginatedEvents = filteredEvents.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      // Scroll to top of grid
+      document.getElementById('events-grid')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    setCurrentPage(1); // Reset to page 1 on filter change
+  };
 
   // Calendar logic
   const monthStart = startOfMonth(currentDate);
@@ -113,7 +135,7 @@ const Events: React.FC = () => {
               key={filter} 
               role="tab"
               aria-selected={activeFilter === filter}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => handleFilterChange(filter)}
               className={`
                 px-4 py-2 rounded-lg border text-sm font-bold whitespace-nowrap transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]
                 ${activeFilter === filter 
@@ -130,10 +152,11 @@ const Events: React.FC = () => {
       {view === 'list' && (
         <div id="events-grid">
             <BentoGrid>
-            {filteredEvents.map((event) => {
+            {paginatedEvents.map((event) => {
                 const mainTag = getMainTag(event.tags);
                 const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
                 const organizer = getOrganizer(event.organizerId);
+                const priceLabel = event.price || 'Free';
                 
                 return (
                 <BentoItem 
@@ -141,6 +164,7 @@ const Events: React.FC = () => {
                     className="flex flex-col group h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-slate-800/50"
                     onClick={() => setSelectedEvent(event)}
                     noPadding={true}
+                    aria-label={`View details for ${event.title}, ${priceLabel} event on ${format(event.date, 'MMMM d')}`}
                 >
                     {/* Header Banner Image - Fixed height for uniformity */}
                     <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
@@ -169,25 +193,40 @@ const Events: React.FC = () => {
                                 {mainTag}
                             </div>
                         )}
+                        
+                        {/* Price Label */}
+                         <div className={`absolute bottom-4 right-4 text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10 ${priceLabel === 'Free' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
+                            {priceLabel}
+                        </div>
                     </div>
 
                     {/* Details Content - Solid Background & Flex Column for Alignment */}
                     <div className="flex flex-col flex-1 p-5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative">
                         
-                        {/* Organizer Profile Picture - Overlapping */}
+                        {/* Organizer Profile Picture - Overlapping & Keyboard Accessible */}
                         {organizer && (
                         <div 
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`View profile of ${organizer.name}`}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    setSelectedOrg(organizer);
+                                }
+                            }}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 setSelectedOrg(organizer);
                             }}
-                            className="absolute -top-6 left-5 z-20 cursor-pointer group/org"
+                            className="absolute -top-6 left-5 z-20 cursor-pointer group/org focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f] rounded-full"
                             title={`Organized by ${organizer.name}`}
                         >
                             <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
                                 <img 
                                     src={organizer.logoUrl} 
-                                    alt={organizer.name} 
+                                    alt="" // Decorative since container has aria-label
                                     className="w-full h-full object-cover"
                                 />
                             </div>
@@ -210,7 +249,7 @@ const Events: React.FC = () => {
                             </span>
                             <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
                                 <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
-                                <span className="truncate max-w-[120px]">{event.location}</span>
+                                <span className="truncate max-w-[200px]">{event.location}</span>
                             </span>
                         </div>
 
@@ -236,6 +275,29 @@ const Events: React.FC = () => {
                 </div>
             )}
             </BentoGrid>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-4 mt-8">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+                >
+                  Previous
+                </button>
+                <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+                >
+                  Next
+                </button>
+              </div>
+            )}
         </div>
       )}
 
@@ -305,12 +367,22 @@ const Events: React.FC = () => {
                               {organizer && (
                                 <img 
                                   src={organizer.logoUrl} 
-                                  className="w-3.5 h-3.5 rounded-full object-cover shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+                                  className="w-3.5 h-3.5 rounded-full object-cover shrink-0 cursor-pointer hover:opacity-80 transition-opacity focus:outline-none focus:ring-1 focus:ring-[#35308f]"
+                                  role="button"
+                                  tabIndex={0}
+                                  aria-label={`View profile of ${organizer.name}`}
+                                  onKeyDown={(evt) => {
+                                      if (evt.key === 'Enter' || evt.key === ' ') {
+                                          evt.preventDefault();
+                                          evt.stopPropagation();
+                                          setSelectedOrg(organizer);
+                                      }
+                                  }}
                                   onClick={(evt) => {
                                     evt.stopPropagation();
                                     setSelectedOrg(organizer);
                                   }}
-                                  alt={organizer.name}
+                                  alt=""
                                   title={`Organized by ${organizer.name}`}
                                 />
                               )}

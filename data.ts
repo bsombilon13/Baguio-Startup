@@ -1,4 +1,5 @@
 
+
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -405,6 +406,18 @@ export const events: Event[] = [
     link: 'https://bit.ly/YouthToMT',
     learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
     organizerId: 'cpdso'
+  },
+  {
+    id: 'evt-blockchain-govt',
+    title: 'Blockchain Technology in Government (Potential and Application)',
+    date: new Date('2025-12-15T13:00:00'),
+    location: 'Zoom',
+    description: "This training aims to equip government employees, policymakers, and IT professionals with the foundational knowledge of blockchain technology, its use cases in governance, and how it can enhance public sector services.",
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/593885931_875167355084415_5917444070216356359_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HYwV5tT1mzEQ7kNvwEx5mky&_nc_oc=AdkA2JirIVw6vePbx8A973YuAVrf3N4-I7MZSj7DuhUu-S-WBdj5EOpHiNMIUgzI-2s&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=DXGW3U9VMNuQd-M5uyOGvg&oh=00_AfmATuBSfN8paYHPyV7e3f423M_9aPu94QD8KGH2ibTeCg&oe=69374208',
+    tags: ['Workshop', 'Blockchain', 'GovTech'],
+    link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
+    learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
+    organizerId: 'dict-car'
   }
 ];
 
@@ -431,31 +444,15 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
-    id: '1',
-    title: 'Innovation Grant 2024',
-    organization: 'Dept of Science & Tech',
-    amount: '₱500,000',
-    deadline: 'Oct 30, 2024',
-    type: 'Grant',
-    description: 'Equity-free funding for hardware startups focusing on agriculture.',
-  },
-  {
-    id: '2',
-    title: 'Seed Round Open Call',
-    organization: 'North Star VC',
-    amount: '$50,000 - $100,000',
-    deadline: 'Rolling',
-    type: 'Investment',
-    description: 'Looking for early-stage SaaS platforms with traction.',
-  },
-  {
-    id: '3',
-    title: 'Baguio Incubation Program',
-    organization: 'Baguio Startup',
-    amount: 'Mentorship',
-    deadline: 'Nov 15, 2024',
-    type: 'Accelerator',
-    description: 'A 3-month intensive program to get your idea to MVP.',
+    id: 'award-1',
+    title: '1st Negosyong Matatag: MSME Disaster Resilience Awards',
+    organization: 'DTI / Government',
+    amount: 'Recognition',
+    deadline: 'Jan 14, 2026',
+    type: 'Awards',
+    description: 'Nomination for MSME Disaster Resilience.',
+    link: 'https://bit.ly/MatatagAwards',
+    moreDetailsLink: 'https://www.facebook.com/share/p/17jdMgFnyt/'
   }
 ];
 
