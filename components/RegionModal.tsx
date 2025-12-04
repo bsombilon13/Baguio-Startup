@@ -1,5 +1,7 @@
 
+
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Map, Users, Building2, Rocket, GraduationCap } from 'lucide-react';
 
 export interface RegionData {
@@ -23,9 +25,9 @@ interface RegionModalProps {
 }
 
 const RegionModal: React.FC<RegionModalProps> = ({ region, onClose, getLevelColor }) => {
-  return (
+  return createPortal(
     <div 
-      className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300"
       role="dialog"
       aria-modal="true"
     >
@@ -114,7 +116,8 @@ const RegionModal: React.FC<RegionModalProps> = ({ region, onClose, getLevelColo
       
       {/* Backdrop click to close */}
       <div className="absolute inset-0 -z-10" onClick={onClose}></div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

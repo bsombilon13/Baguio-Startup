@@ -1,6 +1,7 @@
 
 
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info, ChevronRight, Clock } from 'lucide-react';
 import { Event, Organization, Startup } from '../types';
 import { format } from 'date-fns';
@@ -78,9 +79,9 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose, onOrganizerClic
     setShowCalendarOptions(false);
   };
 
-  return (
+  return createPortal(
     <div 
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-300 ease-out"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-300 ease-out"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
@@ -219,7 +220,8 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose, onOrganizerClic
       
       {/* Click outside to close */}
       <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true"></div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
@@ -234,9 +236,9 @@ interface DayEventsModalProps {
 }
 
 export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, onClose, onSelectEvent, onOrganizerClick }) => {
-  return (
+  return createPortal(
     <div 
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/20 dark:bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
     >
@@ -309,6 +311,7 @@ export const DayEventsModal: React.FC<DayEventsModalProps> = ({ date, events, on
         </div>
       </div>
       <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true"></div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -1,5 +1,7 @@
 
+
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Facebook, Globe } from 'lucide-react';
 import { Organization, Startup } from '../types';
 
@@ -14,9 +16,9 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
     ? org.types 
     : [org.industry, org.stage].filter((t) => !!t) as string[];
 
-  return (
+  return createPortal(
     <div 
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="org-modal-title"
@@ -105,7 +107,8 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
       
       {/* Click outside to close */}
       <div className="absolute inset-0 -z-10" onClick={onClose} aria-hidden="true"></div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
