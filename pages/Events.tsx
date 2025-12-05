@@ -1,25 +1,12 @@
+
 import React, { useState } from 'react';
 import { format, eachDayOfInterval, isSameDay, isToday, isWithinInterval } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, Download } from 'lucide-react';
 import { events, ecosystemOrgs, activeStartups } from '../data';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
 import { Event, Organization, Startup } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
-
-// Helper functions to replace missing date-fns exports
-const startOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth(), 1);
-const endOfMonth = (date: Date) => new Date(date.getFullYear(), date.getMonth() + 1, 0);
-const startOfDay = (date: Date) => {
-  const newDate = new Date(date);
-  newDate.setHours(0, 0, 0, 0);
-  return newDate;
-};
-const endOfDay = (date: Date) => {
-  const newDate = new Date(date);
-  newDate.setHours(23, 59, 59, 999);
-  return newDate;
-};
 
 const Events: React.FC = () => {
   const [view, setView] = useState<'calendar' | 'list'>('list');
@@ -29,6 +16,7 @@ const Events: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedOrg, setSelectedOrg] = useState<Organization | Startup | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
   const ITEMS_PER_PAGE = 20;
 
   // Static filters
@@ -65,8 +53,8 @@ const Events: React.FC = () => {
   };
 
   // Calendar logic
-  const monthStart = startOfMonth(currentDate);
-  const monthEnd = endOfMonth(currentDate);
+  const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
 
   const prevMonth = () => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
@@ -75,7 +63,11 @@ const Events: React.FC = () => {
   // Update getEventsForDay to check for intervals
   const getEventsForDay = (date: Date) => filteredEvents.filter(e => {
     if (e.endDate) {
-      return isWithinInterval(date, { start: startOfDay(e.date), end: endOfDay(e.endDate) });
+      const start = new Date(e.date);
+      start.setHours(0, 0, 0, 0);
+      const end = new Date(e.endDate);
+      end.setHours(23, 59, 59, 999);
+      return isWithinInterval(date, { start, end });
     }
     return isSameDay(e.date, date);
   });
@@ -106,6 +98,49 @@ const Events: React.FC = () => {
     return [...ecosystemOrgs, ...activeStartups].find(o => o.id === organizerId);
   };
 
+  // iCal Generator for All Events
+  const handleDownloadAllICS = () => {
+    const formatCalendarDate = (date: Date) => {
+      return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
+    };
+
+    let icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Baguio Startup Network//Events//EN",
+      "X-WR-CALNAME:BSN Events"
+    ].join("\n");
+
+    filteredEvents.forEach(event => {
+      const start = new Date(event.date);
+      const end = event.endDate ? new Date(event.endDate) : new Date(start.getTime() + 3 * 60 * 60 * 1000);
+
+      const eventBlock = [
+        "BEGIN:VEVENT",
+        `UID:${event.id}@baguiostartup.network`,
+        `DTSTAMP:${formatCalendarDate(new Date())}`,
+        `DTSTART:${formatCalendarDate(start)}`,
+        `DTEND:${formatCalendarDate(end)}`,
+        `SUMMARY:${event.title}`,
+        `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
+        `LOCATION:${event.location}`,
+        "END:VEVENT"
+      ].join("\n");
+      
+      icsContent += "\n" + eventBlock;
+    });
+
+    icsContent += "\nEND:VCALENDAR";
+
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute("download", `BSN_Events_${format(new Date(), 'yyyy_MM')}.ics`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="space-y-6 pb-32">
       <div className="flex flex-col md:flex-row justify-between items-end gap-2 md:gap-4 mb-2 md:mb-4">
@@ -116,25 +151,37 @@ const Events: React.FC = () => {
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Workshops, meetups, and conferences in the region.</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">
-          <button
-            onClick={() => setView('list')}
-            aria-pressed={view === 'list'}
-            className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
-              view === 'list' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
-          >
-            <ListIcon size={14} className="md:w-4 md:h-4" /> List
-          </button>
-          <button
-            onClick={() => setView('calendar')}
-            aria-pressed={view === 'calendar'}
-            className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
-              view === 'calendar' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
-            }`}
-          >
-            <CalendarIcon size={14} className="md:w-4 md:h-4" /> Calendar
-          </button>
+        <div className="flex flex-wrap gap-2 items-center">
+             {view === 'calendar' && (
+                <button
+                    onClick={handleDownloadAllICS}
+                    className="flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                    title="Sync all events to your calendar"
+                >
+                    <Download size={14} className="md:w-4 md:h-4" /> Download iCalendar
+                </button>
+             )}
+
+            <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">
+            <button
+                onClick={() => setView('list')}
+                aria-pressed={view === 'list'}
+                className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+                view === 'list' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
+                }`}
+            >
+                <ListIcon size={14} className="md:w-4 md:h-4" /> List
+            </button>
+            <button
+                onClick={() => setView('calendar')}
+                aria-pressed={view === 'calendar'}
+                className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+                view === 'calendar' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
+                }`}
+            >
+                <CalendarIcon size={14} className="md:w-4 md:h-4" /> Calendar
+            </button>
+            </div>
         </div>
       </div>
 

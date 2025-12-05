@@ -1,5 +1,4 @@
 
-
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -155,6 +154,14 @@ export const ecosystemOrgs: Organization[] = [
     logoUrl: 'https://graph.facebook.com/gdgbaguio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/gdgbaguio',
     websiteUrl: 'https://gdg.community.dev/gdg-baguio/',
+    types: ['Community']
+  },
+  {
+    id: 'geeks-on-a-beach',
+    name: 'Geeks On A Beach',
+    description: 'An international conference and community for startups, technology, and design.',
+    logoUrl: 'https://graph.facebook.com/GeeksOnABeach/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/GeeksOnABeach',
     types: ['Community']
   },
   {
@@ -708,6 +715,19 @@ export const events: Event[] = [
     link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
     learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
     organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-ai-show-tell',
+    title: 'AI Show and Tell (For The Tech Startup Community)',
+    date: new Date('2025-12-11T20:00:00'),
+    endDate: new Date('2025-12-11T21:00:00'),
+    location: 'Baguio City',
+    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
+    tags: ['Workshop', 'Tech', 'AI'],
+    link: 'https://luma.com/S8-AI-ShowAndTell',
+    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
+    organizerId: 'geeks-on-a-beach'
   }
 ];
 
