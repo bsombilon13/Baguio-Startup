@@ -18,8 +18,8 @@ export interface Startup {
   logoUrl: string;
   facebookUrl: string;
   websiteUrl?: string;
-  industry: 'Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative';
-  stage?: 'Pre-Seed' | 'Seed' | 'Growth';
+  industry: ('Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative' | 'Health')[];
+  stage?: 'Pre-Seed' | 'Seed' | 'Growth' | 'Idea';
 }
 
 export interface Event {

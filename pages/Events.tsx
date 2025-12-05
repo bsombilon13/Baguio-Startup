@@ -96,7 +96,7 @@ const Events: React.FC = () => {
 
   return (
     <div className="space-y-6 pb-24">
-      <div className="flex flex-col md:flex-row justify-between items-end gap-4 mb-4">
+      <div className="flex flex-col md:flex-row justify-between items-end gap-2 md:gap-4 mb-2 md:mb-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Events Calendar
@@ -108,28 +108,28 @@ const Events: React.FC = () => {
           <button
             onClick={() => setView('list')}
             aria-pressed={view === 'list'}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+            className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
               view === 'list' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
             }`}
           >
-            <ListIcon size={16} /> List
+            <ListIcon size={14} className="md:w-4 md:h-4" /> List
           </button>
           <button
             onClick={() => setView('calendar')}
             aria-pressed={view === 'calendar'}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+            className={`flex items-center gap-1.5 md:gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
               view === 'calendar' ? 'bg-[#35308f] text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800'
             }`}
           >
-            <CalendarIcon size={16} /> Calendar
+            <CalendarIcon size={14} className="md:w-4 md:h-4" /> Calendar
           </button>
         </div>
       </div>
 
-      {/* Filters Bar */}
+      {/* Filters Bar - Compact on Mobile */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label="Filter events by tag">
-          <span className="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0">
-             <Filter size={14} /> Filter:
+          <span className="flex items-center gap-1 md:gap-1.5 text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider mr-1 md:mr-2 shrink-0">
+             <Filter size={12} className="md:w-[14px]" /> Filter:
           </span>
           {filters.map(filter => (
             <button 
@@ -138,7 +138,7 @@ const Events: React.FC = () => {
               aria-selected={activeFilter === filter}
               onClick={() => handleFilterChange(filter)}
               className={`
-                px-4 py-2 rounded-lg border text-sm font-bold whitespace-nowrap transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]
+                px-3 py-1.5 md:px-4 md:py-2 rounded-lg border text-xs md:text-sm font-bold whitespace-nowrap transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]
                 ${activeFilter === filter 
                   ? 'bg-[#35308f] text-white border-[#35308f] shadow-md shadow-indigo-200 dark:shadow-none' 
                   : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -168,7 +168,7 @@ const Events: React.FC = () => {
                     aria-label={`View details for ${event.title}, ${priceLabel} event on ${format(event.date, 'MMMM d')}`}
                 >
                     {/* Header Banner Image - Fixed height for uniformity */}
-                    <div className="h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
+                    <div className="h-24 md:h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
                         <img 
                             src={event.imageUrl} 
                             alt={event.title} 
@@ -178,9 +178,9 @@ const Events: React.FC = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
                         {/* Date Badge - Positioned on Image */}
-                        <div className="absolute top-4 left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[3.5rem] group-hover:scale-105 transition-transform z-10">
-                            <div className="text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
-                            <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-lg' : 'text-xl'}`}>
+                        <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[2.5rem] md:min-w-[3.5rem] group-hover:scale-105 transition-transform z-10 scale-75 md:scale-100 origin-top-left">
+                            <div className="text-[8px] md:text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
+                            <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-sm md:text-lg' : 'text-base md:text-xl'}`}>
                                 {isMultiDay 
                                     ? `${format(event.date, 'd')}-${format(event.endDate!, 'd')}` 
                                     : format(event.date, 'd')
@@ -190,19 +190,19 @@ const Events: React.FC = () => {
 
                         {/* Category Tag */}
                         {mainTag && (
-                            <div className="absolute top-4 right-4 bg-[#35308f] text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
+                            <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#35308f] text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
                                 {mainTag}
                             </div>
                         )}
                         
                         {/* Price Label */}
-                         <div className={`absolute bottom-4 right-4 text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10 ${priceLabel === 'Free' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
+                         <div className={`absolute bottom-2 right-2 md:bottom-4 md:right-4 text-[8px] md:text-[10px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10 ${priceLabel === 'Free' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
                             {priceLabel}
                         </div>
                     </div>
 
                     {/* Details Content - Solid Background & Flex Column for Alignment */}
-                    <div className="flex flex-col flex-1 p-5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative">
+                    <div className="flex flex-col flex-1 p-3 md:p-5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative">
                         
                         {/* Organizer Profile Picture - Overlapping & Keyboard Accessible */}
                         {organizer && (
@@ -221,10 +221,10 @@ const Events: React.FC = () => {
                                 e.stopPropagation();
                                 setSelectedOrg(organizer);
                             }}
-                            className="absolute -top-6 left-5 z-20 cursor-pointer group/org focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f] rounded-full"
+                            className="absolute -top-4 left-3 md:-top-6 md:left-5 z-20 cursor-pointer group/org focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f] rounded-full"
                             title={`Organized by ${organizer.name}`}
                         >
-                            <div className="w-12 h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
+                            <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
                                 <img 
                                     src={organizer.logoUrl} 
                                     alt="" // Decorative since container has aria-label
@@ -235,34 +235,34 @@ const Events: React.FC = () => {
                         )}
 
                         {/* Spacer for overlapping avatar */}
-                        <div className="h-4 shrink-0"></div>
+                        <div className="h-3 md:h-4 shrink-0"></div>
 
                         {/* Title - Min height ensures alignment across row */}
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[3.5rem]">
+                        <h3 className="text-sm md:text-lg font-bold text-slate-900 dark:text-white mb-1 md:mb-2 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 md:min-h-[3.5rem]">
                             {event.title}
                         </h3>
                         
                         {/* Meta Info Row */}
-                        <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-slate-500 dark:text-slate-400 mb-4 shrink-0">
-                            <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 shrink-0">
-                                <Clock size={14} className="text-[#35308f] dark:text-indigo-400"/>
+                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-[10px] md:text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-4 shrink-0">
+                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-1 md:px-2.5 md:py-1.5 rounded-md md:rounded-lg border border-slate-100 dark:border-slate-700 shrink-0">
+                                <Clock size={12} className="text-[#35308f] dark:text-indigo-400 md:w-3.5 md:h-3.5"/>
                                 {format(event.date, 'h:mm a')}
                             </span>
-                            <span className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2.5 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700">
-                                <MapPin size={14} className="text-[#35308f] dark:text-indigo-400 shrink-0"/>
-                                <span className="truncate max-w-[200px]">{event.location}</span>
+                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-1 md:px-2.5 md:py-1.5 rounded-md md:rounded-lg border border-slate-100 dark:border-slate-700">
+                                <MapPin size={12} className="text-[#35308f] dark:text-indigo-400 shrink-0 md:w-3.5 md:h-3.5"/>
+                                <span className="truncate max-w-[80px] md:max-w-[200px]">{event.location}</span>
                             </span>
                         </div>
 
                         {/* Description - Flex grow pushes footer down */}
-                        <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 leading-relaxed mb-4 flex-1">
+                        <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed mb-2 md:mb-4 flex-1">
                             {event.description}
                         </p>
 
                         {/* Footer - Pushed to bottom via mt-auto in flex container (or flex-1 above) */}
-                        <div className="pt-4 border-t border-slate-100 dark:border-slate-800 shrink-0">
-                            <span className="text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                            View Details <ChevronRightIcon size={16} />
+                        <div className="pt-2 md:pt-4 border-t border-slate-100 dark:border-slate-800 shrink-0">
+                            <span className="text-xs md:text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <ChevronRightIcon size={14} className="md:w-4 md:h-4" />
                             </span>
                         </div>
                     </div>

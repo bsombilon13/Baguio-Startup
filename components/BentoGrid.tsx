@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string }> = ({ 
@@ -5,7 +6,7 @@ export const BentoGrid: React.FC<{ children: React.ReactNode; className?: string
   className = "" 
 }) => {
   return (
-    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[minmax(180px,auto)] ${className}`}>
+    <div className={`grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 auto-rows-[minmax(140px,auto)] md:auto-rows-[minmax(180px,auto)] ${className}`}>
       {children}
     </div>
   );
@@ -42,13 +43,13 @@ export const BentoItem: React.FC<BentoItemProps> = ({
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       className={`
-        relative overflow-hidden rounded-3xl
+        relative overflow-hidden rounded-2xl md:rounded-3xl
         bg-white dark:bg-slate-900 
         border border-slate-100 dark:border-slate-800 
         shadow-sm hover:shadow-lg dark:hover:shadow-slate-800/50
         hover:border-slate-300 dark:hover:border-slate-600
         transition-all duration-300 group
-        ${noPadding ? 'p-0' : 'p-6'}
+        ${noPadding ? 'p-0' : 'p-3 md:p-6'}
         ${onClick ? 'cursor-pointer hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus:ring-4 focus:ring-indigo-500/20' : ''}
         ${className}
       `}

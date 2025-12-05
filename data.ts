@@ -545,7 +545,27 @@ export const ecosystemOrgs: Organization[] = [
   }
 ];
 
+// Alphabetically sorted active startups
 export const activeStartups: Startup[] = [
+  {
+    id: 'aeroaid',
+    name: 'AeroAid',
+    description: 'Bringing essential medicines faster, safer, and smarter. One flight at a time.',
+    logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3or8YoXluRbi1y92eqnTqK_Zq44NMPH0r9mrjg0w8ff6bmHSzHAW48nm3_M5h9RixYBFHLY5QkQxk4gW4Ix6B&_nc_ohc=L4ixzEDF4WsQ7kNvwHUqyuE&_nc_oc=AdmQk7yef5dZTpVgUptHjeJ58_8GOa8QwVCfKoM-6UY35T05XiUfqwocPCypC3o-q90&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=2jFnnRW_jX9g-w4HsT16CQ&oh=00_Afn7NQraNDM5Xa2ugxuSvaEsa2WDRFCRlFX9KXwtpYaz-g&oe=69383ABC',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61576826433382',
+    industry: ['Tech', 'Health'],
+    stage: 'Idea'
+  },
+  {
+    id: 'aicore',
+    name: 'AiCore',
+    description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374600',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
+    websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
+    industry: ['Tech'],
+    stage: 'Pre-Seed'
+  },
   {
     id: 'heysuccess',
     name: 'Hey Success PH',
@@ -553,7 +573,7 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/heysuccessph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/heysuccessph',
     websiteUrl: 'https://heysuccess.com.ph',
-    industry: 'Service',
+    industry: ['Service'],
     stage: 'Pre-Seed'
   },
   {
@@ -563,7 +583,7 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/inv8studio/picture?type=large',
     facebookUrl: 'https://www.facebook.com/inv8studio',
     websiteUrl: 'https://inv8.io/',
-    industry: 'Creative',
+    industry: ['Creative'],
     stage: 'Pre-Seed'
   },
   {
@@ -572,7 +592,7 @@ export const activeStartups: Startup[] = [
     description: 'Innovative transport solutions for the modern commuter.',
     logoUrl: 'https://graph.facebook.com/officialparapo/picture?type=large',
     facebookUrl: 'https://www.facebook.com/officialparapo',
-    industry: 'Tech',
+    industry: ['Tech'],
     stage: 'Pre-Seed'
   },
   {
@@ -582,7 +602,7 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/srvpinoy/picture?type=large',
     facebookUrl: 'https://www.facebook.com/srvpinoy',
     websiteUrl: 'https://srvpinoy.com',
-    industry: 'Service',
+    industry: ['Service'],
     stage: 'Pre-Seed'
   },
   {
@@ -591,7 +611,7 @@ export const activeStartups: Startup[] = [
     description: 'A blockchain-enabled marketplace for real-time, peer-to-peer solar energy trading.',
     logoUrl: 'https://graph.facebook.com/sunshare.ph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/sunshare.ph',
-    industry: 'Tech',
+    industry: ['Tech'],
     stage: 'Pre-Seed'
   },
   {
@@ -601,7 +621,7 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/TaranaAI/picture?type=large',
     facebookUrl: 'https://www.facebook.com/TaranaAI',
     websiteUrl: 'https://www.tarana-ai.com/',
-    industry: 'Tech',
+    industry: ['Tech'],
     stage: 'Pre-Seed'
   },
   {
@@ -610,17 +630,7 @@ export const activeStartups: Startup[] = [
     description: 'Refill station promoting zero-waste lifestyle.',
     logoUrl: 'https://graph.facebook.com/tingistation/picture?type=large',
     facebookUrl: 'https://www.facebook.com/tingistation',
-    industry: 'E-commerce',
-    stage: 'Pre-Seed'
-  },
-  {
-    id: 'aicore',
-    name: 'AiCore',
-    description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374600',
-    facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
-    websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
-    industry: 'Tech',
+    industry: ['E-commerce'],
     stage: 'Pre-Seed'
   }
 ];

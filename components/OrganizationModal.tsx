@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { X, Facebook, Globe } from 'lucide-react';
@@ -18,13 +17,13 @@ const OrganizationModal: React.FC<OrganizationModalProps> = ({ org, onClose }) =
 
   return createPortal(
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-4 bg-slate-900/40 dark:bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       aria-labelledby="org-modal-title"
     >
       <div 
-        className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl relative animate-in zoom-in-95 duration-300"
+        className="bg-white dark:bg-slate-900 border-t md:border border-slate-100 dark:border-slate-800 w-full max-w-md rounded-t-[2rem] md:rounded-3xl overflow-hidden shadow-2xl relative animate-in slide-in-from-bottom-full md:zoom-in-95 duration-300 max-h-[90vh] md:max-h-auto overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Background */}
