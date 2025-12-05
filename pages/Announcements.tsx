@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
-import { Megaphone, DollarSign, Lightbulb, Trophy, ExternalLink, Info, Swords } from 'lucide-react';
+import { Megaphone, DollarSign, Lightbulb, Trophy, Swords, Building2, Calendar } from 'lucide-react';
 import { opportunities } from '../data';
 import { Opportunity } from '../types';
+import AnnouncementModal from '../components/AnnouncementModal';
 
 const Announcements: React.FC = () => {
   const [activeTab, setActiveTab] = useState('Funding & Grants');
+  const [selectedOpp, setSelectedOpp] = useState<Opportunity | null>(null);
 
   const tabs = [
     { name: 'Funding & Grants', icon: DollarSign },
@@ -22,14 +24,13 @@ const Announcements: React.FC = () => {
     } else if (activeTab === 'Competitions') {
         return opp.type === 'Competition';
     } else {
-        // Fallback for general opportunities not covered above, if any, or catch-all
         return opp.type !== 'Grant' && opp.type !== 'Investment' && opp.type !== 'Accelerator' && opp.type !== 'Awards' && opp.type !== 'Competition';
     }
   });
 
   return (
-    <div className="space-y-6 pb-24 h-full flex flex-col">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+    <div className="space-y-6 pb-24 flex flex-col">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2 md:mb-6">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
             Announcements
@@ -40,102 +41,86 @@ const Announcements: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex gap-2 border-b border-slate-200 dark:border-slate-800 pb-1 overflow-x-auto no-scrollbar" role="tablist" aria-label="Announcement Categories">
-        {tabs.map((tab) => (
-          <button
-            key={tab.name}
-            role="tab"
-            aria-selected={activeTab === tab.name}
-            onClick={() => setActiveTab(tab.name)}
-            className={`
-              flex items-center gap-2 px-4 py-2.5 rounded-t-lg font-bold text-sm whitespace-nowrap transition-all border-b-2 focus:outline-none focus:ring-2 focus:ring-[#35308f]
-              ${activeTab === tab.name 
-                ? 'border-[#35308f] text-[#35308f] dark:border-indigo-400 dark:text-indigo-400 bg-indigo-50 dark:bg-slate-800/50' 
-                : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}
-            `}
-          >
-            <tab.icon size={16} />
-            {tab.name}
-          </button>
-        ))}
+      {/* Category Tabs - Scrollable Container */}
+      {/* Added relative z-10 to ensure it sits above empty state/grid if any overlap occurs */}
+      <div className="w-full overflow-x-auto no-scrollbar pb-2 -mx-4 px-4 md:mx-0 md:px-0 relative z-10">
+        <div className="flex items-center gap-2 min-w-max" role="tablist" aria-label="Announcement Categories">
+            {tabs.map((tab) => (
+            <button
+                key={tab.name}
+                role="tab"
+                aria-selected={activeTab === tab.name}
+                onClick={() => setActiveTab(tab.name)}
+                className={`
+                flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs md:text-sm whitespace-nowrap transition-all border focus:outline-none focus:ring-2 focus:ring-[#35308f]
+                ${activeTab === tab.name 
+                    ? 'bg-[#35308f] text-white border-[#35308f] shadow-md shadow-indigo-200 dark:shadow-none' 
+                    : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'}
+                `}
+            >
+                <tab.icon size={16} />
+                {tab.name}
+            </button>
+            ))}
+        </div>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 relative z-0">
         {filteredOpportunities.map((opp) => (
           <div 
             key={opp.id}
-            className="group relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-amber-200 dark:hover:border-amber-700/50 hover:shadow-xl hover:shadow-amber-100/50 dark:hover:shadow-none rounded-2xl overflow-hidden transition-all duration-300 shadow-sm flex flex-col md:flex-row"
+            onClick={() => setSelectedOpp(opp)}
+            className="group cursor-pointer bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-indigo-200 dark:hover:border-indigo-800 hover:shadow-lg dark:hover:shadow-slate-800/50 rounded-2xl overflow-hidden transition-all duration-300 shadow-sm flex flex-col h-full"
           >
-            {opp.bannerUrl && (
-               <div className="w-full md:w-48 h-48 md:h-auto md:min-h-[12rem] shrink-0 relative border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 overflow-hidden">
-                  <img src={opp.bannerUrl} alt={opp.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-               </div>
-            )}
-            <div className="p-6 flex-1">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 h-full">
-                <div className="space-y-2 flex-1">
-                  <div className="flex items-center gap-3">
-                    <span className={`
-                      px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wide
-                      ${opp.type === 'Grant' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
-                      ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : ''}
-                      ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : ''}
-                      ${opp.type === 'Awards' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : ''}
-                      ${opp.type === 'Competition' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : ''}
-                    `}>
-                      {opp.type}
-                    </span>
-                    <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">{opp.title}</h3>
-                  </div>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{opp.description}</p>
-                  <div className="text-sm text-slate-400 font-bold uppercase tracking-wider">By {opp.organization}</div>
-                </div>
-
-                <div className="flex flex-col gap-4 md:min-w-[200px] justify-start md:items-end">
-                  <div className="flex flex-col gap-2 w-full">
-                      <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 text-sm font-medium">
-                          <span className="text-slate-400 uppercase text-xs font-bold">Value:</span> {opp.amount}
-                      </div>
-                      <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 text-sm font-medium">
-                          <span className="text-slate-400 uppercase text-xs font-bold">Deadline:</span> {opp.deadline}
-                      </div>
-                  </div>
+             {/* Small Card Banner */}
+             <div className="w-full h-24 md:h-32 relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
+                  {opp.bannerUrl ? (
+                    <img src={opp.bannerUrl} alt={opp.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-50 dark:bg-slate-800">
+                        <Building2 className="text-slate-300 dark:text-slate-700" size={32} />
+                    </div>
+                  )}
                   
-                  <div className="flex gap-2 w-full md:w-auto mt-2">
-                      {opp.moreDetailsLink && (
-                          <a 
-                              href={opp.moreDetailsLink} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                          >
-                              <Info size={16} /> Details
-                          </a>
-                      )}
-                      {opp.link ? (
-                          <a 
-                              href={opp.link} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#35308f] text-white font-bold text-sm hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-200 dark:shadow-none"
-                          >
-                              Submit <ExternalLink size={16} />
-                          </a>
-                      ) : (
-                          <button disabled className="p-2 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-300 cursor-not-allowed self-end">
-                              <ExternalLink size={20} />
-                          </button>
-                      )}
+                  {/* Floating Badge */}
+                  <div className="absolute top-2 left-2">
+                    <span className={`
+                        px-2 py-0.5 rounded-md text-[8px] md:text-[10px] font-extrabold uppercase tracking-wide shadow-sm border border-white/20
+                        ${opp.type === 'Grant' ? 'bg-emerald-100 text-emerald-800' : ''}
+                        ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-800' : ''}
+                        ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-800' : ''}
+                        ${opp.type === 'Awards' ? 'bg-amber-100 text-amber-800' : ''}
+                        ${opp.type === 'Competition' ? 'bg-orange-100 text-orange-800' : ''}
+                        ${opp.type === 'Call for Experts' ? 'bg-cyan-100 text-cyan-800' : ''}
+                        `}>
+                        {opp.type}
+                    </span>
                   </div>
+             </div>
+
+             {/* Small Card Content */}
+             <div className="p-3 md:p-5 flex flex-col flex-1">
+                <h3 className="text-xs md:text-base font-bold text-slate-900 dark:text-white mb-1 md:mb-2 leading-tight line-clamp-2 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
+                    {opp.title}
+                </h3>
+                
+                <div className="mt-auto pt-2 space-y-1">
+                    <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-medium text-slate-500 dark:text-slate-400">
+                         <Building2 size={10} className="md:w-3 md:h-3" />
+                         <span className="truncate">{opp.organization}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">
+                        <Calendar size={10} className="md:w-3 md:h-3" />
+                        <span>{opp.deadline}</span>
+                    </div>
                 </div>
-              </div>
-            </div>
+             </div>
           </div>
         ))}
       </div>
 
       {filteredOpportunities.length === 0 && (
-        <div className="flex-1 rounded-[2.5rem] border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col items-center justify-center p-12 text-center min-h-[400px]">
+        <div className="w-full rounded-[2.5rem] border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 flex flex-col items-center justify-center p-8 md:p-12 text-center min-h-[300px] md:min-h-[400px] relative z-0">
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-4 text-slate-400 dark:text-slate-500">
             <Megaphone size={32} />
             </div>
@@ -144,6 +129,10 @@ const Announcements: React.FC = () => {
             Check back later for new {activeTab.toLowerCase().replace('&', 'and')}.
             </p>
         </div>
+      )}
+
+      {selectedOpp && (
+        <AnnouncementModal opportunity={selectedOpp} onClose={() => setSelectedOpp(null)} />
       )}
     </div>
   );

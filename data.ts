@@ -743,6 +743,18 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'circular-economy-experts',
+    title: 'Call for Experts to Support the Development of the Circular Economy Taxonomy',
+    organization: 'EU-PH Green Economy Partnership',
+    amount: 'N/A',
+    deadline: 'Dec 10, 2025',
+    type: 'Call for Experts',
+    description: 'Help shape the Philippines’ Sustainable Finance Taxonomy Guidelines Phase 2 #CircularEconomy objective by joining the Technical Expert Groups.',
+    link: 'https://forms.gle/JZ6GRMGE5s2FujtD6',
+    moreDetailsLink: 'https://www.greeneconomy.ph/event/call-for-sector-experts-join-the-technical-expert-groups-for-the-philippines-sustainable-finance-taxonomy-circular-economy-objective',
+    bannerUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/590797299_122157486026653773_3356632794202583350_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YoPnenmtsjcQ7kNvwF6FrEE&_nc_oc=AdmUEnC6x7y3rLV_oe6mnN4OeZXUrHWhNip4F_XrnyWA-SrvNw6Pn0Umy0-JPLxCtUQ&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=a1Jr8QUQDJVAmPB6kAOSRw&oh=00_AfkDhCl6RSBNGphJ0C81_75t_VaqWJrd8msJlpGpEzH8DA&oe=69387EA7'
+  },
+  {
     id: 'award-1',
     title: '1st Negosyong Matatag: MSME Disaster Resilience Awards',
     organization: 'DTI / Government',
