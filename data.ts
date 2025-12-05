@@ -827,6 +827,15 @@ export const resources: Resource[] = [
     size: 'N/A',
     url: 'https://gobicore.vc/gobi-partners-launches-philippine-startup-ecosystem-report-2025-the-next-wave-of-innovation/?fbclid=IwY2xjawOaz6FleHRuA2FlbQIxMABicmlkETFUSEFMUXZUT2dOanpFM2Mxc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHj9p06uUVAyV9q_9Kpj3U-3e_aZYcL_SQKFsyyZrU9rK4QDkbBjdrLUIdyAk_aem_RDT5QMOuiKoF_EVRa14IEw'
   },
+  {
+    id: 'r4',
+    title: 'Baguio City Voluntary Local Review of the Sustainable Development Goals',
+    type: 'Report',
+    description: 'The report highlighted significant progress in areas such as sustainable cities and communities and climate actions while also identifying key challenges that require accelerated efforts to achieve the SDGs.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://www.undp.org/philippines/publications/baguio-city-voluntary-local-review-sustainable-development-goals'
+  },
   // Websites
   {
     id: 'web-luma',

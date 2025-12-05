@@ -65,10 +65,10 @@ const ActiveStartups: React.FC = () => {
                </p>
             </div>
             <a 
-              href="https://m.me/baguiostartup"
+              href="https://forms.gle/o6wPjtm6XoKnqegF8"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-[#35308f] px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-all shadow-md flex items-center gap-2 whitespace-nowrap"
+              className="bg-white text-[#35308f] px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-all shadow-md flex items-center gap-2 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white"
             >
               <PlusCircle size={20} /> List Your Startup
             </a>
