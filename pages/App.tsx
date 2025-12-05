@@ -1,4 +1,5 @@
 
+
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from './components/Navbar';
@@ -255,7 +256,7 @@ const Dashboard = () => {
       </header>
 
       {/* Fluid Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-min">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
         
         {/* Row 1: SCMM Section - Top */}
         <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
@@ -377,7 +378,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: AI Advice Card - Nature/Misty Theme */}
-        <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px]">
+        <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px] h-full">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
           
@@ -409,7 +410,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: StartupBlink */}
-        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
+        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] h-full relative overflow-hidden group">
            <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
                <ArrowUpRight size={100} />
            </div>
@@ -442,7 +443,7 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: Announcements Footer (Resized to 2 columns) */}
-        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px]">
+        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px] h-full">
            <div>
                <div className="flex items-center gap-4 mb-4">
                   <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400">

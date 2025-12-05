@@ -1,6 +1,6 @@
 
 import React, { useContext } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle, UserPlus } from 'lucide-react';
+import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle, UserPlus, Globe } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../App';
 
@@ -12,7 +12,8 @@ const Sidebar: React.FC = () => {
     { name: 'Active Startups', icon: Rocket, path: '/startups' },
     { name: 'Ecosystem', icon: Users, path: '/ecosystem' },
     { name: 'Events', icon: Calendar, path: '/events' },
-    { name: 'Community News', icon: Newspaper, path: '/news' },
+    { name: 'SDGs', icon: Globe, path: '/sdg' },
+    { name: 'News', icon: Newspaper, path: '/news' },
     { name: 'Resources', icon: BookOpen, path: '/resources' },
     { name: 'Announcements', icon: Megaphone, path: '/announcements' },
   ];
@@ -29,7 +30,7 @@ const Sidebar: React.FC = () => {
             />
         </div>
 
-        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6" role="navigation" aria-label="Main Navigation">
+        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6 overflow-y-auto custom-scrollbar" role="navigation" aria-label="Main Navigation">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
@@ -50,7 +51,7 @@ const Sidebar: React.FC = () => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2">
+        <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2 mt-auto">
           <a 
             href="https://m.me/cm/Abbm6IW4fkqDxlfM/?send_source=cm%3Acopy_invite_link" 
             target="_blank" 
@@ -85,26 +86,26 @@ const Sidebar: React.FC = () => {
       </aside>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 z-50 px-4 py-2 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.05)] transition-colors duration-300" role="navigation" aria-label="Mobile Navigation">
+      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 z-50 px-4 py-2 flex justify-between items-center shadow-[0_-4px_20px_rgba(0,0,0,0.05)] transition-colors duration-300 overflow-x-auto no-scrollbar" role="navigation" aria-label="Mobile Navigation">
         {navItems.map((item) => (
           <NavLink
             key={item.name}
             to={item.path}
             aria-label={item.name}
             className={({ isActive }) =>
-              `flex flex-col items-center gap-1 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+              `flex flex-col items-center gap-1 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#35308f] min-w-[60px] ${
                 isActive ? 'text-[#35308f] dark:text-[#5c56d6]' : 'text-slate-400 dark:text-slate-500'
               }`
             }
           >
             <item.icon size={20} />
-            <span className="text-[10px] font-medium hidden sm:block">{item.name}</span>
+            <span className="text-[10px] font-medium hidden sm:block whitespace-nowrap">{item.name}</span>
           </NavLink>
         ))}
         <button 
           onClick={toggleTheme} 
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-          className="p-2 text-slate-400 dark:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#35308f] rounded-lg"
+          className="p-2 text-slate-400 dark:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#35308f] rounded-lg min-w-[40px]"
         >
            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>

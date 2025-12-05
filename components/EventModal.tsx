@@ -1,5 +1,6 @@
 
 
+
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, MapPin, Calendar as CalendarIcon, ExternalLink, CalendarPlus, Download, Info, ChevronRight, Clock } from 'lucide-react';
@@ -193,6 +194,7 @@ const EventModal: React.FC<EventModalProps> = ({ event, onClose, onOrganizerClic
                 className="w-full sm:w-auto h-full flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold py-3 px-4 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-500"
                 aria-haspopup="true"
                 aria-expanded={showCalendarOptions}
+                title="Add to Calendar"
               >
                 <CalendarPlus size={20} />
               </button>

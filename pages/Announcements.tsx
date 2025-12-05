@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Megaphone, DollarSign, Lightbulb, Trophy, ExternalLink, Info } from 'lucide-react';
+import { Megaphone, DollarSign, Lightbulb, Trophy, ExternalLink, Info, Swords } from 'lucide-react';
 import { opportunities } from '../data';
 import { Opportunity } from '../types';
 
@@ -10,6 +10,7 @@ const Announcements: React.FC = () => {
   const tabs = [
     { name: 'Funding & Grants', icon: DollarSign },
     { name: 'Opportunities', icon: Lightbulb },
+    { name: 'Competitions', icon: Swords },
     { name: 'Awards', icon: Trophy },
   ];
 
@@ -18,8 +19,11 @@ const Announcements: React.FC = () => {
         return opp.type === 'Grant' || opp.type === 'Investment' || opp.type === 'Accelerator';
     } else if (activeTab === 'Awards') {
         return opp.type === 'Awards';
-    } else {
+    } else if (activeTab === 'Competitions') {
         return opp.type === 'Competition';
+    } else {
+        // Fallback for general opportunities not covered above, if any, or catch-all
+        return opp.type !== 'Grant' && opp.type !== 'Investment' && opp.type !== 'Accelerator' && opp.type !== 'Awards' && opp.type !== 'Competition';
     }
   });
 
@@ -77,6 +81,7 @@ const Announcements: React.FC = () => {
                       ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : ''}
                       ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : ''}
                       ${opp.type === 'Awards' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : ''}
+                      ${opp.type === 'Competition' ? 'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : ''}
                     `}>
                       {opp.type}
                     </span>
