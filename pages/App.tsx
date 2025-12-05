@@ -1,6 +1,7 @@
+
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-import Sidebar from '../components/Navbar';
+import Sidebar, { MobileHeader } from '../components/Navbar';
 import Events from './Events';
 import Ecosystem from './Ecosystem';
 import ActiveStartups from './ActiveStartups';
@@ -224,13 +225,9 @@ const Dashboard = () => {
 
   const getLevelColor = (level: number) => {
     switch(level) {
-      // Level 1: Prominent / High Contrast (Abra, Mt. Province, Kalinga, Ifugao, Apayao)
       case 1: return 'bg-slate-800 text-white dark:bg-slate-700 dark:text-slate-100 border-slate-700 shadow-md ring-1 ring-slate-900/10';
-      // Level 2: Sprouting Green
       case 2: return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800';
-      // Level 3: Flourishing Teal
       case 3: return 'bg-teal-100 text-teal-700 dark:bg-teal-900/40 dark:text-teal-300 border-teal-200 dark:border-teal-800';
-      // Level 4: Established Pine
       case 4: return 'bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 border-green-200 dark:border-green-800';
       default: return 'bg-slate-100 text-slate-700';
     }
@@ -244,24 +241,30 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6 h-full flex flex-col">
-      <header className="mb-6">
+       {/* Header is now part of MobileHeader in App structure */}
+       <div className="md:hidden mb-6">
+        <h1 className="text-3xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-2">
+          Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
+        </h1>
+        <p className="text-slate-500 dark:text-slate-400 text-base font-medium leading-relaxed">
+          The central hub for the mountain region's startup ecosystem.
+        </p>
+      </div>
+       
+       <div className="hidden md:block mb-6">
         <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
         <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
-      </header>
+      </div>
 
-      {/* Fluid Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-min">
-        
-        {/* Row 1: SCMM Section - Top */}
-        <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
-          
-          {/* Main Region Box - Pine Green Theme */}
-          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-emerald-900/10 dark:shadow-none relative overflow-hidden">
-             {/* Abstract pine/mountain pattern overlay */}
+         {/* Row 1: SCMM Section - Top */}
+         <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
+           {/* Region Box */}
+           <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-emerald-900/10 dark:shadow-none relative overflow-hidden">
              <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                 <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                    <path d="M8 3l4 8 5-5 5 15H2L8 3z"></path>
@@ -288,7 +291,6 @@ const Dashboard = () => {
              </div>
           </div>
 
-          {/* Sub-regions Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
              {scmmData.map((area) => (
                 <button 
@@ -310,10 +312,10 @@ const Dashboard = () => {
                 </button>
              ))}
           </div>
-        </div>
-        
-        {/* Row 2: Top Story - New Card */}
-        {latestNews && (
+         </div>
+
+         {/* Latest News */}
+         {latestNews && (
             <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative group min-h-[320px]">
                 <div className="absolute inset-0">
                     <img src={latestNews.imageUrl} alt={latestNews.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -334,14 +336,12 @@ const Dashboard = () => {
             </div>
         )}
 
-        {/* Row 2: Upcoming Event - Split Layout */}
+        {/* Upcoming Event */}
         <div className={`md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col md:flex-row relative group transition-colors min-h-[320px] ${!latestNews ? 'md:col-start-1' : ''}`}>
-          
           <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10 order-2 md:order-1">
             <div className="mb-4">
               <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-teal-100 dark:shadow-none">Upcoming Event</span>
             </div>
-            
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
               {nextEvent ? nextEvent.title : 'No upcoming events'}
             </h2>
@@ -350,19 +350,15 @@ const Dashboard = () => {
                 ? `${format(nextEvent.date, 'MMMM d, yyyy')} | ${format(nextEvent.date, 'h:mm a')}`
                 : 'Stay tuned for more updates'}
             </p>
-            
             <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
                {nextEvent ? nextEvent.description : ''}
             </p>
-
             <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
                   View Details <ArrowUpRight size={18} />
                </Link>
             </div>
           </div>
-          
-          {/* Square Banner on the Right (or top on mobile) */}
           <div className="md:w-[40%] h-48 md:h-auto relative order-1 md:order-2">
              {nextEvent && (
                 <img 
@@ -375,7 +371,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Row 3: AI Advice Card - Nature/Misty Theme */}
+        {/* AI Advice */}
         <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px]">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
@@ -407,7 +403,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Row 3: StartupBlink */}
+        {/* StartupBlink */}
         <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
            <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
                <ArrowUpRight size={100} />
@@ -440,7 +436,7 @@ const Dashboard = () => {
            </a>
         </div>
 
-        {/* Row 3: Announcements Footer (Resized to 2 columns) */}
+        {/* Announcements */}
         <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px]">
            <div>
                <div className="flex items-center gap-4 mb-4">
@@ -484,7 +480,6 @@ const Dashboard = () => {
               View All Announcements <ArrowRight size={16}/>
            </Link>
         </div>
-
       </div>
 
       {selectedRegion && (
@@ -536,14 +531,16 @@ const App: React.FC = () => {
     <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
       <Router>
         <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 selection:bg-emerald-100 dark:selection:bg-emerald-900/30 overflow-hidden transition-colors duration-300">
-          {/* Sidebar Component - Fixed */}
+          {/* Sidebar Component - Desktop Sidebar & Mobile Bottom Nav */}
           <Sidebar />
 
-          {/* Main Content Area - Fluid with Offset */}
-          {/* md:ml-20 matches w-20, lg:ml-64 matches w-64 */}
-          {/* Mobile: Standardize top padding to pt-28 (112px) to clear 64px header + gap. Bottom padding pb-32 (128px) to clear bottom nav. */}
-          <main className="flex-1 h-full overflow-y-auto w-full ml-0 md:ml-20 lg:ml-64 transition-all duration-300">
-            <div className="w-full min-h-full px-4 pt-28 pb-32 md:p-8 max-w-[1920px] mx-auto">
+          {/* Main Content Area - Scrollable */}
+          <main className="flex-1 h-full overflow-y-auto w-full md:ml-20 lg:ml-64 transition-all duration-300 relative bg-slate-50 dark:bg-slate-950">
+            
+            {/* Mobile Header - Placed inside scrollable main area */}
+            <MobileHeader />
+
+            <div className="w-full p-4 md:p-8 pb-32 md:pb-8 max-w-[1920px] mx-auto min-h-full">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/events" element={<Events />} />

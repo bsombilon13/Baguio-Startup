@@ -107,7 +107,7 @@ const Events: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 pb-24">
+    <div className="space-y-6 pb-32">
       <div className="flex flex-col md:flex-row justify-between items-end gap-2 md:gap-4 mb-2 md:mb-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">
@@ -179,8 +179,8 @@ const Events: React.FC = () => {
                     noPadding={true}
                     aria-label={`View details for ${event.title}, ${priceLabel} event on ${format(event.date, 'MMMM d')}`}
                 >
-                    {/* Header Banner Image - Fixed height for uniformity */}
-                    <div className="h-24 md:h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
+                    {/* Header Banner Image - h-32 on mobile for better visibility */}
+                    <div className="h-32 md:h-48 w-full relative bg-slate-100 dark:bg-slate-800 shrink-0 overflow-hidden">
                         <img 
                             src={event.imageUrl} 
                             alt={event.title} 
@@ -189,10 +189,10 @@ const Events: React.FC = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         
-                        {/* Date Badge - Positioned on Image */}
-                        <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[2.5rem] md:min-w-[3.5rem] group-hover:scale-105 transition-transform z-10 scale-75 md:scale-100 origin-top-left">
-                            <div className="text-[8px] md:text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
-                            <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-sm md:text-lg' : 'text-base md:text-xl'}`}>
+                        {/* Date Badge - Compact on Mobile */}
+                        <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-sm px-1.5 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-center shadow-md border border-slate-200 dark:border-slate-700 min-w-[2.5rem] md:min-w-[3.5rem] group-hover:scale-105 transition-transform z-10 origin-top-left">
+                            <div className="text-[9px] md:text-[10px] font-bold text-red-500 uppercase tracking-wide">{format(event.date, 'MMM')}</div>
+                            <div className={`font-extrabold text-slate-900 dark:text-white leading-none ${isMultiDay ? 'text-xs md:text-lg' : 'text-base md:text-xl'}`}>
                                 {isMultiDay 
                                     ? `${format(event.date, 'd')}-${format(event.endDate!, 'd')}` 
                                     : format(event.date, 'd')
@@ -202,21 +202,21 @@ const Events: React.FC = () => {
 
                         {/* Category Tag */}
                         {mainTag && (
-                            <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#35308f] text-white text-[8px] md:text-[10px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
+                            <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#35308f] text-white text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2.5 md:py-1 rounded md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10">
                                 {mainTag}
                             </div>
                         )}
                         
                         {/* Price Label */}
-                         <div className={`absolute bottom-2 right-2 md:bottom-4 md:right-4 text-[8px] md:text-[10px] font-bold px-2 py-0.5 md:px-2.5 md:py-1 rounded-md md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10 ${priceLabel === 'Free' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
+                         <div className={`absolute bottom-2 right-2 md:bottom-4 md:right-4 text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2.5 md:py-1 rounded md:rounded-lg shadow-md uppercase tracking-wider border border-white/10 z-10 ${priceLabel === 'Free' ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
                             {priceLabel}
                         </div>
                     </div>
 
-                    {/* Details Content - Solid Background & Flex Column for Alignment */}
+                    {/* Details Content - Compact on Mobile but slightly roomier than before */}
                     <div className="flex flex-col flex-1 p-3 md:p-5 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 relative">
                         
-                        {/* Organizer Profile Picture - Overlapping & Keyboard Accessible */}
+                        {/* Organizer Profile Picture */}
                         {organizer && (
                         <div 
                             role="button"
@@ -233,13 +233,13 @@ const Events: React.FC = () => {
                                 e.stopPropagation();
                                 setSelectedOrg(organizer);
                             }}
-                            className="absolute -top-4 left-3 md:-top-6 md:left-5 z-20 cursor-pointer group/org focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f] rounded-full"
+                            className="absolute -top-3 left-2 md:-top-6 md:left-5 z-20 cursor-pointer group/org focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#35308f] rounded-full"
                             title={`Organized by ${organizer.name}`}
                         >
-                            <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
+                            <div className="w-6 h-6 md:w-12 md:h-12 rounded-full bg-white border-2 border-white shadow-md overflow-hidden transition-transform group-hover/org:scale-110">
                                 <img 
                                     src={organizer.logoUrl} 
-                                    alt="" // Decorative since container has aria-label
+                                    alt="" 
                                     className="w-full h-full object-cover"
                                 />
                             </div>
@@ -247,34 +247,34 @@ const Events: React.FC = () => {
                         )}
 
                         {/* Spacer for overlapping avatar */}
-                        <div className="h-3 md:h-4 shrink-0"></div>
+                        <div className="h-4 md:h-4 shrink-0"></div>
 
-                        {/* Title - Min height ensures alignment across row */}
-                        <h3 className="text-sm md:text-lg font-bold text-slate-900 dark:text-white mb-1 md:mb-2 leading-snug group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 md:min-h-[3.5rem]">
+                        {/* Title - Text-sm for readability */}
+                        <h3 className="text-sm md:text-lg font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-2 min-h-[2.5em] md:min-h-[3.5rem]">
                             {event.title}
                         </h3>
                         
-                        {/* Meta Info Row */}
-                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-[10px] md:text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-4 shrink-0">
-                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-1 md:px-2.5 md:py-1.5 rounded-md md:rounded-lg border border-slate-100 dark:border-slate-700 shrink-0">
-                                <Clock size={12} className="text-[#35308f] dark:text-indigo-400 md:w-3.5 md:h-3.5"/>
+                        {/* Meta Info Row - Stacked on Mobile for readability */}
+                        <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-1.5 md:gap-3 text-[11px] md:text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 md:mb-4 shrink-0">
+                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-0.5 md:px-2.5 md:py-1.5 rounded md:rounded-lg border border-slate-100 dark:border-slate-700 shrink-0 w-fit">
+                                <Clock size={10} className="text-[#35308f] dark:text-indigo-400 md:w-3.5 md:h-3.5"/>
                                 {format(event.date, 'h:mm a')}
                             </span>
-                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-1 md:px-2.5 md:py-1.5 rounded-md md:rounded-lg border border-slate-100 dark:border-slate-700">
-                                <MapPin size={12} className="text-[#35308f] dark:text-indigo-400 shrink-0 md:w-3.5 md:h-3.5"/>
-                                <span className="truncate max-w-[80px] md:max-w-[200px]">{event.location}</span>
+                            <span className="flex items-center gap-1 md:gap-1.5 bg-slate-50 dark:bg-slate-800 px-1.5 py-0.5 md:px-2.5 md:py-1.5 rounded md:rounded-lg border border-slate-100 dark:border-slate-700 w-fit">
+                                <MapPin size={10} className="text-[#35308f] dark:text-indigo-400 shrink-0 md:w-3.5 md:h-3.5"/>
+                                <span className="truncate max-w-[120px] md:max-w-[200px]">{event.location}</span>
                             </span>
                         </div>
 
-                        {/* Description - Flex grow pushes footer down */}
-                        <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed mb-2 md:mb-4 flex-1">
+                        {/* Description - Hidden on Mobile to save space */}
+                        <p className="hidden md:block text-slate-600 dark:text-slate-400 text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed mb-2 md:mb-4 flex-1">
                             {event.description}
                         </p>
 
-                        {/* Footer - Pushed to bottom via mt-auto in flex container (or flex-1 above) */}
-                        <div className="pt-2 md:pt-4 border-t border-slate-100 dark:border-slate-800 shrink-0">
-                            <span className="text-xs md:text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
-                            View Details <ChevronRightIcon size={14} className="md:w-4 md:h-4" />
+                        {/* Footer */}
+                        <div className="pt-3 md:pt-4 mt-auto border-t border-slate-100 dark:border-slate-800 shrink-0">
+                            <span className="text-[10px] md:text-sm font-bold text-[#35308f] dark:text-indigo-400 flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Details <ChevronRightIcon size={12} className="md:w-4 md:h-4" />
                             </span>
                         </div>
                     </div>
@@ -289,9 +289,9 @@ const Events: React.FC = () => {
             )}
             </BentoGrid>
 
-            {/* Pagination Controls */}
+            {/* Pagination Controls - Added extra bottom padding */}
             {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-4 mt-8">
+              <div className="flex justify-center items-center gap-4 mt-8 pb-8">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}

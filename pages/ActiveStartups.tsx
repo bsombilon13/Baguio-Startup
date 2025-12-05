@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react';
 import { activeStartups } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -125,10 +124,10 @@ const ActiveStartups: React.FC = () => {
         {filteredStartups.map((startup) => (
           <BentoItem 
             key={startup.id}
-            className="flex flex-col gap-2 md:gap-5 group hover:border-[#35308f] dark:hover:border-indigo-500 transition-all duration-300"
+            className="flex flex-col gap-3 md:gap-5 group hover:border-[#35308f] dark:hover:border-indigo-500 transition-all duration-300"
           >
-            <div className="flex items-start justify-between">
-              <div className="w-10 h-10 md:w-16 md:h-16 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 bg-white group-hover:shadow-md transition-shadow">
+            <div className="flex items-start justify-between gap-3">
+              <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-700 bg-white group-hover:shadow-md transition-shadow shrink-0">
                 <img 
                   src={startup.logoUrl} 
                   alt={startup.name} 
@@ -139,31 +138,31 @@ const ActiveStartups: React.FC = () => {
                 />
               </div>
               
-              <div className={`px-1.5 py-0.5 md:px-3 md:py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold uppercase tracking-wider border ${getStageColor(startup.stage)}`}>
+              <div className={`px-2 py-1 md:px-3 md:py-1.5 rounded-lg text-[10px] md:text-xs font-extrabold uppercase tracking-wider border whitespace-nowrap ${getStageColor(startup.stage)}`}>
                   {startup.stage}
               </div>
             </div>
 
             <div className="flex-1">
-              <h3 className="font-bold text-sm md:text-2xl text-slate-900 dark:text-white mb-1 md:mb-3 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-1">
+              <h3 className="font-bold text-base md:text-2xl text-slate-900 dark:text-white mb-1.5 md:mb-3 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors line-clamp-1">
                 {startup.name}
               </h3>
-              <p className="text-xs md:text-base leading-relaxed text-slate-600 dark:text-slate-300 line-clamp-2 md:line-clamp-3">
+              <p className="text-xs md:text-base leading-relaxed text-slate-600 dark:text-slate-300 line-clamp-3">
                 {startup.description}
               </p>
             </div>
             
-             <div className="mt-auto pt-2 md:pt-5 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
-                <div className="flex flex-wrap gap-1">
+             <div className="mt-auto pt-3 md:pt-5 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-wrap gap-1.5">
                    {startup.industry.map((ind, i) => (
-                       <span key={i} className="text-[10px] md:text-xs font-bold text-slate-400 dark:text-slate-500 flex items-center gap-1 bg-slate-50 dark:bg-slate-800 px-1.5 py-1 md:px-2.5 md:py-1.5 rounded-md">
-                        <span className="hidden md:inline">{getIndustryIcon(ind)}</span>
+                       <span key={i} className="text-[10px] md:text-xs font-bold text-slate-500 dark:text-slate-400 flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-2 py-1 md:px-2.5 md:py-1.5 rounded-md border border-slate-100 dark:border-slate-700">
+                        <span className="text-slate-400 dark:text-slate-500">{getIndustryIcon(ind)}</span>
                         {ind}
                        </span>
                    ))}
                 </div>
 
-                <div className="flex gap-1 md:gap-2">
+                <div className="flex gap-2 justify-end md:justify-start">
                    {startup.websiteUrl && (
                      <a 
                        href={startup.websiteUrl} 
@@ -172,7 +171,7 @@ const ActiveStartups: React.FC = () => {
                        className="p-1.5 md:p-2 rounded-full hover:bg-indigo-50 dark:hover:bg-indigo-900/30 text-slate-400 hover:text-[#35308f] dark:hover:text-indigo-400 transition-all focus:outline-none focus:ring-2 focus:ring-[#35308f]"
                        aria-label={`Visit ${startup.name} website`}
                      >
-                       <Globe size={14} className="md:w-5 md:h-5"/>
+                       <Globe size={16} className="md:w-5 md:h-5"/>
                      </a>
                    )}
                    <a 
@@ -183,7 +182,7 @@ const ActiveStartups: React.FC = () => {
                      aria-label={`Visit ${startup.name} on Facebook`}
                      title="Visit Facebook Page"
                    >
-                     <Facebook size={14} className="md:w-5 md:h-5"/>
+                     <Facebook size={16} className="md:w-5 md:h-5"/>
                    </a>
                 </div>
              </div>

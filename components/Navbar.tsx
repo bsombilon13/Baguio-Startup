@@ -1,12 +1,39 @@
 
 import React, { useContext } from 'react';
 import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle, UserPlus, Globe, Menu } from 'lucide-react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
+
+export const MobileHeader: React.FC = () => {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  
+  return (
+    <header className="md:hidden w-full flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shrink-0">
+        <Link to="/" className="flex items-center gap-3 py-1" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+           <img 
+              src="https://static.wixstatic.com/media/85ce0b_a34fd67effbb4a4b932c2791821103a3~mv2.png" 
+              alt="BSN Logo" 
+              className="h-8 w-auto object-contain dark:brightness-0 dark:invert"
+            />
+           <div className="flex flex-col justify-center">
+             <span className="font-extrabold text-slate-900 dark:text-white text-sm leading-none tracking-tight">Baguio Startup</span>
+             <span className="font-bold text-[#35308f] dark:text-emerald-400 text-xs leading-none tracking-wide">Network</span>
+           </div>
+        </Link>
+        
+        <button 
+            onClick={toggleTheme}
+            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+        >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      </header>
+  );
+};
 
 const Sidebar: React.FC = () => {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-  const location = useLocation();
 
   const navItems = [
     { name: 'Hub', icon: Home, path: '/' },
@@ -21,36 +48,17 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Mobile Top Header - Fixed */}
-      <header className="md:hidden fixed top-0 left-0 w-full h-16 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-50 px-4 flex items-center justify-between shadow-sm transition-colors duration-300">
-        <div className="flex items-center gap-2 h-full py-3">
-           <img 
-              src="https://static.wixstatic.com/media/85ce0b_a34fd67effbb4a4b932c2791821103a3~mv2.png" 
-              alt="BSN Logo" 
-              className="h-full w-auto object-contain dark:brightness-0 dark:invert"
-            />
-        </div>
-        
-        <button 
-            onClick={toggleTheme}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#35308f]"
-        >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </header>
-
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col w-20 lg:w-64 h-screen fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-50 transition-colors duration-300">
-        <div className="h-24 flex items-center justify-center border-b border-slate-100 dark:border-slate-800/50 p-4">
+        <Link to="/" className="h-24 flex items-center justify-center border-b border-slate-100 dark:border-slate-800/50 p-4">
             <img 
               src="https://static.wixstatic.com/media/85ce0b_a34fd67effbb4a4b932c2791821103a3~mv2.png" 
               alt="Baguio Startup Network Logo" 
               className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-300 hover:scale-110"
             />
-        </div>
+        </Link>
 
-        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6 overflow-y-auto custom-scrollbar" role="navigation" aria-label="Main Navigation">
+        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6 overflow-y-auto no-scrollbar" role="navigation" aria-label="Main Navigation">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
@@ -105,9 +113,9 @@ const Sidebar: React.FC = () => {
         </div>
       </aside>
 
-      {/* Mobile Bottom Nav - Scrollable Single Source of Truth */}
-      <nav className="md:hidden fixed bottom-0 left-0 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-50 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-         <div className="flex items-center overflow-x-auto no-scrollbar gap-1 px-2 py-2 snap-x">
+      {/* Mobile Bottom Nav - Fixed Height 80px */}
+      <nav className="md:hidden fixed bottom-0 left-0 w-full h-[80px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-50 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)] box-border">
+         <div className="flex items-center overflow-x-auto no-scrollbar gap-1 px-2 py-2 h-full snap-x">
            {navItems.map((item) => (
             <NavLink
               key={item.name}
