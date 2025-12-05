@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from '../components/Navbar';
@@ -245,10 +246,10 @@ const Dashboard = () => {
   return (
     <div className="space-y-6 h-full flex flex-col">
       <header className="mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white transition-colors tracking-tight mb-4 leading-tight">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full">
+        <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed w-full">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
