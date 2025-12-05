@@ -1,4 +1,5 @@
 
+
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -273,7 +274,7 @@ export const ecosystemOrgs: Organization[] = [
   },
   {
     id: 'upbsilbi',
-    name: 'UPB Silbi TBI',
+    name: 'UPB SILBI TBI',
     description: 'UP Baguio Technology Business Incubator.',
     logoUrl: 'https://graph.facebook.com/upbsilbitbi/picture?type=large',
     facebookUrl: 'https://www.facebook.com/upbsilbitbi',
