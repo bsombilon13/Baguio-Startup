@@ -713,6 +713,15 @@ export const events: Event[] = [
 
 export const communityNews: NewsItem[] = [
   {
+    id: 'news-3',
+    title: 'Congratulations to the Champions of the Baguio Smart City Convergence 2025',
+    date: 'Dec 12, 2025',
+    excerpt: 'As we continue building a smarter, more resilient, and more people-centered Baguio City, we proudly celebrate the outstanding students and innovators who showcased brilliance, creativity, and purpose-driven innovation.',
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593866385_1194754472440128_8684342725486940305_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fBG0SJYY7eEQ7kNvwE7upr7&_nc_oc=AdnN5XA-Yg0uQREeyTIp8RifdaB1P1yBGsCn4gsF3phjBw_gjUVa8YR1gENY25gEiso&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=1JeXtCGJWEN2rNdNqsdbcA&oh=00_AflnWr7diND7v0__Wj728vfpfbcROX0kwMXgMm2MHnfSAw&oe=69385205',
+    link: 'https://www.facebook.com/share/p/1AXJ2Sq43P/',
+    source: 'Facebook'
+  },
+  {
     id: 'news-2',
     title: 'Auscultate Wins 1st Runner Up in PSC10!',
     date: 'Dec 05, 2025',

@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { ecosystemOrgs } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -100,8 +98,9 @@ const Ecosystem: React.FC = () => {
         <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Partners, communities, and enablers driving innovation.</p>
       </div>
       
-      {/* Controls Section */}
-      <div className="flex flex-col gap-2 md:gap-4 sticky top-14 md:top-0 z-30 bg-slate-50 dark:bg-slate-950 py-2">
+      {/* Controls Section - Sticky Header */}
+      {/* top-16 ensures it clears the 64px (h-16) fixed mobile header. md:top-0 for desktop. */}
+      <div className="flex flex-col gap-2 md:gap-4 sticky top-16 md:top-0 z-30 bg-slate-50 dark:bg-slate-950 py-2">
         {/* Search and Sort Row - Compact on Mobile */}
         <div className="flex flex-row md:flex-row gap-2 md:gap-3">
           <div className="relative flex-1">

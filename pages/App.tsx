@@ -1,20 +1,18 @@
-
-
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-import Sidebar from './components/Navbar';
-import Events from './pages/Events';
-import Ecosystem from './pages/Ecosystem';
-import ActiveStartups from './pages/ActiveStartups';
-import Resources from './pages/Resources';
-import Announcements from './pages/Announcements';
-import CommunityNews from './pages/CommunityNews';
-import SDGPage from './pages/SDG';
-import RegionModal, { RegionData } from './components/RegionModal';
-import { ThemeContextType } from './types';
+import Sidebar from '../components/Navbar';
+import Events from './Events';
+import Ecosystem from './Ecosystem';
+import ActiveStartups from './ActiveStartups';
+import Resources from './Resources';
+import Announcements from './Announcements';
+import CommunityNews from './CommunityNews';
+import SDGPage from './SDG';
+import RegionModal, { RegionData } from '../components/RegionModal';
+import { ThemeContextType } from '../types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-import { events, communityNews, opportunities } from './data';
+import { events, communityNews, opportunities } from '../data';
 import { format } from 'date-fns';
 
 export const ThemeContext = createContext<ThemeContextType>({
@@ -246,23 +244,23 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6 h-full flex flex-col">
-      <header className="mb-4 md:mb-6">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-2 md:mb-3">
+      <header className="mb-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white transition-colors tracking-tight mb-3">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Baguio Startup Network</span>
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-base md:text-lg font-medium leading-relaxed w-full">
+        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed w-full">
           The central hub for the mountain region's startup ecosystem. Connect, attend, and grow.
         </p>
       </header>
 
       {/* Fluid Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-min">
         
         {/* Row 1: SCMM Section - Top */}
         <div className="md:col-span-4 space-y-4 md:space-y-6 mb-4">
           
           {/* Main Region Box - Pine Green Theme */}
-          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-3xl p-5 md:p-8 text-white shadow-xl shadow-emerald-900/10 dark:shadow-none relative overflow-hidden">
+          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-3xl p-6 md:p-8 text-white shadow-xl shadow-emerald-900/10 dark:shadow-none relative overflow-hidden">
              {/* Abstract pine/mountain pattern overlay */}
              <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                 <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
@@ -275,8 +273,8 @@ const Dashboard = () => {
                   <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-white/20 mb-4 text-emerald-50">
                      <span className="w-2 h-2 rounded-full bg-emerald-300"></span> Region Overview
                   </div>
-                  <h3 className="text-2xl md:text-4xl font-bold mb-2 text-white">Cordillera Administrative Region</h3>
-                  <p className="text-emerald-100 font-medium max-w-2xl leading-relaxed text-sm md:text-base">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-2 text-white">Cordillera Administrative Region</h3>
+                  <p className="text-emerald-100 font-medium max-w-2xl leading-relaxed">
                     The startup ecosystem of the Cordilleras is predominantly in the nascent stage, characterized by emerging communities and foundational support structures.
                   </p>
                 </div>
@@ -296,16 +294,16 @@ const Dashboard = () => {
                 <button 
                   key={area.name} 
                   onClick={() => setSelectedRegion(area)}
-                  className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-3 md:p-4 rounded-2xl shadow-sm hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-lg transition-all flex flex-col justify-between min-h-[90px] md:min-h-[110px] relative overflow-hidden group text-left focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-lg transition-all flex flex-col justify-between min-h-[110px] relative overflow-hidden group text-left focus:outline-none focus:ring-2 focus:ring-emerald-500"
                 >
                    <div className="flex justify-between items-start mb-2 w-full">
-                     <span className="font-bold text-slate-800 dark:text-slate-100 text-xs md:text-base pr-4 md:pr-8 leading-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">{area.name}</span>
-                     <div className="absolute top-2 right-2 md:top-3 md:right-3 scale-75 md:scale-100 origin-top-right">
+                     <span className="font-bold text-slate-800 dark:text-slate-100 text-sm md:text-base pr-8 leading-tight group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors">{area.name}</span>
+                     <div className="absolute top-3 right-3">
                         <LevelBadge level={area.level} label={area.label} compact={true} />
                      </div>
                    </div>
-                   <div className="mt-auto pt-1 md:pt-2">
-                      <span className="text-[10px] md:text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide group-hover:text-slate-700 dark:group-hover:text-slate-200">
+                   <div className="mt-auto pt-2">
+                      <span className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide group-hover:text-slate-700 dark:group-hover:text-slate-200">
                         {area.label}
                       </span>
                    </div>
@@ -316,56 +314,56 @@ const Dashboard = () => {
         
         {/* Row 2: Top Story - New Card */}
         {latestNews && (
-            <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative group min-h-[250px] md:min-h-[320px]">
+            <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative group min-h-[320px]">
                 <div className="absolute inset-0">
                     <img src={latestNews.imageUrl} alt={latestNews.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent"></div>
                 </div>
-                <div className="relative z-10 p-5 md:p-8 flex flex-col h-full justify-end text-white">
+                <div className="relative z-10 p-6 md:p-8 flex flex-col h-full justify-end text-white">
                     <div className="mb-auto">
-                    <span className="bg-rose-600 text-white px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wide uppercase shadow-md shadow-rose-900/20 flex items-center gap-1 w-fit">
+                    <span className="bg-rose-600 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-rose-900/20 flex items-center gap-1 w-fit">
                         <Newspaper size={12} /> Top Story
                     </span>
                     </div>
-                    <h2 className="text-xl md:text-3xl font-bold leading-tight mb-2 line-clamp-2 drop-shadow-sm">{latestNews.title}</h2>
-                    <p className="text-slate-200 text-xs md:text-sm mb-4 line-clamp-2">{latestNews.excerpt}</p>
-                    <Link to="/news" className="flex items-center gap-2 font-bold hover:text-rose-400 transition-colors group-hover:gap-3 text-sm md:text-base">
-                        Read Full Story <ArrowRight size={16} className="md:w-5 md:h-5"/>
+                    <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-2 line-clamp-2 drop-shadow-sm">{latestNews.title}</h2>
+                    <p className="text-slate-200 text-sm md:text-base mb-4 line-clamp-2">{latestNews.excerpt}</p>
+                    <Link to="/news" className="flex items-center gap-2 font-bold hover:text-rose-400 transition-colors group-hover:gap-3">
+                        Read Full Story <ArrowRight size={18} />
                     </Link>
                 </div>
             </div>
         )}
 
         {/* Row 2: Upcoming Event - Split Layout */}
-        <div className={`md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col md:flex-row relative group transition-colors min-h-[250px] md:min-h-[320px] ${!latestNews ? 'md:col-start-1' : ''}`}>
+        <div className={`md:col-span-2 bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col md:flex-row relative group transition-colors min-h-[320px] ${!latestNews ? 'md:col-start-1' : ''}`}>
           
-          <div className="p-5 md:p-8 flex-1 flex flex-col relative z-10 order-2 md:order-1">
-            <div className="mb-3 md:mb-4">
-              <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-[10px] md:text-xs font-bold tracking-wide uppercase shadow-md shadow-teal-100 dark:shadow-none">Upcoming Event</span>
+          <div className="p-6 md:p-8 flex-1 flex flex-col relative z-10 order-2 md:order-1">
+            <div className="mb-4">
+              <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase shadow-md shadow-teal-100 dark:shadow-none">Upcoming Event</span>
             </div>
             
-            <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-2 line-clamp-2">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight mb-2">
               {nextEvent ? nextEvent.title : 'No upcoming events'}
             </h2>
-            <p className="text-slate-500 dark:text-slate-400 font-medium mb-3 md:mb-4 text-xs md:text-base">
+            <p className="text-slate-500 dark:text-slate-400 font-medium mb-4">
               {nextEvent 
                 ? `${format(nextEvent.date, 'MMMM d, yyyy')} | ${format(nextEvent.date, 'h:mm a')}`
                 : 'Stay tuned for more updates'}
             </p>
             
-            <p className="text-slate-600 dark:text-slate-300 text-xs md:text-sm leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-3">
+            <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6 line-clamp-3">
                {nextEvent ? nextEvent.description : ''}
             </p>
 
-            <div className="mt-auto pt-3 md:pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-               <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-xs md:text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
-                  View Details <ArrowUpRight size={16} className="md:w-5 md:h-5"/>
+            <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+               <Link to="/events" className="text-slate-900 dark:text-white font-bold flex items-center gap-2 hover:gap-3 transition-all text-sm group-hover:text-emerald-700 dark:group-hover:text-emerald-400">
+                  View Details <ArrowUpRight size={18} />
                </Link>
             </div>
           </div>
           
           {/* Square Banner on the Right (or top on mobile) */}
-          <div className="md:w-[40%] h-32 md:h-auto relative order-1 md:order-2">
+          <div className="md:w-[40%] h-48 md:h-auto relative order-1 md:order-2">
              {nextEvent && (
                 <img 
                   src={nextEvent.imageUrl} 
@@ -378,43 +376,43 @@ const Dashboard = () => {
         </div>
 
         {/* Row 3: AI Advice Card - Nature/Misty Theme */}
-        <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-5 md:p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[200px] md:min-h-[320px] h-full">
+        <div className="md:col-span-1 bg-gradient-to-br from-teal-600 to-emerald-600 rounded-3xl p-6 text-white shadow-lg flex flex-col relative overflow-hidden min-h-[320px]">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
           <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
           
           <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center gap-2 mb-4 md:mb-6 text-emerald-100">
-               <Sparkles size={16} className="md:w-5 md:h-5 text-emerald-200 animate-pulse" />
-               <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest">Founder's Insight</span>
+            <div className="flex items-center gap-2 mb-6 text-emerald-100">
+               <Sparkles size={20} className="text-emerald-200 animate-pulse" />
+               <span className="text-xs font-bold uppercase tracking-widest">Founder's Insight</span>
             </div>
 
             <div className="flex-1 flex flex-col justify-center relative">
-               <Quote size={24} className="md:w-10 md:h-10 absolute -top-3 -left-1 md:-top-4 md:-left-2 text-white/10" />
+               <Quote size={40} className="absolute -top-4 -left-2 text-white/10" />
                
                {loadingAdvice ? (
-                 <div className="flex flex-col items-center gap-2 md:gap-3 text-white/80">
-                    <Loader2 size={20} className="md:w-6 md:h-6 animate-spin" />
-                    <span className="text-xs md:text-sm font-medium">Consulting the AI...</span>
+                 <div className="flex flex-col items-center gap-3 text-white/80">
+                    <Loader2 size={24} className="animate-spin" />
+                    <span className="text-sm font-medium">Consulting the AI...</span>
                  </div>
                ) : (
-                 <p className="text-base md:text-xl font-medium leading-relaxed italic text-center drop-shadow-sm line-clamp-4 md:line-clamp-none">
+                 <p className="text-lg md:text-xl font-medium leading-relaxed italic text-center drop-shadow-sm">
                    "{aiAdvice}"
                  </p>
                )}
             </div>
             
-            <div className="mt-auto pt-3 md:pt-4 flex justify-center text-white/60 text-[8px] md:text-[10px] font-medium tracking-wide">
+            <div className="mt-auto pt-4 flex justify-center text-white/60 text-[10px] font-medium tracking-wide">
                Generated by Gemini
             </div>
           </div>
         </div>
 
         {/* Row 3: StartupBlink */}
-        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-5 md:p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[250px] md:min-h-[320px] h-full relative overflow-hidden group">
+        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm min-h-[320px] relative overflow-hidden group">
            <div className="absolute top-0 right-0 p-4 opacity-20 pointer-events-none group-hover:scale-110 transition-transform duration-500 text-red-500">
-               <ArrowUpRight size={80} className="md:w-24 md:h-24"/>
+               <ArrowUpRight size={100} />
            </div>
-           <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden mb-4 md:mb-6 shadow-md bg-white border border-slate-100 flex items-center justify-center p-3">
+           <div className="w-20 h-20 rounded-2xl overflow-hidden mb-6 shadow-md bg-white border border-slate-100 flex items-center justify-center p-3">
              <img 
                src="https://somalia.startupblink.com/_next/static/media/startuplink.fe5810b1.svg" 
                alt="StartupBlink" 
@@ -427,8 +425,8 @@ const Dashboard = () => {
              <div className="hidden text-xs font-bold text-slate-900">StartupBlink</div>
            </div>
            
-           <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-2">Global Startup Ecosystem Map</h3>
-           <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm mb-4 md:mb-6 leading-relaxed">
+           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Global Startup Ecosystem Map</h3>
+           <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 leading-relaxed">
              Put your startup on the global map. Join the world's most comprehensive startup ecosystem map.
            </p>
            
@@ -436,28 +434,28 @@ const Dashboard = () => {
              href="https://www.startupblink.com/" 
              target="_blank" 
              rel="noopener noreferrer"
-             className="w-full py-2 md:py-3 bg-[#35308f] hover:bg-[#2a2670] text-white rounded-xl font-bold text-xs md:text-sm transition-all shadow-lg shadow-indigo-200 dark:shadow-none flex items-center justify-center gap-2 group-hover:shadow-xl"
+             className="w-full py-3 bg-[#35308f] hover:bg-[#2a2670] text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 dark:shadow-none flex items-center justify-center gap-2 group-hover:shadow-xl"
            >
-             Register Startup <ArrowRight size={14} className="md:w-4 md:h-4"/>
+             Register Startup <ArrowRight size={16} />
            </a>
         </div>
 
         {/* Row 3: Announcements Footer (Resized to 2 columns) */}
-        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-5 md:p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px] h-full">
+        <div className="md:col-span-2 mb-12 bg-white dark:bg-slate-900 rounded-3xl border border-slate-100 dark:border-slate-800 p-6 flex flex-col justify-between gap-4 shadow-sm min-h-[320px]">
            <div>
-               <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400">
-                     <span className="text-lg md:text-xl">📢</span>
+               <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400">
+                     <span className="text-xl">📢</span>
                   </div>
-                  <h4 className="font-bold text-slate-700 dark:text-slate-200 text-base md:text-lg">Announcements</h4>
+                  <h4 className="font-bold text-slate-700 dark:text-slate-200 text-lg">Announcements</h4>
                </div>
 
                {opportunities.length > 0 ? (
-                  <div className="space-y-3 md:space-y-4">
+                  <div className="space-y-4">
                     {opportunities.slice(0, 3).map((opp) => (
-                      <div key={opp.id} className="p-3 md:p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 group hover:border-[#35308f] dark:hover:border-indigo-500 transition-colors">
+                      <div key={opp.id} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 group hover:border-[#35308f] dark:hover:border-indigo-500 transition-colors">
                         <div className="flex justify-between items-start mb-1">
-                             <span className={`px-2 py-0.5 rounded text-[8px] md:text-[10px] font-bold uppercase tracking-wide
+                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide
                                 ${opp.type === 'Grant' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
                                 ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : ''}
                                 ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : ''}
@@ -466,12 +464,12 @@ const Dashboard = () => {
                              `}>
                                {opp.type}
                              </span>
-                             <span className="text-[10px] md:text-xs font-bold text-slate-400">{opp.deadline}</span>
+                             <span className="text-xs font-bold text-slate-400">{opp.deadline}</span>
                         </div>
-                        <h5 className="font-bold text-slate-800 dark:text-slate-100 leading-tight mb-1 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors text-sm md:text-base">
+                        <h5 className="font-bold text-slate-800 dark:text-slate-100 leading-tight mb-1 group-hover:text-[#35308f] dark:group-hover:text-indigo-400 transition-colors">
                             {opp.title}
                         </h5>
-                        <p className="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{opp.organization}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1">{opp.organization}</p>
                       </div>
                     ))}
                   </div>
@@ -482,8 +480,8 @@ const Dashboard = () => {
                )}
            </div>
            
-           <Link to="/announcements" className="mt-2 md:mt-4 text-emerald-700 dark:text-emerald-400 text-xs md:text-sm font-bold hover:underline bg-emerald-50 dark:bg-emerald-900/20 px-4 py-2 md:py-3 rounded-xl transition-colors text-center flex items-center justify-center gap-2">
-              View All Announcements <ArrowRight size={14} className="md:w-4 md:h-4"/>
+           <Link to="/announcements" className="mt-4 text-emerald-700 dark:text-emerald-400 text-sm font-bold hover:underline bg-emerald-50 dark:bg-emerald-900/20 px-4 py-3 rounded-xl transition-colors text-center flex items-center justify-center gap-2">
+              View All Announcements <ArrowRight size={16}/>
            </Link>
         </div>
 
@@ -543,9 +541,9 @@ const App: React.FC = () => {
 
           {/* Main Content Area - Fluid with Offset */}
           {/* md:ml-20 matches w-20, lg:ml-64 matches w-64 */}
-          {/* Mobile: pt-28 (7rem) ensures title starts below fixed header (h-16). pb-32 (8rem) clears bottom nav. */}
-          <main className="flex-1 h-full overflow-y-auto w-full ml-0 md:ml-20 lg:ml-64 transition-all duration-300 pt-28 md:pt-0">
-            <div className="w-full h-full p-4 md:p-8 pb-32 md:pb-8 max-w-[1920px] mx-auto">
+          {/* Mobile: Standardize top padding to pt-28 (112px) to clear 64px header + gap. Bottom padding pb-32 (128px) to clear bottom nav. */}
+          <main className="flex-1 h-full overflow-y-auto w-full ml-0 md:ml-20 lg:ml-64 transition-all duration-300">
+            <div className="w-full min-h-full px-4 pt-28 pb-32 md:p-8 max-w-[1920px] mx-auto">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/events" element={<Events />} />
