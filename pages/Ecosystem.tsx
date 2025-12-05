@@ -82,7 +82,7 @@ const Ecosystem: React.FC = () => {
             </p>
           </div>
           <a 
-            href="https://m.me/baguiostartup"
+            href="https://forms.gle/QZc8fzLdNbqAGaHc6"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-white text-[#35308f] px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-colors shadow-lg"
