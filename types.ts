@@ -57,6 +57,7 @@ export interface Opportunity {
   description: string;
   link?: string;
   moreDetailsLink?: string;
+  bannerUrl?: string;
 }
 
 export interface Resource {

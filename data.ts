@@ -733,6 +733,18 @@ export const opportunities: Opportunity[] = [
     description: 'Nomination for MSME Disaster Resilience.',
     link: 'https://bit.ly/MatatagAwards',
     moreDetailsLink: 'https://www.facebook.com/share/p/17jdMgFnyt/'
+  },
+  {
+    id: 'sea-europe-jfs-10',
+    title: '10th SEA-Europe JFS Call',
+    organization: 'SEA-Europe JFS',
+    amount: 'Research Grant',
+    deadline: 'See Link',
+    type: 'Grant',
+    description: 'Call for proposals for the 10th SEA-Europe Joint Funding Scheme (JFS) for Research and Innovation.',
+    link: 'https://www.sea-europe-jfs.eu/news/call-topics-10th-sea-europe-call-have-been-decided',
+    moreDetailsLink: 'https://www.sea-europe-jfs.eu/news/call-topics-10th-sea-europe-call-have-been-decided',
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594006707_1291506866354883_4364297823398538100_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=867WxeU1UNkQ7kNvwGQbXSg&_nc_oc=Adlm5utQ5dio4LE9skXpGzkdTedYy-UTUdb42Is1f9a3Wr4Jw6JdZZLVemOn_Wj-Jd4&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=23tbitLJtjrU63MhJjUO9g&oh=00_Afnj1URkG1QHF9jil-ffVKzvuPfoVAmAiprbJbbFbn4H5A&oe=6938014C'
   }
 ];
 

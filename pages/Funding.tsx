@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { opportunities } from '../data';
 import { ArrowRight, DollarSign, Clock } from 'lucide-react';
@@ -23,9 +24,15 @@ const Funding: React.FC = () => {
         {opportunities.map((opp) => (
           <div 
             key={opp.id}
-            className="group relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-amber-200 dark:hover:border-amber-700/50 hover:shadow-xl hover:shadow-amber-100/50 dark:hover:shadow-none rounded-2xl p-6 transition-all duration-300 shadow-sm"
+            className="group relative bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-amber-200 dark:hover:border-amber-700/50 hover:shadow-xl hover:shadow-amber-100/50 dark:hover:shadow-none rounded-2xl overflow-hidden transition-all duration-300 shadow-sm flex flex-col md:flex-row"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            {opp.bannerUrl && (
+               <div className="w-full md:w-48 h-48 md:h-auto md:min-h-[12rem] shrink-0 relative border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 overflow-hidden">
+                  <img src={opp.bannerUrl} alt={opp.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+               </div>
+            )}
+            
+            <div className="p-6 flex-1 flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="space-y-2 flex-1">
                 <div className="flex items-center gap-3">
                    <span className={`
@@ -33,6 +40,7 @@ const Funding: React.FC = () => {
                      ${opp.type === 'Grant' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : ''}
                      ${opp.type === 'Investment' ? 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : ''}
                      ${opp.type === 'Accelerator' ? 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400' : ''}
+                     ${opp.type === 'Awards' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' : ''}
                    `}>
                      {opp.type}
                    </span>
