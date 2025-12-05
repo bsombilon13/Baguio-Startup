@@ -266,8 +266,8 @@ const Events: React.FC = () => {
                             </span>
                         </div>
 
-                        {/* Description - Hidden on Mobile to save space */}
-                        <p className="hidden md:block text-slate-600 dark:text-slate-400 text-xs md:text-sm line-clamp-2 md:line-clamp-3 leading-relaxed mb-2 md:mb-4 flex-1">
+                        {/* Description - Limited to 3 lines */}
+                        <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm line-clamp-3 leading-relaxed mb-2 md:mb-4 flex-1">
                             {event.description}
                         </p>
 
