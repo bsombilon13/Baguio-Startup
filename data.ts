@@ -721,7 +721,7 @@ export const events: Event[] = [
     title: 'AI Show and Tell (For The Tech Startup Community)',
     date: new Date('2025-12-11T20:00:00'),
     endDate: new Date('2025-12-11T21:00:00'),
-    location: 'Baguio City',
+    location: 'Zoom',
     description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
     imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
     tags: ['Workshop', 'Tech', 'AI'],

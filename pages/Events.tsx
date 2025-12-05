@@ -22,15 +22,17 @@ const Events: React.FC = () => {
   // Static filters
   const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive', 'Fair'];
 
-  // Filter Logic
-  const filteredEvents = events.filter(event => {
-    // Check if the event tag matches one of the main categories
-    const mainTags = filters.filter(f => f !== 'All');
-    const eventMainTags = event.tags.filter(tag => mainTags.includes(tag));
-    
-    if (activeFilter === 'All') return true;
-    return eventMainTags.includes(activeFilter);
-  });
+  // Filter & Sort Logic
+  const filteredEvents = events
+    .filter(event => {
+      // Check if the event tag matches one of the main categories
+      const mainTags = filters.filter(f => f !== 'All');
+      const eventMainTags = event.tags.filter(tag => mainTags.includes(tag));
+      
+      if (activeFilter === 'All') return true;
+      return eventMainTags.includes(activeFilter);
+    })
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   // Pagination Logic
   const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
@@ -108,12 +110,18 @@ const Events: React.FC = () => {
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
       "PRODID:-//Baguio Startup Network//Events//EN",
-      "X-WR-CALNAME:BSN Events"
+      "X-WR-CALNAME:BSN Events",
+      "X-WR-CALDESC:Events from Baguio Startup Network",
+      "METHOD:PUBLISH"
     ].join("\n");
 
-    filteredEvents.forEach(event => {
+    // Iterate over ALL events, regardless of current filter, to ensure full sync
+    events.forEach(event => {
       const start = new Date(event.date);
       const end = event.endDate ? new Date(event.endDate) : new Date(start.getTime() + 3 * 60 * 60 * 1000);
+      
+      const organizer = getOrganizer(event.organizerId);
+      const organizerLine = organizer ? `ORGANIZER;CN="${organizer.name}":MAILTO:noreply@baguiostartup.network` : '';
 
       const eventBlock = [
         "BEGIN:VEVENT",
@@ -124,8 +132,10 @@ const Events: React.FC = () => {
         `SUMMARY:${event.title}`,
         `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
         `LOCATION:${event.location}`,
+        `URL:${event.link || ''}`,
+        organizerLine,
         "END:VEVENT"
-      ].join("\n");
+      ].filter(Boolean).join("\n");
       
       icsContent += "\n" + eventBlock;
     });
@@ -135,7 +145,7 @@ const Events: React.FC = () => {
     const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
     const link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
-    link.setAttribute("download", `BSN_Events_${format(new Date(), 'yyyy_MM')}.ics`);
+    link.setAttribute("download", `BSN_Events_${format(new Date(), 'yyyyMMdd')}.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -152,15 +162,13 @@ const Events: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap gap-2 items-center">
-             {view === 'calendar' && (
-                <button
-                    onClick={handleDownloadAllICS}
-                    className="flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                    title="Sync all events to your calendar"
-                >
-                    <Download size={14} className="md:w-4 md:h-4" /> Download iCalendar
-                </button>
-             )}
+             <button
+                onClick={handleDownloadAllICS}
+                className="flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                title="Download full calendar .ics file"
+            >
+                <Download size={14} className="md:w-4 md:h-4" /> Download iCalendar
+            </button>
 
             <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">
             <button
