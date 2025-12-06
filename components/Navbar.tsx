@@ -40,10 +40,10 @@ const Sidebar: React.FC = () => {
     { name: 'Startups', icon: Rocket, path: '/startups' },
     { name: 'Ecosystem', icon: Users, path: '/ecosystem' },
     { name: 'Events', icon: Calendar, path: '/events' },
+    { name: 'Announcements', icon: Megaphone, path: '/announcements' },
     { name: 'SDGs', icon: Globe, path: '/sdg' },
     { name: 'News', icon: Newspaper, path: '/news' },
     { name: 'Resources', icon: BookOpen, path: '/resources' },
-    { name: 'Announcements', icon: Megaphone, path: '/announcements' },
   ];
 
   return (
