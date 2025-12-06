@@ -764,6 +764,18 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'eyaa-cohort-6',
+    title: 'eYAA: Cohort 6 is Calling',
+    organization: 'ASEAN Foundation with Maybank Foundation',
+    amount: 'USD 25,000',
+    deadline: 'Jan 25, 2026',
+    type: 'Grant',
+    description: 'This application package offers detailed information on partnership benefits, eligibility criteria, application requirements, and the selection process for Cohort 6. We welcome CSOs and SEs committed to community empowerment and youth engagement to partner with us in implementing impactful six-month projects across the region.',
+    link: 'https://form.jotform.com/253384883336467',
+    moreDetailsLink: 'https://bit.ly/eYAA6_CSO',
+    bannerUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/594181792_1258476376317989_4527947100446330509_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=E_4NZw4WJSIQ7kNvwGpP_7V&_nc_oc=AdncyrpAEzh4KRr-LxLJMDrD0r_3DisbZqo6wF1Srd18vPU74eWF9VG0_mEL8zabsB4&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=sqQQVH8WnJ9_B5JHSEuQtg&oh=00_Afkhh_HMd1qHS1AousMRqaLcmaAS73o4SFmjKQq0Q32ftg&oe=693A033F'
+  },
+  {
     id: 'circular-economy-experts',
     title: 'Call for Experts to Support the Development of the Circular Economy Taxonomy',
     organization: 'EU-PH Green Economy Partnership',
