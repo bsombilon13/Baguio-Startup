@@ -568,7 +568,7 @@ export const activeStartups: Startup[] = [
     id: 'aicore',
     name: 'AiCore',
     description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374600',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374208',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
     websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
     industry: ['Tech'],
@@ -734,6 +734,15 @@ export const events: Event[] = [
 
 export const communityNews: NewsItem[] = [
   {
+    id: 'news-4',
+    title: 'CAR Universities in the UI GreenMetric 2025 Rankings',
+    date: 'Dec 16, 2025',
+    excerpt: 'The Cordillera Administrative Region (CAR) celebrates a major milestone as several of its universities earn spots in the UI GreenMetric World University Rankings 2025, a global sustainability benchmark featuring 1,547 institutions across 105 countries. This recognition highlights the region’s growing commitment to climate action, clean energy, waste reduction, sustainable mobility, and environmental education. The achievement showcases how Cordillera campuses—rooted in the mountains—are stepping onto the world stage as leaders in building greener, more resilient learning environments for future generations.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594589449_122195892926326439_5576333072787289967_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sjuCeqELIhcQ7kNvwH3dEcT&_nc_oc=AdnU3NSe-HcpZhszG3rUroIVF87amQ0ucqYEz6VsC3QoqsaGIVYMt6F96Xdn_ZpxvXA&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=zWMourgpLakQM3858FEWtw&oh=00_AfnbNrZ4FEgx6gSqKGX3lAyL1yzLdxRjl1pmHjRDYdvZLw&oe=693AB4EC',
+    link: 'https://greenmetric.ui.ac.id/rankings/overall-rankings-2025',
+    source: 'Website'
+  },
+  {
     id: 'news-3',
     title: 'Congratulations to the Champions of the Baguio Smart City Convergence 2025',
     date: 'Dec 12, 2025',
@@ -756,7 +765,7 @@ export const communityNews: NewsItem[] = [
     title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',
     date: 'Dec 03, 2025',
     excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10, bringing with them courage, creativity, and an unshakable innovative spirit on December 3-4, 2025 at Clark, Pampanga. As The Last Seven steps onto the national spotlight, we send you off with pride, love, and confidence. To the mentors, colleagues, startup community, and supporters who gathered to cheer them, your energy fuels their drive to showcase what Cordilleran ingenuity can achieve this PSC10. Best of luck, Team Cordillera! May your ideas resonate, your confidence shine, and your passion lead the way. Go out there, stand tall! We are proud of you!',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUhRuLrgSz2yxSXuWeOwAu51izX57cBAHnWLNfntwEAdoiYWyU7ozMtN6abbX4SU-f_3NDyFLMkSqJnOTrNEpP&_nc_ohc=yChRa48amrgQ7kNvwFNvT-3&_nc_oc=AdmZHBF3t0y46f3RZg_s9igYB9auSuw12bkkIebMDSqbnDnKP2XeZ4GmV8jlj9mRkUY&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=lvk6KqrUwOxz5twPOJx8pg&oh=00_AfmlEYGWRgS8HFu604m0QYcPfxPG4OYdsNRBhlRxrSFK0A&oe=69343A68',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUhRuLrgSz2yxSXuWeOwAu51izX57cBAHnWLNfntwEAdoiYWyU7ozMtN6abbX4SU-f_3NDyFLMkSqJnOTrNEpP&_nc_ohc=gffLZABdtVkQ7kNvwFSRFGN&_nc_oc=AdmB6KKokzA-Q281WnjoLEXeAnO_8w0Dp8eli2cNZD7pu0R_NoF2KITWnVDkDKD5s1M&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=gXA2isUwaX4QZVVDCPgSNw&oh=00_Afnqtldsx8VM3DGHolX145YlJu5iKOvIGRKoKwj1vFSOuQ&oe=693A2928',
     link: 'https://www.facebook.com/photo/?fbid=873609971906820&set=a.131590669442091',
     source: 'Facebook'
   }
