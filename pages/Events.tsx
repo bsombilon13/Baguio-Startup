@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { format, eachDayOfInterval, isSameDay, isToday, isWithinInterval } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, Download } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, CalendarPlus } from 'lucide-react';
 import { events, ecosystemOrgs, activeStartups } from '../data';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
@@ -100,57 +100,6 @@ const Events: React.FC = () => {
     return [...ecosystemOrgs, ...activeStartups].find(o => o.id === organizerId);
   };
 
-  // iCal Generator for All Events
-  const handleDownloadAllICS = () => {
-    const formatCalendarDate = (date: Date) => {
-      return date.toISOString().replace(/-|:|\.\d\d\d/g, "");
-    };
-
-    let icsContent = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//Baguio Startup Network//Events//EN",
-      "X-WR-CALNAME:BSN Events",
-      "X-WR-CALDESC:Events from Baguio Startup Network",
-      "METHOD:PUBLISH"
-    ].join("\n");
-
-    // Iterate over ALL events, regardless of current filter, to ensure full sync
-    events.forEach(event => {
-      const start = new Date(event.date);
-      const end = event.endDate ? new Date(event.endDate) : new Date(start.getTime() + 3 * 60 * 60 * 1000);
-      
-      const organizer = getOrganizer(event.organizerId);
-      const organizerLine = organizer ? `ORGANIZER;CN="${organizer.name}":MAILTO:noreply@baguiostartup.network` : '';
-
-      const eventBlock = [
-        "BEGIN:VEVENT",
-        `UID:${event.id}@baguiostartup.network`,
-        `DTSTAMP:${formatCalendarDate(new Date())}`,
-        `DTSTART:${formatCalendarDate(start)}`,
-        `DTEND:${formatCalendarDate(end)}`,
-        `SUMMARY:${event.title}`,
-        `DESCRIPTION:${event.description.replace(/\n/g, '\\n')}`,
-        `LOCATION:${event.location}`,
-        `URL:${event.link || ''}`,
-        organizerLine,
-        "END:VEVENT"
-      ].filter(Boolean).join("\n");
-      
-      icsContent += "\n" + eventBlock;
-    });
-
-    icsContent += "\nEND:VCALENDAR";
-
-    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute("download", `BSN_Events_${format(new Date(), 'yyyyMMdd')}.ics`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="space-y-6 pb-32">
       <div className="flex flex-col md:flex-row justify-between items-end gap-2 md:gap-4 mb-2 md:mb-4">
@@ -162,13 +111,15 @@ const Events: React.FC = () => {
         </div>
         
         <div className="flex flex-wrap gap-2 items-center">
-             <button
-                onClick={handleDownloadAllICS}
+             <a
+                href="https://calendar.google.com/calendar/u/1?cid=OTFjYzQwZWU3OWE2ZTI3Y2ZmYTZkNmMwMDVmYzYwNzViNjljNGU3Mzg4Njk3Mjg3YzRmNDI0OTRhOWQyZmVjZUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-lg text-xs md:text-sm font-bold transition-all bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                title="Download full calendar .ics file"
+                title="Subscribe to the Community Calendar"
             >
-                <Download size={14} className="md:w-4 md:h-4" /> Download iCalendar
-            </button>
+                <CalendarPlus size={14} className="md:w-4 md:h-4" /> Subscribe to Calendar
+            </a>
 
             <div className="bg-white dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-slate-200 dark:border-slate-800 shadow-sm" role="group" aria-label="View Toggle">
             <button

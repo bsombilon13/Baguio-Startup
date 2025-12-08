@@ -694,19 +694,6 @@ export const events: Event[] = [
     organizerId: 'dict-car'
   },
   {
-    id: 'evt-ai-show-tell',
-    title: 'AI Show and Tell (For The Tech Startup Community)',
-    date: new Date('2025-12-11T20:00:00'),
-    endDate: new Date('2025-12-11T21:00:00'),
-    location: 'Zoom',
-    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
-    tags: ['Workshop', 'Tech', 'AI'],
-    link: 'https://luma.com/S8-AI-ShowAndTell',
-    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
-    organizerId: 'geeks-on-a-beach'
-  },
-  {
     id: 'evt-creative-tech',
     title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
     date: new Date('2025-12-13T13:00:00'),
@@ -725,7 +712,7 @@ export const events: Event[] = [
     location: 'Ginto Cafe, Lower Session Road, Baguio City',
     description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
     imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/595279906_1305158894984278_5026051132293164654_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ioGlS2dBEdcQ7kNvwEtjmNe&_nc_oc=AdmNGG6kFGe_qz3BhaqVfLLSkzgIwtKlsQXflxNUw95UjNQtS2I-66CPiHnH-WHdTSw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=huGlomS28EcR8o6cwMabAA&oh=00_AfnGT0ydDYz0pEClEABwbGzNnZ_VKjgRMDJkY5Hb2FhSYw&oe=693C2798',
-    tags: ['Training', 'MSME', 'Workshop'],
+    tags: ['Workshop', 'Training', 'MSME'],
     link: 'https://events.intracen.org/event-register/TP-El3096',
     learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
     organizerId: 'dict-car'
@@ -749,10 +736,23 @@ export const events: Event[] = [
     location: 'Ginto Cafe, Lower Session Road, Baguio City',
     description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
     imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/596144669_1305158958317605_928431503811050929_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5lhIgfJPDs8Q7kNvwGSIfTa&_nc_oc=Adn-95kbDIW48aB38SZpDW7AlI1aUckaZTU2jo8938XuaEOV_9YNpxElPqhyg2Nlix0&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=ZIL8HBmSu5UcHUNH6-ZzkA&oh=00_Afkfmh0HIPiyIKHQSGOI7BUsHWkrs_QCGzRkX6NATegoIw&oe=693C0009',
-    tags: ['Training', 'MSME', 'Workshop'],
+    tags: ['Workshop', 'Training', 'MSME'],
     link: 'https://events.intracen.org/event-register/TP-YR6783',
     learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
     organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-ai-show-tell',
+    title: 'AI Show and Tell (For The Tech Startup Community)',
+    date: new Date('2025-12-11T20:00:00'),
+    endDate: new Date('2025-12-11T21:00:00'),
+    location: 'Zoom',
+    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
+    tags: ['Workshop', 'Tech', 'AI'],
+    link: 'https://luma.com/S8-AI-ShowAndTell',
+    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
+    organizerId: 'geeks-on-a-beach'
   }
 ];
 
