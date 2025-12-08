@@ -558,7 +558,7 @@ export const activeStartups: Startup[] = [
   {
     id: 'aeroaid',
     name: 'AeroAid',
-    description: 'Bringing essential medicines faster, safer, and smarter. One flight at a time.',
+    description: 'A smart, drone delivery system designed to get life-saving medicines in far-flung areas.',
     logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3or8YoXluRbi1y92eqnTqK_Zq44NMPH0r9mrjg0w8ff6bmHSzHAW48nm3_M5h9RixYBFHLY5QkQxk4gW4Ix6B&_nc_ohc=L4ixzEDF4WsQ7kNvwHUqyuE&_nc_oc=AdmQk7yef5dZTpVgUptHjeJ58_8GOa8QwVCfKoM-6UY35T05XiUfqwocPCypC3o-q90&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=2jFnnRW_jX9g-w4HsT16CQ&oh=00_Afn7NQraNDM5Xa2ugxuSvaEsa2WDRFCRlFX9KXwtpYaz-g&oe=69383ABC',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61576826433382',
     industry: ['Tech', 'Health'],
@@ -568,7 +568,7 @@ export const activeStartups: Startup[] = [
     id: 'aicore',
     name: 'AiCore',
     description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=yWfoQ_Qqwt8Q7kNvwFXrW6l&_nc_oc=AdmrL9VqdSP8d0OAItzrRwIKOSvAYuVcZV0lT3GZq_wy08wKivmm_R4UFCwDn_BrW-E&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=RApEObO2S6B8sVOWH--43w&oh=00_AfnuPfwvpEj1iqQZC30ySdYBxZD76GLLVr9pBAM3O2IapA&oe=69374208',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHiRIlmZIBDUcYXIovHo8IwIIOpEdbsi6wgg6kR1uyLrMWuf8Qif1AA5soSI9OS6sgvPk7lmdax-6K4rMToDFVE&_nc_ohc=YiIBmdgr-cMQ7kNvwFe3JNe&_nc_oc=AdlNltx2Aztq_gZtSQ0zvTyah-AwAS3uraVF7LrHcaM_9ZN1oCph3gg63fVsRdqYKuw&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=_CPvxJISayrUaHwud7n52Q&oh=00_AfkGbyGV3_dE5wknVVBv0fxaBUXBGklOBLO6cDdrqtjKfw&oe=693C1B80',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
     websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
     industry: ['Tech'],
@@ -663,7 +663,7 @@ export const events: Event[] = [
     endDate: new Date('2025-12-11T17:00:00'),
     location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
     description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/593738426_698896083292287_6095339606281164719_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8H9mIuC8cUkQ7kNvwGgaH6b&_nc_oc=AdmX-7AlOmybPqYTKd1ng21dJmn8luyKysHr-FU-aAZXTEJP6vrgzYwZal9HQSpat60&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=LApQi7PVs7GIuCtuNt69Zg&oh=00_Aflti_yTF35rt05Sdq76I3xhrAg3reG7rZh6fOwVP0QDtg&oe=69361042',
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/594362596_699268099921752_406322020114184965_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5wZud0Qz-BkQ7kNvwF30hhX&_nc_oc=AdkZmrD4VbfqVcnI0FpN5dh62j_7o-au-BGYzMKnt9xzKcVJlAqkqxhPuh7-lXxKNpw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=M7ymMQe053cY9_Sr7bOqlA&oh=00_AfntDprLXxsVAFXd-XNxxYk7pmFHCQ-eonFFuHdm7t9ymg&oe=693C0DF3',
     tags: ['Training'],
     link: 'https://bit.ly/YouthToMT',
     learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
@@ -687,11 +687,24 @@ export const events: Event[] = [
     date: new Date('2025-12-11T13:00:00'),
     location: 'Zoom',
     description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
-    imageUrl: 'https://scontent.fmnl42-1.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7gLW7g8118UQ7kNvwGdlQtf&_nc_oc=Adlzz-2Ph6MI-rywT8ZKlijaf8TNnfeogIMl8gYZ8Fn-heuTAxfxFLf1kTOwRcyfLEo&_nc_zt=23&_nc_ht=scontent.fmnl42-1.fna&_nc_gid=Kl-5IabudQFAEKGjSZ8lMA&oh=00_AfnyQq0q33Yu_SDHwpzkRyIwSOdHi8GU-tTiOuAGNk3ZJw&oe=69356554',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9LKHe_BMD1kQ7kNvwFH3aao&_nc_oc=Admibm767hsdXQnFLMLq_-sZUKHpjZq3PVZis8zxULo9EnfNLMvuJYK-ybqaNUcRoTo&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=M1WcvWXQ1Ld1UIM9f8wo5Q&oh=00_AfmsTsyWFQ-vSJ8ND36JXvSu9ZFkF916oRyCu4JCvk5Fiw&oe=693BFCD4',
     tags: ['Workshop', 'Data', 'Analytics'],
     link: 'https://bit.ly/DAVE-Register',
     learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
     organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-ai-show-tell',
+    title: 'AI Show and Tell (For The Tech Startup Community)',
+    date: new Date('2025-12-11T20:00:00'),
+    endDate: new Date('2025-12-11T21:00:00'),
+    location: 'Zoom',
+    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
+    tags: ['Workshop', 'Tech', 'AI'],
+    link: 'https://luma.com/S8-AI-ShowAndTell',
+    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
+    organizerId: 'geeks-on-a-beach'
   },
   {
     id: 'evt-creative-tech',
@@ -703,6 +716,18 @@ export const events: Event[] = [
     tags: ['Training', 'Creative', 'GameDev'],
     link: 'https://bit.ly/CTT-Register',
     learnMoreLink: 'https://www.facebook.com/share/p/1YWW6DYhyq/',
+    organizerId: 'dict-car'
+  },
+  {
+    id: 'evt-digital-pinas-day1',
+    title: 'Digital-Pinas Workshop for MSMEs (Day 1)',
+    date: new Date('2025-12-15T09:00:00'),
+    location: 'Ginto Cafe, Lower Session Road, Baguio City',
+    description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
+    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/595279906_1305158894984278_5026051132293164654_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ioGlS2dBEdcQ7kNvwEtjmNe&_nc_oc=AdmNGG6kFGe_qz3BhaqVfLLSkzgIwtKlsQXflxNUw95UjNQtS2I-66CPiHnH-WHdTSw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=huGlomS28EcR8o6cwMabAA&oh=00_AfnGT0ydDYz0pEClEABwbGzNnZ_VKjgRMDJkY5Hb2FhSYw&oe=693C2798',
+    tags: ['Training', 'MSME', 'Workshop'],
+    link: 'https://events.intracen.org/event-register/TP-El3096',
+    learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
     organizerId: 'dict-car'
   },
   {
@@ -718,17 +743,16 @@ export const events: Event[] = [
     organizerId: 'dict-car'
   },
   {
-    id: 'evt-ai-show-tell',
-    title: 'AI Show and Tell (For The Tech Startup Community)',
-    date: new Date('2025-12-11T20:00:00'),
-    endDate: new Date('2025-12-11T21:00:00'),
-    location: 'Zoom',
-    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
-    tags: ['Workshop', 'Tech', 'AI'],
-    link: 'https://luma.com/S8-AI-ShowAndTell',
-    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
-    organizerId: 'geeks-on-a-beach'
+    id: 'evt-digital-pinas-day2',
+    title: 'Digital-Pinas Workshop for MSMEs (Day 2)',
+    date: new Date('2025-12-16T09:00:00'),
+    location: 'Ginto Cafe, Lower Session Road, Baguio City',
+    description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/596144669_1305158958317605_928431503811050929_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5lhIgfJPDs8Q7kNvwGSIfTa&_nc_oc=Adn-95kbDIW48aB38SZpDW7AlI1aUckaZTU2jo8938XuaEOV_9YNpxElPqhyg2Nlix0&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=ZIL8HBmSu5UcHUNH6-ZzkA&oh=00_Afkfmh0HIPiyIKHQSGOI7BUsHWkrs_QCGzRkX6NATegoIw&oe=693C0009',
+    tags: ['Training', 'MSME', 'Workshop'],
+    link: 'https://events.intracen.org/event-register/TP-YR6783',
+    learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
+    organizerId: 'dict-car'
   }
 ];
 
