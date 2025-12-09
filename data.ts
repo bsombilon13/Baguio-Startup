@@ -651,7 +651,7 @@ export const events: Event[] = [
     endDate: new Date('2025-12-22T17:00:00'),
     location: 'Scout Hill, Camp John Hay, Baguio City',
     description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children! Through these workshops, Mandëko Kito supports the continuous growth of our local creative community and the future of Filipino craftsmanship.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/581946283_122158851776600138_5733691605446594206_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6OtYQf6Hwt4Q7kNvwEBRTy7&_nc_oc=AdnpxsHLmqcFfUTmUUU4AJl641Cdt1wC-Q-EVtvZbxY7y5bPKx6vJkLVDipQeS8rsr0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=Gq1_TNpmvBn6PkVRWIer_Q&oh=00_AfmiR82mmiwDq1YCI9tPe-aiZVapEXl_xb2CrRLSnFf-5Q&oe=6937678E',
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593909254_122160566060600138_2301711655997371491_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NLQVyU2NbfkQ7kNvwForn_l&_nc_oc=Adlmt-WPwTAuD6ZIOmK2LB4S_aPfXAaW1o5botQFntZy5GvxrvPqqcoqXN43snITBCo&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=zlpNrzS4fvuWxAC2-lAmEg&oh=00_AfmjGsslcUbkqD4qLK0gGsJA0Ecq7onDna8ZlOyv1rnSSQ&oe=693D9832',
     tags: ['Fair', 'Creative', 'Community'],
     learnMoreLink: 'https://www.facebook.com/mandekofficial',
     organizerId: 'mandeko-kito'
@@ -694,12 +694,25 @@ export const events: Event[] = [
     organizerId: 'dict-car'
   },
   {
+    id: 'evt-ai-show-tell',
+    title: 'AI Show and Tell (For The Tech Startup Community)',
+    date: new Date('2025-12-11T20:00:00'),
+    endDate: new Date('2025-12-11T21:00:00'),
+    location: 'Zoom',
+    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
+    tags: ['Workshop', 'Tech', 'AI'],
+    link: 'https://luma.com/S8-AI-ShowAndTell',
+    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
+    organizerId: 'geeks-on-a-beach'
+  },
+  {
     id: 'evt-creative-tech',
     title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
     date: new Date('2025-12-13T13:00:00'),
     location: 'Zoom',
     description: "This short course introduces participants to the growing creative technology sector, covering animation, game development, and digital content creation. It discusses career pathways, creative tools, and the global demand for Filipino creative professionals. The course aims to inspire learners to pursue opportunities in the creative digital economy and aligns with the Philippine Creative Industries Development Act (RA 11904).",
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591731203_873748715226279_3291547514410931563_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF3AZwO0BlLsywylmF7y9ZBdEY4fv6fQEl0Rjh-_p9ASWIwto5p3rKMs_djGeAz7-N_1_1XYjk_9Su_yqMQJhHm&_nc_ohc=s0dQ2vxVkuAQ7kNvwGbuOJz&_nc_oc=AdkAeKzs1Js9U9R28hG2qEyIWNiW-W1sj_NFYg-ut8vn9wFYiyW3hgTjLcu8MEdJLB8&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=R1UT9XSkuwRUL4GQid6xgg&oh=00_Afk3NLhcn2I5Xbfh7oPAwoTcerxpyv1KGjqEQI86nYPk2Q&oe=69373E6A',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591731203_873748715226279_3291547514410931563_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2KB4GTkv67UQ7kNvwH-IRFz&_nc_oc=Admx0WAUr_kCyr0QQLsiSsytx69fR7PoX7T5diG5Eqs5Puxr6LHu6EPHxcXT1HLI6dk&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=mi7GggNK_rlAaYaZ1nPx9w&oh=00_AflVM6UIGuNw5lpb_ca3tOtoM44LADmL1w6zTnS18KwrRw&oe=693D656A',
     tags: ['Training', 'Creative', 'GameDev'],
     link: 'https://bit.ly/CTT-Register',
     learnMoreLink: 'https://www.facebook.com/share/p/1YWW6DYhyq/',
@@ -723,7 +736,7 @@ export const events: Event[] = [
     date: new Date('2025-12-15T13:00:00'),
     location: 'Zoom',
     description: "This training aims to equip government employees, policymakers, and IT professionals with the foundational knowledge of blockchain technology, its use cases in governance, and how it can enhance public sector services.",
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/593885931_875167355084415_5917444070216356359_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HYwV5tT1mzEQ7kNvwEx5mky&_nc_oc=AdkA2JirIVw6vePbx8A973YuAVrf3N4-I7MZSj7DuhUu-S-WBdj5EOpHiNMIUgzI-2s&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=DXGW3U9VMNuQd-M5uyOGvg&oh=00_AfmATuBSfN8paYHPyV7e3f423M_9aPu94QD8KGH2ibTeCg&oe=69374208',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/593885931_875167355084415_5917444070216356359_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OCYN4Sw9yqUQ7kNvwEamhbh&_nc_oc=AdnkK9QuzYu2geyaBYqVCCYmvxYMjHfVqNj3uqoA7zKYkb1EBuUY2hzHzC5A3E_x_Gs&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=nzB_eO9txEdWmobZ4erb5g&oh=00_AfmCfWhWA4iAVhxop816xkHhFfV-BV91IiNhciGHp2rYUg&oe=693D6908',
     tags: ['Workshop', 'Blockchain', 'GovTech'],
     link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
     learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
@@ -735,24 +748,11 @@ export const events: Event[] = [
     date: new Date('2025-12-16T09:00:00'),
     location: 'Ginto Cafe, Lower Session Road, Baguio City',
     description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
-    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/596144669_1305158958317605_928431503811050929_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=5lhIgfJPDs8Q7kNvwGSIfTa&_nc_oc=Adn-95kbDIW48aB38SZpDW7AlI1aUckaZTU2jo8938XuaEOV_9YNpxElPqhyg2Nlix0&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=ZIL8HBmSu5UcHUNH6-ZzkA&oh=00_Afkfmh0HIPiyIKHQSGOI7BUsHWkrs_QCGzRkX6NATegoIw&oe=693C0009',
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/596144669_1305158958317605_928431503811050929_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ckjGWUjrq8UQ7kNvwFtXjBD&_nc_oc=AdnCRKkILmfs-wE2yiu5Ixh_f5fTgAtNJYr5-mVnGUg4k-8Q9X1v4xCCoq9Qku1Lcf4&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=LVkrBXJ-ZFuhWWT7dv4xDw&oh=00_AfnIdmpJGE4WsXskoO2BThIYepZL_lFOzQZ8t3arg9FCpw&oe=693D89C9',
     tags: ['Workshop', 'Training', 'MSME'],
     link: 'https://events.intracen.org/event-register/TP-YR6783',
     learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
     organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-ai-show-tell',
-    title: 'AI Show and Tell (For The Tech Startup Community)',
-    date: new Date('2025-12-11T20:00:00'),
-    endDate: new Date('2025-12-11T21:00:00'),
-    location: 'Zoom',
-    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
-    tags: ['Workshop', 'Tech', 'AI'],
-    link: 'https://luma.com/S8-AI-ShowAndTell',
-    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
-    organizerId: 'geeks-on-a-beach'
   }
 ];
 
