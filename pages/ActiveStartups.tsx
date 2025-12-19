@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { activeStartups } from '../data';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award } from 'lucide-react';
+import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award, Leaf, Microscope } from 'lucide-react';
 import OrganizationModal from '../components/OrganizationModal';
 
 const ActiveStartups: React.FC = () => {
@@ -10,7 +10,7 @@ const ActiveStartups: React.FC = () => {
   const [selectedStage, setSelectedStage] = useState('All');
   const [selectedStartup, setSelectedStartup] = useState<any | null>(null);
 
-  const industries = ['All', 'Tech', 'Service', 'E-commerce', 'AgriTech', 'Creative', 'Health'];
+  const industries = ['All', 'Tech', 'Service', 'E-commerce', 'AgriTech', 'Creative', 'Health', 'CleanTech', 'Material Science'];
   const stages = ['All', 'Idea', 'Pre-Seed', 'Seed', 'Growth'];
 
   const getIndustryColor = (industry: string) => {
@@ -21,6 +21,8 @@ const ActiveStartups: React.FC = () => {
       case 'AgriTech': return 'from-emerald-400 to-teal-600';
       case 'Creative': return 'from-violet-400 to-purple-600';
       case 'Health': return 'from-cyan-400 to-blue-600';
+      case 'CleanTech': return 'from-emerald-500 to-green-700';
+      case 'Material Science': return 'from-slate-600 to-slate-800';
       default: return 'from-slate-400 to-slate-600';
     }
   };
@@ -33,6 +35,8 @@ const ActiveStartups: React.FC = () => {
       case 'AgriTech': return <Sprout size={12} />;
       case 'Creative': return <Palette size={12} />;
       case 'Health': return <HeartPulse size={12} />;
+      case 'CleanTech': return <Leaf size={12} />;
+      case 'Material Science': return <Microscope size={12} />;
       default: return <Layers size={12} />;
     }
   };

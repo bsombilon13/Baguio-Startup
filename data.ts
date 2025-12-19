@@ -572,6 +572,26 @@ export const activeStartups: Startup[] = [
     stage: 'Pre-Seed'
   },
   {
+    id: 'bosblocks',
+    name: 'BOS Blocks',
+    description: 'B.O.S BLOCKS is a cleantech startup transforming the Philippine hollow block industry through a proprietary blend of bamboo biochar and pulverized oyster shells. The result is a construction material that is significantly stronger, more durable, and more environmentally sustainable than traditional blocks. By reducing cement usage, storing carbon, and repurposing waste materials, B.O.S BLOCKS supports cleaner construction and circular economy practices.',
+    logoUrl: '',
+    facebookUrl: '',
+    websiteUrl: 'https://intto.uc-bcf.edu.ph/ucolab/project-detail.html?id=CyNjOWMz8l0q93hGCpus',
+    industry: ['Tech', 'CleanTech', 'Material Science'],
+    stage: 'Pre-Seed'
+  },
+  {
+    id: 'bighani',
+    name: 'Bighani RPG',
+    description: 'BIGHANI RPG is a 2D pixel-art, turn-based strategy role-playing game that showcases Filipino culture and mythology. Players embark on an epic journey across landscapes inspired by iconic Philippine landmarks, encountering mythical creatures and solving challenges rooted in local folklore. Designed as an educational platform, the game enhances students’ understanding of Philippine mythology through interactive, immersive learning experiences.',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/475834963_122243782544008053_3761724755288673803_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kUiRra_6S7IQ7kNvwGa2eu8&_nc_oc=AdlV8nWy3ZFS19vwCoyLN5T5dNx1EWxgthGx_C5Npo717rPY-Klx0c5BTJN8UugIbf4&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=HFUaXSyKwlVt2hp_zbQKsw&oh=00_Afn2aQt3DTUJAjdYOdSIiJzHNsw-Ft8BBncRxrATqTRdQQ&oe=694B3326',
+    facebookUrl: 'https://www.facebook.com/BighaniProject',
+    websiteUrl: 'https://merchant-shade.itch.io/bighani',
+    industry: ['Tech', 'Creative'],
+    stage: 'Pre-Seed'
+  },
+  {
     id: 'heysuccess',
     name: 'Hey Success PH',
     description: 'Empowering students and young professionals with global opportunities.',

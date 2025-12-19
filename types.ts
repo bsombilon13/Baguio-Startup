@@ -1,5 +1,4 @@
 
-
 export interface Organization {
   id: string;
   name: string;
@@ -18,7 +17,7 @@ export interface Startup {
   logoUrl: string;
   facebookUrl: string;
   websiteUrl?: string;
-  industry: ('Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative' | 'Health')[];
+  industry: ('Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative' | 'Health' | 'CleanTech' | 'Material Science')[];
   stage?: 'Pre-Seed' | 'Seed' | 'Growth' | 'Idea';
 }
 
