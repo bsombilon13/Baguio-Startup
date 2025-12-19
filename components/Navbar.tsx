@@ -1,4 +1,6 @@
 
+
+
 import React, { useContext } from 'react';
 import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle, UserPlus, Globe, Menu } from 'lucide-react';
 import { NavLink, useLocation, Link } from 'react-router-dom';
@@ -68,7 +70,7 @@ const Sidebar: React.FC = () => {
               className={({ isActive }) =>
                 `flex items-center justify-center lg:justify-start gap-3 px-3 lg:px-4 py-3.5 rounded-xl transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
                   isActive
-                    ? 'bg-[#35308f] text-white shadow-md shadow-indigo-200 dark:shadow-none'
+                    ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-none'
                     : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
                 }`
               }

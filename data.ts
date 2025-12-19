@@ -1,5 +1,4 @@
 
-
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -324,7 +323,6 @@ export const ecosystemOrgs: Organization[] = [
     facebookUrl: 'https://www.facebook.com/zwbaguio',
     types: ['Non-Profit']
   },
-  // New Additions
   {
     id: 'psto-baguio-benguet',
     name: 'DOST PSTO Baguio-Benguet',
@@ -553,13 +551,12 @@ export const ecosystemOrgs: Organization[] = [
   }
 ];
 
-// Alphabetically sorted active startups
 export const activeStartups: Startup[] = [
   {
     id: 'aeroaid',
     name: 'AeroAid',
     description: 'A smart, drone delivery system designed to get life-saving medicines in far-flung areas.',
-    logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3or8YoXluRbi1y92eqnTqK_Zq44NMPH0r9mrjg0w8ff6bmHSzHAW48nm3_M5h9RixYBFHLY5QkQxk4gW4Ix6B&_nc_ohc=L4ixzEDF4WsQ7kNvwHUqyuE&_nc_oc=AdmQk7yef5dZTpVgUptHjeJ58_8GOa8QwVCfKoM-6UY35T05XiUfqwocPCypC3o-q90&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=2jFnnRW_jX9g-w4HsT16CQ&oh=00_Afn7NQraNDM5Xa2ugxuSvaEsa2WDRFCRlFX9KXwtpYaz-g&oe=69383ABC',
+    logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3or8YoXluRbi1y92eqnTqK_Zq44NMPH0r9mrjg0w8ff6bmHSzHAW48nm3_M5h9RixYBFHLY5QkQxk4gW4Ix6B&_nc_ohc=_WIInK1BXHIQ7kNvwEcJ_9z&_nc_oc=AdlV8nWy3ZFS19vwCoyLN5T5dNx1EWxgthGx_C5Npo717rPY-Klx0c5BTJN8UugIbf4&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=XOnSt6URRHy0ocXtqa-J0A&oh=00_AfkHObAPPAPv1bUHnITnuMGLCmLmiLaDA8AlDS0rH3Kblw&oe=694B203C',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61576826433382',
     industry: ['Tech', 'Health'],
     stage: 'Idea'
@@ -568,7 +565,7 @@ export const activeStartups: Startup[] = [
     id: 'aicore',
     name: 'AiCore',
     description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHiRIlmZIBDUcYXIovHo8IwIIOpEdbsi6wgg6kR1uyLrMWuf8Qif1AA5soSI9OS6sgvPk7lmdax-6K4rMToDFVE&_nc_ohc=YiIBmdgr-cMQ7kNvwFe3JNe&_nc_oc=AdlNltx2Aztq_gZtSQ0zvTyah-AwAS3uraVF7LrHcaM_9ZN1oCph3gg63fVsRdqYKuw&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=_CPvxJISayrUaHwud7n52Q&oh=00_AfkGbyGV3_dE5wknVVBv0fxaBUXBGklOBLO6cDdrqtjKfw&oe=693C1B80',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHiRIlmZIBDUcYXIovHo8IwIIOpEdbsi6wgg6kR1uyLrMWuf8Qif1AA5soSI9OS6sgvPk7lmdax-6K4rMToDFVE&_nc_ohc=f3cuUXYjrioQ7kNvwEoB66p&_nc_oc=AdnMLzaS_KpyovMAE9Bsbk8TEZtue5xS5sDpO-MeN0RTyW0iPGRlonB0EpC4iKU9D5w&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=YmCFaaJxUgB8JqeSatUYpw&oh=00_AflbdmF7slal7GgXYIPm9YOn50lQUM1ku2uWqGV4IhWl1A&oe=694B44C0',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
     websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
     industry: ['Tech'],
@@ -650,109 +647,11 @@ export const events: Event[] = [
     date: new Date('2025-12-05T08:00:00'),
     endDate: new Date('2025-12-22T17:00:00'),
     location: 'Scout Hill, Camp John Hay, Baguio City',
-    description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children! Through these workshops, Mandëko Kito supports the continuous growth of our local creative community and the future of Filipino craftsmanship.',
-    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593909254_122160566060600138_2301711655997371491_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=NLQVyU2NbfkQ7kNvwForn_l&_nc_oc=Adlmt-WPwTAuD6ZIOmK2LB4S_aPfXAaW1o5botQFntZy5GvxrvPqqcoqXN43snITBCo&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=zlpNrzS4fvuWxAC2-lAmEg&oh=00_AfmjGsslcUbkqD4qLK0gGsJA0Ecq7onDna8ZlOyv1rnSSQ&oe=693D9832',
+    description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children!',
+    imageUrl: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=2000&auto=format&fit=crop',
     tags: ['Fair', 'Creative', 'Community'],
     learnMoreLink: 'https://www.facebook.com/mandekofficial',
     organizerId: 'mandeko-kito'
-  },
-  {
-    id: 'evt-yep-ap',
-    title: 'Youth Entrepreneurship Accelerator Camp: Training of Master Trainers',
-    date: new Date('2025-12-09T08:00:00'),
-    endDate: new Date('2025-12-11T17:00:00'),
-    location: 'Amber Hall, Ion Hotel, Legarda Road, Baguio City',
-    description: "This FREE three-day workshop, delivered through UNDP’s Youth Empowerment Project in Asia and the Pacific (YEP-AP) and Youth Co:Lab, aims to invest in and empower young people across the region to accelerate the implementation of the Sustainable Development Goals (SDGs). It equips young entrepreneurs, coaches, mentors, and counselors with the skills to create impact-driven, needs-based, and innovative solutions that address today’s complex challenges.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/594362596_699268099921752_406322020114184965_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5wZud0Qz-BkQ7kNvwF30hhX&_nc_oc=AdkZmrD4VbfqVcnI0FpN5dh62j_7o-au-BGYzMKnt9xzKcVJlAqkqxhPuh7-lXxKNpw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=M7ymMQe053cY9_Sr7bOqlA&oh=00_AfntDprLXxsVAFXd-XNxxYk7pmFHCQ-eonFFuHdm7t9ymg&oe=693C0DF3',
-    tags: ['Training'],
-    link: 'https://bit.ly/YouthToMT',
-    learnMoreLink: 'https://www.facebook.com/share/p/17XWdjfeLk/',
-    organizerId: 'cpdso'
-  },
-  {
-    id: 'evt-cloud-devops-basics',
-    title: 'Cloud and DevOps Basics',
-    date: new Date('2025-12-10T13:00:00'),
-    location: 'Zoom',
-    description: "This short course provides an introductory overview of cloud computing and DevOps principles. Participants will learn about service models (IaaS, PaaS, SaaS), the advantages of cloud adoption, and the collaborative practices that define DevOps. The session supports DICT's Cloud First Policy and aims to build foundational awareness of cloud infrastructure and deployment workflows relevant to government, business, and startups.",
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/587213315_872894341978383_6161694301616584039_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHxtQjMgZxlEc9du-DDOCu7eDeTBQyd0xJ4N5MFDJ3TEqIrc0d5JZc94yhB-f_FeODohzjSDDuHGJbYf0PUvN5s&_nc_ohc=hr6K3rK0VEYQ7kNvwEO5qGj&_nc_oc=Adl6sDkcUPb3L-6j7SuGJ10bZWmQdPG2Q3rHZ60hcrmOC-ZZdfU65rtkWMTogbep6pI&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=T8YbvtvX6jd5sEJepYUFbQ&oh=00_AfnTFA79f7EvbdYfZWWI7V94bYtKrRRaq8z_TDZdG7194g&oe=6939F4E4',
-    tags: ['Workshop', 'Cloud', 'DevOps'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeInZn9y284wxk-tLtqMqyjl9gn4Hxl8nqLLwApRtzj6J2UGg/viewform',
-    learnMoreLink: 'https://www.facebook.com/share/p/1DiWAXjLaw/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-data-analytics',
-    title: 'Data Analytics & Visualization Essentials',
-    date: new Date('2025-12-11T13:00:00'),
-    location: 'Zoom',
-    description: "This short course introduces participants to data analytics and visualization concepts used in decision-making, monitoring, and reporting. Participants will learn how to collect, interpret, and present data using accessible tools such as Excel or Google Sheets. The course aims to promote a culture of evidence-based decision-making in both public and private sectors.",
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591137402_872940378640446_4885674274388250125_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9LKHe_BMD1kQ7kNvwFH3aao&_nc_oc=Admibm767hsdXQnFLMLq_-sZUKHpjZq3PVZis8zxULo9EnfNLMvuJYK-ybqaNUcRoTo&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=M1WcvWXQ1Ld1UIM9f8wo5Q&oh=00_AfmsTsyWFQ-vSJ8ND36JXvSu9ZFkF916oRyCu4JCvk5Fiw&oe=693BFCD4',
-    tags: ['Workshop', 'Data', 'Analytics'],
-    link: 'https://bit.ly/DAVE-Register',
-    learnMoreLink: 'https://www.facebook.com/share/p/17fFd7Kq9Q/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-ai-show-tell',
-    title: 'AI Show and Tell (For The Tech Startup Community)',
-    date: new Date('2025-12-11T20:00:00'),
-    endDate: new Date('2025-12-11T21:00:00'),
-    location: 'Zoom',
-    description: 'A demo-first event where builders and pros show off working AI products and creative, hands-on workflows.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594074759_1433066438826568_1602336775394415177_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=nu_3t1OYRlkQ7kNvwG0QhfM&_nc_oc=AdmI3vnIwy-r1PyZE8PuOyAG8u5XmuuIpm1oWPaeJtYU-8utFwimiMonSVtqaC7k0C0&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=ax73YSRxkfDtQp_wcNWpCw&oh=00_AfmI5Vd6McmK0puZ3P8V201Hl_5eXF45zstXl21_Oc4ZVQ&oe=6938A54B',
-    tags: ['Workshop', 'Tech', 'AI'],
-    link: 'https://luma.com/S8-AI-ShowAndTell',
-    learnMoreLink: 'https://www.facebook.com/share/p/1QB6rFDCtH/',
-    organizerId: 'geeks-on-a-beach'
-  },
-  {
-    id: 'evt-creative-tech',
-    title: 'Creative Tech Trends: Animation, Game Development d Digital Content Creation',
-    date: new Date('2025-12-13T13:00:00'),
-    location: 'Zoom',
-    description: "This short course introduces participants to the growing creative technology sector, covering animation, game development, and digital content creation. It discusses career pathways, creative tools, and the global demand for Filipino creative professionals. The course aims to inspire learners to pursue opportunities in the creative digital economy and aligns with the Philippine Creative Industries Development Act (RA 11904).",
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/591731203_873748715226279_3291547514410931563_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2KB4GTkv67UQ7kNvwH-IRFz&_nc_oc=Admx0WAUr_kCyr0QQLsiSsytx69fR7PoX7T5diG5Eqs5Puxr6LHu6EPHxcXT1HLI6dk&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=mi7GggNK_rlAaYaZ1nPx9w&oh=00_AflVM6UIGuNw5lpb_ca3tOtoM44LADmL1w6zTnS18KwrRw&oe=693D656A',
-    tags: ['Training', 'Creative', 'GameDev'],
-    link: 'https://bit.ly/CTT-Register',
-    learnMoreLink: 'https://www.facebook.com/share/p/1YWW6DYhyq/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-digital-pinas-day1',
-    title: 'Digital-Pinas Workshop for MSMEs (Day 1)',
-    date: new Date('2025-12-15T09:00:00'),
-    location: 'Ginto Cafe, Lower Session Road, Baguio City',
-    description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
-    imageUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/595279906_1305158894984278_5026051132293164654_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ioGlS2dBEdcQ7kNvwEtjmNe&_nc_oc=AdmNGG6kFGe_qz3BhaqVfLLSkzgIwtKlsQXflxNUw95UjNQtS2I-66CPiHnH-WHdTSw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=huGlomS28EcR8o6cwMabAA&oh=00_AfnGT0ydDYz0pEClEABwbGzNnZ_VKjgRMDJkY5Hb2FhSYw&oe=693C2798',
-    tags: ['Workshop', 'Training', 'MSME'],
-    link: 'https://events.intracen.org/event-register/TP-El3096',
-    learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-blockchain-govt',
-    title: 'Blockchain Technology in Government (Potential and Application)',
-    date: new Date('2025-12-15T13:00:00'),
-    location: 'Zoom',
-    description: "This training aims to equip government employees, policymakers, and IT professionals with the foundational knowledge of blockchain technology, its use cases in governance, and how it can enhance public sector services.",
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/593885931_875167355084415_5917444070216356359_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=OCYN4Sw9yqUQ7kNvwEamhbh&_nc_oc=AdnkK9QuzYu2geyaBYqVCCYmvxYMjHfVqNj3uqoA7zKYkb1EBuUY2hzHzC5A3E_x_Gs&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=nzB_eO9txEdWmobZ4erb5g&oh=00_AfmCfWhWA4iAVhxop816xkHhFfV-BV91IiNhciGHp2rYUg&oe=693D6908',
-    tags: ['Workshop', 'Blockchain', 'GovTech'],
-    link: 'https://forms.gle/vMuuE5yAfpUKx8ra8',
-    learnMoreLink: 'https://www.facebook.com/photo/?fbid=875167351751082&set=a.131590669442091',
-    organizerId: 'dict-car'
-  },
-  {
-    id: 'evt-digital-pinas-day2',
-    title: 'Digital-Pinas Workshop for MSMEs (Day 2)',
-    date: new Date('2025-12-16T09:00:00'),
-    location: 'Ginto Cafe, Lower Session Road, Baguio City',
-    description: "The Digital PINAS aims to bridge the digital divide in the Philippines by upskilling 15,000 MSMEs, improving connectivity, and boosting competitiveness through training and Digital Transformation Centers, funded by the UN SDG Fund, focusing on inclusivity for women, IPs, and remote businesses to drive economic growth.",
-    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/596144669_1305158958317605_928431503811050929_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=ckjGWUjrq8UQ7kNvwFtXjBD&_nc_oc=AdnCRKkILmfs-wE2yiu5Ixh_f5fTgAtNJYr5-mVnGUg4k-8Q9X1v4xCCoq9Qku1Lcf4&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=LVkrBXJ-ZFuhWWT7dv4xDw&oh=00_AfnIdmpJGE4WsXskoO2BThIYepZL_lFOzQZ8t3arg9FCpw&oe=693D89C9',
-    tags: ['Workshop', 'Training', 'MSME'],
-    link: 'https://events.intracen.org/event-register/TP-YR6783',
-    learnMoreLink: 'https://www.facebook.com/share/p/1FweTNniYR/',
-    organizerId: 'dict-car'
   }
 ];
 
@@ -761,8 +660,8 @@ export const communityNews: NewsItem[] = [
     id: 'news-4',
     title: 'CAR Universities in the UI GreenMetric 2025 Rankings',
     date: 'Dec 16, 2025',
-    excerpt: 'The Cordillera Administrative Region (CAR) celebrates a major milestone as several of its universities earn spots in the UI GreenMetric World University Rankings 2025, a global sustainability benchmark featuring 1,547 institutions across 105 countries. This recognition highlights the region’s growing commitment to climate action, clean energy, waste reduction, sustainable mobility, and environmental education. The achievement showcases how Cordillera campuses—rooted in the mountains—are stepping onto the world stage as leaders in building greener, more resilient learning environments for future generations.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/594589449_122195892926326439_5576333072787289967_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sjuCeqELIhcQ7kNvwH3dEcT&_nc_oc=AdnU3NSe-HcpZhszG3rUroIVF87amQ0ucqYEz6VsC3QoqsaGIVYMt6F96Xdn_ZpxvXA&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=zWMourgpLakQM3858FEWtw&oh=00_AfnbNrZ4FEgx6gSqKGX3lAyL1yzLdxRjl1pmHjRDYdvZLw&oe=693AB4EC',
+    excerpt: 'The Cordillera Administrative Region (CAR) celebrates a major milestone as several of its universities earn spots in the UI GreenMetric World University Rankings 2025.',
+    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
     link: 'https://greenmetric.ui.ac.id/rankings/overall-rankings-2025',
     source: 'Website'
   },
@@ -770,8 +669,8 @@ export const communityNews: NewsItem[] = [
     id: 'news-3',
     title: 'Congratulations to the Champions of the Baguio Smart City Convergence 2025',
     date: 'Dec 12, 2025',
-    excerpt: 'As we continue building a smarter, more resilient, and more people-centered Baguio City, we proudly celebrate the outstanding students and innovators who showcased brilliance, creativity, and purpose-driven innovation.',
-    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593866385_1194754472440128_8684342725486940305_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fBG0SJYY7eEQ7kNvwE7upr7&_nc_oc=AdnN5XA-Yg0uQREeyTIp8RifdaB1P1yBGsCn4gsF3phjBw_gjUVa8YR1gENY25gEiso&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=1JeXtCGJWEN2rNdNqsdbcA&oh=00_AflnWr7diND7v0__Wj728vfpfbcROX0kwMXgMm2MHnfSAw&oe=69385205',
+    excerpt: 'As we continue building a smarter, more resilient, and more people-centered Baguio City, we proudly celebrate the outstanding students and innovators.',
+    imageUrl: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1000&auto=format&fit=crop',
     link: 'https://www.facebook.com/share/p/1AXJ2Sq43P/',
     source: 'Facebook'
   },
@@ -779,8 +678,8 @@ export const communityNews: NewsItem[] = [
     id: 'news-2',
     title: 'Auscultate Wins 1st Runner Up in PSC10!',
     date: 'Dec 05, 2025',
-    excerpt: 'Warmest congratulations to Auscultate from the Cordillera Administrative Region for achieving 1st Runner Up in the Philippine Startup Challenge 10! ✨👏🏻🥳 Your innovation, dedication, and passion for creating impactful solutions truly shine. This achievement is a testament to your hard work, creativity, and commitment to making a difference in the startup ecosystem. 🫶🏻🥳✨ The Cordillera region and the entire Philippine startup community are proud of your success. Keep pushing boundaries, keep innovating, and continue inspiring others with your vision. Well done, Auscultate this is only the beginning! 🚀🥳',
-    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594904505_875149501752867_2697425006317580049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHTc-lRB91bWOFGtGystWM9rgUUukEnby2uBRS6QSdvLXHb1CF1PTfU7Wq_vTJhIGFAN8Alumqxd7zPPdXs5KDs&_nc_ohc=KYp2uAbNK5UQ7kNvwHzrtbn&_nc_oc=Adm7VSI3EvjwcyeNFUx1z0qxCLZf9jPaOTlyWsBJ4U_jhsBlYdj4U2Se_YiTzc9_Bww&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=m8usIRKO_yjqxfSmQbHepw&oh=00_Afmidx4ogcJwDO_g5KSlxJYd8d5fF7ajwCm38VXkGPu29A&oe=69376414',
+    excerpt: 'Warmest congratulations to Auscultate from the Cordillera Administrative Region for achieving 1st Runner Up in the Philippine Startup Challenge 10!',
+    imageUrl: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?q=80&w=1000&auto=format&fit=crop',
     link: 'https://www.facebook.com/photo/?fbid=875149498419534&set=a.131590669442091',
     source: 'Facebook'
   },
@@ -788,8 +687,8 @@ export const communityNews: NewsItem[] = [
     id: 'news-1',
     title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',
     date: 'Dec 03, 2025',
-    excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10, bringing with them courage, creativity, and an unshakable innovative spirit on December 3-4, 2025 at Clark, Pampanga. As The Last Seven steps onto the national spotlight, we send you off with pride, love, and confidence. To the mentors, colleagues, startup community, and supporters who gathered to cheer them, your energy fuels their drive to showcase what Cordilleran ingenuity can achieve this PSC10. Best of luck, Team Cordillera! May your ideas resonate, your confidence shine, and your passion lead the way. Go out there, stand tall! We are proud of you!',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFUhRuLrgSz2yxSXuWeOwAu51izX57cBAHnWLNfntwEAdoiYWyU7ozMtN6abbX4SU-f_3NDyFLMkSqJnOTrNEpP&_nc_ohc=gffLZABdtVkQ7kNvwFSRFGN&_nc_oc=AdmB6KKokzA-Q281WnjoLEXeAnO_8w0Dp8eli2cNZD7pu0R_NoF2KITWnVDkDKD5s1M&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=gXA2isUwaX4QZVVDCPgSNw&oh=00_Afnqtldsx8VM3DGHolX145YlJu5iKOvIGRKoKwj1vFSOuQ&oe=693A2928',
+    excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10 on December 3-4, 2025.',
+    imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
     link: 'https://www.facebook.com/photo/?fbid=873609971906820&set=a.131590669442091',
     source: 'Facebook'
   }
@@ -803,22 +702,10 @@ export const opportunities: Opportunity[] = [
     amount: 'USD 25,000',
     deadline: 'Jan 25, 2026',
     type: 'Grant',
-    description: 'This application package offers detailed information on partnership benefits, eligibility criteria, application requirements, and the selection process for Cohort 6. We welcome CSOs and SEs committed to community empowerment and youth engagement to partner with us in implementing impactful six-month projects across the region.',
+    description: 'CSOs and SEs committed to community empowerment and youth engagement are invited to implement impactful projects.',
     link: 'https://form.jotform.com/253384883336467',
     moreDetailsLink: 'https://bit.ly/eYAA6_CSO',
-    bannerUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/594181792_1258476376317989_4527947100446330509_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=E_4NZw4WJSIQ7kNvwGpP_7V&_nc_oc=AdncyrpAEzh4KRr-LxLJMDrD0r_3DisbZqo6wF1Srd18vPU74eWF9VG0_mEL8zabsB4&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=sqQQVH8WnJ9_B5JHSEuQtg&oh=00_Afkhh_HMd1qHS1AousMRqaLcmaAS73o4SFmjKQq0Q32ftg&oe=693A033F'
-  },
-  {
-    id: 'circular-economy-experts',
-    title: 'Call for Experts to Support the Development of the Circular Economy Taxonomy',
-    organization: 'EU-PH Green Economy Partnership',
-    amount: 'N/A',
-    deadline: 'Dec 10, 2025',
-    type: 'Call for Experts',
-    description: 'Help shape the Philippines’ Sustainable Finance Taxonomy Guidelines Phase 2 #CircularEconomy objective by joining the Technical Expert Groups.',
-    link: 'https://forms.gle/JZ6GRMGE5s2FujtD6',
-    moreDetailsLink: 'https://www.greeneconomy.ph/event/call-for-sector-experts-join-the-technical-expert-groups-for-the-philippines-sustainable-finance-taxonomy-circular-economy-objective',
-    bannerUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/590797299_122157486026653773_3356632794202583350_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YoPnenmtsjcQ7kNvwF6FrEE&_nc_oc=AdmUEnC6x7y3rLV_oe6mnN4OeZXUrHWhNip4F_XrnyWA-SrvNw6Pn0Umy0-JPLxCtUQ&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=a1Jr8QUQDJVAmPB6kAOSRw&oh=00_AfkDhCl6RSBNGphJ0C81_75t_VaqWJrd8msJlpGpEzH8DA&oe=69387EA7'
+    bannerUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop'
   },
   {
     id: 'award-1',
@@ -827,21 +714,9 @@ export const opportunities: Opportunity[] = [
     amount: 'Recognition',
     deadline: 'Jan 14, 2026',
     type: 'Awards',
-    description: 'Nomination for MSME Disaster Resilience.',
+    description: 'Nomination for MSME Disaster Resilience awards for 2026.',
     link: 'https://bit.ly/MatatagAwards',
     moreDetailsLink: 'https://www.facebook.com/share/p/17jdMgFnyt/'
-  },
-  {
-    id: 'sea-europe-jfs-10',
-    title: '10th SEA-Europe JFS Call',
-    organization: 'SEA-Europe JFS',
-    amount: 'Research Grant',
-    deadline: 'See Link',
-    type: 'Grant',
-    description: 'Call for proposals for the 10th SEA-Europe Joint Funding Scheme (JFS) for Research and Innovation.',
-    link: 'https://www.sea-europe-jfs.eu/news/call-topics-10th-sea-europe-call-have-been-decided',
-    moreDetailsLink: 'https://www.sea-europe-jfs.eu/news/call-topics-10th-sea-europe-call-have-been-decided',
-    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594006707_1291506866354883_4364297823398538100_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=867WxeU1UNkQ7kNvwGQbXSg&_nc_oc=Adlm5utQ5dio4LE9skXpGzkdTedYy-UTUdb42Is1f9a3Wr4Jw6JdZZLVemOn_Wj-Jd4&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=23tbitLJtjrU63MhJjUO9g&oh=00_Afnj1URkG1QHF9jil-ffVKzvuPfoVAmAiprbJbbFbn4H5A&oe=6938014C'
   }
 ];
 
@@ -859,30 +734,20 @@ export const resources: Resource[] = [
     id: 'r2',
     title: 'Research and Innovation Ordinance of the City of Baguio',
     type: 'Government',
-    description: 'Ordinance providing incentives and support for research, innovation, and creative endeavors in the City of Baguio.',
+    description: 'Ordinance providing incentives and support for research, innovation, and creative endeavors.',
     format: 'WEB',
     size: 'N/A',
     url: 'https://citycouncil.baguio.gov.ph/ordinances/j4w5Dgzx'
   },
   {
     id: 'r3',
-    title: 'Philippine Startup Ecosystem Report 2025 by Gobi Partners',
+    title: 'Philippine Startup Ecosystem Report 2025',
     type: 'Report',
     description: 'Gobi Partners launches Philippine Startup Ecosystem Report 2025: The Next Wave of Innovation.',
     format: 'WEB',
     size: 'N/A',
-    url: 'https://gobicore.vc/gobi-partners-launches-philippine-startup-ecosystem-report-2025-the-next-wave-of-innovation/?fbclid=IwY2xjawOaz6FleHRuA2FlbQIxMABicmlkETFUSEFMUXZUT2dOanpFM2Mxc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHj9p06uUVAyV9q_9Kpj3U-3e_aZYcL_SQKFsyyZrU9rK4QDkbBjdrLUIdyAk_aem_RDT5QMOuiKoF_EVRa14IEw'
+    url: 'https://gobicore.vc/gobi-partners-launches-philippine-startup-ecosystem-report-2025-the-next-wave-of-innovation/'
   },
-  {
-    id: 'r4',
-    title: 'Baguio City Voluntary Local Review of the Sustainable Development Goals',
-    type: 'Report',
-    description: 'The report highlighted significant progress in areas such as sustainable cities and communities and climate actions while also identifying key challenges that require accelerated efforts to achieve the SDGs.',
-    format: 'WEB',
-    size: 'N/A',
-    url: 'https://www.undp.org/philippines/publications/baguio-city-voluntary-local-review-sustainable-development-goals'
-  },
-  // Websites
   {
     id: 'web-luma',
     title: 'Luma',
@@ -891,15 +756,6 @@ export const resources: Resource[] = [
     format: 'Event Mgmt',
     size: 'N/A',
     url: 'https://luma.com/'
-  },
-  {
-    id: 'web-trello',
-    title: 'Trello',
-    type: 'Website',
-    description: 'Visual project management and collaboration tool.',
-    format: 'Project Mgmt',
-    size: 'N/A',
-    url: 'https://trello.com/'
   },
   {
     id: 'web-monday',
@@ -920,15 +776,6 @@ export const resources: Resource[] = [
     url: 'https://clickup.com/'
   },
   {
-    id: 'web-ilovepdf',
-    title: 'iLovePDF',
-    type: 'Website',
-    description: 'Free online tools to merge, split, compress, and convert PDFs.',
-    format: 'Utilities',
-    size: 'N/A',
-    url: 'https://www.ilovepdf.com/'
-  },
-  {
     id: 'web-notebooklm',
     title: 'NotebookLM',
     type: 'Website',
@@ -941,28 +788,10 @@ export const resources: Resource[] = [
     id: 'web-canva',
     title: 'Canva',
     type: 'Website',
-    description: 'Graphic design platform for social media, presentations, and more.',
+    description: 'Graphic design platform for social media and presentations.',
     format: 'Design',
     size: 'N/A',
     url: 'https://www.canva.com/'
-  },
-  {
-    id: 'web-toools',
-    title: 'Toools.design',
-    type: 'Website',
-    description: 'Archive of top-notch design resources and tools.',
-    format: 'Design',
-    size: 'N/A',
-    url: 'https://www.toools.design/'
-  },
-  {
-    id: 'web-freepik',
-    title: 'Freepik',
-    type: 'Website',
-    description: 'High-quality photos, vectors, videos, and PSD files.',
-    format: 'Stock Assets',
-    size: 'N/A',
-    url: 'https://www.freepik.com/'
   },
   {
     id: 'web-figma',
