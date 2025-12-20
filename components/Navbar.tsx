@@ -1,13 +1,21 @@
 
-
-
-import React, { useContext } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, MessageCircle, UserPlus, Globe, Menu } from 'lucide-react';
-import { NavLink, useLocation, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { NavLink, Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
+import ManagerPasswordModal from './ManagerPasswordModal';
 
 export const MobileHeader: React.FC = () => {
-  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const { isDarkMode, toggleTheme, isManager, toggleManager } = useContext(ThemeContext);
+  const [showGate, setShowGate] = useState(false);
+
+  const handleManagerToggle = () => {
+    if (isManager) {
+      toggleManager(); // Turn off immediately
+    } else {
+      setShowGate(true); // Show password gate
+    }
+  };
   
   return (
     <header className="md:hidden w-full flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shrink-0">
@@ -23,19 +31,43 @@ export const MobileHeader: React.FC = () => {
            </div>
         </Link>
         
-        <button 
-            onClick={toggleTheme}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#35308f]"
-        >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        <div className="flex items-center gap-2">
+            <button 
+                onClick={handleManagerToggle}
+                title={isManager ? "Exit Manager Mode" : "Enter Manager Mode"}
+                className={`p-2 rounded-full transition-colors ${isManager ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}
+            >
+                {isManager ? <ShieldCheck size={20} /> : <ShieldAlert size={20} />}
+            </button>
+            <button 
+                onClick={toggleTheme}
+                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+            >
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+        </div>
+        {showGate && (
+          <ManagerPasswordModal 
+            onClose={() => setShowGate(false)} 
+            onSuccess={() => { toggleManager(); setShowGate(false); }} 
+          />
+        )}
       </header>
   );
 };
 
 const Sidebar: React.FC = () => {
-  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const { isDarkMode, toggleTheme, isManager, toggleManager } = useContext(ThemeContext);
+  const [showGate, setShowGate] = useState(false);
+
+  const handleManagerToggle = () => {
+    if (isManager) {
+      toggleManager(); // Turn off immediately
+    } else {
+      setShowGate(true); // Show password gate
+    }
+  };
 
   const navItems = [
     { name: 'Hub', icon: Home, path: '/' },
@@ -82,6 +114,14 @@ const Sidebar: React.FC = () => {
         </nav>
 
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2 mt-auto">
+          <button 
+            onClick={handleManagerToggle}
+            className={`w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl transition-all ${isManager ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+          >
+            {isManager ? <ShieldCheck size={20} /> : <ShieldAlert size={20} />}
+            <span className="hidden lg:block font-medium">{isManager ? 'Manager View' : 'Member View'}</span>
+          </button>
+
           <a 
             href="https://m.me/cm/Abbm6IW4fkqDxlfM/?send_source=cm%3Acopy_invite_link" 
             target="_blank" 
@@ -91,17 +131,6 @@ const Sidebar: React.FC = () => {
           >
             <UserPlus size={20} />
             <span className="hidden lg:block font-medium">Join Community</span>
-          </a>
-
-          <a 
-            href="https://m.me/baguiostartup" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
-            aria-label="Contact Us on Messenger"
-          >
-            <MessageCircle size={20} />
-            <span className="hidden lg:block font-medium">Contact Us</span>
           </a>
 
           <button 
@@ -141,6 +170,12 @@ const Sidebar: React.FC = () => {
           ))}
          </div>
       </nav>
+      {showGate && (
+        <ManagerPasswordModal 
+          onClose={() => setShowGate(false)} 
+          onSuccess={() => { toggleManager(); setShowGate(false); }} 
+        />
+      )}
     </>
   );
 };

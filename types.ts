@@ -72,4 +72,17 @@ export interface Resource {
 export interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
+  isManager: boolean;
+  toggleManager: () => void;
+  // Management actions
+  removeItem: (type: string, id: string) => void;
+  addItem: (type: string, item: any) => void;
+  // Data state
+  data: {
+    startups: Startup[];
+    ecosystem: Organization[];
+    events: Event[];
+    opportunities: Opportunity[];
+    resources: Resource[];
+  }
 }
