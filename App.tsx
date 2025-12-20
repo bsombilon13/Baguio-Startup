@@ -11,9 +11,8 @@ import CommunityNews from './pages/CommunityNews';
 import SDGPage from './pages/SDG';
 import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource } from './types';
-import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, Clock, MapPin, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, Clock, MapPin, ShieldCheck, Mail, MessageSquare } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-// Added communityNews to the imports to fix "Cannot find name 'communityNews'" error.
 import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews } from './data';
 import { format, isSameDay, isWithinInterval } from 'date-fns';
 
@@ -34,7 +33,6 @@ const Dashboard = () => {
   
   const { data, isManager } = React.useContext(ThemeContext);
 
-  // Use state data for dashboard
   const sortedEvents = [...data.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   const nextEvent = sortedEvents[0];
   const latestNews = communityNews[0];
@@ -241,14 +239,22 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-8 flex flex-col items-center justify-center text-center shadow-sm min-h-[360px]">
-           <div className="w-20 h-20 rounded-[1.75rem] overflow-hidden mb-6 shadow-xl bg-white border border-slate-100 flex items-center justify-center p-3 transform group-hover:rotate-6 transition-transform">
-             <img src="https://somalia.startupblink.com/_next/static/media/startuplink.fe5810b1.svg" alt="" className="w-full h-full object-contain" />
+        <div className="md:col-span-1 bg-slate-900 dark:bg-slate-800 rounded-[2.5rem] p-8 flex flex-col justify-between text-white shadow-sm min-h-[360px] relative overflow-hidden group">
+           <div className="absolute top-0 right-0 p-8 opacity-10 -rotate-12 transition-transform group-hover:rotate-0 group-hover:scale-110">
+             <MessageSquare size={120} />
            </div>
-           <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Ecosystem Map</h3>
-           <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 font-medium leading-relaxed">Put your startup on the global stage. Join the official Cordillera index.</p>
-           <a href="https://www.startupblink.com/" target="_blank" rel="noopener noreferrer" className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2">
-             Join Map <ArrowRight size={14} />
+           <div className="relative z-10">
+              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-6 block">Support</span>
+              <h3 className="text-2xl font-black mb-2">Get in Touch</h3>
+              <p className="text-slate-400 text-sm font-medium leading-relaxed">
+                Have a question, feedback, or want to partner with us? Our team is here to help.
+              </p>
+           </div>
+           <a 
+            href="mailto:baguiostartup@gmail.com" 
+            className="relative z-10 w-full py-4 bg-white text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2"
+           >
+             Contact Us <Mail size={14} />
            </a>
         </div>
 
@@ -284,7 +290,6 @@ const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isManager, setIsManager] = useState(false);
   
-  // Data state
   const [appData, setAppData] = useState({
     startups: activeStartups,
     ecosystem: ecosystemOrgs,
@@ -325,9 +330,29 @@ const App: React.FC = () => {
 
   const addItem = (type: string, item: any) => {
     const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
+    
+    // Sanitize item data to prevent React rendering crashes (White Screen)
+    const sanitizedItem = { ...item };
+    
+    // Ensure dates are actual Date objects if adding an event
+    if (type === 'event' && typeof sanitizedItem.date === 'string') {
+      sanitizedItem.date = new Date(sanitizedItem.date);
+    }
+
+    // Ensure required arrays exist to prevent .filter or .map crashes
+    if (type === 'event' && !sanitizedItem.tags) sanitizedItem.tags = [];
+    if (type === 'startup' && !sanitizedItem.industry) {
+      sanitizedItem.industry = [];
+    } else if (type === 'startup' && typeof sanitizedItem.industry === 'string') {
+      // Handle the case where the form might send a single string instead of an array
+      sanitizedItem.industry = [sanitizedItem.industry];
+    }
+    
+    if (type === 'ecosystem' && !sanitizedItem.types) sanitizedItem.types = [];
+
     setAppData(prev => ({
       ...prev,
-      [listKey]: [item, ...(prev as any)[listKey]]
+      [listKey]: [sanitizedItem, ...(prev as any)[listKey]]
     }));
   };
 

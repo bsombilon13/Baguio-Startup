@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, ShieldCheck, ShieldAlert, Mail } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
 import ManagerPasswordModal from './ManagerPasswordModal';
@@ -11,9 +11,9 @@ export const MobileHeader: React.FC = () => {
 
   const handleManagerToggle = () => {
     if (isManager) {
-      toggleManager(); // Turn off immediately
+      toggleManager();
     } else {
-      setShowGate(true); // Show password gate
+      setShowGate(true);
     }
   };
   
@@ -32,6 +32,13 @@ export const MobileHeader: React.FC = () => {
         </Link>
         
         <div className="flex items-center gap-2">
+            <a 
+              href="mailto:baguiostartup@gmail.com"
+              className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-[#35308f] transition-colors"
+              title="Contact Us"
+            >
+              <Mail size={20} />
+            </a>
             <button 
                 onClick={handleManagerToggle}
                 title={isManager ? "Exit Manager Mode" : "Enter Manager Mode"}
@@ -41,8 +48,7 @@ export const MobileHeader: React.FC = () => {
             </button>
             <button 
                 onClick={toggleTheme}
-                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+                className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
             >
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
@@ -63,9 +69,9 @@ const Sidebar: React.FC = () => {
 
   const handleManagerToggle = () => {
     if (isManager) {
-      toggleManager(); // Turn off immediately
+      toggleManager();
     } else {
-      setShowGate(true); // Show password gate
+      setShowGate(true);
     }
   };
 
@@ -82,27 +88,24 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col w-20 lg:w-64 h-screen fixed left-0 top-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-50 transition-colors duration-300">
         <Link to="/" className="h-24 flex items-center justify-center border-b border-slate-100 dark:border-slate-800/50 p-4">
             <img 
               src="https://static.wixstatic.com/media/85ce0b_a34fd67effbb4a4b932c2791821103a3~mv2.png" 
-              alt="Baguio Startup Network Logo" 
+              alt="BSN Logo" 
               className="w-full h-full object-contain dark:brightness-0 dark:invert transition-all duration-300 hover:scale-110"
             />
         </Link>
 
-        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6 overflow-y-auto no-scrollbar" role="navigation" aria-label="Main Navigation">
+        <nav className="flex-1 px-2 lg:px-4 space-y-2 mt-6 overflow-y-auto no-scrollbar">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
-              title={item.name}
-              aria-label={item.name}
               className={({ isActive }) =>
-                `flex items-center justify-center lg:justify-start gap-3 px-3 lg:px-4 py-3.5 rounded-xl transition-all duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-[#35308f] ${
+                `flex items-center justify-center lg:justify-start gap-3 px-3 lg:px-4 py-3.5 rounded-xl transition-all duration-200 font-medium ${
                   isActive
-                    ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md shadow-indigo-200 dark:shadow-none'
+                    ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md'
                     : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
                 }`
               }
@@ -123,11 +126,18 @@ const Sidebar: React.FC = () => {
           </button>
 
           <a 
+            href="mailto:baguiostartup@gmail.com"
+            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Mail size={20} />
+            <span className="hidden lg:block font-medium">Contact Us</span>
+          </a>
+
+          <a 
             href="https://m.me/cm/Abbm6IW4fkqDxlfM/?send_source=cm%3Acopy_invite_link" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
-            aria-label="Join the Community"
+            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <UserPlus size={20} />
             <span className="hidden lg:block font-medium">Join Community</span>
@@ -135,8 +145,7 @@ const Sidebar: React.FC = () => {
 
           <button 
             onClick={toggleTheme}
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-[#35308f]"
+            className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             <span className="hidden lg:block font-medium">{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
@@ -144,16 +153,14 @@ const Sidebar: React.FC = () => {
         </div>
       </aside>
 
-      {/* Mobile Bottom Nav - Fixed Height 80px */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full h-[80px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 z-50 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)] box-border">
          <div className="flex items-center overflow-x-auto no-scrollbar gap-1 px-2 py-2 h-full snap-x">
            {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
-              aria-label={item.name}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center gap-1 p-2 rounded-xl transition-all active:scale-95 focus:outline-none focus:ring-2 focus:ring-[#35308f] min-w-[72px] shrink-0 snap-center ${
+                `flex flex-col items-center justify-center gap-1 p-2 rounded-xl transition-all active:scale-95 min-w-[72px] shrink-0 snap-center ${
                   isActive 
                   ? 'text-[#35308f] dark:text-[#5c56d6] bg-indigo-50 dark:bg-indigo-900/20 font-bold' 
                   : 'text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300'

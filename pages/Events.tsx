@@ -2,13 +2,13 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { format, eachDayOfInterval, isSameDay, isToday, isWithinInterval } from 'date-fns';
-// Added PlusCircle to fix "Cannot find name 'PlusCircle'" error.
 import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, CalendarPlus, Zap, Award, Info, Trash2, Plus, PlusCircle } from 'lucide-react';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
 import { Event, Organization, Startup } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
 import ManagerFormModal from '../components/ManagerFormModal';
+import PublicSuggestionModal from '../components/PublicSuggestionModal';
 
 const Events: React.FC = () => {
   const { data, isManager, removeItem, addItem } = useContext(ThemeContext);
@@ -20,6 +20,7 @@ const Events: React.FC = () => {
   const [selectedOrg, setSelectedOrg] = useState<Organization | Startup | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const ITEMS_PER_PAGE = 20;
   const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive', 'Fair'];
@@ -78,6 +79,11 @@ const Events: React.FC = () => {
     return [...data.ecosystem, ...data.startups].find(o => o.id === organizerId);
   };
 
+  const handleAddClick = () => {
+    if (isManager) setIsAdding(true);
+    else setIsSuggesting(true);
+  };
+
   return (
     <div className="space-y-6 pb-32">
       <div className="flex flex-col gap-5">
@@ -103,7 +109,7 @@ const Events: React.FC = () => {
                     </div>
                     <div className="flex flex-wrap gap-3">
                         <button
-                          onClick={() => setIsAdding(true)}
+                          onClick={handleAddClick}
                           className="w-fit bg-white text-[#35308f] px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-50 hover:scale-105 transition-all shadow-lg flex items-center gap-2"
                         >
                           <PlusCircle size={18} /> {isManager ? 'Add Event' : 'Suggest Event'}
@@ -220,6 +226,12 @@ const Events: React.FC = () => {
           type="event" 
           onClose={() => setIsAdding(false)} 
           onSave={(item) => { addItem('event', item); setIsAdding(false); }} 
+        />
+      )}
+      {isSuggesting && (
+        <PublicSuggestionModal 
+          type="event" 
+          onClose={() => setIsSuggesting(false)} 
         />
       )}
       {selectedEvent && <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} onOrganizerClick={setSelectedOrg} />}

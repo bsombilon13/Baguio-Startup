@@ -2,9 +2,10 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award, Leaf, Microscope, Trash2, Plus } from 'lucide-react';
+import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award, Leaf, Microscope, Trash2, Plus, ExternalLink, ShieldCheck } from 'lucide-react';
 import OrganizationModal from '../components/OrganizationModal';
 import ManagerFormModal from '../components/ManagerFormModal';
+import StartupSubmissionModal from '../components/StartupSubmissionModal';
 
 const ActiveStartups: React.FC = () => {
   const { data, isManager, removeItem, addItem } = useContext(ThemeContext);
@@ -12,6 +13,7 @@ const ActiveStartups: React.FC = () => {
   const [selectedStage, setSelectedStage] = useState('All');
   const [selectedStartup, setSelectedStartup] = useState<any | null>(null);
   const [isAdding, setIsAdding] = useState(false);
+  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const industries = ['All', 'Tech', 'Service', 'E-commerce', 'AgriTech', 'Creative', 'Health', 'CleanTech', 'Material Science'];
   const stages = ['All', 'Idea', 'Pre-Seed', 'Seed', 'Growth'];
@@ -60,6 +62,10 @@ const ActiveStartups: React.FC = () => {
     return industryMatch && stageMatch;
   });
 
+  const handleGetListedClick = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSdvFZoL6AA3Bd2mKzg4V4LH10_5_vEPYIB482EP7oy0csFboQ/viewform', '_blank');
+  };
+
   return (
     <div className="space-y-6 pb-32">
       <div className="flex flex-col gap-5">
@@ -87,12 +93,31 @@ const ActiveStartups: React.FC = () => {
                             Be part of the regional index. Get visibility from investors, partners, and the mountain community.
                         </p>
                     </div>
-                    <button 
-                      onClick={() => setIsAdding(true)}
-                      className="w-fit bg-white text-[#35308f] px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-50 hover:scale-105 transition-all shadow-lg flex items-center gap-2"
-                    >
-                      <PlusCircle size={18} /> {isManager ? 'Direct Add' : 'Get Listed'}
-                    </button>
+                    <div className="flex flex-wrap gap-3">
+                      <button 
+                        onClick={handleGetListedClick}
+                        className="w-fit bg-white text-[#35308f] px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-50 hover:scale-105 transition-all shadow-lg flex items-center gap-2"
+                      >
+                        <ExternalLink size={18} /> Get Listed
+                      </button>
+                      
+                      {isManager && (
+                        <>
+                          <button 
+                            onClick={() => setIsSuggesting(true)}
+                            className="w-fit bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm hover:bg-white/20 transition-all flex items-center gap-2"
+                          >
+                            <PlusCircle size={18} /> Quick Add
+                          </button>
+                          <button 
+                            onClick={() => setIsAdding(true)}
+                            className="w-fit bg-indigo-900/40 backdrop-blur-md text-white border border-indigo-400/30 px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-800/50 transition-all flex items-center gap-2"
+                          >
+                            <ShieldCheck size={18} /> Full Manager Add
+                          </button>
+                        </>
+                      )}
+                    </div>
                 </div>
             </div>
 
@@ -302,6 +327,12 @@ const ActiveStartups: React.FC = () => {
           type="startup" 
           onClose={() => setIsAdding(false)} 
           onSave={(item) => { addItem('startup', item); setIsAdding(false); }} 
+        />
+      )}
+
+      {isSuggesting && (
+        <StartupSubmissionModal 
+          onClose={() => setIsSuggesting(false)} 
         />
       )}
     </div>
