@@ -85,7 +85,7 @@ const ActiveStartups: React.FC = () => {
                 </div>
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div>
-                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/20 mb-4">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/20 mb-4 text-white">
                             <Zap size={12} className="text-yellow-300" /> Community Portal
                         </div>
                         <h2 className="text-2xl md:text-3xl font-bold mb-3">List Your Venture</h2>
@@ -187,7 +187,7 @@ const ActiveStartups: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {isManager && (
           <div 
-            onClick={() => setIsAdding(true)}
+            onClick={() => setIsSuggesting(true)}
             className="flex flex-col items-center justify-center gap-4 p-8 rounded-[1.75rem] border-2 border-dashed border-indigo-200 dark:border-slate-700 bg-indigo-50/20 dark:bg-slate-900/30 hover:bg-indigo-50 dark:hover:bg-slate-800/50 hover:border-indigo-400 transition-all cursor-pointer group h-full min-h-[300px]"
           >
              <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg group-hover:scale-110 transition-transform">

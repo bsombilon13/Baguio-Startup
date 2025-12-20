@@ -290,13 +290,27 @@ const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isManager, setIsManager] = useState(false);
   
-  const [appData, setAppData] = useState({
-    startups: activeStartups,
-    ecosystem: ecosystemOrgs,
-    events: events,
-    opportunities: opportunities,
-    resources: resources
-  });
+  // Persistence Layer
+  const getInitialData = () => {
+    const saved = localStorage.getItem('bsn_community_data');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Map dates back to Date objects
+        parsed.events = parsed.events.map((e: any) => ({ ...e, date: new Date(e.date), endDate: e.endDate ? new Date(e.endDate) : undefined }));
+        return parsed;
+      } catch (e) {
+        return { startups: activeStartups, ecosystem: ecosystemOrgs, events: events, opportunities: opportunities, resources: resources };
+      }
+    }
+    return { startups: activeStartups, ecosystem: ecosystemOrgs, events: events, opportunities: opportunities, resources: resources };
+  };
+
+  const [appData, setAppData] = useState(getInitialData());
+
+  useEffect(() => {
+    localStorage.setItem('bsn_community_data', JSON.stringify(appData));
+  }, [appData]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -331,25 +345,12 @@ const App: React.FC = () => {
   const addItem = (type: string, item: any) => {
     const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
     
-    // Sanitize item data to prevent React rendering crashes (White Screen)
     const sanitizedItem = { ...item };
-    
-    // Ensure dates are actual Date objects if adding an event
     if (type === 'event' && typeof sanitizedItem.date === 'string') {
       sanitizedItem.date = new Date(sanitizedItem.date);
     }
-
-    // Ensure required arrays exist to prevent .filter or .map crashes
-    if (type === 'event' && !sanitizedItem.tags) sanitizedItem.tags = [];
-    if (type === 'startup' && !sanitizedItem.industry) {
-      sanitizedItem.industry = [];
-    } else if (type === 'startup' && typeof sanitizedItem.industry === 'string') {
-      // Handle the case where the form might send a single string instead of an array
-      sanitizedItem.industry = [sanitizedItem.industry];
-    }
+    if (type === 'startup' && !sanitizedItem.industry) sanitizedItem.industry = [];
     
-    if (type === 'ecosystem' && !sanitizedItem.types) sanitizedItem.types = [];
-
     setAppData(prev => ({
       ...prev,
       [listKey]: [sanitizedItem, ...(prev as any)[listKey]]
