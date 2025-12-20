@@ -70,13 +70,6 @@ const Events: React.FC = () => {
     return isSameDay(e.date, date);
   });
 
-  const handleDayKeyDown = (e: React.KeyboardEvent, events: Event[]) => {
-    if ((e.key === 'Enter' || e.key === ' ') && events.length > 0) {
-      e.preventDefault();
-      handleDayClick(events, currentDate); 
-    }
-  };
-
   const handleDayClick = (dayEvents: Event[], date: Date) => {
     if (dayEvents.length === 1) {
       setSelectedEvent(dayEvents[0]);
@@ -321,18 +314,18 @@ const Events: React.FC = () => {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{format(currentDate, 'MMMM yyyy')}</h2>
             <div className="flex gap-2">
-              <button onClick={prevMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600"><ChevronLeft size={24} /></button>
-              <button onClick={nextMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600"><ChevronRight size={24} /></button>
+              <button onClick={prevMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 transition-colors"><ChevronLeft size={24} /></button>
+              <button onClick={nextMonth} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full text-slate-600 transition-colors"><ChevronRight size={24} /></button>
             </div>
           </div>
 
           <div className="grid grid-cols-7 gap-1 md:gap-4">
             {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-              <div key={day} className="text-center text-slate-400 text-[10px] font-bold uppercase tracking-wider py-2">{day}</div>
+              <div key={day} className="text-center text-slate-400 text-[10px] font-black uppercase tracking-widest py-2">{day}</div>
             ))}
             
             {Array.from({ length: monthStart.getDay() }).map((_, i) => (
-              <div key={`empty-${i}`} className="min-h-[80px]"></div>
+              <div key={`empty-${i}`} className="min-h-[80px] md:min-h-[120px]"></div>
             ))}
 
             {daysInMonth.map(day => {
@@ -345,20 +338,46 @@ const Events: React.FC = () => {
                   key={day.toString()} 
                   onClick={() => hasEvents && handleDayClick(dayEvents, day)}
                   className={`
-                    min-h-[80px] rounded-2xl p-2 border transition-all flex flex-col
-                    ${isTodayDate ? 'border-[#35308f] bg-indigo-50 dark:bg-indigo-900/20' : 'border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:bg-white'}
-                    ${hasEvents ? 'cursor-pointer hover:border-indigo-300 shadow-sm' : ''}
+                    min-h-[100px] md:min-h-[140px] rounded-2xl md:rounded-[2rem] p-2 md:p-4 border transition-all flex flex-col group/day relative
+                    ${isTodayDate 
+                        ? 'border-indigo-600 bg-indigo-50/50 dark:bg-indigo-900/20 ring-2 ring-indigo-500/10' 
+                        : hasEvents 
+                            ? 'border-violet-100 dark:border-violet-900/30 bg-violet-50/20 dark:bg-violet-900/5 hover:bg-white dark:hover:bg-slate-800'
+                            : 'border-slate-50 dark:border-slate-800 bg-slate-50/30 dark:bg-slate-800/30 hover:bg-white dark:hover:bg-slate-800'
+                    }
+                    ${hasEvents ? 'cursor-pointer hover:border-violet-400 dark:hover:border-violet-700 shadow-sm' : ''}
                   `}
                 >
-                  <span className={`text-xs font-bold ${isTodayDate ? 'text-[#35308f]' : 'text-slate-500'}`}>{format(day, 'd')}</span>
+                  <div className="flex justify-between items-start mb-2">
+                    <span className={`text-xs md:text-sm font-black ${isTodayDate ? 'text-indigo-600 dark:text-indigo-400' : hasEvents ? 'text-violet-600 dark:text-violet-400' : 'text-slate-400'}`}>
+                        {format(day, 'd')}
+                    </span>
+                    
+                    {hasEvents && (
+                        <div className="flex gap-1">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500 shadow-[0_0_8px_rgba(139,92,246,0.5)]"></span>
+                            </span>
+                        </div>
+                    )}
+                  </div>
+
                   {hasEvents && (
-                    <div className="mt-1 space-y-1 overflow-hidden">
+                    <div className="mt-1 space-y-1.5 overflow-hidden">
                       {dayEvents.slice(0, 2).map(e => (
-                        <div key={e.id} className="bg-[#35308f]/10 text-[#35308f] dark:text-indigo-300 px-1.5 py-0.5 rounded text-[8px] font-bold truncate">
+                        <div 
+                            key={e.id} 
+                            className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm text-[#35308f] dark:text-indigo-300 px-2 py-1 rounded-lg text-[9px] font-bold truncate border border-indigo-100 dark:border-indigo-900/40 group-hover/day:border-indigo-300 transition-colors shadow-xs"
+                        >
                           {e.title}
                         </div>
                       ))}
-                      {dayEvents.length > 2 && <div className="text-[8px] text-slate-400 font-bold">+{dayEvents.length - 2} more</div>}
+                      {dayEvents.length > 2 && (
+                        <div className="text-[9px] font-black text-violet-500 dark:text-violet-400 bg-violet-100/50 dark:bg-violet-900/30 px-2 py-0.5 rounded-full w-fit">
+                            +{dayEvents.length - 2} more
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
