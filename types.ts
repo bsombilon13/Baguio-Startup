@@ -18,7 +18,7 @@ export interface Startup {
   facebookUrl: string;
   websiteUrl?: string;
   industry: ('Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative' | 'Health' | 'CleanTech' | 'Material Science')[];
-  stage?: 'Pre-Seed' | 'Seed' | 'Growth' | 'Idea';
+  stage: 'Idea' | 'MVP' | 'Pre-Seed' | 'Seed' | 'Growth' | 'Scaling' | 'Series A+';
 }
 
 export interface Event {
@@ -72,8 +72,6 @@ export interface Resource {
 export interface ThemeContextType {
   isDarkMode: boolean;
   toggleTheme: () => void;
-  isManager: boolean;
-  toggleManager: () => void;
   // Management actions
   removeItem: (type: string, id: string) => void;
   addItem: (type: string, item: any) => void;

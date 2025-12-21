@@ -569,12 +569,12 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
     websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
     industry: ['Tech'],
-    stage: 'Pre-Seed'
+    stage: 'MVP'
   },
   {
     id: 'bosblocks',
     name: 'BOS Blocks',
-    description: 'B.O.S BLOCKS is a cleantech startup transforming the Philippine hollow block industry through a proprietary blend of bamboo biochar and pulverized oyster shells. The result is a construction material that is significantly stronger, more durable, and more environmentally sustainable than traditional blocks. By reducing cement usage, storing carbon, and repurposing waste materials, B.O.S BLOCKS supports cleaner construction and circular economy practices.',
+    description: 'B.O.S BLOCKS is a cleantech startup transforming the Philippine hollow block industry through a proprietary blend of bamboo biochar and pulverized oyster shells.',
     logoUrl: '',
     facebookUrl: '',
     websiteUrl: 'https://intto.uc-bcf.edu.ph/ucolab/project-detail.html?id=CyNjOWMz8l0q93hGCpus',
@@ -584,12 +584,12 @@ export const activeStartups: Startup[] = [
   {
     id: 'bighani',
     name: 'Bighani RPG',
-    description: 'BIGHANI RPG is a 2D pixel-art, turn-based strategy role-playing game that showcases Filipino culture and mythology. Players embark on an epic journey across landscapes inspired by iconic Philippine landmarks, encountering mythical creatures and solving challenges rooted in local folklore. Designed as an educational platform, the game enhances students’ understanding of Philippine mythology through interactive, immersive learning experiences.',
+    description: 'BIGHANI RPG is a 2D pixel-art, turn-based strategy role-playing game that showcases Filipino culture and mythology.',
     logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/475834963_122243782544008053_3761724755288673803_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kUiRra_6S7IQ7kNvwGa2eu8&_nc_oc=AdlV8nWy3ZFS19vwCoyLN5T5dNx1EWxgthGx_C5Npo717rPY-Klx0c5BTJN8UugIbf4&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=HFUaXSyKwlVt2hp_zbQKsw&oh=00_Afn2aQt3DTUJAjdYOdSIiJzHNsw-Ft8BBncRxrATqTRdQQ&oe=694B3326',
     facebookUrl: 'https://www.facebook.com/BighaniProject',
     websiteUrl: 'https://merchant-shade.itch.io/bighani',
     industry: ['Tech', 'Creative'],
-    stage: 'Pre-Seed'
+    stage: 'MVP'
   },
   {
     id: 'heysuccess',
@@ -599,7 +599,7 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/heysuccessph',
     websiteUrl: 'https://heysuccess.com.ph',
     industry: ['Service'],
-    stage: 'Pre-Seed'
+    stage: 'Seed'
   },
   {
     id: 'inv8studio',
@@ -609,7 +609,7 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/inv8studio',
     websiteUrl: 'https://inv8.io/',
     industry: ['Creative'],
-    stage: 'Pre-Seed'
+    stage: 'Scaling'
   },
   {
     id: 'parapo',
@@ -628,7 +628,7 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/srvpinoy',
     websiteUrl: 'https://srvpinoy.com',
     industry: ['Service'],
-    stage: 'Pre-Seed'
+    stage: 'Growth'
   },
   {
     id: 'sunshare',
@@ -637,7 +637,7 @@ export const activeStartups: Startup[] = [
     logoUrl: 'https://graph.facebook.com/sunshare.ph/picture?type=large',
     facebookUrl: 'https://www.facebook.com/sunshare.ph',
     industry: ['Tech'],
-    stage: 'Pre-Seed'
+    stage: 'MVP'
   },
   {
     id: 'tarana',
@@ -647,7 +647,7 @@ export const activeStartups: Startup[] = [
     facebookUrl: 'https://www.facebook.com/TaranaAI',
     websiteUrl: 'https://www.tarana-ai.com/',
     industry: ['Tech'],
-    stage: 'Pre-Seed'
+    stage: 'Seed'
   },
   {
     id: 'tingi',
@@ -668,7 +668,7 @@ export const events: Event[] = [
     endDate: new Date('2025-12-22T17:00:00'),
     location: 'Scout Hill, Camp John Hay, Baguio City',
     description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children!',
-    imageUrl: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?q=80&w=2000&auto=format&fit=crop',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/581946283_122158851776600138_5733691605446594206_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGSmeaq2DeTxt5JXZBmBp0NJKEUVet8UE8koRRV63xQT_DE9v65cuu_07XnB_aGYrmj-jIIH-pSYZNJRCYRaEOV&_nc_ohc=QuFLMAlZ_tMQ7kNvwFZibDy&_nc_oc=Adm4yT7nN42MWAg_5Rd82tHquJysEiKTdXr_kXO2GQM9xQJt5wAMm0snPQWMEczywdU&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=WV7wJNbjSKBtIGWeXPZESg&oh=00_AflfYM3o8hfUOslzQK9wdeIbEVs7EqGinKuSZYgvu8Mhuw&oe=694DD10E',
     tags: ['Fair', 'Creative', 'Community'],
     learnMoreLink: 'https://www.facebook.com/mandekofficial',
     organizerId: 'mandeko-kito'

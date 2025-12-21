@@ -19,11 +19,11 @@ const StartupSubmissionModal: React.FC<StartupSubmissionModalProps> = ({ onClose
     logoUrl: '',
     facebookUrl: '',
     websiteUrl: '',
-    stage: 'Idea' as const,
+    stage: 'Idea' as 'Idea' | 'MVP' | 'Pre-Seed' | 'Seed' | 'Growth' | 'Scaling' | 'Series A+',
   });
 
   const industries = ['Tech', 'Service', 'E-commerce', 'AgriTech', 'Creative', 'Health', 'CleanTech', 'Material Science', 'Other'];
-  const stages = ['Idea', 'Pre-Seed', 'Seed', 'Growth'];
+  const stages = ['Idea', 'MVP', 'Pre-Seed', 'Seed', 'Growth', 'Scaling', 'Series A+'];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
