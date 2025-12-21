@@ -1,88 +1,156 @@
 
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
-import { Search, Globe, Download, ExternalLink, Trash2, Plus } from 'lucide-react';
-import ManagerFormModal from '../components/ManagerFormModal';
+import { Search, Globe, Download, ExternalLink, FileText, Layout, BookOpen, Building, Monitor, Info, ChevronRight, Hash } from 'lucide-react';
 
 const Resources: React.FC = () => {
-  const { data, isManager, removeItem, addItem } = useContext(ThemeContext);
+  const { data } = useContext(ThemeContext);
   const [filter, setFilter] = useState('All');
-  const [subFilter, setSubFilter] = useState('All');
-  const [isAdding, setIsAdding] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filters = ['All', 'Report', 'Template', 'Guide', 'Government', 'Website'];
-  const websiteCategories = ['All', ...Array.from(new Set(data.resources.filter(r => r.type === 'Website').map(r => r.format)))];
+  const filters = [
+    { name: 'All', icon: Hash },
+    { name: 'Report', icon: FileText },
+    { name: 'Template', icon: Layout },
+    { name: 'Guide', icon: BookOpen },
+    { name: 'Government', icon: Building },
+    { name: 'Website', icon: Monitor },
+  ];
 
   const filteredResources = data.resources.filter(resource => {
-    const typeMatch = filter === 'All' || resource.type === filter;
-    if (filter === 'Website' && typeMatch) return subFilter === 'All' || resource.format === subFilter;
-    return typeMatch;
+    const matchesFilter = filter === 'All' || resource.type === filter;
+    const matchesSearch = resource.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          resource.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesFilter && matchesSearch;
   });
 
-  return (
-    <div className="space-y-6 pb-24">
-      <div className="flex items-end justify-between mb-4 md:mb-8">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-[#35308f] dark:text-indigo-400 transition-colors mb-2">Resources</h1>
-          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium">Download reports, templates, and guides.</p>
-        </div>
-        {isManager && (
-            <button onClick={() => setIsAdding(true)} className="px-6 py-3 bg-indigo-600 text-white rounded-xl font-bold flex items-center gap-2 hover:scale-105 transition-all">
-                <Plus size={20} /> Add Resource
-            </button>
-        )}
-      </div>
+  const getIconColor = (type: string) => {
+    switch(type) {
+      case 'Report': return 'bg-blue-500';
+      case 'Template': return 'bg-emerald-500';
+      case 'Guide': return 'bg-amber-500';
+      case 'Government': return 'bg-indigo-500';
+      case 'Website': return 'bg-rose-500';
+      default: return 'bg-slate-500';
+    }
+  };
 
-      <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-end">
-        <div className="relative flex-1 w-full">
-          <Search className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-          <input type="text" placeholder="Search..." className="w-full pl-9 md:pl-12 pr-4 py-2 md:py-3 rounded-xl border border-slate-200 bg-white dark:bg-slate-900 transition-all text-sm" />
+  return (
+    <div className="space-y-12 pb-32 max-w-[1400px] mx-auto">
+      {/* Interactive Header */}
+      <div className="relative p-8 md:p-16 rounded-[3rem] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden group">
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-indigo-500/5 blur-[100px] rounded-full"></div>
+        <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-emerald-500/5 blur-[100px] rounded-full"></div>
+        
+        <div className="relative z-10 flex flex-col md:flex-row items-end justify-between gap-8">
+          <div className="max-w-2xl text-center md:text-left space-y-4">
+            <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+              The Digital <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#35308f] to-violet-600">Toolkit</span>
+            </h1>
+            <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+              Curated reports, templates, and essential links for the Cordillera startup community.
+            </p>
+          </div>
+          
+          <div className="w-full md:w-96 relative">
+            <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+            <input 
+              type="text" 
+              placeholder="Search tools & docs..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-14 pr-6 py-5 rounded-[2rem] border-0 bg-slate-100 dark:bg-slate-800 focus:ring-4 focus:ring-indigo-500/20 transition-all font-bold text-slate-900 dark:text-white shadow-inner" 
+            />
+          </div>
         </div>
       </div>
         
-      <div className="border-b border-slate-200 dark:border-slate-800 flex overflow-x-auto no-scrollbar">
+      {/* Category Tabs */}
+      <div className="sticky top-4 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 p-2 rounded-[2rem] shadow-xl flex overflow-x-auto no-scrollbar gap-1 mx-4 md:mx-0">
           {filters.map(f => (
-            <button key={f} onClick={() => { setFilter(f); setSubFilter('All'); }} className={`px-4 py-2 md:px-6 md:py-3 font-bold text-xs md:text-sm whitespace-nowrap transition-all border-b-2 rounded-t-lg ${filter === f ? 'border-[#35308f] text-[#35308f] bg-indigo-50/50' : 'border-transparent text-slate-500 hover:bg-slate-50'}`}>{f === 'Website' ? 'Websites' : f}</button>
+            <button 
+              key={f.name} 
+              onClick={() => setFilter(f.name)} 
+              className={`flex items-center gap-2 px-6 py-3 font-black text-xs md:text-sm whitespace-nowrap transition-all rounded-2xl ${
+                filter === f.name 
+                ? 'bg-[#35308f] text-white shadow-lg' 
+                : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900'
+              }`}
+            >
+              <f.icon size={16} />
+              {f.name === 'Website' ? 'Websites' : f.name}
+            </button>
           ))}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 pt-2">
-        {isManager && (
-            <div onClick={() => setIsAdding(true)} className="flex flex-col items-center justify-center gap-3 p-8 rounded-2xl border-2 border-dashed border-indigo-200 bg-indigo-50/20 hover:bg-indigo-50 transition-all cursor-pointer h-full min-h-[200px]">
-                <Plus size={32} className="text-indigo-400" />
-                <span className="font-black text-indigo-400 uppercase tracking-widest text-[10px]">Add Resource</span>
-            </div>
-        )}
+      {/* Grid Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-0">
         {filteredResources.map(resource => (
-          <div key={resource.id} className="bg-white dark:bg-slate-900 rounded-2xl p-3 md:p-6 border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-lg transition-all group flex flex-col h-full relative">
-            {isManager && (
-                 <button 
-                  onClick={(e) => { e.stopPropagation(); removeItem('resource', resource.id); }}
-                  className="absolute top-2 right-2 z-20 p-1.5 bg-rose-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
-                 >
-                    <Trash2 size={12} />
-                 </button>
-            )}
-            <div className="flex justify-between items-start mb-2 md:mb-4">
-              {resource.type === 'Website' ? <div className="w-8 h-8 rounded-xl bg-white border border-slate-100 flex items-center justify-center p-1"><img src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${resource.url}&size=64`} alt="" className="w-5 h-5 object-contain" /></div> : <div className="w-8 h-8 rounded-xl bg-slate-50 flex items-center justify-center text-[#35308f]"><Globe size={20} /></div>}
-              <span className={`text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider ${resource.type === 'Website' ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-600'}`}>{resource.type === 'Website' ? resource.format : resource.type}</span>
+          <div 
+            key={resource.id} 
+            className="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2 overflow-hidden"
+          >
+            {/* Background Decorative Pattern */}
+            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-125 transition-transform duration-700">
+               <FileText size={120} />
             </div>
-            <h3 className="text-sm md:text-lg font-bold text-slate-900 dark:text-white mb-1 leading-tight">{resource.title}</h3>
-            <p className="text-slate-500 text-xs md:text-sm leading-relaxed mb-4 flex-1 line-clamp-2">{resource.description}</p>
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between mt-auto">
-              <div className="text-[8px] md:text-[10px] font-bold text-slate-400 uppercase tracking-wider">{resource.type === 'Website' ? 'Free/Paid' : `${resource.format} • ${resource.size}`}</div>
-              <a href={resource.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-indigo-50 text-[#35308f] px-2 py-1 md:px-3 md:py-1.5 rounded-lg text-xs font-bold hover:bg-[#35308f] hover:text-white transition-colors">{resource.type === 'Website' ? 'Visit' : 'View'} {resource.type === 'Website' ? <ExternalLink size={12}/> : <Download size={12} />}</a>
+
+            <div className="flex justify-between items-start mb-8 relative z-10">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg ${getIconColor(resource.type)}`}>
+                {resource.type === 'Website' ? (
+                  <Monitor size={28} />
+                ) : (
+                  <FileText size={28} />
+                )}
+              </div>
+              <div className="flex flex-col items-end">
+                <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  {resource.type}
+                </span>
+              </div>
+            </div>
+
+            <div className="relative z-10 flex-1">
+              <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-4 leading-tight group-hover:text-indigo-600 transition-colors">
+                {resource.title}
+              </h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8 font-medium line-clamp-3">
+                {resource.description}
+              </p>
+            </div>
+
+            <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto relative z-10">
+              <div className="flex flex-col">
+                <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Format</span>
+                <span className="text-xs font-bold text-slate-900 dark:text-slate-200">{resource.format} {resource.size !== 'N/A' && `• ${resource.size}`}</span>
+              </div>
+              
+              <a 
+                href={resource.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group/btn flex items-center gap-2 bg-[#35308f] text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg active:scale-95"
+              >
+                {resource.type === 'Website' ? 'Visit' : 'Open'} 
+                {resource.type === 'Website' ? (
+                  <ExternalLink size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                ) : (
+                  <Download size={16} className="group-hover/btn:translate-y-1 transition-transform" />
+                )}
+              </a>
             </div>
           </div>
         ))}
       </div>
-
-      {isAdding && (
-        <ManagerFormModal 
-          type="resource" 
-          onClose={() => setIsAdding(false)} 
-          onSave={(item) => { addItem('resource', item); setIsAdding(false); }} 
-        />
+      
+      {filteredResources.length === 0 && (
+         <div className="py-32 text-center">
+            <div className="w-20 h-20 bg-slate-50 dark:bg-slate-900 rounded-[2rem] flex items-center justify-center mx-auto mb-6">
+               <Monitor size={40} className="text-slate-200" />
+            </div>
+            <h3 className="text-xl font-black text-slate-400 uppercase tracking-widest">No Resources Found</h3>
+            <p className="text-slate-500 mt-2 font-medium">Try adjusting your search or filter criteria.</p>
+         </div>
       )}
     </div>
   );

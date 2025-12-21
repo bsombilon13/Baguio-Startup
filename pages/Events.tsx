@@ -2,16 +2,14 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { format, eachDayOfInterval, isSameDay, isToday, isWithinInterval } from 'date-fns';
-import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, CalendarPlus, Zap, Award, Info, Trash2, Plus, PlusCircle } from 'lucide-react';
+import { Calendar as CalendarIcon, List as ListIcon, ChevronLeft, ChevronRight, Filter, MapPin, Clock, ChevronRight as ChevronRightIcon, Zap, Award } from 'lucide-react';
 import EventModal, { DayEventsModal } from '../components/EventModal';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
 import { Event, Organization, Startup } from '../types';
 import OrganizationModal from '../components/OrganizationModal';
-import ManagerFormModal from '../components/ManagerFormModal';
-import PublicSuggestionModal from '../components/PublicSuggestionModal';
 
 const Events: React.FC = () => {
-  const { data, isManager, removeItem, addItem } = useContext(ThemeContext);
+  const { data } = useContext(ThemeContext);
   const [view, setView] = useState<'calendar' | 'list'>('list');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
@@ -19,8 +17,6 @@ const Events: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedOrg, setSelectedOrg] = useState<Organization | Startup | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isAdding, setIsAdding] = useState(false);
-  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const ITEMS_PER_PAGE = 20;
   const filters = ['All', 'Workshop', 'Conference', 'Training', 'Meetups', 'Exclusive', 'Fair'];
@@ -36,18 +32,6 @@ const Events: React.FC = () => {
 
   const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
   const paginatedEvents = filteredEvents.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
-  const handlePageChange = (newPage: number) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setCurrentPage(newPage);
-      document.getElementById('events-grid')?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleFilterChange = (filter: string) => {
-    setActiveFilter(filter);
-    setCurrentPage(1); 
-  };
 
   const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
   const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
@@ -79,9 +63,9 @@ const Events: React.FC = () => {
     return [...data.ecosystem, ...data.startups].find(o => o.id === organizerId);
   };
 
-  const handleAddClick = () => {
-    if (isManager) setIsAdding(true);
-    else setIsSuggesting(true);
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter);
+    setCurrentPage(1); 
   };
 
   return (
@@ -89,10 +73,10 @@ const Events: React.FC = () => {
       <div className="flex flex-col gap-5">
         <div>
           <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-2">
-            Events <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Calendar</span>
+            Events <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Sync</span>
           </h1>
           <p className="text-lg text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
-            Discover workshops, meetups, and conferences across the Cordillera Administrative Region.
+            Discover workshops, meetups, and conferences across the region.
           </p>
         </div>
 
@@ -102,21 +86,15 @@ const Events: React.FC = () => {
                 <div className="relative z-10 flex flex-col justify-between h-full">
                     <div>
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/20 mb-4 text-white">
-                            <Zap size={12} className="text-yellow-300" /> Community Events
+                            <Zap size={12} className="text-yellow-300" /> Community Updates
                         </div>
-                        <h2 className="text-2xl md:text-3xl font-bold mb-3">Sync with the Ecosystem</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3">Community Activities</h2>
                         <p className="text-indigo-100 text-sm md:text-base max-w-md mb-6 leading-relaxed">Stay up to date with the latest ecosystem activities. Join our meetups.</p>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                        <button
-                          onClick={handleAddClick}
-                          className="w-fit bg-white text-[#35308f] px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-50 hover:scale-105 transition-all shadow-lg flex items-center gap-2"
-                        >
-                          <PlusCircle size={18} /> {isManager ? 'Add Event' : 'Suggest Event'}
-                        </button>
                         <button onClick={() => setView(view === 'list' ? 'calendar' : 'list')} className="w-fit bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm hover:bg-white/20 transition-all flex items-center gap-2">
                             {view === 'list' ? <CalendarIcon size={18} /> : <ListIcon size={18} />} 
-                            Switch to {view === 'list' ? 'Calendar' : 'List'}
+                            {view === 'list' ? 'Calendar' : 'List'} View
                         </button>
                     </div>
                 </div>
@@ -128,7 +106,7 @@ const Events: React.FC = () => {
                         <div className="flex items-center justify-between"><span className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-[9px]">Upcoming</span><span className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{filteredEvents.length}</span></div>
                     </div>
                 </div>
-                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800"><div className="flex items-center gap-2 text-emerald-500 text-xs font-bold"><Award size={14} /> Active Hub</div></div>
+                <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800"><div className="flex items-center gap-2 text-emerald-500 text-xs font-bold"><Award size={14} /> Regional Hub</div></div>
             </div>
         </div>
 
@@ -149,12 +127,6 @@ const Events: React.FC = () => {
       {view === 'list' && (
         <div id="events-grid" className="animate-in fade-in duration-500">
             <BentoGrid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {isManager && (
-                <div onClick={() => setIsAdding(true)} className="flex flex-col items-center justify-center gap-3 p-8 rounded-[1.75rem] border-2 border-dashed border-indigo-200 bg-indigo-50/20 hover:bg-indigo-50 transition-all cursor-pointer min-h-[300px]">
-                    <Plus size={32} className="text-indigo-400" />
-                    <span className="font-black text-indigo-400 uppercase tracking-widest text-[10px]">Add Event</span>
-                </div>
-            )}
             {paginatedEvents.map((event) => {
                 const mainTag = getMainTag(event.tags);
                 const isMultiDay = event.endDate && !isSameDay(event.date, event.endDate);
@@ -162,14 +134,6 @@ const Events: React.FC = () => {
                 
                 return (
                 <BentoItem key={event.id} className="flex flex-col group h-full transition-all duration-300 rounded-[1.75rem] relative" onClick={() => setSelectedEvent(event)} noPadding={true}>
-                    {isManager && (
-                        <button 
-                         onClick={(e) => { e.stopPropagation(); removeItem('event', event.id); }}
-                         className="absolute top-4 right-4 z-20 p-2 bg-rose-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-all shadow-lg"
-                        >
-                           <Trash2 size={12} />
-                        </button>
-                    )}
                     <div className="h-32 md:h-44 w-full relative shrink-0 overflow-hidden">
                         <img src={event.imageUrl} alt="" className="w-full h-full object-cover" />
                         <div className="absolute top-2 left-2 bg-white/95 px-2 py-1 rounded-lg text-center shadow-md">
@@ -185,7 +149,7 @@ const Events: React.FC = () => {
                             <span className="flex items-center gap-1.5"><Clock size={12} className="text-[#35308f]" />{format(event.date, 'h:mm a')}</span>
                             <span className="flex items-center gap-1.5"><MapPin size={12} className="text-[#35308f]" /><span className="truncate">{event.location}</span></span>
                         </div>
-                        <div className="pt-3 mt-auto border-t border-slate-100 flex items-center justify-between"><span className="text-[9px] font-black uppercase text-emerald-500">Free</span><span className="text-[10px] font-bold text-[#35308f] flex items-center gap-1">Details <ChevronRightIcon size={12} /></span></div>
+                        <div className="pt-3 mt-auto border-t border-slate-100 flex items-center justify-between"><span className="text-[9px] font-black uppercase text-emerald-500">Public</span><span className="text-[10px] font-bold text-[#35308f] flex items-center gap-1">Details <ChevronRightIcon size={12} /></span></div>
                     </div>
                 </BentoItem>
                 );
@@ -221,19 +185,6 @@ const Events: React.FC = () => {
         </div>
       )}
 
-      {isAdding && (
-        <ManagerFormModal 
-          type="event" 
-          onClose={() => setIsAdding(false)} 
-          onSave={(item) => { addItem('event', item); setIsAdding(false); }} 
-        />
-      )}
-      {isSuggesting && (
-        <PublicSuggestionModal 
-          type="event" 
-          onClose={() => setIsSuggesting(false)} 
-        />
-      )}
       {selectedEvent && <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} onOrganizerClick={setSelectedOrg} />}
       {dayModalEvents && <DayEventsModal date={dayModalEvents.date} events={dayModalEvents.events} onClose={() => setDayModalEvents(null)} onSelectEvent={setSelectedEvent} onOrganizerClick={setSelectedOrg} />}
       {selectedOrg && <OrganizationModal org={selectedOrg} onClose={() => setSelectedOrg(null)} />}

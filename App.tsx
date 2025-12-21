@@ -11,7 +11,7 @@ import CommunityNews from './pages/CommunityNews';
 import SDGPage from './pages/SDG';
 import RegionModal, { RegionData } from './components/RegionModal';
 import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource } from './types';
-import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, Clock, MapPin, ShieldCheck, Mail, MessageSquare } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, Clock, MapPin, Mail, MessageSquare } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews } from './data';
 import { format, isSameDay, isWithinInterval } from 'date-fns';
@@ -19,8 +19,6 @@ import { format, isSameDay, isWithinInterval } from 'date-fns';
 export const ThemeContext = createContext<ThemeContextType>({
   isDarkMode: false,
   toggleTheme: () => {},
-  isManager: false,
-  toggleManager: () => {},
   removeItem: () => {},
   addItem: () => {},
   data: { startups: [], ecosystem: [], events: [], opportunities: [], resources: [] }
@@ -31,7 +29,7 @@ const Dashboard = () => {
   const [loadingAdvice, setLoadingAdvice] = useState<boolean>(true);
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
   
-  const { data, isManager } = React.useContext(ThemeContext);
+  const { data } = React.useContext(ThemeContext);
 
   const sortedEvents = [...data.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   const nextEvent = sortedEvents[0];
@@ -99,16 +97,6 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6 h-full flex flex-col pb-24">
-      {isManager && (
-        <div className="bg-indigo-600 text-white px-6 py-3 rounded-2xl flex items-center justify-between shadow-lg shadow-indigo-100 dark:shadow-none animate-in slide-in-from-top-4 duration-300">
-          <div className="flex items-center gap-3">
-             <ShieldCheck size={20} />
-             <span className="font-bold text-sm uppercase tracking-wider">Manager Console Active</span>
-          </div>
-          <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-bold">Admin Privileges</span>
-        </div>
-      )}
-
       <header className="mb-6">
         <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white transition-colors tracking-tight mb-4 leading-tight">
           Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-700 dark:from-emerald-400 dark:to-teal-300">Startup Network</span>
@@ -251,7 +239,9 @@ const Dashboard = () => {
               </p>
            </div>
            <a 
-            href="mailto:baguiostartup@gmail.com" 
+            href="https://m.me/baguiostartup" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="relative z-10 w-full py-4 bg-white text-slate-900 rounded-2xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 flex items-center justify-center gap-2"
            >
              Contact Us <Mail size={14} />
@@ -288,29 +278,35 @@ const Dashboard = () => {
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [isManager, setIsManager] = useState(false);
   
-  // Persistence Layer
-  const getInitialData = () => {
-    const saved = localStorage.getItem('bsn_community_data');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        // Map dates back to Date objects
-        parsed.events = parsed.events.map((e: any) => ({ ...e, date: new Date(e.date), endDate: e.endDate ? new Date(e.endDate) : undefined }));
-        return parsed;
-      } catch (e) {
-        return { startups: activeStartups, ecosystem: ecosystemOrgs, events: events, opportunities: opportunities, resources: resources };
+  // Persistence logic for the unified management state
+  const getInitialManagerData = (key: string, base: any[]) => {
+    const stored = localStorage.getItem(`community_data_${key}`);
+    if (!stored) return base;
+    try {
+      const parsed = JSON.parse(stored);
+      // Map dates back to actual Date objects for events
+      if (key === 'events') {
+        return [...parsed.map((e: any) => ({ ...e, date: new Date(e.date), endDate: e.endDate ? new Date(e.endDate) : undefined })), ...base];
       }
+      return [...parsed, ...base];
+    } catch (e) {
+      return base;
     }
-    return { startups: activeStartups, ecosystem: ecosystemOrgs, events: events, opportunities: opportunities, resources: resources };
   };
 
-  const [appData, setAppData] = useState(getInitialData());
+  const [appData, setAppData] = useState({
+    startups: getInitialManagerData('startups', activeStartups),
+    ecosystem: getInitialManagerData('ecosystem', ecosystemOrgs),
+    events: getInitialManagerData('events', events),
+    opportunities: getInitialManagerData('opportunities', opportunities),
+    resources: getInitialManagerData('resources', resources)
+  });
 
-  useEffect(() => {
-    localStorage.setItem('bsn_community_data', JSON.stringify(appData));
-  }, [appData]);
+  const updateStore = (type: string, list: any[]) => {
+    const key = `community_data_${type === 'ecosystem' ? 'ecosystem' : type + 's'}`;
+    localStorage.setItem(key, JSON.stringify(list));
+  };
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -333,36 +329,34 @@ const App: React.FC = () => {
     }
   };
 
-  const toggleManager = () => setIsManager(!isManager);
-
   const removeItem = (type: string, id: string) => {
+    const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
+    const newList = (appData as any)[listKey].filter((item: any) => item.id !== id);
     setAppData(prev => ({
       ...prev,
-      [type === 'ecosystem' ? 'ecosystem' : type + 's']: (prev as any)[type === 'ecosystem' ? 'ecosystem' : type + 's'].filter((item: any) => item.id !== id)
+      [listKey]: newList
     }));
+    updateStore(type, newList);
   };
 
   const addItem = (type: string, item: any) => {
     const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
-    
     const sanitizedItem = { ...item };
     if (type === 'event' && typeof sanitizedItem.date === 'string') {
       sanitizedItem.date = new Date(sanitizedItem.date);
     }
-    if (type === 'startup' && !sanitizedItem.industry) sanitizedItem.industry = [];
-    
+    const newList = [sanitizedItem, ...(appData as any)[listKey]];
     setAppData(prev => ({
       ...prev,
-      [listKey]: [sanitizedItem, ...(prev as any)[listKey]]
+      [listKey]: newList
     }));
+    updateStore(type, newList);
   };
 
   return (
     <ThemeContext.Provider value={{ 
         isDarkMode, 
         toggleTheme, 
-        isManager, 
-        toggleManager, 
         removeItem, 
         addItem,
         data: appData 

@@ -1,21 +1,11 @@
 
-import React, { useContext, useState } from 'react';
-import { Home, Calendar, Users, Zap, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, ShieldCheck, ShieldAlert, Mail } from 'lucide-react';
+import React, { useContext } from 'react';
+import { Home, Calendar, Users, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, Mail } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
-import ManagerPasswordModal from './ManagerPasswordModal';
 
 export const MobileHeader: React.FC = () => {
-  const { isDarkMode, toggleTheme, isManager, toggleManager } = useContext(ThemeContext);
-  const [showGate, setShowGate] = useState(false);
-
-  const handleManagerToggle = () => {
-    if (isManager) {
-      toggleManager();
-    } else {
-      setShowGate(true);
-    }
-  };
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   
   return (
     <header className="md:hidden w-full flex items-center justify-between px-4 py-3 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shrink-0">
@@ -33,19 +23,14 @@ export const MobileHeader: React.FC = () => {
         
         <div className="flex items-center gap-2">
             <a 
-              href="mailto:baguiostartup@gmail.com"
+              href="https://m.me/baguiostartup"
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-[#35308f] transition-colors"
               title="Contact Us"
             >
               <Mail size={20} />
             </a>
-            <button 
-                onClick={handleManagerToggle}
-                title={isManager ? "Exit Manager Mode" : "Enter Manager Mode"}
-                className={`p-2 rounded-full transition-colors ${isManager ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}
-            >
-                {isManager ? <ShieldCheck size={20} /> : <ShieldAlert size={20} />}
-            </button>
             <button 
                 onClick={toggleTheme}
                 className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
@@ -53,27 +38,12 @@ export const MobileHeader: React.FC = () => {
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
         </div>
-        {showGate && (
-          <ManagerPasswordModal 
-            onClose={() => setShowGate(false)} 
-            onSuccess={() => { toggleManager(); setShowGate(false); }} 
-          />
-        )}
       </header>
   );
 };
 
 const Sidebar: React.FC = () => {
-  const { isDarkMode, toggleTheme, isManager, toggleManager } = useContext(ThemeContext);
-  const [showGate, setShowGate] = useState(false);
-
-  const handleManagerToggle = () => {
-    if (isManager) {
-      toggleManager();
-    } else {
-      setShowGate(true);
-    }
-  };
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   const navItems = [
     { name: 'Hub', icon: Home, path: '/' },
@@ -117,16 +87,10 @@ const Sidebar: React.FC = () => {
         </nav>
 
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2 mt-auto">
-          <button 
-            onClick={handleManagerToggle}
-            className={`w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl transition-all ${isManager ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
-          >
-            {isManager ? <ShieldCheck size={20} /> : <ShieldAlert size={20} />}
-            <span className="hidden lg:block font-medium">{isManager ? 'Manager View' : 'Member View'}</span>
-          </button>
-
           <a 
-            href="mailto:baguiostartup@gmail.com"
+            href="https://m.me/baguiostartup"
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           >
             <Mail size={20} />
@@ -177,12 +141,6 @@ const Sidebar: React.FC = () => {
           ))}
          </div>
       </nav>
-      {showGate && (
-        <ManagerPasswordModal 
-          onClose={() => setShowGate(false)} 
-          onSuccess={() => { toggleManager(); setShowGate(false); }} 
-        />
-      )}
     </>
   );
 };

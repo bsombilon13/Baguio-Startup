@@ -2,18 +2,14 @@
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
 import { BentoGrid, BentoItem } from '../components/BentoGrid';
-import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, PlusCircle, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award, Leaf, Microscope, Trash2, Plus, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Rocket, Facebook, Filter, ChevronDown, Layers, Globe, Cpu, Briefcase, ShoppingCart, Sprout, Palette, HeartPulse, ArrowUpRight, Zap, Award, Leaf, Microscope, ExternalLink } from 'lucide-react';
 import OrganizationModal from '../components/OrganizationModal';
-import ManagerFormModal from '../components/ManagerFormModal';
-import StartupSubmissionModal from '../components/StartupSubmissionModal';
 
 const ActiveStartups: React.FC = () => {
-  const { data, isManager, removeItem, addItem } = useContext(ThemeContext);
+  const { data } = useContext(ThemeContext);
   const [selectedIndustry, setSelectedIndustry] = useState('All');
   const [selectedStage, setSelectedStage] = useState('All');
   const [selectedStartup, setSelectedStartup] = useState<any | null>(null);
-  const [isAdding, setIsAdding] = useState(false);
-  const [isSuggesting, setIsSuggesting] = useState(false);
 
   const industries = ['All', 'Tech', 'Service', 'E-commerce', 'AgriTech', 'Creative', 'Health', 'CleanTech', 'Material Science'];
   const stages = ['All', 'Idea', 'Pre-Seed', 'Seed', 'Growth'];
@@ -100,23 +96,6 @@ const ActiveStartups: React.FC = () => {
                       >
                         <ExternalLink size={18} /> Get Listed
                       </button>
-                      
-                      {isManager && (
-                        <>
-                          <button 
-                            onClick={() => setIsSuggesting(true)}
-                            className="w-fit bg-white/10 backdrop-blur-md text-white border border-white/20 px-6 py-3 rounded-xl font-black text-sm hover:bg-white/20 transition-all flex items-center gap-2"
-                          >
-                            <PlusCircle size={18} /> Quick Add
-                          </button>
-                          <button 
-                            onClick={() => setIsAdding(true)}
-                            className="w-fit bg-indigo-900/40 backdrop-blur-md text-white border border-indigo-400/30 px-6 py-3 rounded-xl font-black text-sm hover:bg-indigo-800/50 transition-all flex items-center gap-2"
-                          >
-                            <ShieldCheck size={18} /> Full Manager Add
-                          </button>
-                        </>
-                      )}
                     </div>
                 </div>
             </div>
@@ -137,7 +116,7 @@ const ActiveStartups: React.FC = () => {
                 </div>
                 <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                     <div className="flex items-center gap-2 text-emerald-500 text-xs font-bold">
-                        <Award size={14} /> Growing Fast
+                        <Award size={14} /> Ecosystem Verified
                     </div>
                 </div>
             </div>
@@ -185,18 +164,6 @@ const ActiveStartups: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {isManager && (
-          <div 
-            onClick={() => setIsSuggesting(true)}
-            className="flex flex-col items-center justify-center gap-4 p-8 rounded-[1.75rem] border-2 border-dashed border-indigo-200 dark:border-slate-700 bg-indigo-50/20 dark:bg-slate-900/30 hover:bg-indigo-50 dark:hover:bg-slate-800/50 hover:border-indigo-400 transition-all cursor-pointer group h-full min-h-[300px]"
-          >
-             <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-lg group-hover:scale-110 transition-transform">
-                <Plus size={32} className="text-indigo-600" />
-             </div>
-             <span className="font-black text-indigo-600 uppercase tracking-widest text-xs">Add Startup</span>
-          </div>
-        )}
-
         {filteredStartups.map((startup) => {
           const mainIndustry = startup.industry[0] || 'Tech';
           const industryColor = getIndustryColor(mainIndustry);
@@ -207,15 +174,6 @@ const ActiveStartups: React.FC = () => {
               onClick={() => setSelectedStartup(startup)}
               className="relative group flex flex-col cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1.75rem] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-indigo-500/5"
             >
-              {isManager && (
-                 <button 
-                  onClick={(e) => { e.stopPropagation(); removeItem('startup', startup.id); }}
-                  className="absolute top-4 right-4 z-20 p-2 bg-rose-500 text-white rounded-full opacity-0 group-hover:opacity-100 hover:scale-110 transition-all shadow-lg"
-                 >
-                    <Trash2 size={14} />
-                 </button>
-              )}
-
               <div className={`h-1.5 w-full bg-gradient-to-r ${industryColor}`}></div>
 
               <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-gradient-to-br ${industryColor} opacity-5 blur-2xl group-hover:opacity-15 transition-all duration-500`}></div>
@@ -320,20 +278,6 @@ const ActiveStartups: React.FC = () => {
 
       {selectedStartup && (
         <OrganizationModal org={selectedStartup} onClose={() => setSelectedStartup(null)} />
-      )}
-
-      {isAdding && (
-        <ManagerFormModal 
-          type="startup" 
-          onClose={() => setIsAdding(false)} 
-          onSave={(item) => { addItem('startup', item); setIsAdding(false); }} 
-        />
-      )}
-
-      {isSuggesting && (
-        <StartupSubmissionModal 
-          onClose={() => setIsSuggesting(false)} 
-        />
       )}
     </div>
   );
