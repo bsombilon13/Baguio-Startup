@@ -717,6 +717,18 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'opp-ipmc-2026',
+    title: 'IP Management Clinic (IPMC)',
+    organization: 'Intellectual Property Office of the Philippines',
+    amount: 'Expert Strategy',
+    deadline: 'May 30, 2026',
+    type: 'Call for Experts',
+    description: 'The IP Management Clinic is your opportunity to strengthen your IP strategy with guidance, expert insights, and global best practices. Learn how to turn your innovations and ideas into valuable IP assets that support sustainable business growth.',
+    link: 'https://ipophlgov-my.sharepoint.com/:w:/g/personal/webmaster_ipophl_gov_ph/IQBhdBovcF9YQJkmTlmKsZUsAU_jPJoNqflu4sLd8hWbGjo?rtime=NPvJj4lT3kg',
+    moreDetailsLink: 'https://www.ipophil.gov.ph/ip-management-clinic/?fbclid=IwY2xjawPUoO5leHRuA2FlbQIxMABicmlkETF3MkRLMXV6bFZ6NjdJSzJnc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjapg1DJwpwoGd2IqKUBL0f87tJ_q17PTN0TqpCP6cr9W_s2hu1nzW-YEgAI_aem_ba0xVP6x-OK7bRzEke9myA',
+    bannerUrl: 'https://www.ipophil.gov.ph/wp-content/uploads/2025/12/viber_image_2025-12-12_14-02-05-967.jpg'
+  },
+  {
     id: 'opp-amazon-climate-tech',
     title: 'Amazon Devices Climate Tech Accelerator',
     organization: 'Amazon',
