@@ -42,6 +42,7 @@ const AnnouncementModal: React.FC<AnnouncementModalProps> = ({ opportunity, onCl
                       ${opportunity.type === 'Grant' ? 'bg-emerald-100 text-emerald-800' : ''}
                       ${opportunity.type === 'Investment' ? 'bg-blue-100 text-blue-800' : ''}
                       ${opportunity.type === 'Accelerator' ? 'bg-purple-100 text-purple-800' : ''}
+                      ${opportunity.type === 'Incubation' ? 'bg-cyan-100 text-cyan-800' : ''}
                       ${opportunity.type === 'Awards' ? 'bg-amber-100 text-amber-800' : ''}
                       ${opportunity.type === 'Competition' ? 'bg-orange-100 text-orange-800' : ''}
                       ${opportunity.type === 'Call for Experts' ? 'bg-cyan-100 text-cyan-800' : ''}

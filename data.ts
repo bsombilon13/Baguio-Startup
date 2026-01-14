@@ -1,4 +1,3 @@
-
 import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
 
 export const ecosystemOrgs: Organization[] = [
@@ -268,7 +267,7 @@ export const ecosystemOrgs: Organization[] = [
     description: 'University of the Cordilleras Innovation and Technology Transfer Office.',
     logoUrl: 'https://graph.facebook.com/UCInTTO/picture?type=large',
     facebookUrl: 'https://www.facebook.com/UCInTTO',
-    websiteUrl: 'https://intto.uc-bcf.edu.ph/index.html',
+    websiteUrl: 'https://intto.uc-bcf.edu.ph/ucolab/project-detail.html?id=CyNjOWMz8l0q93hGCpus',
     types: ['Incubator', 'Academe', 'Workspace']
   },
   {
@@ -556,7 +555,7 @@ export const activeStartups: Startup[] = [
     id: 'aeroaid',
     name: 'AeroAid',
     description: 'A smart, drone delivery system designed to get life-saving medicines in far-flung areas.',
-    logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeH3or8YoXluRbi1y92eqnTqK_Zq44NMPH0r9mrjg0w8ff6bmHSzHAW48nm3_M5h9RixYBFHLY5QkQxk4gW4Ix6B&_nc_ohc=_WIInK1BXHIQ7kNvwEcJ_9z&_nc_oc=AdlV8nWy3ZFS19vwCoyLN5T5dNx1EWxgthGx_C5Npo717rPY-Klx0c5BTJN8UugIbf4&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=XOnSt6URRHy0ocXtqa-J0A&oh=00_AfkHObAPPAPv1bUHnITnuMGLCmLmiLaDA8AlDS0rH3Kblw&oe=694B203C',
+    logoUrl: 'https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/509604516_122112222692894214_1925413050427955989_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=nV1t8xSV5WoQ7kNvwHOaks5&_nc_oc=AdlvNnCOW66JR8syWS1sk96-suWNLteP7ybM8z7Dg0yoXZziRT7YcwIK7BwFQW6mtow&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=Wasp3U7QEa3szLuSzqVsqA&oh=00_AfqLaalgt7YzOuAc8BAs7axcjZMM-K1Rs8edL6wjNgKf1g&oe=696D9F7C',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61576826433382',
     industry: ['Tech', 'Health'],
     stage: 'Idea'
@@ -565,9 +564,9 @@ export const activeStartups: Startup[] = [
     id: 'aicore',
     name: 'AiCore',
     description: 'A computer vision and 3D simulation toolset for bloodstain pattern analysis and crime scene reconstruction',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHiRIlmZIBDUcYXIovHo8IwIIOpEdbsi6wgg6kR1uyLrMWuf8Qif1AA5soSI9OS6sgvPk7lmdax-6K4rMToDFVE&_nc_ohc=f3cuUXYjrioQ7kNvwEoB66p&_nc_oc=AdnMLzaS_KpyovMAE9Bsbk8TEZtue5xS5sDpO-MeN0RTyW0iPGRlonB0EpC4iKU9D5w&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=YmCFaaJxUgB8JqeSatUYpw&oh=00_AflbdmF7slal7GgXYIPm9YOn50lQUM1ku2uWqGV4IhWl1A&oe=694B44C0',
+    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/517176255_122098415258940538_4103039227065415630_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=Xy7WLI_mnLAQ7kNvwFIl9sJ&_nc_oc=Adkspwo34waN--nfKSfMa2nG7pUgo3JyYNaTh_xIQ2CW-HdW28D3NWYtOHHUirwoHNA&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=EyEJ8ev4kFw5OrOgg3iIIA&oh=00_Afru8wK8nwj7tUWWj5f8As-8KGQTelh6EdaD0FToNWDZ1Q&oe=696D8BC0',
     facebookUrl: 'https://www.facebook.com/profile.php?id=61578216141652',
-    websiteUrl: 'https://augnina.github.io/capstone/?fbclid=IwY2xjawOeXx1leHRuA2FlbQIxMABicmlkETFBeERkUDYzNXJiYjJZdUtrc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHlkDgrOnUOVbvKonphvm7A7i4e_fGw_5UVXDpz5wQxiSnDA-LDGCgpGQZgRH_aem_C_VHOmzO05lsBNS4p4zYqg',
+    websiteUrl: 'https://augnina.github.io/capstone/',
     industry: ['Tech'],
     stage: 'MVP'
   },
@@ -575,7 +574,7 @@ export const activeStartups: Startup[] = [
     id: 'bosblocks',
     name: 'BOS Blocks',
     description: 'B.O.S BLOCKS is a cleantech startup transforming the Philippine hollow block industry through a proprietary blend of bamboo biochar and pulverized oyster shells.',
-    logoUrl: '',
+    logoUrl: 'https://ui-avatars.com/api/?name=BOS+Blocks&background=random&size=128',
     facebookUrl: '',
     websiteUrl: 'https://intto.uc-bcf.edu.ph/ucolab/project-detail.html?id=CyNjOWMz8l0q93hGCpus',
     industry: ['Tech', 'CleanTech', 'Material Science'],
@@ -585,7 +584,7 @@ export const activeStartups: Startup[] = [
     id: 'bighani',
     name: 'Bighani RPG',
     description: 'BIGHANI RPG is a 2D pixel-art, turn-based strategy role-playing game that showcases Filipino culture and mythology.',
-    logoUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/475834963_122243782544008053_3761724755288673803_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kUiRra_6S7IQ7kNvwGa2eu8&_nc_oc=AdlV8nWy3ZFS19vwCoyLN5T5dNx1EWxgthGx_C5Npo717rPY-Klx0c5BTJN8UugIbf4&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=HFUaXSyKwlVt2hp_zbQKsw&oh=00_Afn2aQt3DTUJAjdYOdSIiJzHNsw-Ft8BBncRxrATqTRdQQ&oe=694B3326',
+    logoUrl: 'https://graph.facebook.com/BighaniProject/picture?type=large',
     facebookUrl: 'https://www.facebook.com/BighaniProject',
     websiteUrl: 'https://merchant-shade.itch.io/bighani',
     industry: ['Tech', 'Creative'],
@@ -662,16 +661,18 @@ export const activeStartups: Startup[] = [
 
 export const events: Event[] = [
   {
-    id: 'evt-mandeko-kito',
-    title: 'Mandëko Kito',
-    date: new Date('2025-12-05T08:00:00'),
-    endDate: new Date('2025-12-22T17:00:00'),
-    location: 'Scout Hill, Camp John Hay, Baguio City',
-    description: 'Our local artisans and creative advocates are here to preserve traditional skills, pass them on across generations, and inspire creativity and learning, especially among children!',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/581946283_122158851776600138_5733691605446594206_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGSmeaq2DeTxt5JXZBmBp0NJKEUVet8UE8koRRV63xQT_DE9v65cuu_07XnB_aGYrmj-jIIH-pSYZNJRCYRaEOV&_nc_ohc=QuFLMAlZ_tMQ7kNvwFZibDy&_nc_oc=Adm4yT7nN42MWAg_5Rd82tHquJysEiKTdXr_kXO2GQM9xQJt5wAMm0snPQWMEczywdU&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=WV7wJNbjSKBtIGWeXPZESg&oh=00_AflfYM3o8hfUOslzQK9wdeIbEVs7EqGinKuSZYgvu8Mhuw&oe=694DD10E',
-    tags: ['Fair', 'Creative', 'Community'],
-    learnMoreLink: 'https://www.facebook.com/mandekofficial',
-    organizerId: 'mandeko-kito'
+    id: 'event-cybersecurity-dict-2026',
+    title: 'Foundations of Cybersecurity: Data Privacy Concepts and Information Integrity',
+    date: new Date('2026-01-16T08:00:00'),
+    endDate: new Date('2026-01-16T12:00:00'),
+    location: 'Zoom',
+    description: 'This session aims to increase awareness and understanding of data privacy protection and information integrity, highlighting responsible and secure practices in today’s digital environment.',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/615750934_904128462188304_1635720629188889200_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4JoWxYCwZAEm22FNQExlcYgDAJBfoIBhiAMAkF-ggGFeCceW_qcEcfpll4KxpGFxM9Y9OAcRFLlsTUiMGjLoN&_nc_ohc=4Jkw4EX2nQMQ7kNvwF3j_M1&_nc_oc=AdmpFcj8T50MkHkU_emPfirsJ_BfvinHDNvccnZUFI_R532nL660Z5Hq5IacGq6cM1k&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=fk3xnIEHpSBvsi31_bVi8Q&oh=00_Afr-v-DDdvMqNp4zTkUZD2Vk2ovkett3avyxkug2-Y7ynQ&oe=696D8BE7',
+    tags: ['Workshop', 'Webinar'],
+    link: 'https://bit.ly/DPCII-011626',
+    learnMoreLink: 'https://www.facebook.com/photo/?fbid=904128458854971&set=a.131590669442091',
+    organizerId: 'dict-car',
+    price: 'Free'
   }
 ];
 
@@ -681,7 +682,7 @@ export const communityNews: NewsItem[] = [
     title: 'CAR Universities in the UI GreenMetric 2025 Rankings',
     date: 'Dec 16, 2025',
     excerpt: 'The Cordillera Administrative Region (CAR) celebrates a major milestone as several of its universities earn spots in the UI GreenMetric World University Rankings 2025.',
-    imageUrl: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/615733495_1472872924843637_7192797874157003595_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=6ZXWDsAKK6YQ7kNvwHEYlJ2&_nc_oc=AdlS_D1WB4F--F0un09_-LNpK9YfdE7TXaNTAcaSS8G32BaFAw4NmU_anVvrIAaZGWs&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=9ROKS3qbtYw-nGuJHJv59A&oh=00_Afq2GfpdiQ6pCXXhpRktXjMtlxGk7UYyn9PZLgdV9uzIMg&oe=696D7202',
     link: 'https://greenmetric.ui.ac.id/rankings/overall-rankings-2025',
     source: 'Website'
   },
@@ -690,7 +691,7 @@ export const communityNews: NewsItem[] = [
     title: 'Congratulations to the Champions of the Baguio Smart City Convergence 2025',
     date: 'Dec 12, 2025',
     excerpt: 'As we continue building a smarter, more resilient, and more people-centered Baguio City, we proudly celebrate the outstanding students and innovators.',
-    imageUrl: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1000&auto=format&fit=crop',
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593866385_1194754472440128_8684342725486940305_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QRzJmp16VeMQ7kNvwGkvf8v&_nc_oc=AdkmKUzCM5LIlcWtYCUY1_MCo14evI4KguLQICHCDJC8jawyyJWAj5ccho0Uhza3bLc&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=8QyX8vQnTsOQlaqEoAX_7g&oh=00_Afr8f581L5oVATGTDTQLq_ngvvMSHqLjgTqXwN0o7r7JqA&oe=696D7E85',
     link: 'https://www.facebook.com/share/p/1AXJ2Sq43P/',
     source: 'Facebook'
   },
@@ -699,7 +700,7 @@ export const communityNews: NewsItem[] = [
     title: 'Auscultate Wins 1st Runner Up in PSC10!',
     date: 'Dec 05, 2025',
     excerpt: 'Warmest congratulations to Auscultate from the Cordillera Administrative Region for achieving 1st Runner Up in the Philippine Startup Challenge 10!',
-    imageUrl: 'https://images.unsplash.com/photo-1578269174936-2709b6aeb913?q=80&w=1000&auto=format&fit=crop',
+    imageUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/594904505_875149501752867_2697425006317580049_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=0pqqmrJv2D0Q7kNvwHcatuc&_nc_oc=AdmGGTpOIL-EuAeTEAXD3o6yepRCMnGG2isAvQsSeNqh_PR3aJtyAW4H8j3mQVlQDzw&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=1Eb29hXC05W-R2Utye3dVg&oh=00_AfrZiOR4VtMh9mFh91qCv21JjZcQhGTJZkeczJDCAZUmrw&oe=696D7194',
     link: 'https://www.facebook.com/photo/?fbid=875149498419534&set=a.131590669442091',
     source: 'Facebook'
   },
@@ -708,13 +709,49 @@ export const communityNews: NewsItem[] = [
     title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',
     date: 'Dec 03, 2025',
     excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10 on December 3-4, 2025.',
-    imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hEbGNchmZ-0Q7kNvwFn5Itm&_nc_oc=Adka3B1vtydRApf_pMj9HjyiPNguI7hsxZZjqkmRUjGrOJjPs4u4gkso1tkCM2-hQ_g&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=RKy7GOkdAuNWtZYrfe6Ikw&oh=00_AfoJl2isx0XFosO89n_E9kh3-Vqdz-yJr4ubu679pXht6g&oe=696D93A8',
     link: 'https://www.facebook.com/photo/?fbid=873609971906820&set=a.131590669442091',
     source: 'Facebook'
   }
 ];
 
 export const opportunities: Opportunity[] = [
+  {
+    id: 'opp-amazon-climate-tech',
+    title: 'Amazon Devices Climate Tech Accelerator',
+    organization: 'Amazon',
+    amount: 'Accelerator',
+    deadline: 'February 24, 2026',
+    type: 'Incubation',
+    description: 'A uniquely designed program for companies at any stage to accelerate the integration of their technologies that can help reduce the carbon impact of Amazon devices.',
+    link: 'https://applications.pnptc.com/amazon-devices-climate-tech-accelerator',
+    moreDetailsLink: 'https://sustainability.aboutamazon.com/products-services/amazon-devices-climate-tech-accelerator',
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/615452051_1402942291872351_123754039280221254_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFr2zOrdKteeFEXxFuBcADZ3K7e0kLuu1Hcrt7SQu67UUD3jdzvEO1BlzmTHDD4CSjW7rY6Y_AY5zT3fVXKUgp5&_nc_ohc=uyzzUhFpNr8Q7kNvwFo_DHk&_nc_oc=AdmZfSoGIN53wV_xMhF_KzWjaadQF5jTF0jzBWQXA4euAoscrhgVApPAH7s9Wqfk4LM&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=LjGaGDnwdj6RV5s0cWYZkg&oh=00_Afrv19op03KS9VPNcUPfDeSaLvgWACUPHwNfZ_eSpUSOmA&oe=696D99F3'
+  },
+  {
+    id: 'opp-uc-cohort-9',
+    title: 'COHORT 9 for UCIAN Innovators',
+    organization: 'UC Innovation And Technology Transfer Office',
+    amount: 'Free Mentorship',
+    deadline: 'January 28, 2026',
+    type: 'Incubation',
+    description: 'Join our community and get access to free expert mentorship, specialized workshops, and a collaborative environment. We provide co-working spaces and specialized equipment to help you refine your idea, develop a product, and prepare for market entry.',
+    link: 'https://forms.gle/jVJymemBp9az5En87',
+    moreDetailsLink: 'https://www.facebook.com/UCInTTO/posts/pfbid0hFr6wxtLUTJ66HkJh5oXZR27QJGVkwKdboyrHhEP5zALRFePr6sZwUN2bDaTDpJNl?rdid=2Bs81daZrhbjr2S2#',
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/615396181_1360715146066150_2584322211358351719_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7lOH_yFYkk8Q7kNvwGHKCjQ&_nc_oc=AdkoT0galooJDC1nEeQuTl-ZjDCG-CUWDvIO-X5HXPFQcEioubw22etUtjTHtkplUIU&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=OrVZ-a_NruDFoQAgVwQGpQ&oh=00_Afr-njwXlkEB5l6gsJIoYb_48ynLrHw_FOjR0x2nbT-lJA&oe=696D945A'
+  },
+  {
+    id: 'opp-ntf-2026',
+    title: 'Call for Baguio & Benguet Exhibitors for the National Trade Fair',
+    organization: 'DTI / Government',
+    amount: 'Market Access',
+    deadline: 'January 23, 2026',
+    type: 'Call for Experts',
+    description: 'Showcase the 𝕓𝕖𝕤𝕥 𝕠𝕗 𝕥𝕙𝕖 ℂ𝕠𝕣𝕕𝕚𝕝𝕝𝕖𝕣𝕒𝕤 on a national stage. Be part of the 2026 𝓓𝓣𝓘 𝓑𝓪𝓰𝓸𝓷𝓰 𝓟𝓲𝓵𝓲𝓹𝓲𝓷𝓪𝓼 𝓝𝓪𝓽𝓲𝓸𝓷𝓪𝓵 𝓣𝓻𝓪𝓭𝓮 𝓕𝓪𝓲𝓻 and bring your proudly local products to thousands of buyers and visitors! 📅 February 18–22, 2026 ⏰ 10:00 a.m. – 9:00 p.m. 📍 Megatrade Halls 1–3, SM Megamall, Mandaluyong City. This is your chance to: ✅ Expand your market ✅ Connect with national buyers ✅ Elevate your brand under Bagong Pilipinas.',
+    link: 'https://tinyurl.com/join2026NTF',
+    moreDetailsLink: 'https://www.facebook.com/photo/?fbid=1203308168583111&set=a.190674703179801',
+    bannerUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/615074911_1203308171916444_5063032536415042023_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ink9cmknEJcQ7kNvwGG7uKe&_nc_oc=Adljoe-JIQFhPlvefpVHSrGkykaJ4WnahLBoDpviX7Fq98dPcQcAVefTM51Cf3yRGZM&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=B2Y1oUeumGKsEd7RZ80JEQ&oh=00_AfoShs7nXGH5jNcoskB9-KPh-qdpXtq3_37oTVRE-GYoFA&oe=696D937E'
+  },
   {
     id: 'eyaa-cohort-6',
     title: 'eYAA: Cohort 6 is Calling',
@@ -725,18 +762,19 @@ export const opportunities: Opportunity[] = [
     description: 'CSOs and SEs committed to community empowerment and youth engagement are invited to implement impactful projects.',
     link: 'https://form.jotform.com/253384883336467',
     moreDetailsLink: 'https://bit.ly/eYAA6_CSO',
-    bannerUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop'
+    bannerUrl: 'https://aseanfoundation.org/wp-content/uploads/2025/12/CFA-CSOSE-eYAA6-Slide-1.jpg'
   },
   {
     id: 'award-1',
     title: '1st Negosyong Matatag: MSME Disaster Resilience Awards',
     organization: 'DTI / Government',
     amount: 'Recognition',
-    deadline: 'Jan 14, 2026',
+    deadline: 'February 27, 2026',
     type: 'Awards',
     description: 'Nomination for MSME Disaster Resilience awards for 2026.',
-    link: 'https://bit.ly/MatatagAwards',
-    moreDetailsLink: 'https://www.facebook.com/share/p/17jdMgFnyt/'
+    link: 'https://docs.google.com/forms/d/e/1FAIpQLSd1ATsVvUabmc5mB8noqGrY8wFH7aiNmKoDxdlVU4SgPa5OUQ/viewform',
+    moreDetailsLink: 'https://www.facebook.com/photo?fbid=1202977625352919&set=a.163867532597272',
+    bannerUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/614766928_1202977632019585_4535625032574069490_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=uQld2zKbe0kQ7kNvwGMQu6d&_nc_oc=Adm_yxPVXPYL8EdLjIugKn3xtUw4gmlZb6wGLBgyLdXNqgc_dgsgpYP5KTm8emHOwYs&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=8ypQia0reyRdMimR2uK_HQ&oh=00_Afpa0W-A9JI0kPlhAtpTyRqMDVa5a0W0FoJ5UKVkbdQ3yQ&oe=696D7BDE'
   }
 ];
 

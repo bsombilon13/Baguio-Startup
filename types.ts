@@ -52,7 +52,7 @@ export interface Opportunity {
   organization: string;
   amount: string;
   deadline: string;
-  type: 'Grant' | 'Investment' | 'Accelerator' | 'Competition' | 'Awards' | 'Call for Experts';
+  type: 'Grant' | 'Investment' | 'Accelerator' | 'Competition' | 'Awards' | 'Call for Experts' | 'Incubation';
   description: string;
   link?: string;
   moreDetailsLink?: string;

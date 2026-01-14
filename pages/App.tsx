@@ -10,15 +10,21 @@ import Announcements from './Announcements';
 import CommunityNews from './CommunityNews';
 import SDGPage from './SDG';
 import RegionModal, { RegionData } from '../components/RegionModal';
-import { ThemeContextType } from '../types';
+// Fix: Import missing types for ThemeContextType
+import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource } from '../types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, MapPin, Clock } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-import { events, communityNews, opportunities } from '../data';
+// Fix: Import all necessary data for initial state
+import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews } from '../data';
 import { format, isSameDay, isWithinInterval } from 'date-fns';
 
+// Fix: Add missing properties (removeItem, addItem, data) to match ThemeContextType
 export const ThemeContext = createContext<ThemeContextType>({
   isDarkMode: false,
   toggleTheme: () => {},
+  removeItem: () => {},
+  addItem: () => {},
+  data: { startups: [], ecosystem: [], events: [], opportunities: [], resources: [] }
 });
 
 const Dashboard = () => {
@@ -26,12 +32,15 @@ const Dashboard = () => {
   const [loadingAdvice, setLoadingAdvice] = useState<boolean>(true);
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null);
 
-  const sortedEvents = [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  // Fix: Consume data from ThemeContext instead of raw imports
+  const { data } = React.useContext(ThemeContext);
+
+  const sortedEvents = [...data.events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   const nextEvent = sortedEvents[0];
   const latestNews = communityNews[0];
 
   const today = new Date();
-  const todaysEvents = events.filter(event => {
+  const todaysEvents = data.events.filter(event => {
     const start = new Date(event.date);
     start.setHours(0,0,0,0);
     if (event.endDate) {
@@ -202,7 +211,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="md:w-[45%] h-48 md:h-auto relative order-1 md:order-2">
-             {nextEvent && <img src={nextEvent.imageUrl} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />}
+             {nextEvent && <img src={nextEvent.imageUrl} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />}
              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent md:hidden"></div>
           </div>
         </div>
@@ -242,7 +251,7 @@ const Dashboard = () => {
                   <h4 className="font-black text-slate-900 dark:text-white text-xl uppercase tracking-wider">Announcements</h4>
                </div>
                <div className="space-y-4">
-                  {opportunities.slice(0, 3).map((opp) => (
+                  {data.opportunities.slice(0, 3).map((opp) => (
                     <div key={opp.id} className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 group/ann hover:border-indigo-400 transition-all">
                       <div className="flex justify-between items-start mb-2">
                            <span className="px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest bg-emerald-100 text-emerald-700">{opp.type}</span>
@@ -265,6 +274,36 @@ const Dashboard = () => {
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Fix: Persistence logic for the unified management state
+  const getInitialManagerData = (key: string, base: any[]) => {
+    const stored = localStorage.getItem(`community_data_${key}`);
+    if (!stored) return base;
+    try {
+      const parsed = JSON.parse(stored);
+      // Map dates back to actual Date objects for events
+      if (key === 'events') {
+        return [...parsed.map((e: any) => ({ ...e, date: new Date(e.date), endDate: e.endDate ? new Date(e.endDate) : undefined })), ...base];
+      }
+      return [...parsed, ...base];
+    } catch (e) {
+      return base;
+    }
+  };
+
+  const [appData, setAppData] = useState({
+    startups: getInitialManagerData('startups', activeStartups),
+    ecosystem: getInitialManagerData('ecosystem', ecosystemOrgs),
+    events: getInitialManagerData('events', events),
+    opportunities: getInitialManagerData('opportunities', opportunities),
+    resources: getInitialManagerData('resources', resources)
+  });
+
+  const updateStore = (type: string, list: any[]) => {
+    const key = `community_data_${type === 'ecosystem' ? 'ecosystem' : type + 's'}`;
+    localStorage.setItem(key, JSON.stringify(list));
+  };
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -273,6 +312,7 @@ const App: React.FC = () => {
       document.documentElement.classList.add('dark');
     }
   }, []);
+
   const toggleTheme = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
@@ -284,8 +324,40 @@ const App: React.FC = () => {
       setIsDarkMode(true);
     }
   };
+
+  const removeItem = (type: string, id: string) => {
+    const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
+    const newList = (appData as any)[listKey].filter((item: any) => item.id !== id);
+    setAppData(prev => ({
+      ...prev,
+      [listKey]: newList
+    }));
+    updateStore(type, newList);
+  };
+
+  const addItem = (type: string, item: any) => {
+    const listKey = type === 'ecosystem' ? 'ecosystem' : type + 's';
+    const sanitizedItem = { ...item };
+    if (type === 'event' && typeof sanitizedItem.date === 'string') {
+      sanitizedItem.date = new Date(sanitizedItem.date);
+    }
+    const newList = [sanitizedItem, ...(appData as any)[listKey]];
+    setAppData(prev => ({
+      ...prev,
+      [listKey]: newList
+    }));
+    updateStore(type, newList);
+  };
+
+  // Fix: Provide missing properties to match ThemeContextType in Provider value
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+    <ThemeContext.Provider value={{ 
+        isDarkMode, 
+        toggleTheme,
+        removeItem,
+        addItem,
+        data: appData
+    }}>
       <Router>
         <div className="flex h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 overflow-hidden transition-colors duration-300">
           <Sidebar />

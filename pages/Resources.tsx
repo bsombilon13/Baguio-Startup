@@ -35,6 +35,15 @@ const Resources: React.FC = () => {
     }
   };
 
+  const getDomain = (url: string) => {
+    try {
+      const parsed = new URL(url);
+      return parsed.hostname;
+    } catch (e) {
+      return '';
+    }
+  };
+
   return (
     <div className="space-y-12 pb-32 max-w-[1400px] mx-auto">
       {/* Interactive Header */}
@@ -85,62 +94,91 @@ const Resources: React.FC = () => {
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-0">
-        {filteredResources.map(resource => (
-          <div 
-            key={resource.id} 
-            className="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2 overflow-hidden"
-          >
-            {/* Background Decorative Pattern */}
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-125 transition-transform duration-700">
-               <FileText size={120} />
-            </div>
+        {filteredResources.map(resource => {
+          const domain = getDomain(resource.url);
+          // Prioritize Clearbit for higher quality logos, fallback to Google Favicon
+          const logoUrl = domain ? `https://logo.clearbit.com/${domain}` : null;
+          const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128` : null;
 
-            <div className="flex justify-between items-start mb-8 relative z-10">
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg ${getIconColor(resource.type)}`}>
-                {resource.type === 'Website' ? (
-                  <Monitor size={28} />
-                ) : (
-                  <FileText size={28} />
-                )}
+          return (
+            <div 
+              key={resource.id} 
+              className="group relative bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full hover:-translate-y-2 overflow-hidden"
+            >
+              {/* Background Decorative Pattern */}
+              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-125 transition-transform duration-700">
+                {resource.type === 'Website' ? <Globe size={120} /> : <FileText size={120} />}
               </div>
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                  {resource.type}
-                </span>
-              </div>
-            </div>
 
-            <div className="relative z-10 flex-1">
-              <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-4 leading-tight group-hover:text-indigo-600 transition-colors">
-                {resource.title}
-              </h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8 font-medium line-clamp-3">
-                {resource.description}
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto relative z-10">
-              <div className="flex flex-col">
-                <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Format</span>
-                <span className="text-xs font-bold text-slate-900 dark:text-slate-200">{resource.format} {resource.size !== 'N/A' && `• ${resource.size}`}</span>
+              <div className="flex justify-between items-start mb-8 relative z-10">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700 overflow-hidden group-hover:scale-110 transition-transform duration-500`}>
+                  {domain ? (
+                    <img 
+                      src={logoUrl || faviconUrl || ''} 
+                      alt="" 
+                      className="w-10 h-10 object-contain p-1"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (target.src.includes('clearbit')) {
+                          target.src = faviconUrl || '';
+                        } else {
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent) {
+                            parent.classList.add(getIconColor(resource.type));
+                            parent.classList.add('text-white');
+                            const iconElement = document.createElement('div');
+                            iconElement.innerHTML = resource.type === 'Website' ? '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>' : '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>';
+                            parent.appendChild(iconElement.firstChild as Node);
+                          }
+                        }
+                      }}
+                    />
+                  ) : (
+                    <div className={`w-full h-full flex items-center justify-center text-white ${getIconColor(resource.type)}`}>
+                      {resource.type === 'Website' ? <Monitor size={28} /> : <FileText size={28} />}
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                    {resource.type}
+                  </span>
+                </div>
               </div>
-              
-              <a 
-                href={resource.url} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="group/btn flex items-center gap-2 bg-[#35308f] text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg active:scale-95"
-              >
-                {resource.type === 'Website' ? 'Visit' : 'Open'} 
-                {resource.type === 'Website' ? (
-                  <ExternalLink size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                ) : (
-                  <Download size={16} className="group-hover/btn:translate-y-1 transition-transform" />
-                )}
-              </a>
+
+              <div className="relative z-10 flex-1">
+                <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-4 leading-tight group-hover:text-indigo-600 transition-colors">
+                  {resource.title}
+                </h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-8 font-medium line-clamp-3">
+                  {resource.description}
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto relative z-10">
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-[0.2em]">Format</span>
+                  <span className="text-xs font-bold text-slate-900 dark:text-slate-200">{resource.format} {resource.size !== 'N/A' && `• ${resource.size}`}</span>
+                </div>
+                
+                <a 
+                  href={resource.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group/btn flex items-center gap-2 bg-[#35308f] text-white px-6 py-3 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-indigo-700 transition-all shadow-lg active:scale-95"
+                >
+                  {resource.type === 'Website' ? 'Visit' : 'Open'} 
+                  {resource.type === 'Website' ? (
+                    <ExternalLink size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+                  ) : (
+                    <Download size={16} className="group-hover/btn:translate-y-1 transition-transform" />
+                  )}
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       
       {filteredResources.length === 0 && (

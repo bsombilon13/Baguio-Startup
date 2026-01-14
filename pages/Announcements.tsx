@@ -1,7 +1,7 @@
 
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../App';
-import { DollarSign, Lightbulb, Trophy, Swords, Building2, Calendar, ArrowRight, Sparkles, Zap, Timer, ChevronRight } from 'lucide-react';
+import { DollarSign, Lightbulb, Trophy, Swords, Building2, Calendar, ArrowRight, Sparkles, Zap, Timer, ChevronRight, Rocket } from 'lucide-react';
 import { Opportunity } from '../types';
 import AnnouncementModal from '../components/AnnouncementModal';
 
@@ -12,6 +12,7 @@ const Announcements: React.FC = () => {
 
   const tabs = [
     { name: 'Funding & Grants', icon: DollarSign, color: 'text-emerald-500' },
+    { name: 'Incubation', icon: Rocket, color: 'text-cyan-500' },
     { name: 'Opportunities', icon: Lightbulb, color: 'text-amber-500' },
     { name: 'Competitions', icon: Swords, color: 'text-rose-500' },
     { name: 'Awards', icon: Trophy, color: 'text-indigo-500' },
@@ -19,10 +20,11 @@ const Announcements: React.FC = () => {
 
   const getFilteredOpportunities = (tabName: string) => {
     return data.opportunities.filter(opp => {
-      if (tabName === 'Funding & Grants') return opp.type === 'Grant' || opp.type === 'Investment' || opp.type === 'Accelerator';
+      if (tabName === 'Funding & Grants') return opp.type === 'Grant' || opp.type === 'Investment';
+      else if (tabName === 'Incubation') return opp.type === 'Accelerator' || opp.type === 'Incubation';
       else if (tabName === 'Awards') return opp.type === 'Awards';
       else if (tabName === 'Competitions') return opp.type === 'Competition';
-      else return opp.type !== 'Grant' && opp.type !== 'Investment' && opp.type !== 'Accelerator' && opp.type !== 'Awards' && opp.type !== 'Competition';
+      else return opp.type !== 'Grant' && opp.type !== 'Investment' && opp.type !== 'Accelerator' && opp.type !== 'Awards' && opp.type !== 'Competition' && opp.type !== 'Incubation';
     });
   };
 
