@@ -552,6 +552,15 @@ export const ecosystemOrgs: Organization[] = [
 
 export const activeStartups: Startup[] = [
   {
+    id: 'oxilia',
+    name: 'O-Xilia',
+    description: 'A unified workspace where planning and collaboration happen together. It merges structured project management with real-time team communication, keeping ideas, tasks, and progress in one clear flow, simple, focused, and built for momentum.',
+    logoUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/519066249_122106148976946209_8079689239304703533_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=OchwX7fGXYAQ7kNvwH4j6WG&_nc_oc=Adk2WuLYyImPNHJZz0rfiZy_EHDlH0VsZPaLNrCeczuqbzU3utnQJKhGf-uZvY97M-k&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=I0YX3ztW6DvKmtXXRKKVrw&oh=00_Afp0Cz1qnZnwU4t2Rp3ZUp4XAik2RpUZwZ3LQl8BTZVDFg&oe=696E2675',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61578386291081',
+    industry: ['Tech'],
+    stage: 'Pre-Seed'
+  },
+  {
     id: 'aeroaid',
     name: 'AeroAid',
     description: 'A smart, drone delivery system designed to get life-saving medicines in far-flung areas.',
