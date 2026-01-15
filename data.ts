@@ -514,7 +514,7 @@ export const ecosystemOrgs: Organization[] = [
   },
   {
     id: 'pma',
-    name: 'Philippine Military Academy',
+    name: 'Philippine Military academy',
     description: 'The premier military academy of the Philippines.',
     logoUrl: 'https://graph.facebook.com/philippinemilitaryacademypublicaffairs/picture?type=large',
     facebookUrl: 'https://www.facebook.com/philippinemilitaryacademypublicaffairs',
@@ -726,6 +726,30 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'opp-dost-tapi-technicom',
+    title: 'TECHNiCOM | Technology Innovation for Commercialization',
+    organization: 'Technology Application and Promotion Institute (DOST-TAPI)',
+    amount: 'Not Specified',
+    deadline: 'January 30, 2026',
+    type: 'Grant',
+    description: "The Technology Innovation for Commercialization Program (TECHNiCOM) aims to fast-track the transfer, utilization, and commercialization of R&D outputs to contribute to the country’s sustainable development through relevant technological platforms. Through TECHNiCOM, we provide technopreneurs with an easily accessible multimillion pre-commercialization grant and linkage to DOST-TAPI’s technology and innovation support programs.",
+    link: 'http://tapi.dost.gov.ph/call-for-proposals/technicom',
+    moreDetailsLink: 'http://tapi.dost.gov.ph/call-for-proposals/technicom',
+    bannerUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/598539969_1307515604747819_5880741053725815788_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vXnKXZYZhOYQ7kNvwEJDXoI&_nc_oc=AdnDMyeabuOPFdXt4KXgPMfiKkK_Oe4neYPB2Q77wIXDreyzaJi9VxzWlvlWx1bHdCE&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=7i673L1yknBjeMmz59jl4A&oh=00_AfpqbQMs03AgRKEZdQOTOy2c36MfPMgSd_2953oqpgdsKA&oe=696E2DB7'
+  },
+  {
+    id: 'opp-dost-tapi-galing',
+    title: 'GALING | Grants and Assistance to Leverage Innovations for National Growth',
+    organization: 'Technology Application and Promotion Institute (DOST-TAPI)',
+    amount: 'Not Specified',
+    deadline: 'January 30, 2026',
+    type: 'Grant',
+    description: "The Grants And Assistance To Leverage Innovations For National Growth (GALING) Program has a holistic approach of packaged assistance that will harmonize the pre-commercialization programs of DOST-TAPI's Invention Development Division (IDD), in particular the Testing and Analyses Program, Industry-Based Invention Development (IBID) Program, and Invention-Based Enterprise Development (IBED) Program. It will also provide financial assistance for iterative prototyping.",
+    link: 'http://tapi.dost.gov.ph/call-for-proposals/galing',
+    moreDetailsLink: 'http://tapi.dost.gov.ph/call-for-proposals/galing',
+    bannerUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/598539969_1307515604747819_5880741053725815788_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=vXnKXZYZhOYQ7kNvwEJDXoI&_nc_oc=AdnDMyeabuOPFdXt4KXgPMfiKkK_Oe4neYPB2Q77wIXDreyzaJi9VxzWlvlWx1bHdCE&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=7i673L1yknBjeMmz59jl4A&oh=00_AfpqbQMs03AgRKEZdQOTOy2c36MfPMgSd_2953oqpgdsKA&oe=696E2DB7'
+  },
+  {
     id: 'opp-ipmc-2026',
     title: 'IP Management Clinic (IPMC)',
     organization: 'Intellectual Property Office of the Philippines',
@@ -800,6 +824,15 @@ export const opportunities: Opportunity[] = [
 ];
 
 export const resources: Resource[] = [
+  {
+    id: 'web-google-ai-studio',
+    title: 'Google AI Studio',
+    type: 'Website',
+    description: 'A web-based tool for prototyping with Gemini models and building AI applications fast.',
+    format: 'AI Prototyping',
+    size: 'N/A',
+    url: 'https://aistudio.google.com/'
+  },
   {
     id: 'r1',
     title: 'CAR Ecosystem Mapping Report 2022-2025',
