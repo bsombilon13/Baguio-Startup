@@ -735,6 +735,18 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'award-presidential-filipinnovation',
+    title: 'Presidential Filipinnovation Awards',
+    organization: 'Department of Economy, Planning, and Development',
+    amount: 'Recognition',
+    deadline: 'March 15, 2026',
+    type: 'Awards',
+    description: "A Presidential Recognition for World-Class Filipino Innovation. The Presidential Filipinnovation Awards honor world-class Filipino innovations that transform industries, uplift communities, and drive national development.",
+    link: 'https://filipinnovation.depdev.gov.ph/',
+    moreDetailsLink: 'https://filipinnovation.depdev.gov.ph/',
+    bannerUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/615590616_826637257042819_5104940519470252292_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VxC6MjzYOFoQ7kNvwFn9aqD&_nc_oc=AdnjRwsjkZcptNm2NWmgEqT-u4jUe8e1qBZeie2eoNAcH49ew6Y99NKt6Rvk2OH36ME&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=fHVuQpM3D00OCOqJhp_oaw&oh=00_Afq6lGj3gwr6TO0OHIKxU2hJh_LUMmlaoJn3PahwcK0gOw&oe=696EB418'
+  },
+  {
     id: 'opp-dost-setup',
     title: "DOST's Small Enterprise Technology Upgrading Program (SETUP)",
     organization: 'Department of Science and Technology (DOST)',
