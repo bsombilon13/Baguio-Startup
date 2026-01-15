@@ -735,6 +735,18 @@ export const communityNews: NewsItem[] = [
 
 export const opportunities: Opportunity[] = [
   {
+    id: 'opp-dost-setup',
+    title: "DOST's Small Enterprise Technology Upgrading Program (SETUP)",
+    organization: 'Department of Science and Technology (DOST)',
+    amount: 'See Details',
+    deadline: 'Not Specified',
+    type: 'Grant',
+    description: "Have you been running a business for at least three years? Do you need support or want to take your business to the next level? 𝐃𝐎𝐒𝐓’𝐬 𝐒𝐦𝐚𝐥𝐥 𝐄𝐧𝐭𝐞𝐫𝐩𝐫𝐢𝐬𝐞 𝐓𝐞𝐜𝐡𝐧𝐨𝐥𝐨𝐠𝐲 𝐔𝐩𝐠𝐫𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐨𝐠𝐫𝐚𝐦 𝐨𝐫 𝐒𝐄𝐓𝐔𝐏 might be exactly what you’re looking for. As the year draws to a close and business activity peaks and booming, now is the perfect time to join. Elevate your operations, improve competitiveness, and grow your business. This is your sign—start your journey with DOST SETUP now!",
+    link: 'https://car.dost.gov.ph/technology-transfer-and-commercialization-innovation-system-support/',
+    moreDetailsLink: 'https://www.facebook.com/share/p/1CAc1S9zqD/',
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/600352244_1321133586724889_4063340100914566112_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VCHPcG6OvosQ7kNvwFxpWW0&_nc_oc=AdmPxrB07VGs1HkdZedRQsRY3Wl2B9qjKay03Wx_XynUSwpOwxZBOVYfuTF9p_TTgAU&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=2GTkhtm4V56V-IrX-Xmejg&oh=00_AfrMjq1iH5nMu_gAhnLGz_TSUFv-ub9mqZvyvnVIn9zyQw&oe=696E4407'
+  },
+  {
     id: 'opp-dost-tapi-technicom',
     title: 'TECHNiCOM | Technology Innovation for Commercialization',
     organization: 'Technology Application and Promotion Institute (DOST-TAPI)',
