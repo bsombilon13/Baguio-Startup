@@ -552,6 +552,15 @@ export const ecosystemOrgs: Organization[] = [
 
 export const activeStartups: Startup[] = [
   {
+    id: 'auscultate',
+    name: 'Auscultate',
+    description: 'An AI-powered lung sound classification tool that brings fast, reliable respiratory diagnosis to the point of care. By analyzing spatial and temporal sound patterns, it can detect conditions like COPD, pneumonia, asthma, and other respiratory infections within minutes, empowering healthcare workers with faster decision-making and improving patient outcomes. With respiratory diseases being among the leading causes of global morbidity, Auscultate addresses a critical gap in early detection and access, especially in underserved communities, positioning it as a scalable, life-saving solution with strong market potential in both developed and emerging healthcare systems.',
+    logoUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/587105029_122102493579126819_1371032562716588011_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeE1E3JkRpqv735WPojN7s8aFi80CzSEtBsWLzQLNIS0G3ilCNK6YkmP88Q_W2Lef3kubA3gQXv7dif9rd5j5HuV&_nc_ohc=EmEtnz7fyqkQ7kNvwGDWsV1&_nc_oc=AdkyRpqfZ_Oo-HHSZav8D-Wu7QrQj_nG9l8x9dOXvtYzhvbuUiGtG3VX5bNw4vmMIdw&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=dpUdtI_j3eH46MTnJ23gwA&oh=00_AfopkqBXoeSl94ugKoGDBxrNSU9ht7ogmRbbbMPqHGawPw&oe=696E37C1',
+    facebookUrl: 'https://www.facebook.com/profile.php?id=61583804591119',
+    industry: ['Health', 'Tech'],
+    stage: 'Pre-Seed'
+  },
+  {
     id: 'oxilia',
     name: 'O-Xilia',
     description: 'A unified workspace where planning and collaboration happen together. It merges structured project management with real-time team communication, keeping ideas, tasks, and progress in one clear flow, simple, focused, and built for momentum.',
