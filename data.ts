@@ -833,7 +833,7 @@ export const opportunities: Opportunity[] = [
     amount: 'Market Access',
     deadline: 'January 23, 2026',
     type: 'Call for Experts',
-    description: 'Showcase the 𝕓𝕖𝕤𝕥 𝕠𝕗 𝕥𝕙𝕖 ℂ𝕠𝕣𝕕𝕚𝕝𝕝𝕖𝕣𝕒𝕤 on a national stage. Be part of the 2026 𝓓𝓣𝓘 𝓑𝓪𝓰𝓸𝓷𝓰 𝓟𝓲𝓵𝓲𝓹𝓲𝓷𝓪𝓼 𝓝𝓪𝕥𝓲𝓸𝓷𝓪𝓵 𝓣𝓻𝓪𝓭𝓮 𝓕𝓪𝓲𝓻 and bring your proudly local products to thousands of buyers and visitors! 📅 February 18–22, 2026 ⏰ 10:00 a.m. – 9:00 p.m. 📍 Megatrade Halls 1–3, SM Megamall, Mandaluyong City. This is your chance to: ✅ Expand your market ✅ Connect with national buyers ✅ Elevate your brand under Bagong Pilipinas.',
+    description: 'Showcase the 𝕓𝕖𝕤𝕥 𝕠𝕗 𝕥𝕙𝕖 ℂ𝕠𝕣𝕕𝕚𝕝𝕝𝕖𝕣𝕒𝕤 on a national stage. Be part of the 2026 𝓓𝓣𝓘 𝓑𝓪𝓰𝓸𝓷𝓰 𝓟𝓲𝓵𝓲𝓹𝓲𝓷𝓪𝓼 𝓝𝓪𝓽𝓲𝓸𝓷𝓪𝓵 𝓣𝓻𝓪𝓭𝓮 𝓕𝓪𝓲𝓻 and bring your proudly local products to thousands of buyers and visitors! 📅 February 18–22, 2026 ⏰ 10:00 a.m. – 9:00 p.m. 📍 Megatrade Halls 1–3, SM Megamall, Mandaluyong City. This is your chance to: ✅ Expand your market ✅ Connect with national buyers ✅ Elevate your brand under Bagong Pilipinas.',
     link: 'https://tinyurl.com/join2026NTF',
     moreDetailsLink: 'https://www.facebook.com/photo/?fbid=1203308168583111&set=a.190674703179801',
     bannerUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/615074911_1203308171916444_5063032536415042023_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ink9cmknEJcQ7kNvwGG7uKe&_nc_oc=Adljoe-JIQFhPlvefpVHSrGkykaJ4WnahLBoDpviX7Fq98dPcQcAVefTM51Cf3yRGZM&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=B2Y1oUeumGKsEd7RZ80JEQ&oh=00_AfoShs7nXGH5jNcoskB9-KPh-qdpXtq3_37oTVRE-GYoFA&oe=696D937E'
@@ -891,6 +891,24 @@ export const resources: Resource[] = [
     format: 'WEB',
     size: 'N/A',
     url: 'https://heyzine.com/flip-book/7acb10b7ce.html#page/1'
+  },
+  {
+    id: 'gov-creative-baguio',
+    title: 'Creative Baguio',
+    type: 'Government',
+    description: 'Official portal for Baguio City as a UNESCO Creative City, featuring artists, crafts, and folk art heritage.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://creativebaguio.com/'
+  },
+  {
+    id: 'gov-visita-baguio',
+    title: 'Baguio VISITA',
+    type: 'Government',
+    description: 'Official visitor registration and information portal for Baguio City tourism and safety.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://visita.baguio.gov.ph/'
   },
   {
     id: 'r2',
