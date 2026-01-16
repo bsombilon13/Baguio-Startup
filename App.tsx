@@ -107,6 +107,39 @@ const Dashboard = () => {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 auto-rows-min">
+        {/* Region Overview Section - Now Top Priority */}
+        <div className="md:col-span-4 space-y-4 md:space-y-6">
+          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
+                <svg width="240" height="240" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M8 3l4 8 5-5 5 15H2L8 3z"></path></svg>
+             </div>
+             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-6">
+                <div>
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border border-white/20 mb-4 text-emerald-50">
+                     Region Overview
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-black mb-2">Cordillera Administrative Region</h3>
+                  <p className="text-emerald-100 font-medium max-w-2xl leading-relaxed text-lg">
+                    The ecosystem is currently in a nascent stage, growing through community-led innovation and regional enablers.
+                  </p>
+                </div>
+                <div className="flex flex-col items-end">
+                   <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl font-black text-2xl border border-white/20 shadow-lg mb-2">Lvl 1</div>
+                   <span className="text-white/80 font-black uppercase text-xs tracking-[0.2em]">Nascent</span>
+                </div>
+             </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+             {scmmData.map((area) => (
+                <button key={area.name} onClick={() => setSelectedRegion(area)} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-[1.75rem] shadow-sm hover:border-emerald-400 transition-all flex flex-col justify-between min-h-[120px] relative group text-left">
+                   <span className="font-black text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight group-hover:text-emerald-600 transition-colors">{area.name}</span>
+                   <div className="mt-auto"><LevelBadge level={area.level} label={area.label} compact={true} /></div>
+                </button>
+             ))}
+          </div>
+        </div>
+
+        {/* Happening Today - Now below the region cards */}
         {todaysEvents.length > 0 && (
           <div className="md:col-span-4 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none group-hover:scale-110 transition-transform duration-1000">
@@ -138,37 +171,6 @@ const Dashboard = () => {
              </div>
           </div>
         )}
-
-        <div className="md:col-span-4 space-y-4 md:space-y-6">
-          <div className="bg-gradient-to-br from-[#1a4731] to-[#2f705a] rounded-[2.5rem] p-8 text-white shadow-xl relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
-                <svg width="240" height="240" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1"><path d="M8 3l4 8 5-5 5 15H2L8 3z"></path></svg>
-             </div>
-             <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-6">
-                <div>
-                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border border-white/20 mb-4 text-emerald-50">
-                     Region Overview
-                  </div>
-                  <h3 className="text-3xl md:text-4xl font-black mb-2">Cordillera Administrative Region</h3>
-                  <p className="text-emerald-100 font-medium max-w-2xl leading-relaxed text-lg">
-                    The ecosystem is currently in a nascent stage, growing through community-led innovation and regional enablers.
-                  </p>
-                </div>
-                <div className="flex flex-col items-end">
-                   <div className="bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl font-black text-2xl border border-white/20 shadow-lg mb-2">Lvl 1</div>
-                   <span className="text-white/80 font-black uppercase text-xs tracking-[0.2em]">Nascent</span>
-                </div>
-             </div>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-             {scmmData.map((area) => (
-                <button key={area.name} onClick={() => setSelectedRegion(area)} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 rounded-[1.75rem] shadow-sm hover:border-emerald-400 transition-all flex flex-col justify-between min-h-[120px] relative group text-left">
-                   <span className="font-black text-slate-800 dark:text-slate-100 text-sm md:text-base leading-tight group-hover:text-emerald-600 transition-colors">{area.name}</span>
-                   <div className="mt-auto"><LevelBadge level={area.level} label={area.label} compact={true} /></div>
-                </button>
-             ))}
-          </div>
-        </div>
         
         {latestNews && (
             <div className="md:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative group min-h-[360px]">

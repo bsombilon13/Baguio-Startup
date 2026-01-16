@@ -2,6 +2,14 @@ import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from '.
 
 export const ecosystemOrgs: Organization[] = [
   {
+    id: 'baguio-creative-city',
+    name: 'Baguio Creative City',
+    description: "Baguio City's official platform as a UNESCO Creative City of Crafts and Folk Art, celebrating local artistry and heritage.",
+    logoUrl: 'https://graph.facebook.com/BaguioCreativeCityOfficial/picture?type=large',
+    facebookUrl: 'https://www.facebook.com/BaguioCreativeCityOfficial',
+    types: ['Creatives', 'Community', 'Government']
+  },
+  {
     id: '19hundred',
     name: '19Hundred Work Space',
     description: 'A conducive coworking space and study hub in Baguio City.',
@@ -825,7 +833,7 @@ export const opportunities: Opportunity[] = [
     amount: 'Market Access',
     deadline: 'January 23, 2026',
     type: 'Call for Experts',
-    description: 'Showcase the 𝕓𝕖𝕤𝕥 𝕠𝕗 𝕥𝕙𝕖 ℂ𝕠𝕣𝕕𝕚𝕝𝕝𝕖𝕣𝕒𝕤 on a national stage. Be part of the 2026 𝓓𝓣𝓘 𝓑𝓪𝓰𝓸𝓷𝓰 𝓟𝓲𝓵𝓲𝓹𝓲𝓷𝓪𝓼 𝓝𝓪𝓽𝓲𝓸𝓷𝓪𝓵 𝓣𝓻𝓪𝓭𝓮 𝓕𝓪𝓲𝓻 and bring your proudly local products to thousands of buyers and visitors! 📅 February 18–22, 2026 ⏰ 10:00 a.m. – 9:00 p.m. 📍 Megatrade Halls 1–3, SM Megamall, Mandaluyong City. This is your chance to: ✅ Expand your market ✅ Connect with national buyers ✅ Elevate your brand under Bagong Pilipinas.',
+    description: 'Showcase the 𝕓𝕖𝕤𝕥 𝕠𝕗 𝕥𝕙𝕖 ℂ𝕠𝕣𝕕𝕚𝕝𝕝𝕖𝕣𝕒𝕤 on a national stage. Be part of the 2026 𝓓𝓣𝓘 𝓑𝓪𝓰𝓸𝓷𝓰 𝓟𝓲𝓵𝓲𝓹𝓲𝓷𝓪𝓼 𝓝𝓪𝕥𝓲𝓸𝓷𝓪𝓵 𝓣𝓻𝓪𝓭𝓮 𝓕𝓪𝓲𝓻 and bring your proudly local products to thousands of buyers and visitors! 📅 February 18–22, 2026 ⏰ 10:00 a.m. – 9:00 p.m. 📍 Megatrade Halls 1–3, SM Megamall, Mandaluyong City. This is your chance to: ✅ Expand your market ✅ Connect with national buyers ✅ Elevate your brand under Bagong Pilipinas.',
     link: 'https://tinyurl.com/join2026NTF',
     moreDetailsLink: 'https://www.facebook.com/photo/?fbid=1203308168583111&set=a.190674703179801',
     bannerUrl: 'https://scontent.fcrk1-2.fna.fbcdn.net/v/t39.30808-6/615074911_1203308171916444_5063032536415042023_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ink9cmknEJcQ7kNvwGG7uKe&_nc_oc=Adljoe-JIQFhPlvefpVHSrGkykaJ4WnahLBoDpviX7Fq98dPcQcAVefTM51Cf3yRGZM&_nc_zt=23&_nc_ht=scontent.fcrk1-2.fna&_nc_gid=B2Y1oUeumGKsEd7RZ80JEQ&oh=00_AfoShs7nXGH5jNcoskB9-KPh-qdpXtq3_37oTVRE-GYoFA&oe=696D937E'
@@ -865,6 +873,15 @@ export const resources: Resource[] = [
     format: 'AI Prototyping',
     size: 'N/A',
     url: 'https://aistudio.google.com/'
+  },
+  {
+    id: 'template-business-model-canvas',
+    title: 'Business Model Canvas',
+    type: 'Template',
+    description: 'A strategic management template for developing new or documenting existing business models.',
+    format: 'WEB',
+    size: 'N/A',
+    url: 'https://www.strategyzer.com/library/the-business-model-canvas'
   },
   {
     id: 'r1',
