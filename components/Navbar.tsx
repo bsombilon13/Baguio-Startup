@@ -1,6 +1,5 @@
-
 import React, { useContext } from 'react';
-import { Home, Calendar, Users, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, Mail } from 'lucide-react';
+import { Home, Calendar, Users, Megaphone, Rocket, Sun, Moon, BookOpen, Newspaper, UserPlus, Globe, Mail, GraduationCap } from 'lucide-react';
 import { NavLink, Link } from 'react-router-dom';
 import { ThemeContext } from '../App';
 
@@ -23,7 +22,7 @@ export const MobileHeader: React.FC = () => {
         
         <div className="flex items-center gap-2">
             <a 
-              href="https://m.me/baguiostartup"
+              href="https://www.facebook.com/baguiostartup/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-[#35308f] transition-colors"
@@ -49,6 +48,7 @@ const Sidebar: React.FC = () => {
     { name: 'Hub', icon: Home, path: '/' },
     { name: 'Startups', icon: Rocket, path: '/startups' },
     { name: 'Ecosystem', icon: Users, path: '/ecosystem' },
+    { name: 'Mentors', icon: GraduationCap, path: '/mentors' },
     { name: 'Events', icon: Calendar, path: '/events' },
     { name: 'Announcements', icon: Megaphone, path: '/announcements' },
     { name: 'SDGs', icon: Globe, path: '/sdg' },
@@ -88,7 +88,7 @@ const Sidebar: React.FC = () => {
 
         <div className="p-4 border-t border-slate-100 dark:border-slate-800 space-y-2 mt-auto">
           <a 
-            href="https://m.me/baguiostartup"
+            href="https://www.facebook.com/baguiostartup/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"

@@ -4,15 +4,16 @@ import Sidebar, { MobileHeader } from './components/Navbar';
 import Events from './pages/Events';
 import Ecosystem from './pages/Ecosystem';
 import ActiveStartups from './pages/ActiveStartups';
+import Mentors from './pages/Mentors';
 import Resources from './pages/Resources';
 import Announcements from './pages/Announcements';
 import CommunityNews from './pages/CommunityNews';
 import SDGPage from './pages/SDG';
 import RegionModal, { RegionData } from './components/RegionModal';
-import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource } from './types';
+import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource, Mentor } from './types';
 import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, Clock, MapPin, Trophy, Globe, TrendingUp } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
-import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews } from './data';
+import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews, mentors } from './data';
 import { format, isSameDay, isWithinInterval } from 'date-fns';
 
 export const ThemeContext = createContext<ThemeContextType>({
@@ -20,7 +21,7 @@ export const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {},
   removeItem: () => {},
   addItem: () => {},
-  data: { startups: [], ecosystem: [], events: [], opportunities: [], resources: [] }
+  data: { startups: [], mentors: [], ecosystem: [], events: [], opportunities: [], resources: [] }
 });
 
 const Dashboard = () => {
@@ -329,6 +330,7 @@ const App: React.FC = () => {
 
   const [appData, setAppData] = useState({
     startups: getInitialManagerData('startups', activeStartups),
+    mentors: getInitialManagerData('mentors', mentors),
     ecosystem: getInitialManagerData('ecosystem', ecosystemOrgs),
     events: getInitialManagerData('events', events),
     opportunities: getInitialManagerData('opportunities', opportunities),
@@ -403,6 +405,7 @@ const App: React.FC = () => {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/events" element={<Events />} />
                 <Route path="/ecosystem" element={<Ecosystem />} />
+                <Route path="/mentors" element={<Mentors />} />
                 <Route path="/startups" element={<ActiveStartups />} />
                 <Route path="/resources" element={<Resources />} />
                 <Route path="/news" element={<CommunityNews />} />

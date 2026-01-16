@@ -1,4 +1,3 @@
-
 export interface Organization {
   id: string;
   name: string;
@@ -19,6 +18,16 @@ export interface Startup {
   websiteUrl?: string;
   industry: ('Tech' | 'Service' | 'E-commerce' | 'AgriTech' | 'Creative' | 'Health' | 'CleanTech' | 'Material Science')[];
   stage: 'Idea' | 'MVP' | 'Pre-Seed' | 'Seed' | 'Growth' | 'Scaling' | 'Series A+';
+}
+
+export interface Mentor {
+  id: string;
+  name: string;
+  expertise: ('Tech' | 'Product' | 'Marketing' | 'Finance' | 'Legal' | 'Strategy' | 'Operations' | 'Design' | 'Sales')[];
+  bio: string;
+  photoUrl: string;
+  connectUrl: string;
+  isFeatured?: boolean;
 }
 
 export interface Event {
@@ -78,6 +87,7 @@ export interface ThemeContextType {
   // Data state
   data: {
     startups: Startup[];
+    mentors: Mentor[];
     ecosystem: Organization[];
     events: Event[];
     opportunities: Opportunity[];

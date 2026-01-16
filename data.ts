@@ -1,4 +1,4 @@
-import { Organization, Startup, Event, Opportunity, Resource, NewsItem } from './types';
+import { Organization, Startup, Event, Opportunity, Resource, NewsItem, Mentor } from './types';
 
 export const ecosystemOrgs: Organization[] = [
   {
@@ -498,7 +498,7 @@ export const ecosystemOrgs: Organization[] = [
   {
     id: 'bsu-main',
     name: 'Benguet State University',
-    description: 'A state university in La Trinidad, Benguet.',
+    description: 'A state university in La Trinidad, lifestyle.',
     logoUrl: 'https://graph.facebook.com/BenguetStateUniversity/picture?type=large',
     facebookUrl: 'https://www.facebook.com/BenguetStateUniversity/',
     websiteUrl: 'http://www.bsu.edu.ph',
@@ -685,6 +685,8 @@ export const activeStartups: Startup[] = [
   }
 ];
 
+export const mentors: Mentor[] = [];
+
 export const events: Event[] = [
   {
     id: 'event-cybersecurity-dict-2026',
@@ -717,7 +719,7 @@ export const communityNews: NewsItem[] = [
     title: 'Congratulations to the Champions of the Baguio Smart City Convergence 2025',
     date: 'Dec 12, 2025',
     excerpt: 'As we continue building a smarter, more resilient, and more people-centered Baguio City, we proudly celebrate the outstanding students and innovators.',
-    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593866385_1194754472440128_8684342725486940305_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QRzJmp16VeMQ7kNvwGkvf8v&_nc_oc=AdkmKUzCM5LIlcWtYCUY1_MCo14evI4KguLQICHCDJC8jawyyJWAj5ccho0Uhza3bLc&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=8QyX8vQnTsOQlaqEoAX_7g&oh=00_Afr8f581L5oVATGTDTQLq_ngvvMSHqLjgTqXwN0o7r7JqA&oe=696D7E85',
+    imageUrl: 'https://scontent.fcrk1-5.fna.fbcdn.net/v/t39.30808-6/593866385_1194754472440128_8684342725486940305_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QRzJmp16VeMQ7kNvwGkvf8v&_nc_oc=AdkmKUzCM5LIlcWtYCUY1_MCo14evI4KguLQICHCDJC8jawyyJWAj5ccho0Uhza3bLc&_nc_zt=23&_nc_ht=scontent.fcrk1-5.fna&_nc_gid=8QyX8vQnTsOQlaqEoAX_7g&oh=00_Afq2GfpdiQ6pCXXhpRktXjMtlxGk7UYyn9PZLgdV9uzIMg&oe=696D7E85',
     link: 'https://www.facebook.com/share/p/1AXJ2Sq43P/',
     source: 'Facebook'
   },
@@ -735,7 +737,7 @@ export const communityNews: NewsItem[] = [
     title: 'Cordillera Representative Ausculate, Set for National Spotlight at PSC10',
     date: 'Dec 03, 2025',
     excerpt: 'Team Auscultate is set to represent the Cordillera Administrative Region at the Philippine Startup Challenge 10 on December 3-4, 2025.',
-    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hEbGNchmZ-0Q7kNvwFn5Itm&_nc_oc=Adka3B1vtydRApf_pMj9HjyiPNguI7hsxZZjqkmRUjGrOJjPs4u4gkso1tkCM2-hQ_g&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=RKy7GOkdAuNWtZYrfe6Ikw&oh=00_AfoJl2isx0XFosO89n_E9kh3-Vqdz-yJr4ubu679pXht6g&oe=696D93A8',
+    imageUrl: 'https://scontent.fcrk1-4.fna.fbcdn.net/v/t39.30808-6/591610947_873609975240153_4085509653829870516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4JoWxYCwZAEm22FNQExlcYgDAJBfoIBhiAMAkF-ggGFeCceW_qcEcfpll4KxpGFxM9Y9OAcRFLlsTUiMGjLoN&_nc_ohc=hEbGNchmZ-0Q7kNvwFn5Itm&_nc_oc=Adka3B1vtydRApf_pMj9HjyiPNguI7hsxZZjqkmRUjGrOJjPs4u4gkso1tkCM2-hQ_g&_nc_zt=23&_nc_ht=scontent.fcrk1-4.fna&_nc_gid=RKy7GOkdAuNWtZYrfe6Ikw&oh=00_AfoJl2isx0XFosO89n_E9kh3-Vqdz-yJr4ubu679pXht6g&oe=696D93A8',
     link: 'https://www.facebook.com/photo/?fbid=873609971906820&set=a.131590669442091',
     source: 'Facebook'
   }
@@ -764,7 +766,7 @@ export const opportunities: Opportunity[] = [
     description: "Have you been running a business for at least three years? Do you need support or want to take your business to the next level? 𝐃𝐎𝐒𝐓’𝐬 𝐒𝐦𝐚𝐥𝐥 𝐄𝐧𝐭𝐞𝐫𝐩𝐫𝐢𝐬𝐞 𝐓𝐞𝐜𝐡𝐧𝐨𝐥𝐨𝐠𝐲 𝐔𝐩𝐠𝐫𝐚𝐝𝐢𝐧𝐠 𝐏𝐫𝐨𝐠𝐫𝐚𝐦 𝐨𝐫 𝐒𝐄𝐓𝐔𝐏 might be exactly what you’re looking for. As the year draws to a close and business activity peaks and booming, now is the perfect time to join. Elevate your operations, improve competitiveness, and grow your business. This is your sign—start your journey with DOST SETUP now!",
     link: 'https://car.dost.gov.ph/technology-transfer-and-commercialization-innovation-system-support/',
     moreDetailsLink: 'https://www.facebook.com/share/p/1CAc1S9zqD/',
-    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/600352244_1321133586724889_4063340100914566112_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VCHPcG6OvosQ7kNvwFxpWW0&_nc_oc=AdmPxrB07VGs1HkdZedRQsRY3Wl2B9qjKay03Wx_XynUSwpOwxZBOVYfuTF9p_TTgAU&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=2GTkhtm4V56V-IrX-Xmejg&oh=00_AfrMjq1iH5nMu_gAhnLGz_TSUFv-ub9mqZvyvnVIn9zyQw&oe=696E4407'
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/600352244_1321133586724889_4063340100914566112_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF4JoWxYCwZAEm22FNQExlcYgDAJBfoIBhiAMAkF-ggGFeCceW_qcEcfpll4KxpGFxM9Y9OAcRFLlsTUiMGjLoN&_nc_ohc=VCHPcG6OvosQ7kNvwFxpWW0&_nc_oc=AdmPxrB07VGs1HkdZedRQsRY3Wl2B9qjKay03Wx_XynUSwpOwxZBOVYfuTF9p_TTgAU&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=2GTkhtm4V56V-IrX-Xmejg&oh=00_AfrMjq1iH5nMu_gAhnLGz_TSUFv-ub9mqZvyvnVIn9zyQw&oe=696E4407'
   },
   {
     id: 'opp-dost-tapi-technicom',
@@ -812,7 +814,7 @@ export const opportunities: Opportunity[] = [
     description: 'A uniquely designed program for companies at any stage to accelerate the integration of their technologies that can help reduce the carbon impact of Amazon devices.',
     link: 'https://applications.pnptc.com/amazon-devices-climate-tech-accelerator',
     moreDetailsLink: 'https://sustainability.aboutamazon.com/products-services/amazon-devices-climate-tech-accelerator',
-    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/615452051_1402942291872351_123754039280221254_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFr2zOrdKteeFEXxFuBcADZ3K7e0kLuu1Hcrt7SQu67UUD3jdzvEO1BlzmTHDD4CSjW7rY6Y_AY5zT3fVXKUgp5&_nc_ohc=uyzzUhFpNr8Q7kNvwFo_DHk&_nc_oc=AdmZfSoGIN53wV_xMhF_KzWjaadQF5jTF0jzBWQXA4euAoscrhgVApPAH7s9Wqfk4LM&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=LjGaGDnwdj6RV5s0cWYZkg&oh=00_Afrv19op03KS9VPNcUPfDeSaLvgWACUPHwNfZ_eSpUSOmA&oe=696D99F3'
+    bannerUrl: 'https://scontent.fcrk1-3.fna.fbcdn.net/v/t39.30808-6/615452051_1402942291872351_123754039280221254_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFr2zOrdKteeFEXxFuBcADZ3K7e0kLuu1Hcrt7SQu67UUD3jdzvEO1BlzmTHDD4CSjW7rY6Y_AY5zT3fVXKUgp5&_nc_ohc=uyzzUhFpNr8Q7kNvwFo_DHk&_nc_oc=AdmZfSoGIN53wV_xMhF_KzWjaadQF5jTF0jzBWQXA4euAoscrhgVApPAH7s9Wqfk4LM&_nc_zt=23&_nc_ht=scontent.fcrk1-3.fna&_nc_gid=LjGaGDnwdj6RV5s0cWYZkg&oh=00_Afv19op03KS9VPNcUPfDeSaLvgWACUPHwNfZ_eSpUSOmA&oe=696D99F3'
   },
   {
     id: 'opp-uc-cohort-9',
