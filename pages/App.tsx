@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import Sidebar from '../components/Navbar';
@@ -11,7 +10,7 @@ import CommunityNews from './CommunityNews';
 import SDGPage from './SDG';
 import RegionModal, { RegionData } from '../components/RegionModal';
 import { ThemeContextType, Startup, Organization, Event, Opportunity, Resource } from '../types';
-import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, MapPin, Clock } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Sparkles, Quote, Loader2, Newspaper, MapPin, Clock, Trophy, Globe, TrendingUp } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 import { activeStartups, ecosystemOrgs, events, opportunities, resources, communityNews } from '../data';
 import { format, isSameDay, isWithinInterval } from 'date-fns';
@@ -140,6 +139,46 @@ const Dashboard = () => {
           </div>
         </div>
 
+        {/* PH Ecosystem Rankings Row */}
+        <div className="md:col-span-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+           <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden group">
+              <div className="absolute -top-4 -right-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+                <TrendingUp size={120} />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.15em] text-indigo-500 mb-3 flex items-center gap-1.5"><Globe size={12}/> SE Asia</span>
+              <div className="text-4xl font-black text-slate-900 dark:text-white mb-1">6th</div>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Regional Rank</span>
+           </div>
+           
+           <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden group">
+              <div className="absolute -top-4 -right-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+                <Trophy size={120} />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.15em] text-amber-500 mb-3 flex items-center gap-1.5"><Globe size={12}/> Global</span>
+              <div className="text-4xl font-black text-slate-900 dark:text-white mb-1">64th</div>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Global Rank</span>
+           </div>
+
+           <div className="bg-white dark:bg-slate-900 rounded-[2rem] border border-slate-200 dark:border-slate-800 p-6 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden group">
+              <div className="absolute -top-4 -right-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+                <MapPin size={120} />
+              </div>
+              <span className="text-[10px] font-black uppercase tracking-[0.15em] text-rose-500 mb-3 flex items-center gap-1.5"><MapPin size={12}/> Local</span>
+              <div className="text-2xl font-black text-slate-900 dark:text-white mb-1">Unlisted</div>
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Baguio Rank</span>
+           </div>
+
+           <div className="bg-gradient-to-br from-slate-900 to-indigo-950 dark:from-indigo-900 dark:to-indigo-950 rounded-[2rem] border border-slate-800 p-6 flex flex-col justify-between shadow-xl text-white group">
+              <div>
+                <h4 className="font-black text-sm uppercase tracking-wider mb-2">PH Ecosystem Overview</h4>
+                <p className="text-[10px] text-indigo-200 font-medium leading-relaxed opacity-80">Track our national standing on StartupBlink.</p>
+              </div>
+              <a href="https://www.startupblink.com/startup-ecosystem/philippines?page=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md px-4 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all w-fit mt-4">
+                View <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+           </div>
+        </div>
+
         {/* Happening Now - Moved below region cards */}
         {todaysEvents.length > 0 && (
           <div className="md:col-span-4 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-[2.5rem] p-8 text-white shadow-2xl relative overflow-hidden group">
@@ -230,7 +269,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-8 flex flex-col items-center justify-center text-center shadow-sm min-h-[360px]">
+        {/* StartupBlink Ecosystem Map Card */}
+        <div className="md:col-span-1 bg-white dark:bg-slate-900 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 p-8 flex flex-col items-center justify-center text-center shadow-sm min-h-[360px] group">
            <div className="w-20 h-20 rounded-[1.75rem] overflow-hidden mb-6 shadow-xl bg-white border border-slate-100 flex items-center justify-center p-3 transform group-hover:rotate-6 transition-transform">
              <img src="https://somalia.startupblink.com/_next/static/media/startuplink.fe5810b1.svg" alt="" className="w-full h-full object-contain" />
            </div>
@@ -272,7 +312,7 @@ const Dashboard = () => {
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Fix: Persistence logic for the unified management state
+  // Persistence logic for the unified management state
   const getInitialManagerData = (key: string, base: any[]) => {
     const stored = localStorage.getItem(`community_data_${key}`);
     if (!stored) return base;
@@ -346,7 +386,6 @@ const App: React.FC = () => {
     updateStore(type, newList);
   };
 
-  // Fix: Provide missing properties to match ThemeContextType in Provider value
   return (
     <ThemeContext.Provider value={{ 
         isDarkMode, 
