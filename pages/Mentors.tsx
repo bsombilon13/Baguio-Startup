@@ -36,7 +36,7 @@ const Mentors: React.FC = () => {
   };
 
   const handleBecomeMentor = () => {
-    window.open('https://www.facebook.com/baguiostartup/', '_blank');
+    window.open('https://forms.gle/Q8DZqX63otU8fDng8', '_blank');
   };
 
   return (
@@ -140,7 +140,7 @@ const Mentors: React.FC = () => {
             onClick={() => setSelectedMentor(mentor)}
             className="relative group flex flex-col cursor-pointer bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[1.75rem] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             
             <div className="p-5 flex flex-col h-full relative z-10">
               <div className="flex justify-center mb-5">
